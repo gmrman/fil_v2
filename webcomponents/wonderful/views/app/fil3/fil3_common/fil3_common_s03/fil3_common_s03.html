@@ -1,0 +1,70 @@
+<ion-view>
+    <ion-content class="view-pane">
+        <div class="card scan-card card-list-mar-small">
+            <div class="col">
+                <ion-item class="item-nonpad" ng-if="page_params.in_out_no !== '0'">
+                    <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-class="{inputfocused:focused[0]}">
+                        <div class="col col-25 col-center">{{langs.warehouse}}</div>
+                        <input class="col scan-input" type="text" hide-keypad select-on-click ch-scanned="checkScan_warehouse(value)" ng-model="scaninfo.warehouse_no" ng-focus="setfocused(0)" focus-me="focused[0]">
+                        <i class="icon ion-android-open icon-medium col-center" ng-click="warehouseShow()"></i>
+                    </div>
+                </ion-item>
+                <ion-item class="item-nonpad" ng-if="page_params.in_out_no == '1' ">
+                    <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-class="{inputfocused:focused[1]}">
+                        <div class="col col-25 col-center">{{langs.storage}}</div>
+                        <input class="col scan-input" type="text" hide-keypad select-on-click ch-scanned="checkScan_storage(value)" ng-model="scaninfo.storage_spaces_no" ng-focus="setfocused(1)" focus-me="focused[1]">
+                        <i class="icon ion-android-open icon-medium col-center" ng-click="storageShow()"></i>
+                        <i class="icon ion-ios-close-outline icon-medium col-center" on-tap="clearStorage()"></i>
+                    </div>
+                </ion-item>
+                <ion-item class="item-nonpad" ng-if="page_params.program_job_no == '13-1' || page_params.program_job_no == '13-5' ">
+                    <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-class="{inputfocused:focused[2]}">
+                        <div class="col col-25 col-center">{{langs.ingoing}}{{langs.warehouse}}</div>
+                        <input class="col scan-input" type="text" hide-keypad select-on-click ch-scanned="checkScan_ingoing_warehouse(value)" ng-model="scaninfo.ingoing_warehouse_no" ng-focus="setfocused(2)" focus-me="focused[2]">
+                        <i class="icon ion-android-open icon-medium col-center" ng-click="ingoingWarehouseShow()"></i>
+                    </div>
+                </ion-item>
+                <ion-item class="item-nonpad" ng-if="page_params.program_job_no == '13-1' || page_params.program_job_no == '13-5'">
+                    <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-class="{inputfocused:focused[3]}">
+                        <div class="col col-25 col-center">{{langs.ingoing}}{{langs.storage}}</div>
+                        <input class="col scan-input" type="text" hide-keypad select-on-click ch-scanned="checkScan_ingoing_storage(value)" ng-model="scaninfo.ingoing_storage_spaces_no" ng-focus="setfocused(3)" focus-me="focused[3]">
+                        <i class="icon ion-android-open icon-medium col-center" ng-click="ingoingStorageShow()"></i>
+                        <i class="icon ion-ios-close-outline icon-medium col-center" on-tap="clearIngoingStorage()"></i>
+                    </div>
+                </ion-item>
+                <ion-item class="item-nonpad" ng-if="page_params.in_out_no == '1'">
+                    <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-class="{inputfocused:focused[4]}">
+                        <div class="col col-25 col-center">{{langs.lot}}</div>
+                        <input class="col scan-input" type="text" hide-keypad select-on-click next-on-enter ng-model="scaninfo.lot_no" ng-focus="setfocused(4)" focus-me="focused[4]">
+                        <i class="icon ion-ios-close-outline icon-medium col-center" on-tap="scaninfo.lot_no = '' "></i>
+                    </div>
+                </ion-item>
+                <ion-item class="item-nonpad" ng-if="reason_code_show">
+                    <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-class="{inputfocused:focused[5]}">
+                        <div class="col col-25 col-center">{{langs.reason_no}}</div>
+                        <input class="col scan-input" type="text" hide-keypad select-on-click ch-scanned="checkScan_reason(value)" ng-model="scaninfo.reason_code" ng-focus="setfocused(5)" focus-me="focused[5]">
+                        <i class="icon ion-android-open icon-medium col-center" ng-click="reasonShow()"></i>
+                        <i class="icon ion-ios-close-outline icon-medium col-center" on-tap="clearReason()"></i>
+                    </div>
+                </ion-item>
+                <ion-item class="item-nonpad">
+                    <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-class="{inputfocused:focused[6]}">
+                        <div class="col col-25 col-center">{{langs.barcode}}</div>
+                        <input class="col scan-input" type="text" hide-keypad select-on-click placeholder="{{langs.start_scan}}" ch-scanned="scanned(value)" ng-model="scaninfo.scanning" ng-focus="setfocused(6)" focus-me="focused[6]">
+                        <i class="icon ion-ios-close-outline icon-medium col-center" ng-click="clearScanning()"></i>
+                    </div>
+                </ion-item>
+                <ion-item class="item-nonpad">
+                    <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-class="{inputfocused:focused[7]}">
+                        <div class="col col-25 col-center">{{langs.qty}}</div>
+                        <input class="col scan-input" type="number" string-to-number hide-keypad select-on-click ng-model="scaninfo.qty" ng-focus="setfocused(7)" focus-me="focused[7]">
+                    </div>
+                </ion-item>
+            </div>
+        </div>
+        <ion-nav-view name="fil3_common_s03_list" sub-view></ion-nav-view>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="checkSave()" ng-show="doc_info.item_no && scaninfo.qty>0 ">
+        <h1 class="title">{{langs.save}}</h1>
+    </div>
+</ion-view>

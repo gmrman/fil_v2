@@ -1,0 +1,170 @@
+.bar-diy {
+  background-color: #2B887D;
+}
+.bar-diy .title, .bar-diy .icon {
+  color: #fff;
+}
+.subheader {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+.subheader-diy {
+  position: absolute;
+  transition: all .3s;
+  width: 240%;
+  /*border-bottom: 2px solid black;*/
+}
+.subheader .tab-diy {
+  float: left;
+  width: 14.2%;
+  /*设置标签页的百分比*/
+  height: 44px;
+  line-height: 44px;
+  transform: translateX(0);
+}
+.tab-diy p {
+  margin: 0;
+  text-align: center;
+}
+.scroll-content, ion-slide-box, .slider, .scroll {
+  height: 100%;
+}
+.scroll-content {
+  top: 44px;
+}
+.scroll-content.warehouse {
+  top: 86px;
+  height: auto;
+}
+.scroll-content.menuset {
+  top: 0px;
+}
+.addmenu {
+  border: 1px dashed black;
+  width: 80%;
+  text-align: center;
+  margin: auto;
+}
+.list-inset:last-child {
+  margin: 20px 0px;
+  border-bottom: 1px solid #DDDDDD;
+}
+.item.userlabel, .item.lastitem {
+  border-bottom: 1px solid #DDDDDD;
+}
+.tab_select {
+  border-bottom: 2px solid #EFC32F;
+  color: #EFC32F;
+}
+.dot {
+  position: fixed;
+  bottom: 37px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+.dot span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #EEEEEE;
+  border-radius: 50%;
+  margin: 5px;
+}
+.dot .dot_select {
+  background-color: #EFC32F;
+}
+
+/*eg*/
+
+.item {
+  width: 100%;
+  white-space: inherit;
+  border-bottom-width: 0px;
+  /*padding-bottom: 100px;*/
+}
+.menuClass {
+  padding-bottom: 10px;
+  /*padding-top: 10px;*/
+  width: 33.33%;
+  text-align: center;
+  display: inline-block;
+  /*height: 85px;*/
+}
+.menuClass svg, .menuClassPng {
+  width: 50px;
+}
+.C0077A4 svg {
+  fill: #0077A4;
+}
+
+/*採購管理 1 */
+
+.C008080 svg {
+  fill: #008080;
+}
+.C20B2AA svg {
+  fill: #20B2AA;
+}
+.C66CDAA svg {
+  fill: #66CDAA;
+}
+
+/*採購管理 2 */
+
+.CFF4500 svg {
+  fill: #FF4500;
+}
+.CFF6347 svg {
+  fill: #FF6347;
+}
+.CF4A460 svg {
+  fill: #F4A460;
+}
+
+/*藍色*/
+
+.C00BFFF svg {
+  fill: #00BFFF;
+}
+.C1E90FF svg {
+  fill: #1E90FF;
+}
+.C4169E1 svg {
+  fill: #4169E1;
+}
+.C87CEFA svg {
+  fill: #87CEFA;
+}
+.menuList {
+  margin-bottom: 0px;
+  padding-bottom: 100px;
+}
+.tabsClass svg {
+  width: 30px;
+  height: 30px;
+  z-index: -1;
+  position: relative;
+  fill: #888888;
+}
+.tabsActivedClass svg {
+  /*fill: #0c3b4d;*/
+  fill: #2B887D;
+}
+.subheader {
+  top: 0px;
+}
+.slider-slide {
+  overflow: auto;
+}
+@media screen and (min-width:785px) {
+  .ion-content {
+    top: 50px;
+  }
+}
+@media screen and (max-height:450px) {
+  .ion-content {
+    top: 150px;
+  }
+}

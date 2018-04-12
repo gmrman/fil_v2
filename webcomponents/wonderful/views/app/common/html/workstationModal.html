@@ -1,0 +1,23 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title title-center">{{langs.please_choose}}{{langs.workstation}}</h1>
+        <button class="button button-clear button-primary" ng-click="close()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <div class="bar bar-subheader view-pane">
+        <div class="item-input popupSearch">
+            <input type="text" autofocus hide-keypad ng-model="popSelected.search" placeholder="{{langs.search + langs.workstation + langs.keyword}}">
+            <i class="icon ion-search"></i>
+        </div>
+    </div>
+    <ion-content class="padding has-footer has-subheader view-pane warehouse">
+        <ion-list>
+            <ion-radio ng-click="selworkstation(workstation)" collection-repeat="workstation in workstation_detail | filter:({workstation_no:popSelected.search} || {workstation_name:popSelected.search}) | orderBy:['workstation_no']"
+                item-width="100%" item-height="55" ng-model="$parent.popSelected.workstation_no" ng-value="workstation.workstation_no">{{workstation.workstation_no}}
+                <span ng-if="workstation.workstation_name">&nbsp;(&nbsp;{{workstation.workstation_name}}&nbsp;)&nbsp;</span>
+            </ion-radio>
+        </ion-list>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="setworkstation()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

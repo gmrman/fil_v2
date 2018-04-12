@@ -1,0 +1,104 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title title-center" ng-if="page_params.program_job_no != '7-1' ">{{langs.split}}</h1>
+        <h1 class="title title-center" ng-if="page_params.program_job_no == '7-1' ">{{langs.set}}{{langs.split}}{{langs.condition}}</h1>
+        <button class="button button-clear button-primary" ng-click="closeSplitItemModal()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <ion-content class="padding has-footer view-pane">
+        <div class="row">
+            <i class="icon ion-ios-barcode-outline scan-ion" ng-click="SplitInfoScan()"></i>
+            <div class="item-input scan-inpnt scan-title-color">
+                <input focus-me="splitParameter.focus_me" type="text" hide-keypad placeholder="{{langs.start_scan}}" dg-scanned="SplitInfoScanned(value)"
+                    ng-model="splitParameter.scanning">
+                <i class="icon ion-ios-close-outline" on-tap="clearSplitInfoScanning()"></i>
+            </div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="!l_data.show_s07_page">
+            <div class="col col-33">{{langs.barcode}}</div>
+            <div class="col col-67">{{showGood.barcode_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="!(userInfo.isDisplay_no) && !(userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)">
+            <div class="col col-33">{{langs.item_no}}</div>
+            <div class="col col-67">{{showGood.item_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.isDisplay_no">
+            <div class="col col-33">{{langs.item_no}}</div>
+            <div class="col col-67">{{showGood.item_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.feature">
+            <div class="col col-33">{{langs.item_feature_no}}</div>
+            <div class="col col-67">{{showGood.item_feature_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.isDisplay_name">
+            <div class="col col-33">{{langs.product_name}}</div>
+            <div class="col col-67">{{showGood.item_name}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.isDisplay_spec">
+            <div class="col col-33">{{langs.specification}}</div>
+            <div class="col col-67">{{showGood.item_spec}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.feature">
+            <div class="col col-33">{{langs.item_feature_name}}</div>
+            <div class="col col-67">{{showGood.item_feature_name}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-33">{{langs.warehouse}}</div>
+            <div class="col col-50 text-left" ng-click="warehouseShowPop()">
+                <i class="icon ion-ios-compose-outline"></i>&nbsp;{{showGood.warehouse_no}}
+            </div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-33">{{langs.storage}}</div>
+            <div class="col col-50 text-left" ng-click="storageShowPop()">
+                <i class="icon ion-ios-compose-outline"></i>&nbsp;{{showGood.storage_spaces_no}}
+            </div>
+            <i class="icon ion-ios-close-outline icon-medium png-right" on-tap="clearStoragePop()"></i>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-center col-33">{{langs.lot}}</div>
+            <input type="text" ng-model="showGood.lot_no" placeholder="{{langs.set + langs.lot}}" class="col col-80">
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-33">{{langs.qty}}</div>
+            <div class="col col-50 text-right quantity-form">
+                <a class="mins" ng-click="splitCompute('qty',showGood.qty,'-1')">-</a>
+                <div class="qty" ng-click="splitQtyPop('qty')">{{showGood.qty}}</div>
+                <a class="add" ng-click="splitCompute('qty',showGood.qty,1)">+</a>
+            </div>
+            <div class="col col-center col-15">{{showGood.unit}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="splitParameter.isShowInventory">
+            <div class="col col-33">{{langs.stock}}{{langs.qty}}</div>
+            <div class="col col-50 text-right quantity-form">
+                <a class="mins" ng-click="splitCompute('inventory',showGood.inventory_qty,'-1')">-</a>
+                <div class="qty" ng-click="splitQtyPop('inventory')">{{showGood.inventory_qty}}</div>
+                <a class="add" ng-click="splitCompute('inventory',showGood.inventory_qty,1)">+</a>
+            </div>
+            <div class="col col-center col-15">{{showGood.inventory_unit}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="splitParameter.isShowReference">
+            <div class="col col-33">{{langs.reference}}{{langs.qty}}</div>
+            <div class="col col-50 text-right quantity-form">
+                <a class="mins" ng-click="splitCompute('reference',showGood.reference_qty,'-1')">-</a>
+                <div class="qty" ng-click="splitQtyPop('reference')">{{showGood.reference_qty}}</div>
+                <a class="add" ng-click="splitCompute('reference',showGood.reference_qty,1)">+</a>
+            </div>
+            <div class="col col-center col-15">{{showGood.reference_unit_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="splitParameter.isShowValuation">
+            <div class="col col-33">{{langs.valuation}}{{langs.qty}}</div>
+            <div class="col col-50 text-right quantity-form">
+                <a class="mins" ng-click="splitCompute('valuation',showGood.valuation_qty,'-1')">-</a>
+                <div class="qty" ng-click="splitQtyPop('valuation')">{{showGood.valuation_qty}}</div>
+                <a class="add" ng-click="splitCompute('valuation',showGood.valuation_qty,1)">+</a>
+            </div>
+            <div class="col col-center col-15">{{showGood.valuation_unit_no}}</div>
+        </div>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-if="page_params.program_job_no != '7-1' " ng-click="setSplitItem()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+    <div class="bar bar-footer bar-positive" ng-if="page_params.program_job_no == '7-1' " ng-click="setSplitItem2()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

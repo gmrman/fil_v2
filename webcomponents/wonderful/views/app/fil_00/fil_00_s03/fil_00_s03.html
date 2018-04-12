@@ -1,0 +1,25 @@
+<ion-view>
+	<ion-header-bar class="bar bar-header bar-positive" align-title="center">
+		<!--<i ui-sref="fil_00_s02({data:'MENU'})" class="button button-icon icon ion-android-arrow-dropleft-circle"></i>-->
+		<i ui-sref="fil_00_s04({data:'1'})" class="button button-icon icon ion-android-arrow-dropleft-circle"></i>
+		<div class="h1 title">{{title}}</div>
+	</ion-header-bar>
+	<ion-content class="has-footer">
+		<div class="list menuList" ng-repeat="menuIcons in menuList" ng-if="menuIcons.info.length">
+			<div class="item item-divider text-center">{{menuIcons.name}}</div>
+			<ul class="item">
+				<li ng-repeat="menuIcon in menuIcons.info" class="menuClass">
+					<img ng-if="menuIcon.iconType == 'png' " ng-src="{{menuIcon.icon}}" class="menuClassPng">
+					<ng-include ng-if="menuIcon.iconType == 'svg' " src="menuIcon.icon" ng-class="[menuIcon.color]"></ng-include>
+					<p>{{menuIcon.name}}</p>
+					<div class="checkbox">
+						<input type="checkbox" class="checkbox-icon" ng-model="menuIcon.iscommon" ng-if="menuIcon.name">
+					</div>
+				</li>
+			</ul>
+		</div>
+	</ion-content>
+	<div class="bar bar-footer bar-positive" ng-click="submit()">
+		<h1 class="title">{{langs.confirm}}</h1>
+	</div>
+</ion-view>

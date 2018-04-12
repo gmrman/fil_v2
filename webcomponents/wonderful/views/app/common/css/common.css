@@ -1,0 +1,242 @@
+.font_large *:not(.icon) {
+  font-size: 20px !important;
+}
+
+.font_great *:not(.icon) {
+  font-size: 24px !important;
+}
+
+
+/*POP窗 標題列*/
+
+.popup .popup-head {
+  /*background-color: #0C3B4D;*/
+  /*background-color: #2B887D;*/
+  background-color: #17A5BF;
+}
+
+.popup .popup-head .popup-title {
+  color: #fff;
+}
+
+
+/*POP窗 按鈕列*/
+
+.popup-buttons .button {
+  /*background-color: #D15B47;
+  color: #fff;*/
+  color: #17A5BF;
+  border-color: #17A5BF;
+}
+
+
+/*POP窗 內容區塊*/
+
+.popup-body {
+  padding: 0;
+}
+
+.popupList {
+  height: 200px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.popupList>.scroll-content {
+  height: 200px;
+  width: 250px;
+  top: 90px;
+}
+
+.popupSearch {
+  padding: 0 5px;
+  border: 1px #e6e6e6 solid;
+  border-radius: 5px;
+  font-size: 25px;
+  height: 30px;
+  width: 100%;
+  background-color: white;
+}
+
+
+/*數字元件*/
+
+.row .col-input {
+  padding-left: 5px;
+}
+
+.quantity-form {
+  overflow: hidden;
+}
+
+.quantity-form .qty {
+  /*border: 1px solid #111;*/
+  border: 1px solid #17A5BF;
+  width: 60%;
+  text-align: center;
+  float: left;
+  color: #000;
+  overflow: hidden;
+  background-color: white;
+}
+
+.quantity-form a {
+  /*color: #000;*/
+  color: #17A5BF;
+  width: 20%;
+  text-align: center;
+  /*border: 1px solid #111;*/
+  border: 1px solid #17A5BF;
+  float: left;
+  background-color: white;
+}
+
+.has-input a {
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.quantity-form input {
+  height: 30px;
+}
+
+.quantity-form .mins {
+  border-right: none;
+}
+
+.quantity-form .add {
+  border-left: none;
+}
+
+
+/*錯誤訊息POP窗*/
+
+.lightblue {
+  /*background-color: #B4E4FD;*/
+}
+
+
+/*筛选窗*/
+
+.filterdiv .row>input {
+  padding: 0px;
+  margin: 2px;
+}
+
+.filterdiv .row .col {
+  line-height: 30px;
+}
+
+.filterdiv button {
+  /*background-color: #0C3B4D;*/
+  /*background-color: #2B887D;*/
+  background-color: #17A5BF;
+  color: white;
+}
+
+.filterdiv button.activated {
+  /*background-color: #0C3B4D;*/
+  /*background-color: #2B887D;*/
+  background-color: #17A5BF;
+  color: white;
+}
+
+.filterdiv button:hover {
+  color: white;
+}
+
+.fil_14 .row .col {
+  padding: 3px;
+}
+
+.fil_14 .row div.checkbox {
+  padding: 3px;
+}
+
+.fil_14 .row .checkbox input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+}
+
+.fil_14 .row .checkbox .checkbox-icon:after {
+  width: 10px;
+  height: 4px;
+}
+
+.fil_14 .row input[type='text'],
+.fil_14 .row input[type='number'] {
+  border: 1px solid black;
+  height: 20px;
+  margin: 3px 0px;
+}
+
+.fil_14 .row .div1 {
+  width: 200px;
+  padding: 3px;
+}
+
+.fil_14 .row .div3 {
+  width: 150px;
+  padding: 3px;
+}
+
+.fil_14list .col .row,
+.fil_14list .row.title-row-con {
+  min-height: 22px;
+}
+
+.fil_14list .col .row .col,
+.fil_14list .row.title-row-con .col {
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+.numberCss {
+  border: 1px solid black !important;
+  height: 30px !important;
+  margin: 3px 0px;
+  width: 100%;
+  /*position: absolute;
+  top: 35%;*/
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  margin-top: 8px;
+  padding-left: 12px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.lock {
+  font-size: 20px;
+}
+
+.ng {
+  margin-right: 50px;
+}
+
+.inputCss {
+  padding-right: 0px !important;
+  margin-left: 13px !important;
+}
+
+.rowCss {
+  height: 41px;
+}
+
+.subrowCss {
+  padding-left: 8px;
+}
+
+.textCss {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+
+.scanning-tabs .tab-nav {
+  top: 0px;
+}
+.has-scanning-tabs-top{
+  top:48px;
+}

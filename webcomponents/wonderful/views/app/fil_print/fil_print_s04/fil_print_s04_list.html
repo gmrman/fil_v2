@@ -1,0 +1,14 @@
+<ion-view>
+    <ion-content class="view-pane" ng-class="{'has-footer':isShowPrint}">
+        <ion-list>
+            <ion-item class="list_item scan-title-color" item-width="100%" item-height="30" collection-repeat="item in doc_detail">
+                <div class="col list-col-con">
+                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="col col-ellipsis">{{item.doc_no}}</div>
+                    </div>
+                </div>
+                <ion-option-button class="button icon ion-ios-trash-outline button-assertive row-small" ng-click="delGoods($index)"></ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

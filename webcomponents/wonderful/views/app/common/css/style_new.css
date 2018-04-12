@@ -1,0 +1,289 @@
+/*list*/
+
+.list .list {
+  margin: 12px;
+  border-radius: 8px;
+  border: 1px solid #2A897C;
+}
+.list .item {
+  background-color: transparent;
+  border: 0;
+  /*padding: 0;*/
+  margin: 0;
+  padding: 0 10px;
+  position: relative;
+  font-size: 14px;
+}
+.list .item::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  height: 1px;
+  background-color: #F1F1F1;
+  z-index: 9;
+}
+.list .item:last-child::before {
+  display: none;
+}
+.list .row {
+  padding: 5px 0;
+  position: relative;
+}
+.list .col {
+  position: relative;
+}
+.list .title {
+  color: #313333;
+}
+.list .content {
+  /*color: #2B887D;*/
+  color: #17A5BF;
+}
+.list input {
+  height: auto;
+}
+.list .icon-check {
+  position: absolute;
+  /*bottom: 2px;*/
+  top: 8px;
+  right: 5px;
+}
+.list .icon-check::before {
+  margin-top: 0;
+  font-size: 28px;
+  color: #ccc;
+}
+
+/*list-top*/
+
+.list-top .list {
+  /*background-color: #2B887D !important;*/
+  background-color: #17A5BF !important;
+  /*border: 0;*/
+}
+.list-top .item::before {
+  background-color: #00AD99;
+}
+.list-top .title {
+  color: #004F47;
+}
+.list-top .content {
+  color: #fff;
+}
+.list-top .content2, .list .content2 {
+  color: #2C2C2C;
+}
+
+/*item-top*/
+
+.list .item-top {
+  /*background-color:  #2B887D ;*/
+  background-color: #17A5BF;
+  margin: 0;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  top: -1px;
+}
+.list .item-top .title {
+  color: #fff;
+}
+.list .item-top::before {
+  display: none;
+}
+
+/*list2*/
+
+.list2 .list {
+  background-color: #F0F0F0;
+  border: 0;
+  margin: 0;
+}
+.list2 .item-top {
+  background-color: #CCCCCC;
+  color: #797979;
+}
+.list2 .item .title {
+  color: #797979;
+}
+.list2 .item .content {
+  color: #5D5D5D;
+}
+.list2 .item::before {
+  background-color: #E8E8E8;
+}
+
+/*item2*/
+
+.list-2 .item2 {
+  position: relative;
+  padding: 0;
+}
+.list-2 .item2::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background-color: #F0F0F0;
+  right: 0;
+  top: 0;
+}
+.list-2 .title {
+  border: 1px solid #FFC300;
+  padding: 5px 20px;
+  border-radius: 10px;
+}
+
+/*list-no*/
+
+.list-no {
+  border: 0;
+}
+.list-no .item {
+  padding: 8px;
+}
+.list-no .item:last-child::before {
+  display: block;
+}
+
+/*list-img*/
+
+.list-img .list {
+  padding: 10px;
+}
+.list-img .item::before {
+  display: none;
+}
+.button-box {
+  width: 80px;
+  height: 80px;
+  margin: 8px;
+  display: inline-block;
+}
+.button-box .icon-btn {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border: 1px solid #CCCCCC;
+}
+.icon-btn::before {
+  font-size: 80px;
+  color: #ccc;
+}
+
+/*active*/
+
+.active, .active .content2 {
+  color: #FFC300 !important;
+}
+.active .content {
+  /*color: #2B887D !important;*/
+	color: #17A5BF !important;
+}
+.border-active {
+  border-color: #FFC300;
+}
+.bgc-active::before {
+  content: '';
+  position: absolute;
+  width: 110%;
+  height: 100%;
+  top: 0;
+  left: -10px;
+  background-color: #FAFAEE;
+  /*background: rgba(0,0,0,.3);*/
+}
+.icon-check.active::before {
+  /*color: #2B887D;*/
+	color: #17A5BF;
+  margin-top: 0;
+}
+
+/*bar-footer*/
+
+.bar-footer {
+  background: transparent;
+  padding: 0 24px 12px;
+}
+.bar-footer .button {
+  margin: 0;
+  border-radius: 8px;
+  /*background-color: #2B887D;*/
+	background-color: #17A5BF;
+  height: 34px;
+  box-shadow: 0 0 10px rgba(1, 1, 1, .3);
+}
+.my-view .scroll {
+  padding-bottom: 50px;
+}
+
+/*col*/
+
+.col-40 {
+  -webkit-flex: 0 0 40%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 40%;
+  -ms-flex: 0 0 40%;
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+.col-5 {
+  -webkit-flex: 0 0 5%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 5%;
+  -ms-flex: 0 0 5%;
+  flex: 0 0 5%;
+  max-width: 5%;
+}
+.col-15 {
+  -webkit-flex: 0 0 15%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 15%;
+  -ms-flex: 0 0 15%;
+  flex: 0 0 15%;
+  max-width: 15%;
+}
+
+/*scan*/
+
+.bar-subheader .row, .bar-subheader .col {
+  padding: 0;
+}
+.scan-input2 {
+  width: 100%;
+}
+.icon-a {
+  display: inline-block;
+  color: #CCCCCC;
+  height: 100%;
+  cursor: pointer;
+}
+.icon-a::before {
+  font-size: 24px;
+  line-height: 33px;
+}
+.icon-a.active {
+  /*color: #2B887D !important;*/
+	  color: #17A5BF !important;
+}
+
+/*item-input*/
+
+.ion-ios-search {
+  color: #A6A6A6;
+}
+.item-input2 input {
+  padding: 0;
+  padding-left: 8px;
+}
+
+/*item-delete*/
+
+.delete-item .item-content {
+  padding: 0;
+}
+.delete-item .item-options .button {
+  min-width: auto;
+  min-height: auto;
+}

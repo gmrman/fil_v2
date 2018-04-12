@@ -1,0 +1,11 @@
+bin/
+distbin/
+*.4pwvs
+*.4pwdb
+*.DS_Store
+*.tmp
+database/*/*.sch
+doc/
+.idea/
+app/native/
+platforms/

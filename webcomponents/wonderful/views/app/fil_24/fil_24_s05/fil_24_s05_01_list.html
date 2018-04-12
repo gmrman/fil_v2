@@ -1,0 +1,27 @@
+<ion-view >
+    <ion-content class="view-pane">
+        <ion-list class="list list3 wrap_list">
+            <ion-item class="item-top">
+                <div class="row row-center list-row-con">
+                    <div class="col col-50 text-left">
+                        <span class="title">{{langs.bad}}{{langs.reason}}</span>
+                    </div>
+                    <div class="col col-50 text-right" style="padding-left: 10px;">
+                        <span class="title">{{langs.bad}}{{langs.qty}}</span>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item class="item delete-item" ng-repeat="selected in info" ng-hide= "selected.defect_qty == 0">
+                <div class="row row-center list-row-con" >
+                    <div class="col col-50 text-left">
+                        <span class="content">{{selected.reason_name}}</span>
+                    </div>
+                    <div class="col col-50 text-right" style="padding-left: 10px;">
+                        <span class="content">{{selected.defect_qty}}</span>
+                    </div>
+                </div>
+                <ion-option-button class="button icon ion-ios-trash-outline button-assertive" ng-click="delInfo($index)"></ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,41 @@
+<ion-view>
+    <ion-content class="view-pane" ng-class="{'has-footer':scaninfo.modify}">
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.barcode}}</div>
+            <div class="col">{{showInfo.scan_doc_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="page_params.program_job_no == '16-3'">
+            <div class="col col-25">{{langs.docno}}</div>
+            <div class="col">{{showInfo.doc_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="page_params.program_job_no == '16-2'">
+            <div class="col col-25">{{langs.job_number}}</div>
+            <div class="col col-25">{{showInfo.op_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="page_params.program_job_no == '16-2'">
+            <div class="col col-25">{{langs.job_name}}</div>
+            <div class="col">{{showInfo.op_name}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.item_no}}</div>
+            <div class="col">{{showInfo.item_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.product_name}}</div>
+            <div class="col">{{showInfo.item_name}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.specification}}</div>
+            <div class="col">{{showInfo.item_spec}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.examine}}{{langs.qty}}</div>
+            <div class="col">{{showInfo.qty}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.server_product !== 'WF'">
+            <div class="col col-25">{{langs.examine}}{{langs.personnel}}</div>
+            <div class="col col-25">{{showInfo.scan_employee_no}}</div>
+            <div class="col">{{showInfo.scan_employee_name}}</div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,27 @@
+<ion-view>
+    <ion-content class="view-pane" ng-class="{'has-footer':scanning_detail.length > 0}">
+        <ion-list>
+            <ion-item class="list_item scan-title-color" item-width="100%" item-height="85" ng-repeat="item in scanning_detail">
+                <div class="col list-col-con" ng-click="closeOption()">
+                    <div class="row row-center list-row-con">
+                        <div class="col col-80">{{item.barcode_no}}</div>
+                        <div class="col col-20 text-right">{{item.qty}}</div>
+                    </div>
+                    <div class="row row-center list-row-con">
+                        <div class="col">{{item.item_name_spec}}</div>
+                        <div class="col col-33 text-right" ng-if="userInfo.feature" ng-class="{'text-right':!scaninfo.isShowReference}">{{item.item_feature_no}}</div>
+                        <div class="col col-33 text-right" ng-if="scaninfo.isShowReference">{{item.reference_qty}}</div>
+                    </div>
+                    <div class="row row-center list-row-con">
+                        <div class="col col-33">{{item.warehouse_no}}</div>
+                        <div class="col col-33">{{item.storage_spaces_no}}</div>
+                        <div class="col col-33 text-right">{{item.lot_no}}</div>
+                    </div>
+                </div>
+                <ion-option-button class="button icon ion-ios-search button-balanced" ng-if="!item.show_edit" ng-click="showInfo($index)"></ion-option-button>
+                <ion-option-button class="button-assertive" ng-click="deleteGoods($index)">{{langs.delete}}</ion-option-button>
+            </ion-item>
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-view>

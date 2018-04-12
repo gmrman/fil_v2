@@ -1,0 +1,52 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title title-center">{{langs.inventory}}{{langs.scanning}}</h1>
+        <button class="button button-clear button-primary" ng-click="close()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <ion-content class="padding has-footer view-pane">
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-33">{{langs.inventory + langs.label}}</div>
+            <div class="col col-67 "> {{goods.label_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-33">{{langs.barcode}}</div>
+            <div class="col col-67"> {{goods.barcode_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-33">{{langs.warehouse}}</div>
+            <div class="col col-67"> {{goods.warehouse_no}}</div>
+        </div>
+        <div class="row row-center" ng-hide="exist" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-33">{{langs.storage}}</div>
+            <div class="col col-50" ng-click="storageShow()">
+                <i class="icon ion-ios-compose-outline"></i>&nbsp;{{goods.storage_spaces_name}}
+            </div>
+            <i class="icon ion-ios-close-outline icon-medium png-right" on-tap="clearStorage()"></i>
+        </div>
+        <div class="row row-center" ng-hide="exist" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-33">{{langs.lot}}</div>
+            <input type="text" class="col col-67 col-input" ng-model="goods.lot_no" placeholder="{{langs.set + langs.lot}}">
+        </div>
+        <div class="row row-center" ng-show="exist" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-33">{{langs.storage}}</div>
+            <div class="col col-67">{{goods.storage_spaces_name}}</div>
+        </div>
+        <div class="row row-center" ng-show="exist" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-33">{{langs.lot}}</div>
+            <div class="col col-67">{{goods.lot_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-33">{{langs.qty}}</div>
+            <input type="number" class="col col-50 col-input" ng-model="goods.qty" string-to-number select-on-click placeholder="{{langs.set + langs.qty}}">
+            <div class="col col-center col-15">{{goods.unit}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="goods.reference_unit_no">
+            <div class="col col-33">{{langs.reference}}{{langs.qty}}</div>
+            <input type="number" class="col col-50 col-input" ng-model="goods.reference_qty" string-to-number select-on-click placeholder="{{langs.set + langs.qty}}">
+            <div class="col col-center col-15">{{goods.reference_unit_no}}</div>
+        </div>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="setEditGoods()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

@@ -1,0 +1,68 @@
+<ion-view>
+    <ion-content ng-class="{'has-footer':submit_show}">
+        <div class="list" item-width="100%" item-height="data_collection_heigth" collection-repeat="item in data_collection">
+            <div class="card card-list-mar-small" on-hold="getInfo(item)" ng-class="{'card-fluorescent':item.should_qty<=item.already_qty,'card-yellow':item.should_qty>item.already_qty && item.already_qty> 0,'card-pink':item.already_qty == 0}">
+                <div class="col list-col-con">
+                    <ion-item class="item-nonpad">
+                        <div class="row row-center list-row-con row-nontop">
+                            <div class="col col-25 col-ellipsis">{{langs.product_name}}</div>
+                            <div class="col col-ellipsis" ng-class="{'text-fluorescent':item.should_qty<=item.already_qty,'text-yellow':item.should_qty>item.already_qty && item.already_qty> 0,'text-pink':item.already_qty == 0}">
+                                {{item.item_name}}
+                            </div>
+                            <div class="col col-20 text-right col-ellipsis" ng-class="{'text-fluorescent':item.should_qty<=item.already_qty,'text-yellow':item.should_qty>item.already_qty && item.already_qty> 0,'text-pink':item.already_qty == 0}">
+                                {{item.unit_no || item.inventory_unit}}
+                            </div>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-nonpad">
+                        <div class="row row-center list-row-con row-nontop">
+                            <div class="col col-25 col-ellipsis">{{langs.specification}}</div>
+                            <div class="col col-75 col-ellipsis" ng-class="{'text-fluorescent':item.should_qty<=item.already_qty,'text-yellow':item.should_qty>item.already_qty && item.already_qty> 0,'text-pink':item.already_qty == 0}">
+                                {{item.item_spec}}
+                            </div>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-nonpad">
+                        <div class="row row-center list-row-con row-nontop">
+                            <div class="col col-25 col-ellipsis">{{langs.item_no}}</div>
+                            <div class="col col-75 col-ellipsis" ng-class="{'text-fluorescent':item.should_qty<=item.already_qty,'text-yellow':item.should_qty>item.already_qty && item.already_qty> 0,'text-pink':item.already_qty == 0}">
+                                {{item.item_no}}
+                            </div>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-nonpad" ng-if="userInfo.feature">
+                        <div class="row row-center list-row-con row-nontop">
+                            <div class="col col-25 col-ellipsis">{{langs.item_feature_name}}</div>
+                            <div class="col col-75 col-ellipsis" ng-class="{'text-fluorescent':item.should_qty<=item.already_qty,'text-yellow':item.should_qty>item.already_qty && item.already_qty> 0,'text-pink':item.already_qty == 0}">
+                                {{item.item_feature_name || item.item_feature_no}}
+                            </div>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-nonpad" ng-show="l_data.hasSource">
+                        <div class="row row-center list-row-con row-nontop">
+                            <div class="col col-25 col-ellipsis" ng-if="page_params.in_out_no == '1' || page_params.in_out_no == '0' ">{{langs.shouldReceive}}</div>
+                            <div class="col col-25 col-ellipsis" ng-if="page_params.in_out_no == '-1'">{{langs.shouldDelivery}}</div>
+                            <div class="col col-25 col-ellipsis" ng-class="{'text-fluorescent':item.should_qty<=item.already_qty,'text-yellow':item.should_qty>item.already_qty && item.already_qty> 0,'text-pink':item.already_qty == 0}">
+                                {{item.should_qty}}
+                            </div>
+                            <div class="col col-25 col-ellipsis" ng-if="page_params.in_out_no == '1' || page_params.in_out_no == '0' ">{{langs.alreadyReceive}}</div>
+                            <div class="col col-25 col-ellipsis" ng-if="page_params.in_out_no == '-1'">{{langs.alreadyDelivery}}</div>
+                            <div class="col col-25 col-ellipsis" ng-class="{'text-fluorescent':item.should_qty<=item.already_qty,'text-yellow':item.should_qty>item.already_qty && item.already_qty> 0,'text-pink':item.already_qty == 0}">
+                                {{item.already_qty}}
+                            </div>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-nonpad" ng-hide="l_data.hasSource">
+                        <div class="row row-center list-row-con row-nontop">
+                            <div class="col col-25 col-ellipsis" ng-if="page_params.in_out_no == '1' || page_params.in_out_no == '0' ">{{langs.alreadyReceive}}</div>
+                            <div class="col col-25 col-ellipsis" ng-if="page_params.in_out_no == '-1'">{{langs.alreadyDelivery}}</div>
+                            <div class="col col-25 col-ellipsis" ng-class="{'text-fluorescent':item.should_qty<=item.already_qty,'text-yellow':item.should_qty>item.already_qty && item.already_qty> 0,'text-pink':item.already_qty == 0}">
+                                {{item.already_qty}}
+                            </div>
+                        </div>
+                    </ion-item>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

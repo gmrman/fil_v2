@@ -1,0 +1,25 @@
+<ion-view>
+    <ion-content class="view-pane">
+        <ion-list>
+            <ion-item class="list_item scan-title-color" item-width="100%" item-height="90" collection-repeat="item in change_detail">
+                <div class="col list-col-con">
+                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="col col-33 col-ellipsis">{{item.date}}</div>
+                        <div class="col col-33 col-ellipsis">{{item.situation}}</div>
+                        <div class="col col-33 col-ellipsis text-right">{{item.qty}}</div>
+                    </div>
+                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="col col-33 col-ellipsis">{{item.source_doc_no}}</div>
+                        <div class="col col-33 col-ellipsis">{{item.purpose_doc_no}}</div>
+                        <div class="col col-33 col-ellipsis text-right">{{item.abbreviation}}</div>
+                    </div>
+                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="col col-33 col-ellipsis">{{item.warehouse_no}}</div>
+                        <div class="col col-33 col-ellipsis">{{item.storage_spaces_no}}</div>
+                        <div class="col col-33 col-ellipsis text-right">{{item.lot_no}}</div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

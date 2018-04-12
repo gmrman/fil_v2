@@ -1,0 +1,24 @@
+<ion-view>
+    <ion-content class="view-pane" ng-class="{'has-footer':scanning_detail.length>0}">
+        <ion-list>
+            <ion-item class="list_item scan-title-color" item-width="100%" item-height="85" collection-repeat="item in scanning_detail">
+                <div class="col list-col-con" ng-click="closeOption()">
+                    <div class="row row-center list-row-con">
+                        <div class="col col-67 col-ellipsis">{{item.scan_doc_no}}</div>
+                        <div class="col col-33 col-ellipsis text-right">{{item.ok_qty}}</div>
+                    </div>
+                    <div class="row row-center list-row-con">
+                        <div class="col col-67 col-ellipsis">{{item.item_name}}</div>
+                        <div class="col col-33 col-ellipsis text-right">{{item.return_qty}}</div>
+                    </div>
+                    <div class="row row-center list-row-con">
+                        <div class="col col-67 col-ellipsis">{{item.item_spec}}</div>
+                        <div class="col col-33 col-ellipsis text-right">{{item.surplus_qty}}</div>
+                    </div>
+                </div>
+                <ion-option-button class="button icon ion-ios-compose-outline button-balanced" ng-click="editGoods($index)"></ion-option-button>
+                <ion-option-button class="button icon ion-ios-trash-outline button-assertive" ng-click="delGoods($index)"></ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

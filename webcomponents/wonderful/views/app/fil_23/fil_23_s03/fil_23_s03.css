@@ -1,0 +1,39 @@
+/*list3*/
+.list3 .list{
+		border: 0;
+		margin: 0;
+}
+.list3 .row{
+    padding: 3px 0;
+}
+.list3 .item{
+	padding: 0 5px;
+}
+.list3 .item .item-input{
+	height: 26px;
+	padding: 0;
+}
+.list3 .item .icon{
+	font-size: 20px;
+	min-width: 20px;
+}
+.list3 .item input{
+    padding:0 5px 0 8px;
+}
+.list3 .item .title{
+	color: #111;
+	font-weight: 700;
+	line-height: 26px;
+}
+.list3 .item .content{
+	  /*color: #5D5D5D;*/
+	  color: #111;
+	  line-height: 26px;
+	  padding-left: 5px;
+}
+.list3 .item::before{
+		display: none;
+}
+.list3 .item-top{
+	background-color: transparent;
+}

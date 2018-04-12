@@ -1,0 +1,39 @@
+<ion-view>
+    <ion-content class="view-pane" scroll="false">
+        <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <span class="col col-25">{{langs.item_no}}</span>
+            <div class="col col-75">{{showInfo.item_no}}</div>
+        </div>
+        <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.isDisplay_name">
+            <span class="col col-25">{{langs.product_name}}</span>
+            <div class="col col-75">{{showInfo.item_name}}</div>
+        </div>
+        <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.isDisplay_spec">
+            <span class="col col-25">{{langs.specification}}</span>
+            <div class="col col-75">{{showInfo.item_spec}}</div>
+        </div>
+        <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="showInfo.item_feature_no">
+            <span class="col col-25">{{langs.item_feature}}</span>
+            <div class="col col-75">{{showInfo.item_feature_name || showInfo.item_feature_no }}</div>
+        </div>
+        <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <span class="col col-25">{{langs.stock}}{{langs.total_qty}}</span>
+            <div class="col">{{showInfo.total_qty}}</div>
+            <div class="col col-10 text-right">{{showInfo.inventory_unit}}</div>
+        </div>
+        <div class="col title-col-con">
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col col-50">{{langs.warehouse}}</div>
+                <div class="col col-50 text-right">{{langs.storage}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col col-50">{{langs.lot}}</div>
+                <div class="col col-50 text-right">{{langs.qty}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="showInfo.reference_unit_no">
+                <div class="col text-right">{{langs.reference}}{{langs.qty}}}</div>
+            </div>
+        </div>
+        <ion-nav-view name="fil_15_s04_list" sub-view></ion-nav-view>
+    </ion-content>
+</ion-view>

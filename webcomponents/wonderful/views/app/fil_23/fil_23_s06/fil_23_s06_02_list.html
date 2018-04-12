@@ -1,0 +1,30 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive positive-bar" align-title="center">    
+        <h1 class="title">{{langs.insert}}测量值</h1 > 
+        <button ng-click="close()" class="button button-icon icon ">{{langs.cancel}}</button>   
+    </ion-header-bar>   
+    <ion-content class="view-pane my-view" >  
+        <ion-item >
+            <div class="row row-center col-small-padding">
+                <div class="col col-25 ng-binding">测量{{langs.qty}}</div>
+                <div class="col col-75 quantity-form">
+                    <a class="mins" ng-click="mins('-1')">-</a>
+                    <input class="qty" ng-model="attrib_value">
+                    <a class="add" ng-click="add('1')">+</a>
+                </div>
+            </div>         
+        </ion-item>
+        <ion-item >
+            <div class="row row-center col-small-padding">
+                <div class="col col-25 ng-binding">判定状态</div>
+                <div class="col col-75 ">{{result_type}}</div>
+            </div>         
+        </ion-item>
+   
+
+       
+</ion-content>
+<div class="bar bar-footer" >
+    <button class="button button-full button-positive" ng-click="saveInfo()">{{langs.confirm}}</button>
+</div>
+</ion-modal-view>

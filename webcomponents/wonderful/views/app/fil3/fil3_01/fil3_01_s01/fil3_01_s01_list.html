@@ -1,0 +1,116 @@
+<ion-view >
+    <ion-content class="view-pane" ng-show="showFlag">
+        <ion-list class="list list-top">
+            <ion-item class="item">
+                <div class="row row-center list-row-con">
+                    <div class="col col-20 text-left">
+                        <span class="title">{{langs.shipments}}{{langs.docno}}</span>
+                    </div>
+                    <div class="col col-80 text-left" style="padding-left: 10px;">
+                        <span class="content">{{data.delivery_no}}</span>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item class="item">
+                <div class="row row-center list-row-con">
+                    <div class="col col-20 text-left">
+                        <span class="title">{{langs.shipments}}{{langs.date}}</span>
+                    </div>
+                    <div class="col col-30 text-left" style="padding-left: 10px;">
+                        <span class="content">{{data.date}}</span>
+                    </div>
+                    <div class="col col-20 text-left">
+                        <span class="title">{{langs.supplier}}</span>
+                    </div>
+                    <div class="col col-30 text-left">
+                        <span class="content">{{data.supplier_name}}</span>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <ion-list class="list" ng-repeat="i in items">
+            <ion-item class="item">
+                <div class="row row-center list-row-con">
+                    <div class="col col-25 text-left">
+                        <span class="title">{{langs.item_no}}</span>
+                    </div>
+                    <div class="col col-50 text-left">
+                        <span class="content">{{i.item_no}}</span>
+                    </div>
+                    <div class="col col-25 text-left">
+                        <span class="content">{{i.unit_no}}</span>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item class="item" ng-if="userInfo.feature">
+                <div class="row row-center list-row-con">
+                    <div class="col col-25 text-left">
+                        <span class="title">{{langs.item_feature}}</span>
+                    </div>
+                    <div class="col col-75 text-left">
+                        <span class="content">{{i.item_feature_no}}</span>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item class="item">
+                <div class="row row-center list-row-con">
+                    <div class="col col-25 text-left">
+                        <span class="title">{{langs.product_name}}</span>
+                    </div>
+                    <div class="col col-75 text-left">
+                        <span class="content">{{i.item_name}}</span>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item class="item">
+                <div class="row row-center list-row-con">
+                    <div class="col col-25 text-left">
+                        <span class="title">{{langs.specification}}</span>
+                    </div>
+                    <div class="col col-75 text-left">
+                        <span class="content">{{i.item_spec}}</span>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item class="item">
+                <div class="row row-center list-row-con">
+                    <div class="col col-25 text-left">
+                        <span class="title">{{langs.warehouse}}</span>
+                    </div>
+                    <div class="col col-75 text-left">
+                        <span class="content">{{i.warehouse_no}}</span>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item class="item">
+                <div class="row row-center list-row-con">
+                    <div class="col col-25 text-left">
+                        <span class="title">{{langs.shipments}}{{langs.mete}}</span>
+                    </div>
+                    <div class="col col-25 text-left">
+                        <span class="content">{{i.qty}}</span>
+                    </div>
+                    <div class="col col-25 text-left">
+                        <span class="title">{{langs.received}}{{langs.mete}}</span>
+                    </div>
+                    <div class="col col-25 text-left">
+                        <input ng-model="i.real_qty" type="number" class="active" onfocus="this.select();" ng-focus="focusQty($index)" ng-blur="checkQty($index)" />
+                    </div>
+                    <a class="icon ion-ios-checkmark icon-check" ng-class="{'active':i.isOk}" ng-click="changeOk($index)"></a>
+                </div>
+            </ion-item>
+        </ion-list>
+        <!-- <div class="white-space" ng-class="{place:placeFlag}"> -->
+          <ion-list class="list list-top" ng-click="saveInfo()" ng-show="saveFlag">
+            <ion-item class="item">
+             <div class="row row-center list-row-con">
+                <div class="col text-center" style="padding-left: 10px;">
+                  <span class="content">保存</span>
+                </div>
+             </div>
+            </ion-item>
+        </ion-list>
+
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,134 @@
+<ion-view>
+    <ion-content class="view-pane" ng-show="showFlag">
+    	<ion-list class="list list-top">
+			<ion-item class="item">
+                <div class="row row-center list-row-con">
+                  <div class="col col-33 text-center">
+                    <span class="title">{{langs.receiveing}}{{langs.docno}}</span>
+                  </div>
+                    <div class="col col-33 text-center">
+                    	<span class="title">{{langs.supplier}}</span>
+                    </div>
+                    <div class="col col-33 text-center">
+                    	<span class="title">{{langs.receive_item}}{{langs.date}}</span>
+                    </div>
+                </div>
+			</ion-item>
+			<ion-item class="item">
+                <div class="row row-center list-row-con">
+                    <div class="col col-33 text-center">
+                      <span class="content2">{{data.receipt_no}}</span>
+                    </div>
+                    <div class="col col-33 text-center">
+                    	<span class="content2">{{data.supplier_name}}</span>
+                    </div>
+                    <div class="col col-33 text-center">
+                    	<span class="content2">{{data.receipt_date}}</span>
+                    </div>
+                </div>
+			</ion-item>
+		</ion-list>
+        <ion-list class="list">
+			 <ion-item class="item-top">
+                <div class="row row-center list-row-con">
+                    <div class="col col-5 text-center">
+                        <span class="title">{{langs.seq}}</span>
+                    </div>
+                    <div class="col col-10 text-center">
+                    	<span class="title">{{langs.product_no}}</span> <!--品号-->
+                    </div>
+                    <div class="col col-10 text-center">
+                    	<span class="title">{{langs.product_name}}</span>
+                    </div>
+                    <div class="col col-10 text-center">
+                    	<span class="title">{{langs.specification}}</span>
+                    </div>
+                    <div class="col text-center">
+                      <span class="title">{{langs.item_feature_no}}</span>
+                    </div>
+                    <div class="col text-center">
+                      <span class="title">{{langs.item_feature_name}}</span>
+                    </div>
+                    <div class="col text-center">
+                    	<span class="title">{{langs.inspect}}{{langs.mete}}</span>
+                    </div>
+                    <div class="col text-center">
+                      <span class="title">{{langs.eligible}}{{langs.mete}}</span>
+                    </div>
+                    <div class="col text-center">
+                      <span class="title">{{langs.uneligible}}{{langs.mete}}</span>
+                    </div>
+                    <div class="col text-center">
+                      <span class="title">{{langs.examine}}{{langs.break}}{{langs.mete}}</span>
+                    </div>
+                    <div class="col text-center">
+                    	<span class="title">{{langs.judge}}{{langs.status}}</span>
+                    </div>
+                    <!-- <div class="col text-center">
+                    	<span class="title">{{langs.quality}}{{langs.qty}}</span>
+                    </div>
+                    <div class="col text-center">
+                    	<span class="title">{{langs.particular}}{{langs.qty}}</span>
+                    </div>
+                    <div class="col text-center">
+                      <span class="title">{{langs.rejection}}{{langs.qty}}</span>
+                    </div>
+                    <div class="col text-center">
+                      <span class="title">{{langs.scrap}}{{langs.qty}}</span>
+                    </div> -->
+                </div>
+			</ion-item>
+			<ion-item class="item" ng-repeat="item in items">
+                <div class="row row-center list-row-con" ng-click="goList($index)">
+
+                  <div class="col col-5 text-center">
+                      <span class="title">{{item.seq}}</span>
+                  </div>
+                  <div class="col col-10 text-center">
+                   <span class="title">{{item.item_no}}</span> <!--品号-->
+                  </div>
+                  <div class="col col-10 text-center">
+                   <span class="title">{{item.item_name}}</span>
+                  </div>
+                  <div class="col col-10 text-center">
+                   <span class="title">{{item.item_spec}}</span>
+                  </div>
+                  <div class="col text-center">
+                    <span class="title">{{item.item_feature_no}}</span>
+                  </div>
+                  <div class="col text-center">
+                    <span class="title">{{item.item_feature_name}}</span>
+                  </div>
+                  <div class="col text-center">
+                   <span class="title">{{item.receipt_qty}}</span>
+                  </div>
+                  <div class="col text-center">
+                    <span class="title">{{item.ok_qty}}</span>
+                  </div>
+                  <div class="col text-center">
+                    <span class="title">{{item.unqualified_qty}}</span>
+                  </div>
+                  <div class="col text-center">
+                    <span class="title">{{item.checkdestroy_qty}}</span>
+                  </div>
+                  <div class="col text-center">
+                   <span class="title" ng-if ="item.result_type =='Y'">{{langs.eligible}}</span>
+                   <span class="title" ng-if ="item.result_type !='Y'">{{langs.uneligible}}</span>
+                  </div>
+                  <!-- <div class="col text-center">
+                   <span class="title">0</span>
+                  </div>
+                  <div class="col text-center">
+                   <span class="title">0</span>
+                  </div>
+                  <div class="col text-center">
+                   <span class="title">0</span>
+                  </div>
+                  <div class="col text-center">
+                   <span class="title">0</span>
+                  </div> -->
+                </div>
+			</ion-item>
+		</ion-list>
+    </ion-content>
+</ion-view>

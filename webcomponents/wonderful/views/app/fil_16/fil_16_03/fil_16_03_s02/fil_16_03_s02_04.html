@@ -1,0 +1,39 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title title-center">{{langs.insert}}{{langs.bad}}{{langs.reason}}</h1>
+        <button class="button button-clear button-primary" ng-click="closeSelAbnormalModal()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <div class="bar bar-subheader view-pane">
+        <div class="item-input popupSearch">
+            <input type="text" autofocus hide-keypad ng-model="popSelected.search" dg-scanned="scanned(value)" placeholder="{{langs.search + langs.keyword}}">
+            <i class="icon ion-search"></i>
+        </div>
+    </div>
+    <ion-content class="padding has-footer has-subheader view-pane" scroll="false">
+        <div class="col title-col-con">
+            <div class="row row-center title-row-con">
+                <span class="col col-25">{{langs.bad}}{{langs.qty}}</span>
+                <div class="col col-50 quantity-form">
+                    <a class="mins" ng-click="selAbnormalCompute('defect_qty',sub.defect_qty,'-1')">-</a>
+                    <div class="qty" ng-click="selAbnormalQtyPop('defect_qty')">{{sub.defect_qty}}</div>
+                    <a class="add" ng-click="selAbnormalCompute('defect_qty',sub.defect_qty,'1')">+</a>
+                </div>
+            </div>
+        </div>
+        <ion-nav-view name="abnormal_02" sub-view>
+            <ion-view>
+                <ion-content class="view-pane">
+                    <ion-list>
+                        <ion-radio ng-click="changeReasonCode(item)" collection-repeat="item in reasonCodes" item-width="100%" item-height="55" ng-value="item.abnormal_no">
+                            {{item.abnormal_no}}
+                            <span ng-if="item.abnormal_name">(&nbsp;{{item.abnormal_name}}&nbsp;)</span>
+                        </ion-radio>
+                    </ion-list>
+                </ion-content>
+            </ion-view>
+        </ion-nav-view>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="setReasonCode()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

@@ -1,0 +1,81 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 ng-if="page_params.program_job_no == '1-1' " class="title title-center">{{langs.purchase}}{{langs.receiveing}}{{langs.detail}}</h1>
+        <h1 ng-if="page_params.program_job_no == '2-1' " class="title title-center">{{langs.purchase}}{{langs.put_in_storage}}{{langs.detail}}</h1>
+        <h1 ng-if="page_params.program_job_no == '3-1' " class="title title-center">{{langs.receiveing}}{{langs.put_in_storage}}{{langs.detail}}</h1>
+        <h1 ng-if="page_params.program_job_no == '5'   " class="title title-center">{{langs.sale}}{{langs.delivery}}{{langs.detail}}</h1>
+        <h1 ng-if="page_params.program_job_no == '6'   " class="title title-center">{{langs.sale}}{{langs.return}}{{langs.detail}}</h1>
+        <h1 ng-if="page_params.program_job_no == '7'   " class="title title-center">{{langs.goods_issue}}{{langs.detail}}</h1>
+        <h1 ng-if="page_params.program_job_no == '7-4' " class="title title-center">{{langs.return_material}}{{langs.replenish_material}}{{langs.detail}}</h1>
+        <h1 ng-if="page_params.program_job_no == '8'   " class="title title-center">{{langs.return_material}}{{langs.detail}}</h1>
+        <h1 ng-if="page_params.program_job_no == '9'   " class="title title-center">{{langs.completion}}{{langs.put_in_storage}}{{langs.detail}}</h1>
+        <h1 ng-if="page_params.program_job_no == '9-2' " class="title title-center">{{langs.put_in_storage}}{{langs.shelves}}{{langs.detail}}</h1>
+        <h1 ng-if="page_params.program_job_no == '9-3' " class="title title-center">{{langs.put_in_storage}}{{langs.post}}{{langs.detail}}</h1>
+        <h1 ng-if="page_params.program_job_no == '11'  " class="title title-center">{{langs.sundry}}{{langs.goods_issue}}({{langs.new}}{{langs.doc}}){{langs.detail}}</h1>
+        <h1 ng-if="page_params.program_job_no == '12'  " class="title title-center">{{langs.sundry}}{{langs.receive_item}}({{langs.new}}{{langs.doc}}){{langs.detail}}</h1>
+        <h1 ng-if="page_params.program_job_no == '13-1'" class="title title-center">{{langs.title_13_1}}{{langs.detail}}</h1>
+        <h1 ng-if="page_params.program_job_no == '13-5'" class="title title-center">{{langs.title_13_1}}({{langs.apply}}){{langs.detail}}</h1>
+        <button class="button button-clear button-primary" ng-click="closeBcmcModal()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <ion-content class="has-footer" scroll="false">
+        <div class="card-wrapper1">
+            <div class="card xcard1 card-fluorescent">
+                <div class="item item-divider">
+                    <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="col col-33">{{langs.item_no}}</div>
+                        <div class="col col-67">{{showItem.item_no}}</div>
+                    </div>
+                </div>
+                <ion-scroll class="xcard1scroll">
+                    <ion-list class="list" can-swipe="false">
+                        <ion-item class="list_item" item-width="100%" item-height="140" ng-repeat="item in barcode_list">
+                            <div class="row row-center">
+                                <div class="checkbox">
+                                    <input type="checkbox" class="checkbox-icon" ng-model="item.checked">
+                                </div>
+                                <div class="col list-col-con" ng-click="clickSelData(item)">
+                                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                                        <div class="col col-25 text-left">{{langs.barcode}}</div>
+                                        <div class="col col-75 text-right col-ellipsis">{{item.barcode_no}}</div>
+                                    </div>
+                                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="page_params.program_job_no != '13-1' && page_params.program_job_no != '13-5' ">
+                                        <div class="col col-25 text-left">{{langs.warehouse}}</div>
+                                        <div class="col col-75 text-right col-ellipsis">{{item.warehouse_no}}</div>
+                                    </div>
+                                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="page_params.program_job_no != '13-1' && page_params.program_job_no != '13-5' ">
+                                        <div class="col col-25 text-left">{{langs.storage}}</div>
+                                        <div class="col col-75 text-right col-ellipsis">{{item.storage_spaces_no}}</div>
+                                    </div>
+                                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="page_params.program_job_no == '13-1' || page_params.program_job_no == '13-5' ">
+                                        <div class="col col-25 text-left">{{langs.warehouse}}</div>
+                                        <div class="col col-25 text-right col-ellipsis">{{item.warehouse_no}}</div>
+                                        <div class="col col-25 text-left">{{langs.storage}}</div>
+                                        <div class="col col-25 text-right col-ellipsis">{{item.storage_spaces_no}}</div>
+                                    </div>
+                                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="page_params.program_job_no == '13-1' || page_params.program_job_no == '13-5' ">
+                                        <div class="col col-25 text-left">{{langs.ingoing}}{{langs.warehouse}}</div>
+                                        <div class="col col-25 text-right col-ellipsis">{{item.ingoing_warehouse_no}}</div>
+                                        <div class="col col-25 text-left">{{langs.ingoing}}{{langs.storage}}</div>
+                                        <div class="col col-75 text-right col-ellipsis">{{item.ingoing_storage_spaces_no}}</div>
+                                    </div>
+                                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                                        <div class="col col-25 text-left">{{langs.lot}}</div>
+                                        <div class="col col-75 text-right col-ellipsis">{{item.lot_no}}</div>
+                                    </div>
+                                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                                        <div class="col col-25 text-left">{{langs.qty}}</div>
+                                        <div class="col col-75 text-right col-ellipsis">{{item.picking_qty}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ion-option-button class="button icon ion-ios-compose-outline button-balanced" ng-click="selEditGoods(item)"></ion-option-button>
+                        </ion-item>
+                    </ion-list>
+                </ion-scroll>
+            </div>
+        </div>
+    </ion-content>
+    <div class="bar bar-footer bar-assertive" ng-click="delBarcode()">
+        <h1 class="title">{{langs.delete}}</h1>
+    </div>
+</ion-modal-view>

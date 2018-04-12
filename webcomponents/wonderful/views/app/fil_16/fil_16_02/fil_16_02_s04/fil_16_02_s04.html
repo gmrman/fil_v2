@@ -1,0 +1,42 @@
+<ion-view class="view-pane">
+    <ion-header-bar class="bar bar-header bar-positive" align-title="center">
+        <button ui-sref="fil_00_s04" class="button button-icon icon ion-android-arrow-dropleft-circle"></button>
+        <h1 class="title">{{langs.title_16_1}}{{langs.examine}}{{langs.upcoming}}</h1>
+        <button ng-click="showQbeTodoNotice()" class="button button-icon icon ion-search"></button>
+    </ion-header-bar>
+    <ion-content scroll="false">
+        <div class="row row-center">
+            <i class="icon ion-ios-barcode-outline scan-ion" ng-click="scan()"></i>
+            <div class="item-input scan-inpnt scan-title-color">
+                <input focus-me="scaninfo.focus_me" type="text" hide-keypad placeholder="{{langs.start_scan}}" dg-scanned="scanned(value)" keep-data="true" ng-model="scaninfo.scanning">
+                <i class="icon ion-ios-close-outline" on-tap="clearScanning()"></i>
+            </div>
+        </div>
+        <div class="col title-col-con">
+            <div class="row row-center title-row-con">
+                <div class="col col-50" ng-class="{'title-row-text':(order=='doc_no'||order=='-doc_no')}" ng-click="change('doc_no')">
+                    {{langs.docno}}#{{langs.seq}}
+                    <i class="icon ion-arrow-down-b" ng-show="order=='-doc_no'"></i>
+                    <i class="icon ion-arrow-up-b" ng-show="order=='doc_no'"></i>
+                </div>
+                <div class="col col-50 text-right" ng-class="{'title-row-text':(order=='create_date'||order=='-create_date')}" ng-click="change('create_date')">
+                    <i class="icon ion-arrow-down-b" ng-show="order=='-create_date'"></i>
+                    <i class="icon ion-arrow-up-b" ng-show="order=='create_date'"></i> {{langs.receipt}}{{langs.date}}
+                </div>
+            </div>
+            <div class="row row-center title-row-con">
+                <div class="col col-50" ng-class="{'title-row-text':(order=='customer_name'||order=='-customer_name')}" ng-click="change('customer_name')">
+                    <span> {{langs.supplier}}</span>
+
+                    <i class="icon ion-arrow-down-b" ng-show="order=='-customer_name'"></i>
+                    <i class="icon ion-arrow-up-b" ng-show="order=='customer_name'"></i>
+                </div>
+                <div class="col col-50 text-right" ng-class="{'title-row-text':(order=='employee_name'||order=='-employee_name')}" ng-click="change('employee_name')">
+                    <i class="icon ion-arrow-down-b" ng-show="order=='-employee_name'"></i>
+                    <i class="icon ion-arrow-up-b" ng-show="order=='employee_name'"></i> {{langs.apply}}{{langs.personnel}}
+                </div>
+            </div>
+        </div>
+        <ion-nav-view name="fil_16_02_s04_list" sub-view></ion-nav-view>
+    </ion-content>
+</ion-view>

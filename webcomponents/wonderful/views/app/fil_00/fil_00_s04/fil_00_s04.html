@@ -1,0 +1,38 @@
+<ion-view class="view-pane">
+	<ion-header-bar class="bar-subheader bar-stable subheader" overflow-scroll="true">
+		<div class="subheader-diy" id="sub">
+			<a class="tab-diy" ng-repeat="tab in tabs" ng-click="fbtnFun(tab.name,tab.id)" ng-class="slectIndex==tab.id ? 'tab_select' : '' ">
+				<p ng-if="basicInf.language != 'en_US' ">{{langs[tab.name]}}{{langs.management}}</p>
+				<p ng-if="basicInf.language == 'en_US' ">{{langs[tab.name]}}</p>
+			</a>
+		</div>
+	</ion-header-bar>
+	<ion-content class="has-tabs" has-bouncing=false padding="false" scroll="false" sub-view>
+		<ion-slide-box on-slide-changed="slideChanged(index)" active-slide="slectIndex" does-continue="false" show-pager="false">
+			<ion-slide ng-repeat="p in tabs">
+				<ng-include src="'views/app/fil_00/fil_00_s04/fil_00_s04_setmenu.html'" ng-if="p.name == 'set'"></ng-include>
+				<div class="list menuList" ng-repeat="m in menuList" ng-if="p.name == m.id">
+					<ul class="item">
+						<li ng-repeat="menuIcon in m.info" class="menuClass" ng-click="goPage(menuIcon)">
+							<div class="row row-center row-no-padding">
+								<div class="col ">
+									<img ng-if="menuIcon.iconType == 'png' " ng-src="{{menuIcon.icon}}" class="menuClassPng">
+									<ng-include ng-if="menuIcon.iconType == 'svg' " src="menuIcon.icon" ng-class="[menuIcon.color]"></ng-include>
+								</div>
+							</div>
+							<div class="row row-center">
+								<div class="col">{{menuIcon.name}}</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="addmenu" style="margin-bottom: 100px;" ng-if="p.name == 'common'" ui-sref="fil_00_s03">
+					<i class="icon ion-plus-round"></i>
+				</div>
+			</ion-slide>
+		</ion-slide-box>
+	</ion-content>
+	<div class="dot">
+		<span ng-repeat="tab in tabs" ng-class="slectIndex==$index ? 'dot_select' : ' '"></span>
+	</div>
+</ion-view>

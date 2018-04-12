@@ -1,0 +1,26 @@
+<div>
+    <div class="row">
+        <div class="item-input popupSearch">
+            <input type="text" ng-model="search" placeholder="{{langs.search + langs.storage + langs.keyword}}">
+            <i class="icon ion-search"></i>
+        </div>
+    </div>
+    <div class="popupList">
+        <ion-content>
+            <ion-list>
+                <ion-radio ng-click="selstorage(storage)"
+                           collection-repeat="storage in storages |filter:search"
+                           item-height="55"
+                           ng-model="$parent.popSelected.storage_spaces_no"
+                           ng-value="storage.storage_spaces_no">
+                    <div class="row list-row-con">
+                        <div class="col col-50 space">{{storage.storage_spaces_name}}</div>
+                        <div class="col col-50 text-right space">{{storage.storage_spaces_no}}
+                        </div>
+
+                    </div>
+                </ion-radio>
+            </ion-list>
+        </ion-content>
+    </div>
+</div>

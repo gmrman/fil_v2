@@ -1,0 +1,98 @@
+<ion-view>
+      <ion-content class="view-pane">
+      	<ion-list class="list list-top">
+            <ion-item class="item">
+                  <div class="row row-center list-row-con">
+                        <div class="col col-10 text-left">
+                              <span class="title">{{langs.item_no }}</span>
+                        </div>
+                    <div class="col col-40 text-left">
+                      <span class="content">123445567788</span>
+                    </div>
+                    <div class="col col-10 text-left">
+                      <span class="title">{{langs.examine }}项目</span>
+                    </div>
+                    <div class="col col-40 text-left">
+                      <span class="content">{{item.examine}}</span>
+                    </div>
+                </div>
+          </ion-item>
+          <ion-item class="item">
+                <div class="row row-center list-row-con">
+                      <div class="col col-10 text-left">
+                      <span class="title">{{langs.product_name}}</span>
+                    </div>
+                    <div class="col col-40 text-left">
+                      <span class="content">{{data.product_name}}</span>
+                    </div>
+                    <div class="col col-10 text-left">
+                      <span class="title">{{langs.specification}}</span>
+                    </div>
+                    <div class="col col-40 text-left">
+                      <span class="content">{{data.specification}}</span>
+                    </div>
+                </div>
+          </ion-item>
+          <ion-item class="item ">
+                <div class="row row-center list-row-con">
+                      <div class="col col-10 text-left">
+                      <span class="title">AC</span>
+                    </div>
+                    <div class="col col-15 text-left">
+                      <span class="content">{{item.AC}}</span>
+                    </div>
+                    <div class="col col-10 text-left">
+                      <span class="title">RE</span>
+                    </div>
+                    <div class="col col-15 text-left">
+                      <span class="content">{{item.RE}}</span>
+                    </div>
+                      <div class="col col-10 text-left">
+                      <span class="title">抽验{{langs.mete}}</span>
+                    </div>
+                    <div class="col col-15 text-left">
+                      <span class="content">{{item.chou}}</span>
+                    </div>
+                    <div class="col col-10 text-left">
+                      <span class="title">{{langs.shortcoming }}数</span>
+                    </div>
+                    <div class="col col-15 text-left">
+                      <span class="content">{{item.shortcoming}}</span>
+                    </div>
+                </div>
+          </ion-item>
+  	</ion-list>
+    <ion-list class="list list-2" ng-show="infos.length">
+          <div class="row row-center list-row-con">
+                <div class="col col-50 item2">
+                        <ion-item class="item delete-item"  ng-repeat="info in infos | filter:{turn:'left'}" >
+                              <div class="row row-center list-row-con">
+                                    <div class="col col-80 text-left">
+                                          <span class="title">{{info.name}}</span>
+                                    </div>
+                                    <div class="col col-20 text-left">
+                                      <input ng-model="info.num" type="text"  class="active"
+                                      onfocus="this.select();" />
+                                    </div>
+                              </div>
+                              <ion-option-button class="button icon ion-ios-trash-outline button-assertive" ng-click="delInfo($index)"></ion-option-button>
+                       </ion-item>
+                </div>
+                <div class="col col-50 item2">
+                        <ion-item class="item delete-item" ng-repeat="info in infos | filter:{turn:'right'}">
+                            <div class="row row-center list-row-con">
+                                  <div class="col col-80 text-left">
+                                        <span class="title">{{info.name}}</span>
+                                    </div>
+                                <div class="col col-20 text-left">
+                                  <input ng-model="info.num" type="text"  class="active"
+                                  onfocus="this.select();"/>
+                                </div>
+                          </div>
+                          <ion-option-button class="button icon ion-ios-trash-outline button-assertive" ng-click="delInfo($index,1)"></ion-option-button>
+                       </ion-item>
+                </div>
+        </div>
+  	</ion-list>
+</ion-content>
+</ion-view>

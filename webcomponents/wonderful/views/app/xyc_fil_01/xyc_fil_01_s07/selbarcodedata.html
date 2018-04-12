@@ -1,0 +1,64 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title title-center">{{langs.please_choose}}</h1>
+        <button class="button button-clear button-primary" ng-click="closeSelbarcodedata()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <ion-content class="padding view-pane has-footer" scroll="false">
+        <ion-content scroll="false">
+            <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col col-25">{{langs.shouldIssue}}{{langs.qty}}</div>
+                <div class="col col-25">{{showGood.qty}}</div>
+                <div class="col col-25">{{langs.alreadyIssue}}{{langs.qty}}</div>
+                <div class="col col-25">{{showGood.alreadyIssueQty}}</div>
+            </div>
+            <div class="col title-col-con" style="padding-left: 50px;">
+                <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                    <div class="col col-50">{{langs.warehouse}}</div>
+                    <div class="col col-50 text-right">{{langs.storage}}</div>
+                </div>
+                <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                    <div class="col col-50 ">{{langs.lot}}</div>
+                    <div class="col col-50 text-right">{{langs.stock}}{{langs.qty}}</div>
+                </div>
+                <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                    <div class="col col-50 "></div>
+                    <div class="col col-50 text-right">{{langs.qty}}</div>
+                </div>
+            </div>
+        </ion-content>
+        <ion-content style="top:115px;">
+            <ion-list>
+                <ion-item class="list_item" item-width="100%" item-height="105" collection-repeat="r in selbarcodedata">
+                    <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="checkbox">
+                            <input type="checkbox" class="checkbox-icon" ng-change="checkSplitQty($index)" ng-model="r.checked">
+                        </div>
+                        <div class="col list-col-con">
+                            <div class="row row-center list-row-con">
+                                <div class="col col-50">{{r.warehouse_no}}</div>
+                                <div class="col col-50 text-right">{{r.storage_spaces_no}}</div>
+                            </div>
+                            <div class="row row-center list-row-con">
+                                <div class="col col-75">{{r.lot_no}}</div>
+                                <div class="col col-25 text-right">{{r.inventory_qty}}</div>
+                            </div>
+                            <div class="row row-center list-row-con">
+                                <div class="col col-offset-50">
+                                    <div class="quantity-form">
+                                        <a class="mins" ng-click="splitcompute('-1',$index)">-</a>
+                                        <div class="qty" ng-click="splitShowQtyPop()">{{r.qty}}</div>
+                                        <a class="add" ng-click="splitcompute('1',$index)">+</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="setSeldata()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>
+

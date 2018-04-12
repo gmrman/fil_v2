@@ -1,0 +1,111 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title title-center">{{langs.multi_unit}}{{langs.maintain}}</h1>
+        <button class="button button-clear button-primary" ng-click="closeMultiUnitQtyModal()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <ion-content class="padding has-footer view-pane">
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-hide="multUnit.barcode_no =='' || multUnit.barcode_no ==' ' || !multUnit.barcode_no">
+            <div class="col col-33">{{langs.barcode}}</div>
+            <div class="col col-67">{{multUnit.barcode_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="!(userInfo.isDisplay_no) && !(userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)">
+            <div class="col col-33">{{langs.item_no}}</div>
+            <div class="col col-67">{{multUnit.item_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.isDisplay_no">
+            <div class="col col-33">{{langs.item_no}}</div>
+            <div class="col col-67">{{multUnit.item_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.feature">
+            <div class="col col-33">{{langs.item_feature_no}}</div>
+            <div class="col col-67">{{multUnit.item_feature_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.isDisplay_name">
+            <div class="col col-33">{{langs.product_name}}</div>
+            <div class="col col-67">{{multUnit.item_name}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.isDisplay_spec">
+            <div class="col col-33">{{langs.specification}}</div>
+            <div class="col col-67">{{multUnit.item_spec}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.feature">
+            <div class="col col-33">{{langs.item_feature_name}}</div>
+            <div class="col col-67">{{multUnit.item_feature_name}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-center col-33" ng-if="multUnitParameter.type != 'collection'">{{langs.qty}}</div>
+            <div class="col col-center col-33" ng-if="multUnitParameter.type == 'collection'">{{inquiry_list_title_already}}{{langs.qty}}</div>
+            <div class="col text-right" ng-if="!multUnitParameter.isEditQty">{{multUnit.all_qty}}</div>
+            <div class="col" ng-if="multUnitParameter.isEditQty">
+                <div class="quantity-form">
+                    <a class="mins" ng-click="multiUnitCompute('qty',multUnit.all_qty,'-1')">-</a>
+                    <div class="qty" ng-click="multiUnitQtyPop('qty')">{{multUnit.all_qty}}</div>
+                    <a class="add" ng-click="multiUnitCompute('qty',multUnit.all_qty,'1')">+</a>
+                </div>
+            </div>
+            <div class="col col-center col-15">{{multUnit.unit}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="multUnitParameter.isShowShouldQty">
+            <div class="col col-center col-33">{{inquiry_list_title_should}}{{langs.qty}}</div>
+            <div class="col text-right">{{multUnit.should_qty}}</div>
+            <div class="col col-center col-15">{{multUnit.unit}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="multUnitParameter.isShowInventory">
+            <div class="col col-center col-33" ng-if="multUnitParameter.type != 'collection'">{{langs.stock}}{{langs.qty}}</div>
+            <div class="col col-center col-33" ng-if="multUnitParameter.type == 'collection'">{{inquiry_list_title_already}}{{langs.stock}}{{langs.qty}}</div>
+            <div class="col text-right" ng-if="!multUnitParameter.isEditQty">{{multUnit.all_inventory_qty}}</div>
+            <div class="col" ng-if="multUnitParameter.isEditQty">
+                <div class="quantity-form">
+                    <a class="mins" ng-click="multiUnitCompute('inventory',multUnit.all_inventory_qty,'-1')">-</a>
+                    <div class="qty" ng-click="multiUnitQtyPop('inventory')">{{multUnit.all_inventory_qty}}</div>
+                    <a class="add" ng-click="multiUnitCompute('inventory',multUnit.all_inventory_qty,'1')">+</a>
+                </div>
+            </div>
+            <div class="col col-center col-15">{{multUnit.inventory_unit}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="multUnitParameter.isShowShouldQty && multUnitParameter.isShowInventory">
+            <div class="col col-center col-33">{{inquiry_list_title_should}}{{langs.stock}}{{langs.qty}}</div>
+            <div class="col text-right">{{multUnit.should_inventory_qty}}</div>
+            <div class="col col-center col-15">{{multUnit.inventory_unit}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="multUnitParameter.isShowReference">
+            <div class="col col-center col-33" ng-if="multUnitParameter.type != 'collection'">{{langs.reference}}{{langs.qty}}</div>
+            <div class="col col-center col-33" ng-if="multUnitParameter.type == 'collection'">{{inquiry_list_title_already}}{{langs.reference}}{{langs.qty}}</div>
+            <div class="col text-right" ng-if="!multUnitParameter.isEditQty">{{multUnit.all_reference_qty}}</div>
+            <div class="col" ng-if="multUnitParameter.isEditQty">
+                <div class="quantity-form">
+                    <a class="mins" ng-click="multiUnitCompute('reference',multUnit.all_reference_qty,'-1')">-</a>
+                    <div class="qty" ng-click="multiUnitQtyPop('reference')">{{multUnit.all_reference_qty}}</div>
+                    <a class="add" ng-click="multiUnitCompute('reference',multUnit.all_reference_qty,'1')">+</a>
+                </div>
+            </div>
+            <div class="col col-center col-15">{{multUnit.reference_unit_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="multUnitParameter.isShowShouldQty && multUnitParameter.isShowReference">
+            <div class="col col-center col-33">{{inquiry_list_title_should}}{{langs.reference}}{{langs.qty}}</div>
+            <div class="col text-right">{{multUnit.should_reference_qty}}</div>
+            <div class="col col-center col-15">{{multUnit.reference_unit_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="multUnitParameter.isShowValuation">
+            <div class="col col-center col-33" ng-if="multUnitParameter.type != 'collection'">{{langs.valuation}}{{langs.qty}}</div>
+            <div class="col col-center col-33" ng-if="multUnitParameter.type == 'collection'">{{inquiry_list_title_already}}{{langs.valuation}}{{langs.qty}}</div>
+            <div class="col text-right" ng-if="!multUnitParameter.isEditQty">{{multUnit.all_valuation_qty}}</div>
+            <div class="col" ng-if="multUnitParameter.isEditQty">
+                <div class="quantity-form">
+                    <a class="mins" ng-click="multiUnitCompute('valuation',multUnit.all_valuation_qty,'-1')">-</a>
+                    <div class="qty" ng-click="multiUnitQtyPop('valuation')">{{multUnit.all_valuation_qty}}</div>
+                    <a class="add" ng-click="multiUnitCompute('valuation',multUnit.all_valuation_qty,'1')">+</a>
+                </div>
+            </div>
+            <div class="col col-center col-15">{{multUnit.valuation_unit_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="multUnitParameter.isShowShouldQty && multUnitParameter.isShowValuation">
+            <div class="col col-center col-33">{{inquiry_list_title_should}}{{langs.valuation}}{{langs.qty}}</div>
+            <div class="col text-right">{{multUnit.should_valuation_qty}}</div>
+            <div class="col col-center col-15">{{multUnit.valuation_unit_no}}</div>
+        </div>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" on-tap="setMultiUnitQty()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

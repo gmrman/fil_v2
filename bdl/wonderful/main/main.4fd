@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ManagedForm fileVersion="30000" gstVersion="30016" name="managedform" uid="{57ef9897-fd31-474f-b1df-dda6e0d7d83e}">
+  <AGSettings>
+    <DynamicProperties version="2">
+      <DynamicProperty BRDynamicPropertyType="false" isDefaultInherited="false" isHidden="false" name="webcomponent.abc" readOnly="false" type=""/>
+      <DynamicProperty BRDynamicPropertyType="false" isDefaultInherited="false" isHidden="false" name="webcomponent.abcb500" readOnly="false" type=""/>
+      <DynamicProperty BRDynamicPropertyType="false" isDefaultInherited="false" isHidden="false" name="webcomponent.rainbow" readOnly="false" type=""/>
+      <DynamicProperty BRDynamicPropertyType="false" isDefaultInherited="false" isHidden="false" name="webcomponent.rainbowQI" readOnly="false" type=""/>
+      <DynamicProperty BRDynamicPropertyType="false" isDefaultInherited="false" isHidden="false" name="webcomponent.simple" readOnly="false" type=""/>
+      <DynamicProperty BRDynamicPropertyType="false" isDefaultInherited="false" isHidden="false" name="webcomponent.test" readOnly="false" type=""/>
+      <DynamicProperty BRDynamicPropertyType="false" isDefaultInherited="false" isHidden="false" name="webcomponent.wonderful" readOnly="false" type=""/>
+    </DynamicProperties>
+    <NodeInfos version="1">
+      <NodeInfo mimeType="modFD/WebComponent" properties="webcomponent.abc;webcomponent.abcb500;webcomponent.simple;webcomponent.test;webcomponent.wonderful;webcomponent.rainbowQI;webcomponent.rainbow"/>
+    </NodeInfos>
+  </AGSettings>
+  <Record additionalTables="" joinLeft="" joinOperator="" joinRight="" name="Undefined" order="" uid="{5640ab5d-f739-40f3-b093-d49bda3b285e}" where="">
+    <RecordField colName="" fieldIdRef="1" name="web" sqlTabName="" table_alias_name="" uid="{d966e616-7a58-41a1-94b9-def7b466dab7}"/>
+  </Record>
+  <Form fourSTFile="" gridHeight="17" gridWidth="29" image="40" name="form" spacing="normal" text="" windowStyle="viewer">
+    <Initializer image="icon"/>
+    <Grid gridHeight="17" gridWidth="29" name="grid1" posX="0" posY="0">
+      <WebComponent colName="" componentType="wonderful" fieldId="1" gridHeight="17" gridWidth="28" name="web" posX="1" posY="0" scrollBars="none" sizePolicy="fixed" sqlTabName="" stretch="both" tabIndex="1" table_alias_name="" widget="WebComponent">
+        <DynamicProperty name="webcomponent.wonderful" value=""/>
+      </WebComponent>
+    </Grid>
+  </Form>
+  <DiagramLayout>
+    <![CDATA[AAAAAgAAAEwAewA1ADYANAAwAGEAYgA1AGQALQBmADcAMwA5AC0ANAAwAGYAMwAtAGIAMAA5ADMALQBkADQAOQBiAGQAYQAzAGIAMgA4ADUAZQB9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAEwAewBkADkANgA2AGUANgAxADYALQA3AGEANQA4AC0ANAAxAGEAMQAtADkANABiADkALQBkAGUAZgA3AGIANAA2ADYAZABhAGIANwB9QCQAAAAAAABARAAAAAAAAAAAAAAAAAAAAQ==]]>
+  </DiagramLayout>
+</ManagedForm>

@@ -1,0 +1,120 @@
+<ion-view>
+    <ion-content class="view-pane" ng-show="showFlag">
+    	<ion-list class="list list-top">
+			<ion-item class="item">
+                <div class="row row-center list-row-con">
+                    <div class="col col-10 text-center">
+                        <span class="title">{{langs.seq}}</span>
+                    </div>
+                    <div class="col col-20 text-center">
+                        <span class="title">料号</span>
+                    </div>
+                    <div class="col col-20 text-center">
+                        <span class="title">{{langs.product_name}}</span>
+                    </div>
+                    <div class="col col-20 text-center">
+                        <span class="title">{{langs.specification}}</span>
+                    </div>
+                    <div class="col col-10 text-center">
+                        <span class="title">送验{{langs.mete}}</span>
+                    </div>
+                    <div class="col col-10 text-center">
+                        <span class="title">{{langs.eligible}}{{langs.mete}}</span>
+                    </div>
+                    <div class="col col-10 text-center">
+                        <span class="title">判定状态</span>
+                    </div>
+                </div>
+			</ion-item>
+			<ion-item class="item">
+                <div class="row row-center list-row-con">
+                    <div class="col col-10 text-left">
+                        <span class="content2">{{data.seq}}</span>
+                    </div>
+                    <div class="col col-20 text-center">
+                        <span class="content2">{{data.item_no}}</span>
+                    </div>
+                    <div class="col col-20 text-center">
+                        <span class="content2">{{data.item_name}}</span>
+                    </div>
+                    <div class="col col-20 text-center">
+                        <span class="content2">{{data.item_spec}}</span>
+                    </div>
+                    <div class="col col-10 text-center">
+                        <span class="content2">{{data.receipt_qty}}</span>
+                    </div>
+                    <div class="col col-10 text-center">
+                        <input class="content2" ng-model="data.ok_qty" type="number" ng-change="check_ok_qty()" />
+                    </div>
+                    <div class="col col-10 text-center">
+                        <span class="content2">{{data.result_type}}</span>
+                    </div>
+                </div>
+			</ion-item>
+		</ion-list>
+        <ion-list class="list" >
+            <ion-item class="item-top">
+                <div class="row row-center list-row-con">
+                    <div class="col col-10 text-center">
+                        <span class="title">行序</span>
+                    </div>
+                    <div class="col col-30 text-center">
+                        <span class="title">{{langs.examine }}项目</span>
+                    </div>
+                    <div class="col col-10 text-center">
+                        <span class="title">抽验{{langs.mete}}</span>
+                    </div>
+                    <div class="col col-10 text-center">
+                        <span class="title">缺点数</span>
+                    </div>
+                    <div class="col col-10 text-center">
+                        <span class="title">不良数</span>
+                    </div>
+                    <div class="col col-10 text-center">
+                        <span class="title">项目判定</span>
+                    </div>
+                    <div class="col col-10 text-center">
+
+                    </div>
+                    <div class="col col-10 text-center">
+
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item class="item" ng-repeat="item in items">
+                <div class="row row-center list-row-con" >
+                    <div class="col col-10 text-center">
+                        <span class="content">{{item.qc_seq}}</span>
+                    </div>
+                    <div class="col col-30 text-center">
+                        <span class="content">{{item.test_name}}</span>
+                    </div>
+                    <div class="col col-10 text-center">
+                        <input class="content" type="number" ng-model="item.test_qty" ng-change="check_test_qty($index)" />
+                        <!--<input class="content" type="number" ng-model="item.test_qty" ng-change="check_test_qty(item.test_qty)" disabled/>-->
+                    </div>
+                    <div class="col col-10 text-center">
+                        <input class="content" type="number" ng-model="item.reason_qty" ng-change="check_test($index,flag=1)"/>
+                    </div>
+                    <div class="col col-10 text-center">
+                        <input class="content" type="number" ng-model="item.return_qty"ng-change="check_test($index,flag=2)">
+                    </div>
+                    <div class="col col-10 text-center">
+                        <span class="content">{{item.result_type}}</span>
+                    </div>
+                    <div class="col col-10 text-center">
+                        <a class="ng" ng-click="goReason($index)">
+                            <img src="views/app/common/html/image/ng.png"   >
+                        </a>
+                    </div>
+                    <div class="col col-10 text-center">
+                        <a class="ng" ng-click="goMeasured_value($index)">
+                            <img src="views/app/fil_23/img/v.png" >
+                        </a>
+                    </div>
+
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,27 @@
+<ion-view>
+    <ion-content class="view-pane">
+        <ion-list>
+            <ion-item class="list_item scan-title-color" on-hold="queryChangeDetail(item)" item-width="100%" item-height="85" collection-repeat="item in barcode_detail">
+                <div class="col list-col-con">
+                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="col col-67">{{item.barcode_no}}</div>
+                        <div class="col col-33 text-right">{{item.inventory_qty}}</div>
+                    </div>
+                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="!(userInfo.isDisplay_no) && !(userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)">
+                        <div class="col col-ellipsis">{{item.item_no}}</div>
+                    </div>
+                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.isDisplay_no || userInfo.isDisplay_name || userInfo.isDisplay_spec">
+                        <div class="col col-ellipsis" ng-if="userInfo.isDisplay_no">{{item.item_no}}</div>
+                        <div class="col col-ellipsis" ng-if="userInfo.isDisplay_name" ng-class="{'text-right':!userInfo.isDisplay_spec}">{{item.item_name || item.item_no}}</div>
+                        <div class="col col-ellipsis" ng-if="userInfo.isDisplay_spec" ng-class="{'text-right':(userInfo.isDisplay_no || userInfo.isDisplay_name)}">{{item.item_spec}}</div>
+                    </div>
+                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="col col-33">{{item.warehouse_no}}</div>
+                        <div class="col col-33">{{item.storage_spaces_no}}</div>
+                        <div class="col col-33 text-right">{{item.lot_no}}</div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

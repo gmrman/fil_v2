@@ -1,0 +1,17 @@
+<div class="row" ng-show="pop.in_out_no == '-1' ">
+    <div class="col col-67">{{langs.barcode}}{{langs.stock}}{{langs.qty}}</div>
+    <div class="col text-right">{{pop.barcode_qty}}</div>
+</div>
+<div class="row" ng-show="pop.in_out_no != '-1' ">
+    <div class="col col-67">{{langs.barcode}}{{langs.qty}}</div>
+    <div class="col text-right">{{pop.barcode_qty}}</div>
+</div>
+<div class="row">
+    <div class="col col-67">{{langs.receipt}}{{langs.surplus}}{{langs.qty}}</div>
+    <div class="col text-right">{{pop.receipt_surplus_qty}}</div>
+</div>
+<div class="row h3 quantity-form">
+    <a class="mins" ng-click="mins2('pop.qty')">-</a>
+    <input class="qty" autofocus type="number" onfocus="this.select()" ng-model="pop.qty">
+    <a class="add" ng-click="add2('pop.qty')">+</a>
+</div>

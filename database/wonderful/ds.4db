@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Schema gstVersion="3001d" id="{76bddd53-65f4-4a04-810a-8b023aabf06e}" version="3.0">
+  <AGSettings version="1.1">
+    <DynamicProperties version="2">
+      <DynamicProperty description="Associated label when generating form" initialValue="" isDefaultInherited="false" isHidden="false" label="标签" name="label" readOnly="false" type="TEXT"/>
+      <DynamicProperty description="Associated widget" editorInfo="contains:ButtonEdit|CheckBox|ComboBox|DateEdit|DateTimeEdit|Edit|FFImage|FFLabel|Field|Phantom|ProgressBar|RadioGroup|Slider|SpinEdit|TextEdit|TimeEdit" initialValue="Edit" isDefaultInherited="false" isHidden="false" label="Widget" name="widget" readOnly="false" type="ENUM"/>
+      <DynamicPropertyGroup collapsed="false" description="Formfied properties" label="Formfield" name="formfieldGroup" properties="label;widget"/>
+    </DynamicProperties>
+    <NodeInfos version="1">
+      <NodeInfo mimeType="db/column" properties="widget;label"/>
+    </NodeInfos>
+  </AGSettings>
+  <ExtractionSettings>
+    <ExtractionOptions casens="LowerCase" cvmeth="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" ignerr="true" systab="false" type="SQLite"/>
+  </ExtractionSettings>
+  <Table active="true" name="app_base_bcae_t" status="U" uuid="db/table38">
+    <Column fglLength="10" fglType="201" name="bcaeent" notNull="true" order="1" status="U" uuid="db/column691"/>
+    <Column fglLength="20" fglType="201" name="bcaesite" notNull="true" order="2" status="U" uuid="db/column692"/>
+    <Column fglLength="80" fglType="201" name="bcae001" notNull="true" order="3" status="U" uuid="db/column693"/>
+    <Column fglLength="30" fglType="201" name="bcae002" notNull="true" order="4" status="U" uuid="db/column694"/>
+    <Column fglLength="40" fglType="201" name="bcae003" notNull="true" order="5" status="U" uuid="db/column695"/>
+    <Column fglLength="20" fglType="201" name="bcae004" notNull="false" order="6" status="U" uuid="db/column696"/>
+    <Column fglLength="4" fglType="2" name="bcae005" notNull="false" order="7" status="U" uuid="db/column697"/>
+    <Column fglLength="10" fglType="201" name="bcae006" notNull="false" order="8" status="U" uuid="db/column698"/>
+    <Column fglLength="20" fglType="201" name="bcae007" notNull="false" order="9" status="U" uuid="db/column699"/>
+    <Column fglLength="10" fglType="201" name="bcae008" notNull="false" order="10" status="U" uuid="db/column700"/>
+    <Column fglLength="40" fglType="201" name="bcae009" notNull="false" order="11" status="U" uuid="db/column701"/>
+    <Column fglLength="4000" fglType="201" name="bcae010" notNull="false" order="12" status="U" uuid="db/column702"/>
+    <Column fglLength="10" fglType="201" name="bcae011" notNull="false" order="13" status="U" uuid="db/column703"/>
+    <Column fglLength="4000" fglType="201" name="bcae012" notNull="false" order="14" status="U" uuid="db/column704"/>
+    <Column fglLength="40" fglType="201" name="bcae013" notNull="false" order="15" status="U" uuid="db/column705"/>
+    <Column fglLength="20" fglType="201" name="bcae014" notNull="false" order="16" status="U" uuid="db/column706"/>
+    <Column fglLength="10" fglType="201" name="bcae015" notNull="false" order="17" status="U" uuid="db/column709"/>
+    <Column fglLength="20" fglType="201" name="bcae016" notNull="false" order="18" status="U" uuid="db/column11"/>
+    <Column fglLength="40" fglType="201" name="bcae999" notNull="false" order="19" status="U" uuid="db/column710"/>
+    <Column fglLength="10" fglType="201" name="bcaestus" notNull="false" order="20" status="U" uuid="db/column711"/>
+    <Index indexColumns="bcaeent, bcaesite, bcae001, bcae002, bcae003" indexConstraint="primaryKey" name="sqlite_autoindex_app_base_bcae_t_1" status="U" uuid="db/index1"/>
+  </Table>
+  <Table active="true" name="app_base_bcaf_t" status="U" uuid="db/table40">
+    <Column fglLength="10" fglType="201" name="bcafent" notNull="true" order="1" status="U" uuid="db/column742"/>
+    <Column fglLength="20" fglType="201" name="bcafsite" notNull="true" order="2" status="U" uuid="db/column743"/>
+    <Column fglLength="255" fglType="201" name="bcafname" notNull="false" order="3" status="U" uuid="db/column26"/>
+    <Column fglLength="255" fglType="201" name="bcafspec" notNull="false" order="4" status="U" uuid="db/column27"/>
+    <Column fglLength="10" fglType="201" name="bcafmunit" notNull="false" order="5" status="U" uuid="db/column29"/>
+    <Column fglLength="80" fglType="201" name="bcaf001" notNull="true" order="6" status="U" uuid="db/column744"/>
+    <Column fglLength="30" fglType="201" name="bcaf002" notNull="true" order="7" status="U" uuid="db/column745"/>
+    <Column fglLength="40" fglType="201" name="bcaf003" notNull="true" order="8" status="U" uuid="db/column746"/>
+    <Column fglLength="4" fglType="2" name="bcaf004" notNull="true" order="9" status="U" uuid="db/column747"/>
+    <Column fglLength="4" fglType="2" name="bcaf005" notNull="false" order="10" status="U" uuid="db/column748"/>
+    <Column fglLength="255" fglType="201" name="bcaf006" notNull="false" order="11" status="U" uuid="db/column749"/>
+    <Column fglLength="40" fglType="201" name="bcaf007" notNull="false" order="12" status="U" uuid="db/column750"/>
+    <Column fglLength="255" fglType="201" name="bcaf008" notNull="false" order="13" status="U" uuid="db/column751"/>
+    <Column fglLength="500" fglType="201" name="bcaf009" notNull="false" order="14" status="U" uuid="db/column752"/>
+    <Column fglLength="10" fglType="201" name="bcaf010" notNull="false" order="15" status="U" uuid="db/column753"/>
+    <Column fglLength="10" fglType="201" name="bcaf011" notNull="false" order="16" status="U" uuid="db/column754"/>
+    <Column fglLength="30" fglType="201" name="bcaf012" notNull="false" order="17" status="U" uuid="db/column755"/>
+    <Column fglLength="30" fglType="201" name="bcaf013" notNull="false" order="18" status="U" uuid="db/column756"/>
+    <Column fglLength="30" fglType="201" name="bcaf014" notNull="false" order="19" status="U" uuid="db/column757"/>
+    <Column fglLength="30" fglType="201" name="bcaf015" notNull="false" order="20" status="U" uuid="db/column758"/>
+    <Column fglLength="6666" fglType="5" name="bcaf016" notNull="false" order="21" status="U" uuid="db/column759"/>
+    <Column fglLength="10" fglType="201" name="bcaf017" notNull="false" order="22" status="U" uuid="db/column760"/>
+    <Column fglLength="40" fglType="201" name="bcaf018" notNull="false" order="23" status="U" uuid="db/column761"/>
+    <Column fglLength="40" fglType="201" name="bcaf019" notNull="false" order="24" status="U" uuid="db/column762"/>
+    <Column fglLength="20" fglType="201" name="bcaf020" notNull="false" order="25" status="U" uuid="db/column763"/>
+    <Column fglLength="2560" fglType="5" name="bcaf021" notNull="false" order="26" status="U" uuid="db/column764"/>
+    <Column fglLength="2560" fglType="5" name="bcaf022" notNull="false" order="27" status="U" uuid="db/column765"/>
+    <Column fglLength="2560" fglType="5" name="bcaf023" notNull="false" order="28" status="U" uuid="db/column766"/>
+    <Column fglLength="10" fglType="201" name="bcaf031" notNull="false" order="29" status="U" uuid="db/column767"/>
+    <Column fglLength="6666" fglType="5" name="bcaf032" notNull="false" order="30" status="U" uuid="db/column768"/>
+    <Column fglLength="10" fglType="201" name="bcaf033" notNull="false" order="31" status="U" uuid="db/column769"/>
+    <Column fglLength="6666" fglType="5" name="bcaf034" notNull="false" order="32" status="U" uuid="db/column770"/>
+    <Column fglLength="6666" fglType="5" name="bcaf035" notNull="false" order="33" status="U" uuid="db/column771"/>
+    <Column fglLength="10" fglType="201" name="bcaf036" notNull="false" order="34" status="U" uuid="db/column394"/>
+    <Column fglLength="10" fglType="201" name="bcaf037" notNull="false" order="35" status="U" uuid="db/column403"/>
+    <Column fglLength="10" fglType="201" name="bcaf038" notNull="false" order="36" status="U" uuid="db/column405"/>
+    <Column fglLength="10" fglType="201" name="bcaf039" notNull="false" order="37" status="U" uuid="db/column408"/>
+    <Column fglLength="2560" fglType="5" name="bcaf040" notNull="false" order="38" status="U" uuid="db/column39"/>
+    <Column fglLength="10" fglType="201" name="bcaf041" notNull="false" order="39" status="U" uuid="db/column1"/>
+    <Column fglLength="10" fglType="201" name="bcaf042" notNull="false" order="40" status="U" uuid="db/column2"/>
+    <Column fglLength="6666" fglType="5" name="bcaf043" notNull="false" order="41" status="U" uuid="db/column18"/>
+    <Column fglLength="10" fglType="201" name="bcaf044" notNull="false" order="42" status="U" uuid="db/column30"/>
+    <Column fglLength="6666" fglType="5" name="bcaf045" notNull="false" order="43" status="U" uuid="db/column31"/>
+    <Column fglLength="10" fglType="201" name="bcaf046" notNull="false" order="44" status="U" uuid="db/column32"/>
+    <Column fglLength="6666" fglType="5" name="bcaf047" notNull="false" order="45" status="U" uuid="db/column33"/>
+    <Column fglLength="255" fglType="201" name="bcafpcode" notNull="false" order="46" status="U" uuid="db/column34"/>
+    <Column fglLength="6666" fglType="5" name="bcafpqty" notNull="false" order="47" status="U" uuid="db/column35"/>
+    <Index indexColumns="bcafent, bcaf001, bcaf002, bcaf003, bcafsite, bcaf004" indexConstraint="primaryKey" name="sqlite_autoindex_app_base_bcaf_t_1" status="U" uuid="db/index2"/>
+  </Table>
+  <Table active="true" name="app_base_bcmc_t" status="U" uuid="db/table32">
+    <Column fglLength="10" fglType="201" name="bcmcent" notNull="true" order="1" status="U" uuid="db/column562"/>
+    <Column fglLength="20" fglType="201" name="bcmcsite" notNull="true" order="2" status="U" uuid="db/column564"/>
+    <Column fglLength="255" fglType="201" name="bcmc001" notNull="true" order="3" status="U" uuid="db/column566"/>
+    <Column fglLength="40" fglType="201" name="bcmc002" notNull="true" order="4" status="U" uuid="db/column567"/>
+    <Column fglLength="255" fglType="201" name="bcmc003" notNull="true" order="5" status="U" uuid="db/column568"/>
+    <Column fglLength="500" fglType="201" name="bcmc004" notNull="false" order="6" status="U" uuid="db/column569"/>
+    <Column fglLength="10" fglType="201" name="bcmc005" notNull="true" order="7" status="U" uuid="db/column570"/>
+    <Column fglLength="10" fglType="201" name="bcmc006" notNull="true" order="8" status="U" uuid="db/column571"/>
+    <Column fglLength="30" fglType="201" name="bcmc007" notNull="true" order="9" status="U" uuid="db/column572"/>
+    <Column fglLength="30" fglType="201" name="bcmc008" notNull="true" order="10" status="U" uuid="db/column573"/>
+    <Column fglLength="30" fglType="201" name="bcmc009" notNull="false" order="11" status="U" uuid="db/column574"/>
+    <Column fglLength="30" fglType="201" name="bcmc010" notNull="false" order="12" status="U" uuid="db/column575"/>
+    <Column fglLength="10" fglType="201" name="bcmc011" notNull="false" order="13" status="U" uuid="db/column576"/>
+    <Column fglLength="6666" fglType="5" name="bcmc012" notNull="false" order="14" status="U" uuid="db/column577"/>
+    <Column fglLength="6666" fglType="5" name="bcmc013" notNull="false" order="15" status="U" uuid="db/column578"/>
+    <Column fglLength="20" fglType="201" name="bcmc014" notNull="true" order="16" status="U" uuid="db/column579"/>
+    <Column fglLength="40" fglType="201" name="bcmc015" notNull="true" order="17" status="U" uuid="db/column580"/>
+    <Column fglLength="4" fglType="2" name="bcmc016" notNull="true" order="18" status="U" uuid="db/column581"/>
+    <Column fglLength="4" fglType="2" name="bcmc017" notNull="true" order="19" status="U" uuid="db/column582"/>
+    <Column fglLength="4" fglType="2" name="bcmc018" notNull="true" order="20" status="U" uuid="db/column583"/>
+    <Column fglLength="10" fglType="201" name="bcmc019" notNull="false" order="21" status="U" uuid="db/column43"/>
+    <Column fglLength="30" fglType="201" name="bcmc020" notNull="false" order="22" status="U" uuid="db/column44"/>
+    <Column fglLength="255" fglType="201" name="bcmc021" notNull="false" order="23" status="U" uuid="db/column45"/>
+    <Column fglLength="255" fglType="201" name="bcmc022" notNull="false" order="24" status="U" uuid="db/column46"/>
+    <Column fglLength="10" fglType="201" name="bcmc023" notNull="false" order="25" status="U" uuid="db/column47"/>
+    <Column fglLength="10" fglType="201" name="bcmc024" notNull="false" order="26" status="U" uuid="db/column36"/>
+    <Column fglLength="6666" fglType="5" name="bcmc025" notNull="false" order="27" status="U" uuid="db/column37"/>
+    <Column fglLength="10" fglType="201" name="bcmc026" notNull="false" order="28" status="U" uuid="db/column56"/>
+    <Column fglLength="255" fglType="201" name="bcmc027" notNull="false" order="29" status="U" uuid="db/column101"/>
+    <Column fglLength="6666" fglType="5" name="bcmc028" notNull="false" order="30" status="U" uuid="db/column102"/>
+    <Column fglLength="10" fglType="201" name="bcmc995" notNull="true" order="31" status="U" uuid="db/column19"/>
+    <Column fglLength="10" fglType="201" name="bcmc996" notNull="true" order="32" status="U" uuid="db/column20"/>
+    <Column fglLength="10" fglType="201" name="bcmc997" notNull="true" order="33" status="U" uuid="db/column21"/>
+    <Column fglLength="6666" fglType="5" name="bcmc998" notNull="false" order="34" status="U" uuid="db/column22"/>
+    <Column fglLength="4879" fglType="10" name="bcmc999" notNull="false" order="35" status="U" uuid="db/column584"/>
+    <Index indexColumns="bcmcent, bcmc001, bcmc002, bcmc003, bcmc014, bcmc015, bcmc016, bcmc017, bcmc018" indexConstraint="index" name="idx_app_base_bcmc_t_1" status="U" uuid="db/index28"/>
+    <Index indexColumns="bcmcent, bcmc001, bcmc002, bcmc003, bcmc005, bcmc006, bcmc007, bcmc014, bcmc015, bcmc016, bcmc017, bcmc018, bcmc995, bcmc996, bcmc997" indexConstraint="primaryKey" name="sqlite_autoindex_app_base_bcmc_t_1" status="U" uuid="db/index29"/>
+  </Table>
+  <Table active="true" name="app_base_bcme_t" status="U" uuid="db/table35">
+    <Column fglLength="10" fglType="201" name="bcmeent" notNull="true" order="1" status="U" uuid="db/column627"/>
+    <Column fglLength="20" fglType="201" name="bcmesite" notNull="true" order="2" status="U" uuid="db/column628"/>
+    <Column fglLength="20" fglType="201" name="bcme001" notNull="true" order="3" status="U" uuid="db/column629"/>
+    <Column fglLength="20" fglType="201" name="bcme002" notNull="true" order="4" status="U" uuid="db/column630"/>
+    <Column fglLength="10" fglType="201" name="bcme003" notNull="false" order="5" status="U" uuid="db/column631"/>
+    <Column fglLength="30" fglType="201" name="bcme004" notNull="false" order="6" status="U" uuid="db/column632"/>
+    <Column fglLength="4" fglType="2" name="bcme005" notNull="true" order="7" status="U" uuid="db/column633"/>
+    <Column fglLength="4" fglType="2" name="bcme006" notNull="true" order="8" status="U" uuid="db/column634"/>
+    <Column fglLength="4" fglType="2" name="bcme007" notNull="true" order="9" status="U" uuid="db/column635"/>
+    <Column fglLength="10" fglType="201" name="bcme008" notNull="false" order="10" status="U" uuid="db/column636"/>
+    <Column fglLength="80" fglType="201" name="bcme009" notNull="false" order="11" status="U" uuid="db/column637"/>
+    <Column fglLength="40" fglType="201" name="bcme010" notNull="false" order="12" status="U" uuid="db/column638"/>
+    <Column fglLength="255" fglType="201" name="bcme011" notNull="false" order="13" status="U" uuid="db/column639"/>
+    <Column fglLength="500" fglType="201" name="bcme012" notNull="false" order="14" status="U" uuid="db/column640"/>
+    <Column fglLength="10" fglType="201" name="bcme013" notNull="true" order="15" status="U" uuid="db/column641"/>
+    <Column fglLength="10" fglType="201" name="bcme014" notNull="true" order="16" status="U" uuid="db/column642"/>
+    <Column fglLength="30" fglType="201" name="bcme015" notNull="true" order="17" status="U" uuid="db/column643"/>
+    <Column fglLength="30" fglType="201" name="bcme016" notNull="false" order="18" status="U" uuid="db/column644"/>
+    <Column fglLength="6666" fglType="5" name="bcme017" notNull="false" order="19" status="U" uuid="db/column645"/>
+    <Column fglLength="6666" fglType="5" name="bcme018" notNull="false" order="20" status="U" uuid="db/column646"/>
+    <Column fglLength="30" fglType="201" name="bcme019" notNull="false" order="21" status="U" uuid="db/column647"/>
+    <Column fglLength="30" fglType="201" name="bcme020" notNull="false" order="22" status="U" uuid="db/column648"/>
+    <Column fglLength="1" fglType="201" name="bcme021" notNull="false" order="23" status="U" uuid="db/column649"/>
+    <Column fglLength="1" fglType="201" name="bcme022" notNull="false" order="24" status="U" uuid="db/column650"/>
+    <Column fglLength="20" fglType="201" name="bcme023" notNull="false" order="25" status="U" uuid="db/column651"/>
+    <Column fglLength="4" fglType="2" name="bcme024" notNull="false" order="26" status="U" uuid="db/column654"/>
+    <Column fglLength="4" fglType="2" name="bcme025" notNull="false" order="27" status="U" uuid="db/column655"/>
+    <Column fglLength="4" fglType="2" name="bcme026" notNull="false" order="28" status="U" uuid="db/column656"/>
+    <Column fglLength="40" fglType="201" name="bcme027" notNull="false" order="29" status="U" uuid="db/column658"/>
+    <Column fglLength="6666" fglType="5" name="bcme028" notNull="false" order="30" status="U" uuid="db/column659"/>
+    <Column fglLength="255" fglType="201" name="bcme029" notNull="false" order="31" status="U" uuid="db/column660"/>
+    <Column fglLength="10" fglType="201" name="bcme030" notNull="false" order="32" status="U" uuid="db/column661"/>
+    <Column fglLength="10" fglType="201" name="bcme031" notNull="false" order="33" status="U" uuid="db/column662"/>
+    <Column fglLength="10" fglType="201" name="bcme032" notNull="false" order="34" status="U" uuid="db/column663"/>
+    <Column fglLength="6666" fglType="5" name="bcme033" notNull="false" order="35" status="U" uuid="db/column664"/>
+    <Column fglLength="6666" fglType="5" name="bcme034" notNull="false" order="36" status="U" uuid="db/column665"/>
+    <Column fglLength="10" fglType="201" name="bcme035" notNull="false" order="37" status="U" uuid="db/column666"/>
+    <Column fglLength="6666" fglType="5" name="bcme036" notNull="false" order="38" status="U" uuid="db/column667"/>
+    <Column fglLength="2560" fglType="5" name="bcme037" notNull="false" order="39" status="U" uuid="db/column13"/>
+    <Column fglLength="6666" fglType="5" name="bcme038" notNull="false" order="40" status="U" uuid="db/column15"/>
+    <Column fglLength="6666" fglType="5" name="bcme039" notNull="false" order="41" status="U" uuid="db/column16"/>
+    <Column fglLength="20" fglType="201" name="bcme040" notNull="false" order="42" status="U" uuid="db/column17"/>
+    <Column fglLength="10" fglType="201" name="bcme041" notNull="false" order="43" status="U" uuid="db/column40"/>
+    <Column fglLength="10" fglType="201" name="bcme042" notNull="false" order="44" status="U" uuid="db/column41"/>
+    <Column fglLength="255" fglType="201" name="bcme043" notNull="false" order="45" status="U" uuid="db/column48"/>
+    <Column fglLength="255" fglType="201" name="bcme044" notNull="false" order="46" status="U" uuid="db/column49"/>
+    <Column fglLength="10" fglType="201" name="bcme045" notNull="false" order="47" status="U" uuid="db/column50"/>
+    <Column fglLength="6666" fglType="5" name="bcme046" notNull="false" order="48" status="U" uuid="db/column53"/>
+    <Column fglLength="6666" fglType="5" name="bcme047" notNull="false" order="49" status="U" uuid="db/column54"/>
+    <Column fglLength="10" fglType="201" name="bcme048" notNull="false" order="50" status="U" uuid="db/column55"/>
+    <Column fglLength="5120" fglType="5" name="bcme049" notNull="false" order="51" status="U" uuid="db/column14"/>
+    <Column fglLength="10" fglType="201" name="bcme050" notNull="false" order="52" status="U" uuid="db/column23"/>
+    <Column fglLength="6666" fglType="5" name="bcme051" notNull="false" order="53" status="U" uuid="db/column103"/>
+    <Column fglLength="5120" fglType="5" name="bcme052" notNull="false" order="54" status="U" uuid="db/column104"/>
+    <Column fglLength="10" fglType="201" name="bcme053" notNull="false" order="55" status="U" uuid="db/column105"/>
+    <Column fglLength="6666" fglType="5" name="bcme054" notNull="false" order="56" status="U" uuid="db/column106"/>
+    <Column fglLength="10" fglType="201" name="bcme055" notNull="false" order="57" status="U" uuid="db/column107"/>
+    <Column fglLength="6666" fglType="5" name="bcme056" notNull="false" order="58" status="U" uuid="db/column108"/>
+    <Column fglLength="10" fglType="201" name="bcme057" notNull="false" order="59" status="U" uuid="db/column109"/>
+    <Column fglLength="6666" fglType="5" name="bcme058" notNull="false" order="60" status="U" uuid="db/column110"/>
+    <Column fglLength="10" fglType="201" name="bcme059" notNull="false" order="61" status="U" uuid="db/column111"/>
+    <Column fglLength="10" fglType="201" name="bcme060" notNull="false" order="62" status="U" uuid="db/column112"/>
+    <Column fglLength="1" fglType="201" name="bcme061" notNull="false" order="63" status="U" uuid="db/column113"/>
+    <Column fglLength="1" fglType="201" name="bcme062" notNull="false" order="64" status="U" uuid="db/column114"/>
+    <Column fglLength="256" fglType="201" name="bcme127" notNull="false" order="65" status="U" uuid="db/column668"/>
+    <Column fglLength="4" fglType="2" name="bcme128" notNull="false" order="66" status="U" uuid="db/column669"/>
+    <Column fglLength="40" fglType="201" name="bcme999" notNull="true" order="67" status="U" uuid="db/column670"/>
+    <Column fglLength="10" fglType="201" name="bcmestus" notNull="false" order="68" status="U" uuid="db/column671"/>
+    <Index indexColumns="bcmeent, bcmesite, bcme001, bcme002, bcme005, bcme006, bcme007, bcme013, bcme014, bcme015, bcme999" indexConstraint="primaryKey" name="sqlite_autoindex_app_base_bcme_t_1" status="U" uuid="db/index5"/>
+  </Table>
+  <Table active="true" name="basicinformation" status="U" uuid="db/table3">
+    <Column fglLength="40" fglType="201" name="server_ip" notNull="false" order="1" status="U" uuid="db/column57"/>
+    <Column fglLength="10" fglType="201" name="server_area" notNull="false" order="2" status="U" uuid="db/column58"/>
+    <Column fglLength="20" fglType="201" name="server_product" notNull="false" order="3" status="U" uuid="db/column59"/>
+    <Column fglLength="40" fglType="201" name="permission_ip" notNull="false" order="4" status="U" uuid="db/column25"/>
+    <Column fglLength="1" fglType="201" name="barcode_repeat" notNull="false" order="5" status="U" uuid="db/column60"/>
+    <Column fglLength="1" fglType="201" name="barcode_separator" notNull="false" order="6" status="U" uuid="db/column61"/>
+    <Column fglLength="1" fglType="201" name="warehouse_separator" notNull="false" order="7" status="U" uuid="db/column3"/>
+    <Column fglLength="255" fglType="201" name="plant_id" notNull="false" order="8" status="U" uuid="db/column62"/>
+    <Column fglLength="5" fglType="201" name="mr_no" notNull="false" order="9" status="U" uuid="db/column63"/>
+    <Column fglLength="5" fglType="201" name="mi_no" notNull="false" order="10" status="U" uuid="db/column64"/>
+    <Column fglLength="10" fglType="201" name="reason_no" notNull="false" order="11" status="U" uuid="db/column65"/>
+    <Column fglLength="1" fglType="201" name="camera_used" notNull="false" order="12" status="U" uuid="db/column66"/>
+    <Column fglLength="1" fglType="201" name="lot_auto" notNull="false" order="13" status="U" uuid="db/column67"/>
+    <Column fglLength="1" fglType="201" name="inventory_display" notNull="false" order="14" status="U" uuid="db/column68"/>
+    <Column fglLength="10" fglType="201" name="report_ent" notNull="false" order="15" status="U" uuid="db/column69"/>
+    <Column fglLength="20" fglType="201" name="report_site" notNull="false" order="16" status="U" uuid="db/column28"/>
+    <Column fglLength="4879" fglType="10" name="report_datetime" notNull="false" order="17" status="U" uuid="db/column70"/>
+    <Column fglLength="10" fglType="201" name="warehouse_no" notNull="false" order="18" status="U" uuid="db/column71"/>
+    <Column fglLength="10" fglType="201" name="warehouse_no_cost" notNull="false" order="19" status="U" uuid="db/column52"/>
+    <Column fglLength="4" fglType="2" name="isdisplay_no" notNull="false" order="20" status="U" uuid="db/column38"/>
+    <Column fglLength="4" fglType="2" name="isdisplay_name" notNull="false" order="21" status="U" uuid="db/column42"/>
+    <Column fglLength="4" fglType="2" name="isdisplay_spec" notNull="false" order="22" status="U" uuid="db/column51"/>
+    <Column fglLength="10" fglType="201" name="font_size" notNull="false" order="23" status="U" uuid="db/column115"/>
+    <Column fglLength="40" fglType="201" name="workstation_no" notNull="false" order="24" status="U" uuid="db/column122"/>
+    <Column fglLength="255" fglType="201" name="workstation_name" notNull="false" order="25" status="U" uuid="db/column123"/>
+    <Column fglLength="40" fglType="201" name="machine_no" notNull="false" order="26" status="U" uuid="db/column72"/>
+    <Column fglLength="255" fglType="201" name="machine_name" notNull="false" order="27" status="U" uuid="db/column124"/>
+    <Column fglLength="10" fglType="201" name="shift_no" notNull="false" order="28" status="U" uuid="db/column73"/>
+    <Column fglLength="5" fglType="201" name="all_1_no" notNull="false" order="29" status="U" uuid="db/column74"/>
+    <Column fglLength="5" fglType="201" name="all_2_no" notNull="false" order="30" status="U" uuid="db/column75"/>
+    <Column fglLength="5" fglType="201" name="all_3_no" notNull="false" order="31" status="U" uuid="db/column76"/>
+    <Column fglLength="10" fglType="201" name="warehouse_way_cost" notNull="false" order="32" status="U" uuid="db/column77"/>
+    <Column fglLength="10" fglType="201" name="warehouse_way" notNull="false" order="33" status="U" uuid="db/column78"/>
+    <Column fglLength="40" fglType="201" name="BT_printer" notNull="false" order="34" status="M" uuid="db/column458"/>
+    <Column fglLength="4" fglType="2" name="condition_start_date_type" notNull="false" order="35" status="U" uuid="db/column116"/>
+    <Column fglLength="255" fglType="201" name="condition_start_date" notNull="false" order="36" status="U" uuid="db/column117"/>
+    <Column fglLength="5120" fglType="5" name="basic_data_download" notNull="false" order="37" status="U" uuid="db/column118"/>
+    <Column fglLength="5120" fglType="5" name="inventory_operation" notNull="false" order="38" status="U" uuid="db/column119"/>
+    <Column fglLength="5120" fglType="5" name="out_in_operation" notNull="false" order="39" status="U" uuid="db/column120"/>
+    <Column fglLength="10" fglType="201" name="valuation_unit" notNull="false" order="40" status="U" uuid="db/column121"/>
+  </Table>
+  <Table active="true" name="department" status="U" uuid="db/table7">
+    <Column fglLength="40" fglType="201" name="department_no" notNull="true" order="1" status="U" uuid="db/column154"/>
+    <Index indexColumns="department_no" indexConstraint="primaryKey" name="sqlite_autoindex_department_1" status="U" uuid="db/index10"/>
+  </Table>
+  <Table active="true" name="menuinformation" status="U" uuid="db/table33">
+    <Column fglLength="10" fglType="201" name="enterprise_no" notNull="true" order="1" status="U" uuid="db/column412"/>
+    <Column fglLength="20" fglType="201" name="site_no" notNull="true" order="2" status="U" uuid="db/column416"/>
+    <Column fglLength="20" fglType="201" name="account" notNull="true" order="3" status="U" uuid="db/column420"/>
+    <Column fglLength="20" fglType="201" name="func" notNull="true" order="4" status="U" uuid="db/column24"/>
+    <Column fglLength="1" fglType="201" name="iscommon" notNull="false" order="5" status="U" uuid="db/column432"/>
+    <Index indexColumns="enterprise_no, site_no, account, func" indexConstraint="primaryKey" name="sqlite_autoindex_menuinformation_1" status="U" uuid="db/index6"/>
+  </Table>
+  <Table active="true" name="qbecondition" status="U" uuid="db/table1">
+    <Column fglLength="10" fglType="201" name="enterprise_no" notNull="true" order="1" status="U" uuid="db/column5"/>
+    <Column fglLength="20" fglType="201" name="site_no" notNull="true" order="2" status="U" uuid="db/column6"/>
+    <Column fglLength="20" fglType="201" name="account" notNull="true" order="3" status="U" uuid="db/column7"/>
+    <Column fglLength="20" fglType="201" name="program_job_no" notNull="true" order="4" status="U" uuid="db/column8"/>
+    <Column fglLength="10" fglType="201" name="seq" notNull="true" order="5" status="U" uuid="db/column9"/>
+    <Column fglLength="255" fglType="201" name="condition_value" notNull="false" order="6" status="U" uuid="db/column12"/>
+    <Column fglLength="1" fglType="45" name="isdefault" notNull="true" order="7" status="U" uuid="db/column10"/>
+    <Column fglLength="4" fglType="2" name="set_type" notNull="false" order="8" status="U" uuid="db/column155"/>
+    <Index indexColumns="enterprise_no, site_no, account, program_job_no, seq" indexConstraint="primaryKey" name="sqlite_autoindex_qbecondition_1" status="U" uuid="db/index7"/>
+  </Table>
+  <Table active="true" name="stockinformation" status="U" uuid="db/table4">
+    <Column fglLength="10" fglType="201" name="enterprise_no" notNull="true" order="1" status="U" uuid="db/column79"/>
+    <Column fglLength="20" fglType="201" name="site_no" notNull="true" order="2" status="U" uuid="db/column80"/>
+    <Column fglLength="10" fglType="201" name="warehouse_no" notNull="true" order="3" status="U" uuid="db/column81"/>
+    <Column fglLength="500" fglType="201" name="warehouse_name" notNull="false" order="4" status="U" uuid="db/column82"/>
+    <Column fglLength="10" fglType="201" name="storage_spaces_no" notNull="true" order="5" status="U" uuid="db/column83"/>
+    <Column fglLength="500" fglType="201" name="storage_spaces_name" notNull="false" order="6" status="U" uuid="db/column84"/>
+    <Column fglLength="10" fglType="201" name="report_datetime" notNull="false" order="7" status="U" uuid="db/column85"/>
+    <Column fglLength="1" fglType="201" name="warehouse_cost" notNull="false" order="8" status="U" uuid="db/column86"/>
+    <Column fglLength="1" fglType="201" name="storage_management" notNull="false" order="9" status="U" uuid="db/column87"/>
+    <Index indexColumns="enterprise_no, site_no, warehouse_no, storage_spaces_no" indexConstraint="primaryKey" name="sqlite_autoindex_stockinformation_1" status="U" uuid="db/index3"/>
+  </Table>
+  <Table active="true" name="userinformation" status="U" uuid="db/table5">
+    <Column fglLength="10" fglType="201" name="enterprise_no" notNull="true" order="1" status="U" uuid="db/column88"/>
+    <Column fglLength="20" fglType="201" name="site_no" notNull="true" order="2" status="U" uuid="db/column89"/>
+    <Column fglLength="20" fglType="201" name="account" notNull="true" order="3" status="U" uuid="db/column90"/>
+    <Column fglLength="20" fglType="201" name="employee_no" notNull="false" order="4" status="U" uuid="db/column91"/>
+    <Column fglLength="255" fglType="201" name="employee_name" notNull="false" order="5" status="U" uuid="db/column92"/>
+    <Column fglLength="6" fglType="201" name="language" notNull="false" order="6" status="U" uuid="db/column93"/>
+    <Column fglLength="10" fglType="201" name="department_no" notNull="false" order="7" status="U" uuid="db/column94"/>
+    <Column fglLength="500" fglType="201" name="department_name" notNull="false" order="8" status="U" uuid="db/column95"/>
+    <Column fglLength="4879" fglType="10" name="last_log_time" notNull="false" order="9" status="U" uuid="db/column96"/>
+    <Column fglLength="1" fglType="201" name="log_in" notNull="false" order="10" status="U" uuid="db/column97"/>
+    <Column fglLength="40" fglType="201" name="server_ip" notNull="false" order="11" status="U" uuid="db/column98"/>
+    <Column fglLength="10" fglType="201" name="server_area" notNull="false" order="12" status="U" uuid="db/column99"/>
+    <Column fglLength="1" fglType="201" name="manage_barcode_inventory" notNull="false" order="13" status="U" uuid="db/column100"/>
+    <Column fglLength="1" fglType="201" name="feature" notNull="false" order="14" status="U" uuid="db/column4"/>
+    <Index indexColumns="enterprise_no, site_no, account" indexConstraint="primaryKey" name="sqlite_autoindex_userinformation_1" status="U" uuid="db/index4"/>
+  </Table>
+  <Table active="true" name="xyc_app_base_bcaf_t" status="A" uuid="db/table22">
+    <Column fglLength="10" fglType="201" name="bcafent" notNull="true" order="1" status="A" uuid="db/column549"/>
+    <Column fglLength="20" fglType="201" name="bcafsite" notNull="true" order="2" status="A" uuid="db/column550"/>
+    <Column fglLength="255" fglType="201" name="bcafname" notNull="false" order="3" status="A" uuid="db/column551"/>
+    <Column fglLength="255" fglType="201" name="bcafspec" notNull="false" order="4" status="A" uuid="db/column552"/>
+    <Column fglLength="10" fglType="201" name="bcafmunit" notNull="false" order="5" status="A" uuid="db/column553"/>
+    <Column fglLength="80" fglType="201" name="bcaf001" notNull="true" order="6" status="A" uuid="db/column554"/>
+    <Column fglLength="30" fglType="201" name="bcaf002" notNull="true" order="7" status="A" uuid="db/column555"/>
+    <Column fglLength="40" fglType="201" name="bcaf003" notNull="true" order="8" status="A" uuid="db/column556"/>
+    <Column fglLength="4" fglType="2" name="bcaf004" notNull="true" order="9" status="A" uuid="db/column557"/>
+    <Column fglLength="4" fglType="2" name="bcaf005" notNull="false" order="10" status="A" uuid="db/column558"/>
+    <Column fglLength="255" fglType="201" name="bcaf006" notNull="false" order="11" status="A" uuid="db/column559"/>
+    <Column fglLength="40" fglType="201" name="bcaf007" notNull="false" order="12" status="A" uuid="db/column560"/>
+    <Column fglLength="255" fglType="201" name="bcaf008" notNull="false" order="13" status="A" uuid="db/column561"/>
+    <Column fglLength="500" fglType="201" name="bcaf009" notNull="false" order="14" status="A" uuid="db/column563"/>
+    <Column fglLength="10" fglType="201" name="bcaf010" notNull="false" order="15" status="A" uuid="db/column565"/>
+    <Column fglLength="10" fglType="201" name="bcaf011" notNull="false" order="16" status="A" uuid="db/column585"/>
+    <Column fglLength="30" fglType="201" name="bcaf012" notNull="false" order="17" status="A" uuid="db/column586"/>
+    <Column fglLength="30" fglType="201" name="bcaf013" notNull="false" order="18" status="A" uuid="db/column587"/>
+    <Column fglLength="30" fglType="201" name="bcaf014" notNull="false" order="19" status="A" uuid="db/column588"/>
+    <Column fglLength="30" fglType="201" name="bcaf015" notNull="false" order="20" status="A" uuid="db/column589"/>
+    <Column fglLength="6666" fglType="5" name="bcaf016" notNull="false" order="21" status="A" uuid="db/column590"/>
+    <Column fglLength="10" fglType="201" name="bcaf017" notNull="false" order="22" status="A" uuid="db/column591"/>
+    <Column fglLength="40" fglType="201" name="bcaf018" notNull="false" order="23" status="A" uuid="db/column592"/>
+    <Column fglLength="40" fglType="201" name="bcaf019" notNull="false" order="24" status="A" uuid="db/column593"/>
+    <Column fglLength="20" fglType="201" name="bcaf020" notNull="false" order="25" status="A" uuid="db/column594"/>
+    <Column fglLength="2560" fglType="5" name="bcaf021" notNull="false" order="26" status="A" uuid="db/column595"/>
+    <Column fglLength="2560" fglType="5" name="bcaf022" notNull="false" order="27" status="A" uuid="db/column596"/>
+    <Column fglLength="2560" fglType="5" name="bcaf023" notNull="false" order="28" status="A" uuid="db/column597"/>
+    <Column fglLength="10" fglType="201" name="bcaf031" notNull="false" order="29" status="A" uuid="db/column598"/>
+    <Column fglLength="6666" fglType="5" name="bcaf032" notNull="false" order="30" status="A" uuid="db/column599"/>
+    <Column fglLength="10" fglType="201" name="bcaf033" notNull="false" order="31" status="A" uuid="db/column600"/>
+    <Column fglLength="6666" fglType="5" name="bcaf034" notNull="false" order="32" status="A" uuid="db/column601"/>
+    <Column fglLength="6666" fglType="5" name="bcaf035" notNull="false" order="33" status="A" uuid="db/column602"/>
+    <Column fglLength="10" fglType="201" name="bcaf036" notNull="false" order="34" status="A" uuid="db/column603"/>
+    <Column fglLength="10" fglType="201" name="bcaf037" notNull="false" order="35" status="A" uuid="db/column604"/>
+    <Column fglLength="10" fglType="201" name="bcaf038" notNull="false" order="36" status="A" uuid="db/column605"/>
+    <Column fglLength="10" fglType="201" name="bcaf039" notNull="false" order="37" status="A" uuid="db/column606"/>
+    <Column fglLength="2560" fglType="5" name="bcaf040" notNull="false" order="38" status="A" uuid="db/column607"/>
+    <Column fglLength="10" fglType="201" name="bcaf041" notNull="false" order="39" status="A" uuid="db/column608"/>
+    <Column fglLength="10" fglType="201" name="bcaf042" notNull="false" order="40" status="A" uuid="db/column609"/>
+    <Column fglLength="6666" fglType="5" name="bcaf043" notNull="false" order="41" status="A" uuid="db/column610"/>
+    <Column fglLength="10" fglType="201" name="bcaf044" notNull="false" order="42" status="A" uuid="db/column611"/>
+    <Column fglLength="6666" fglType="5" name="bcaf045" notNull="false" order="43" status="A" uuid="db/column612"/>
+    <Column fglLength="10" fglType="201" name="bcaf046" notNull="false" order="44" status="A" uuid="db/column613"/>
+    <Column fglLength="6666" fglType="5" name="bcaf047" notNull="false" order="45" status="A" uuid="db/column614"/>
+    <Column fglLength="255" fglType="201" name="bcafpcode" notNull="false" order="46" status="A" uuid="db/column615"/>
+    <Column fglLength="6666" fglType="5" name="bcafpqty" notNull="false" order="47" status="A" uuid="db/column616"/>
+    <Column fglLength="100" fglType="201" name="xshipping_mark_no" notNull="false" order="48" status="A" uuid="db/column617"/>
+    <Column fglLength="100" fglType="201" name="xshipping_mark_cn" notNull="false" order="49" status="A" uuid="db/column618"/>
+    <Index indexColumns="bcafent, bcaf001, bcaf002, bcaf003, bcafsite, bcaf004" indexConstraint="primaryKey" name="sqlite_autoindex_app_base_bcaf_t_1_2" status="A" uuid="db/index22"/>
+  </Table>
+  <Table active="true" name="xyc_app_base_bcme_t" status="A" uuid="db/table24">
+    <Column fglLength="10" fglType="201" name="bcmeent" notNull="true" order="1" status="A" uuid="db/column779"/>
+    <Column fglLength="20" fglType="201" name="bcmesite" notNull="true" order="2" status="A" uuid="db/column780"/>
+    <Column fglLength="20" fglType="201" name="bcme001" notNull="true" order="3" status="A" uuid="db/column781"/>
+    <Column fglLength="20" fglType="201" name="bcme002" notNull="true" order="4" status="A" uuid="db/column782"/>
+    <Column fglLength="10" fglType="201" name="bcme003" notNull="false" order="5" status="A" uuid="db/column783"/>
+    <Column fglLength="30" fglType="201" name="bcme004" notNull="false" order="6" status="A" uuid="db/column784"/>
+    <Column fglLength="4" fglType="2" name="bcme005" notNull="true" order="7" status="A" uuid="db/column785"/>
+    <Column fglLength="4" fglType="2" name="bcme006" notNull="true" order="8" status="A" uuid="db/column786"/>
+    <Column fglLength="4" fglType="2" name="bcme007" notNull="true" order="9" status="A" uuid="db/column787"/>
+    <Column fglLength="10" fglType="201" name="bcme008" notNull="false" order="10" status="A" uuid="db/column788"/>
+    <Column fglLength="80" fglType="201" name="bcme009" notNull="false" order="11" status="A" uuid="db/column789"/>
+    <Column fglLength="40" fglType="201" name="bcme010" notNull="false" order="12" status="A" uuid="db/column790"/>
+    <Column fglLength="255" fglType="201" name="bcme011" notNull="false" order="13" status="A" uuid="db/column791"/>
+    <Column fglLength="500" fglType="201" name="bcme012" notNull="false" order="14" status="A" uuid="db/column792"/>
+    <Column fglLength="10" fglType="201" name="bcme013" notNull="true" order="15" status="A" uuid="db/column793"/>
+    <Column fglLength="10" fglType="201" name="bcme014" notNull="true" order="16" status="A" uuid="db/column794"/>
+    <Column fglLength="30" fglType="201" name="bcme015" notNull="true" order="17" status="A" uuid="db/column795"/>
+    <Column fglLength="30" fglType="201" name="bcme016" notNull="false" order="18" status="A" uuid="db/column796"/>
+    <Column fglLength="6666" fglType="5" name="bcme017" notNull="false" order="19" status="A" uuid="db/column797"/>
+    <Column fglLength="6666" fglType="5" name="bcme018" notNull="false" order="20" status="A" uuid="db/column798"/>
+    <Column fglLength="30" fglType="201" name="bcme019" notNull="false" order="21" status="A" uuid="db/column799"/>
+    <Column fglLength="30" fglType="201" name="bcme020" notNull="false" order="22" status="A" uuid="db/column800"/>
+    <Column fglLength="1" fglType="201" name="bcme021" notNull="false" order="23" status="A" uuid="db/column801"/>
+    <Column fglLength="1" fglType="201" name="bcme022" notNull="false" order="24" status="A" uuid="db/column802"/>
+    <Column fglLength="20" fglType="201" name="bcme023" notNull="false" order="25" status="A" uuid="db/column803"/>
+    <Column fglLength="4" fglType="2" name="bcme024" notNull="false" order="26" status="A" uuid="db/column804"/>
+    <Column fglLength="4" fglType="2" name="bcme025" notNull="false" order="27" status="A" uuid="db/column805"/>
+    <Column fglLength="4" fglType="2" name="bcme026" notNull="false" order="28" status="A" uuid="db/column806"/>
+    <Column fglLength="40" fglType="201" name="bcme027" notNull="false" order="29" status="A" uuid="db/column807"/>
+    <Column fglLength="6666" fglType="5" name="bcme028" notNull="false" order="30" status="A" uuid="db/column808"/>
+    <Column fglLength="255" fglType="201" name="bcme029" notNull="false" order="31" status="A" uuid="db/column809"/>
+    <Column fglLength="10" fglType="201" name="bcme030" notNull="false" order="32" status="A" uuid="db/column810"/>
+    <Column fglLength="10" fglType="201" name="bcme031" notNull="false" order="33" status="A" uuid="db/column811"/>
+    <Column fglLength="10" fglType="201" name="bcme032" notNull="false" order="34" status="A" uuid="db/column812"/>
+    <Column fglLength="6666" fglType="5" name="bcme033" notNull="false" order="35" status="A" uuid="db/column813"/>
+    <Column fglLength="6666" fglType="5" name="bcme034" notNull="false" order="36" status="A" uuid="db/column814"/>
+    <Column fglLength="10" fglType="201" name="bcme035" notNull="false" order="37" status="A" uuid="db/column815"/>
+    <Column fglLength="6666" fglType="5" name="bcme036" notNull="false" order="38" status="A" uuid="db/column816"/>
+    <Column fglLength="2560" fglType="5" name="bcme037" notNull="false" order="39" status="A" uuid="db/column817"/>
+    <Column fglLength="6666" fglType="5" name="bcme038" notNull="false" order="40" status="A" uuid="db/column818"/>
+    <Column fglLength="6666" fglType="5" name="bcme039" notNull="false" order="41" status="A" uuid="db/column819"/>
+    <Column fglLength="20" fglType="201" name="bcme040" notNull="false" order="42" status="A" uuid="db/column820"/>
+    <Column fglLength="10" fglType="201" name="bcme041" notNull="false" order="43" status="A" uuid="db/column821"/>
+    <Column fglLength="10" fglType="201" name="bcme042" notNull="false" order="44" status="A" uuid="db/column822"/>
+    <Column fglLength="255" fglType="201" name="bcme043" notNull="false" order="45" status="A" uuid="db/column823"/>
+    <Column fglLength="255" fglType="201" name="bcme044" notNull="false" order="46" status="A" uuid="db/column824"/>
+    <Column fglLength="10" fglType="201" name="bcme045" notNull="false" order="47" status="A" uuid="db/column825"/>
+    <Column fglLength="6666" fglType="5" name="bcme046" notNull="false" order="48" status="A" uuid="db/column826"/>
+    <Column fglLength="6666" fglType="5" name="bcme047" notNull="false" order="49" status="A" uuid="db/column827"/>
+    <Column fglLength="10" fglType="201" name="bcme048" notNull="false" order="50" status="A" uuid="db/column828"/>
+    <Column fglLength="5120" fglType="5" name="bcme049" notNull="false" order="51" status="A" uuid="db/column829"/>
+    <Column fglLength="10" fglType="201" name="bcme050" notNull="false" order="52" status="A" uuid="db/column830"/>
+    <Column fglLength="6666" fglType="5" name="bcme051" notNull="false" order="53" status="A" uuid="db/column831"/>
+    <Column fglLength="5120" fglType="5" name="bcme052" notNull="false" order="54" status="A" uuid="db/column832"/>
+    <Column fglLength="10" fglType="201" name="bcme053" notNull="false" order="55" status="A" uuid="db/column833"/>
+    <Column fglLength="6666" fglType="5" name="bcme054" notNull="false" order="56" status="A" uuid="db/column834"/>
+    <Column fglLength="10" fglType="201" name="bcme055" notNull="false" order="57" status="A" uuid="db/column835"/>
+    <Column fglLength="6666" fglType="5" name="bcme056" notNull="false" order="58" status="A" uuid="db/column836"/>
+    <Column fglLength="10" fglType="201" name="bcme057" notNull="false" order="59" status="A" uuid="db/column837"/>
+    <Column fglLength="6666" fglType="5" name="bcme058" notNull="false" order="60" status="A" uuid="db/column838"/>
+    <Column fglLength="10" fglType="201" name="bcme059" notNull="false" order="61" status="A" uuid="db/column839"/>
+    <Column fglLength="10" fglType="201" name="bcme060" notNull="false" order="62" status="A" uuid="db/column840"/>
+    <Column fglLength="1" fglType="201" name="bcme061" notNull="false" order="63" status="A" uuid="db/column841"/>
+    <Column fglLength="1" fglType="201" name="bcme062" notNull="false" order="64" status="A" uuid="db/column842"/>
+    <Column fglLength="256" fglType="201" name="bcme127" notNull="false" order="65" status="A" uuid="db/column843"/>
+    <Column fglLength="4" fglType="2" name="bcme128" notNull="false" order="66" status="A" uuid="db/column844"/>
+    <Column fglLength="40" fglType="201" name="bcme999" notNull="true" order="67" status="A" uuid="db/column845"/>
+    <Column fglLength="10" fglType="201" name="bcmestus" notNull="false" order="68" status="A" uuid="db/column846"/>
+    <Column fglLength="100" fglType="201" name="shipping_mark_no" notNull="false" order="69" status="A" uuid="db/column847"/>
+    <Index indexColumns="bcmeent, bcmesite, bcme001, bcme002, bcme005, bcme006, bcme007, bcme013, bcme014, bcme015, bcme999" indexConstraint="primaryKey" name="sqlite_autoindex_app_base_bcme_t_1_2" status="A" uuid="db/index24"/>
+  </Table>
+  <Views ActiveView="View-1" showLabels="true">
+    <View Name="View-1">
+      <Layout>
+        <![CDATA[AAAAAgAAABQAZABiAC8AdABhAGIAbABlADMAOEBWAAAAAAAAQIoQAAAAAABAATEm6XjT4wEAAAASAGQAYgAvAHQAYQBiAGwAZQA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAABQAZABiAC8AdABhAGIAbABlADIAMkB+gAAAAAAAQFUAAAAAAABAAXS8an74uAEAAAAUAGQAYgAvAHQAYQBiAGwAZQAyADRAe/AAAAAAAEBoQAAAAAAAQAF41P3ztSIBAAAAFABkAGIALwB0AGEAYgBsAGUANAAwQHewAAAAAABAjJAAAAAAAEABKwIMSblEAQAAABIAZABiAC8AdABhAGIAbABlADcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAFABkAGIALwB0AGEAYgBsAGUAMwAyQHWQAAAAAABAcnAAAAAAAEABYk3S8ajbAQAAABIAZABiAC8AdABhAGIAbABlADUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAFABkAGIALwB0AGEAYgBsAGUAMwAzQFcAAAAAAABAlUAAAAAAAEABNT987ZBNAQAAABIAZABiAC8AdABhAGIAbABlADEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAEgBkAGIALwB0AGEAYgBsAGUAMwAAAAAAAAAAAAAAAAAAAABAAXCj1wo8TgEAAAAUAGQAYgAvAHQAYQBiAGwAZQAzADVAhLgAAAAAAEBzAAAAAAAAQAE5WBBiTLcB]]>
+      </Layout>
+    </View>
+  </Views>
+  <DBData>
+    <Data path="db/column458@name" type="10" value="bt_printer"/>
+    <Data path="db/column458@order" type="2" value="39"/>
+  </DBData>
+</Schema>

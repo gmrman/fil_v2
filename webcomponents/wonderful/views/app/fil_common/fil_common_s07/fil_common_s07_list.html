@@ -1,0 +1,46 @@
+<ion-view>
+    <ion-content class="view-pane" ng-class="{'has-footer':l_data.show_submit}">
+        <ion-list>
+            <ion-item class="list_item scan-title-color" item-width="100%" item-height="85" collection-repeat="item in scanning_detail">
+                <div class="col list-col-con" ng-click="closeOption()">
+                    <div class="row row-center list-row-con">
+                        <div class="col">{{item.source_no}}#{{item.seq}}</div>
+                        <div class="col col-10 text-right col-ellipsis" ng-if="page_params.program_job_no == '9-1' ">{{item.run_card_no}}</div>
+                        <div class="col col-33 text-right quantity-form" ng-if="!checkIsShowEditMultiUnit(item)">
+                            <a class="mins" ng-click="mins($index)">-</a>
+                            <div class="qty" ng-click="showQtyPop($index)">{{item.qty}}</div>
+                            <a class="add" ng-click="add($index)">+</a>
+                        </div>
+                        <div class="col col-33 text-right quantity-form" ng-if="checkIsShowEditMultiUnit(item)" ng-click="editMultiUnit('receipt',$index)" >
+                            <a class="mins">-</a>
+                            <div class="qty">{{item.qty}}</div>
+                            <a class="add">+</a>
+                        </div>
+                        <div class="col col-10">{{item.unit}}</div>
+                    </div>
+                    <div class="row row-center list-row-con" ng-if="!(userInfo.isDisplay_no) && !(userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)">
+                        <div class="col col-ellipsis">{{item.item_no}}</div>
+                    </div>
+                    <div class="row row-center list-row-con" ng-if="userInfo.isDisplay_no || userInfo.isDisplay_name || userInfo.isDisplay_spec">
+                        <div class="col col-ellipsis" ng-if="userInfo.isDisplay_no">{{item.item_no}}</div>
+                        <div class="col col-ellipsis" ng-if="userInfo.isDisplay_name" ng-class="{'text-right':!userInfo.isDisplay_spec}">{{item.item_name || item.item_no}}</div>
+                        <div class="col col-ellipsis" ng-if="userInfo.isDisplay_spec" ng-class="{'text-right':(userInfo.isDisplay_no || userInfo.isDisplay_name)}">{{item.item_spec}}</div>
+                    </div>
+                    <div class="row row-center list-row-con">
+                        <div class="col col-33">{{item.warehouse_no}}</div>
+                        <div class="col col-33 text-center">{{item.storage_spaces_no}}</div>
+                        <div class="col col-33 text-right">{{item.lot_no}}</div>
+                    </div>
+                </div>
+                <ion-option-button class="button button-royal" ng-if="checkIsShowEditMultiUnit(item)" ng-click="editMultiUnit('detail',$index)">{{langs.multi_unit}}</ion-option-button>
+                <ion-option-button class="ion-option-button-line-height-auto button button-balanced" ng-click="editLot($index)" ng-if="page_params.program_job_no != '7-1' && userInfo.lot_auto"
+                    ng-show="item.lot_control_type != '2' && userInfo.cl_null(item.lot_no) ">
+                    {{langs.bring}}
+                    <br>{{langs.lot}}
+                </ion-option-button>
+                <ion-option-button class="button button-calm" ng-click="splitGoods($index)" ng-if="page_params.program_job_no != '9-1' ">{{langs.split}}</ion-option-button>
+                <ion-option-button class="button icon ion-ios-trash-outline button-assertive" ng-click="deleteGoods($index)"></ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,11 @@
+<ion-view  ng-show="selectFlag">
+      <ion-content class="view-pane">
+         	  <ion-list class="list list-no">
+  			<ion-item class="item" ng-repeat="item in selectedItems" ng-click="addInfo(item)">
+                  <div class="row row-center list-row-con">
+                        <span>{{item}}</span>
+                  </div>
+  			</ion-item>
+  		</ion-list>
+    </ion-content>
+</ion-view>

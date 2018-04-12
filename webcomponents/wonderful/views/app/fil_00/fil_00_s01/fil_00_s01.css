@@ -1,0 +1,38 @@
+.app_title_div {
+  width: 100%;
+  height: auto;
+  overflow: auto;
+  position: relative;
+}
+.app_title_div img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+}
+.app_title_div .app_title_bg {
+  position: static;
+}
+.app_title_div .app_title {
+  top: 75px;
+  top: calc(50% - 35px);
+}
+.app_account_list {
+  margin: 10px 20px 5px;
+}
+.app_account_label {
+  padding: 2px 0 2px 16px;
+}
+.copyright_div {
+  font-size: 8px;
+}
+.logo {
+  height: 50px;
+}
+.setting_div {
+  bottom: 5px;
+  right: 20px;
+  position: absolute;
+}

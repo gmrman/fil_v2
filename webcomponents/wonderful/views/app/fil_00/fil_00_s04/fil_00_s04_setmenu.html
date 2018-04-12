@@ -1,0 +1,330 @@
+<ion-view class="view-pane">
+    <ion-content class="menuset" sub-view>
+        <div class="list list-inset" style="min-height:1300px;">
+            <label class="item item-input" ng-click="diplay.basicInf = !diplay.basicInf">
+                <i class="col col-10 ion-android-settings"></i>
+                <div class="col col-80">{{langs.system}}{{lagns.set}}</div>
+                <i class="ion-chevron-down" ng-show="diplay.basicInf"></i>
+                <i class="ion-chevron-right" ng-hide="diplay.basicInf"></i>
+            </label>
+
+            <div ng-show="diplay.basicInf">
+
+                <label class="item item-input">
+                    <div class="col col-50">ip</div>
+                    <span>{{basicInf.server_ip}}</span>
+                </label>
+
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.area}}</div>
+                    <span>{{basicInf.server_area}}</span>
+                </label>
+
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.server_product}}</div>
+                    {{basicInf.server_product}}
+                </label>
+
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.permission_ip}}</div>
+                    {{basicInf.permission_ip}}
+                </label>
+
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.plant_id}}</div>
+                    <input type="text" ng-model="basicInf.plant_id" ng-blur="update()">
+                </label>
+
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.barcode}}{{langs.cut}}</div>
+                    <input type="text" ng-model="basicInf.barcode_separator" ng-blur="update()">
+                </label>
+
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.warehouse}}{{langs.cut}}</div>
+                    <input type="text" ng-model="basicInf.warehouse_separator" ng-blur="update()">
+                </label>
+
+                <!-- <label class="item item-input">
+                <div class="col col-50">{{langs.reason_no}}</div>
+                <input type="text" ng-model="basicInf.reason_no" ng-blur="update()">
+            </label> -->
+
+                <!-- <label class="item item-input">
+                <div class="col col-75">{{langs.camera_used}}</div>
+                <label class="toggle toggle-positive">
+                    <input type="checkbox" ng-model="basicInf.camera_used" ng-change="update()">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </label> -->
+
+                <label class="item item-input">
+                    <div class="col col-75">{{langs.inventory_display}}</div>
+                    <label class="toggle toggle-positive">
+                        <input type="checkbox" ng-model="basicInf.inventory_display" ng-change="update()">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </label>
+
+                <label class="item item-input" ng-click="diplay.displayType = !diplay.displayType">
+                    <div class="col col-50">{{langs.show_type}}</div>
+                    <div class="col col-offset-33 col-10 text-right">
+                        <i class="ion-chevron-down" ng-show="diplay.displayType"></i>
+                        <i class="ion-chevron-right" ng-hide="diplay.displayType"></i>
+                    </div>
+                </label>
+
+                <ion-list ng-show="diplay.displayType">
+                    <ion-checkbox ng-change="update()" ng-model="basicInf.isDisplay_no">{{langs.item_no}}</ion-checkbox>
+                    <ion-checkbox ng-change="update()" ng-model="basicInf.isDisplay_name">{{langs.product_name}}</ion-checkbox>
+                    <ion-checkbox ng-change="update()" ng-model="basicInf.isDisplay_spec">{{langs.specification}}</ion-checkbox>
+                </ion-list>
+
+                <!-- show  item_feature_no -->
+                <label class="item item-input">
+                    <div class="col col-75">{{langs.is_show_feature}}</div>
+                    <label class="toggle toggle-positive">
+                        <input type="checkbox" ng-model="basicInf.feature" ng-change="update()">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </label>
+
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.is_show_valuation_unit}}</div>
+                    <span ng-if="basicInf.valuation_unit == 0">{{langs.not_use}}</span>
+                    <span ng-if="basicInf.valuation_unit == 1">{{langs.purchase}}</span>
+                    <span ng-if="basicInf.valuation_unit == 2">{{langs.sale}}</span>
+                    <span ng-if="basicInf.valuation_unit == 3">{{langs.both}}</span>
+                </label>
+
+                <label class="item item-input">
+                    <div class="col col-75">{{langs.lot_auto}}</div>
+                    <label class="toggle toggle-positive">
+                        <input type="checkbox" ng-model="basicInf.lot_auto" ng-change="update()">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </label>
+
+                <!-- fifo -->
+                <!-- <label class="item item-input">
+                <div class="col col-75">{{langs.is_FIFO}}</div>
+                <label class="toggle toggle-positive">
+                    <input type="checkbox" ng-model="basicInf.fifo" ng-change="update()">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </label> -->
+
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.report_datetime}}</div>
+                    {{basicInf.report_datetime}}
+                </label>
+
+                <label class="item item-input" ng-click="diplay.displayConditionStartDate = !diplay.displayConditionStartDate">
+                    <div class="col col-50">{{langs.filter}}{{langs.condition}}{{langs.start}}{{langs.date}}</div>
+                    <div class="col col-33">
+                        <span ng-if="basicInf.condition_start_date_type == 0">{{langs.not}}</span>
+                        <span ng-if="basicInf.condition_start_date_type == 1">{{langs.last_week}}</span>
+                        <span ng-if="basicInf.condition_start_date_type == 2">{{langs.last_month}}</span>
+                        <span ng-if="basicInf.condition_start_date_type == 3">{{langs.three_months_ago}}</span>
+                        <span ng-if="basicInf.condition_start_date_type == 4">{{langs.last_year}}</span>
+                        <span ng-if="basicInf.condition_start_date_type == 5">{{langs.other}}</span>
+                    </div>
+                    <div class="col col-10 text-right">
+                        <i class="ion-chevron-down" ng-show="diplay.displayConditionStartDate"></i>
+                        <i class="ion-chevron-right" ng-hide="diplay.displayConditionStartDate"></i>
+                    </div>
+                </label>
+
+                <label ng-show="diplay.displayConditionStartDate">
+                    <ion-radio ng-model="basicInf.condition_start_date_type" ng-change="update()" ng-value="0">{{langs.not}}</ion-radio>
+                </label>
+                <label ng-show="diplay.displayConditionStartDate">
+                    <ion-radio ng-model="basicInf.condition_start_date_type" ng-change="update()" ng-value="1">{{langs.last_week}}</ion-radio>
+                </label>
+                <label ng-show="diplay.displayConditionStartDate">
+                    <ion-radio ng-model="basicInf.condition_start_date_type" ng-change="update()" ng-value="2">{{langs.last_month}}</ion-radio>
+                </label>
+                <label ng-show="diplay.displayConditionStartDate">
+                    <ion-radio ng-model="basicInf.condition_start_date_type" ng-change="update()" ng-value="3">{{langs.three_months_ago}}</ion-radio>
+                </label>
+                <label ng-show="diplay.displayConditionStartDate">
+                    <ion-radio ng-model="basicInf.condition_start_date_type" ng-change="update()" ng-value="4">{{langs.last_year}}</ion-radio>
+                </label>
+                <label ng-show="diplay.displayConditionStartDate">
+                    <ion-radio ng-model="basicInf.condition_start_date_type" ng-change="update()" ng-value="5">{{langs.other}}</ion-radio>
+                </label>
+                <label class="item item-input" ng-show="basicInf.condition_start_date_type == 5">
+                    <div class="col col-50"></div>
+                    <input type="date" ng-model="basicInf.condition_start_date" ng-blur="update()">
+                </label>
+
+                <label class="item item-input" ng-click="diplay.printer = !diplay.printer">
+                    <div class="col col-50">{{langs.bluetooth}}{{langs.label}}{{langs.printer}}{{langs.genre}}</div>
+                    <div class="col col-33">{{basicInf.BT_printer}}</div>
+                    <div class="col col-10 text-right">
+                        <i class="ion-chevron-down" ng-show="diplay.printer"></i>
+                        <i class="ion-chevron-right" ng-hide="diplay.printer"></i>
+                    </div>
+                </label>
+
+                <label ng-show="diplay.printer">
+                    <ion-radio ng-model="basicInf.BT_printer" ng-change="update()" ng-value="'SEWOO'">SEWOO</ion-radio>
+                </label>
+                <label ng-show="diplay.printer">
+                    <ion-radio ng-model="basicInf.BT_printer" ng-change="update()" ng-value="'BIXOLON'">BIXOLON</ion-radio>
+                </label>
+                <label ng-show="diplay.printer">
+                    <ion-radio ng-model="basicInf.BT_printer" ng-change="update()" ng-value="'AIDA'">AIDA</ion-radio>
+                </label>
+
+                <label class="item item-input" ng-click="warehouseShow()">
+                    <div class="col col-50">{{langs.warehouse}}</div>
+                    <div class="col col-50">{{basicInf.warehouse_no}}</div>
+                </label>
+
+                <label class="item item-input" ng-click="workstationModalShow()">
+                    <div class="col col-50">{{langs.workstation}}</div>
+                    <div class="col col-50">{{basicInf.workstation_name || basicInf.workstation_no}}</div>
+                </label>
+
+                <label class="item item-input" ng-click="machineModalShow()">
+                    <div class="col col-50">{{langs.machine}}</div>
+                    <div class="col col-50">{{basicInf.machine_name || basicInf.machine_no}}</div>
+                </label>
+
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.shift}}</div>
+                    <input type="text" ng-model="basicInf.shift_no" ng-blur="update()" />
+                </label>
+
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.basic_data_download_time}}</div>
+                    <input type="number" string-to-number ng-model="basicInf.basic_data_download" ng-blur="update()" />
+                </label>
+
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.inventory_operation_time}}</div>
+                    <input type="number" string-to-number ng-model="basicInf.inventory_operation" ng-blur="update()" />
+                </label>
+
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.out_in_operation_time}}</div>
+                    <input type="number" string-to-number ng-model="basicInf.out_in_operation" ng-blur="update()" />
+                </label>
+
+                <label class="item item-input">
+                    <div class="col col-75">是否顯示掃描LOG紀錄</div>
+                    <label class="toggle toggle-positive">
+                        <input type="checkbox" ng-model="basicInf.show_scan_log" ng-change="update()">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </label>
+            </div>
+
+            <!-- User -->
+            <label class="item item-input userlabel" ng-click="diplay.userInf = !diplay.userInf">
+                <i class="col col-10 ion-person"></i>
+                <div class="col col-80">{{langs.user}}{{langs.information}}</div>
+                <i class="ion-chevron-down" ng-show="diplay.userInf"></i>
+                <i class="ion-chevron-right" ng-hide="diplay.userInf"></i>
+            </label>
+
+            <div ng-show="diplay.userInf">
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.user}}{{langs.account}}</div>
+                    {{basicInf.account}}
+                </label>
+
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.employee}}{{langs.number}}</div>
+                    {{basicInf.employee_no}}
+                </label>
+
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.employee}}{{langs.name}}</div>
+                    {{basicInf.employee_name}}
+                </label>
+
+                <label class="item item-input" ng-click="diplay.language = !diplay.language">
+                    <div class="col col-50">{{langs.data}}{{langs.language}}</div>
+                    <div class="col col-33">
+                        <span ng-if="basicInf.language == 'zh_TW'">{{langs.traditional}}</span>
+                        <span ng-if="basicInf.language == 'zh_CN'">{{langs.simplified}}</span>
+                        <span ng-if="basicInf.language == 'en_US'">{{langs.english}}</span>
+                    </div>
+                    <div class="col col-10 text-right">
+                        <i class="ion-chevron-down" ng-show="diplay.language"></i>
+                        <i class="ion-chevron-right" ng-hide="diplay.language"></i>
+                    </div>
+                </label>
+
+                <label ng-show="diplay.language">
+                    <ion-radio ng-model="basicInf.language" ng-change="update()" ng-value="'zh_TW'">{{langs.traditional}}</ion-radio>
+                </label>
+                <label ng-show="diplay.language">
+                    <ion-radio ng-model="basicInf.language" ng-change="update()" ng-value="'zh_CN'">{{langs.simplified}}</ion-radio>
+                </label>
+                <label ng-show="diplay.language">
+                    <ion-radio ng-model="basicInf.language" ng-change="update()" ng-value="'en_US'">{{langs.english}}</ion-radio>
+                </label>
+
+                <label class="item item-input" ng-click="diplay.font_size = !diplay.font_size">
+                    <div class="col col-50">{{langs.fontSize}}</div>
+                    <div class="col col-33">
+                        <span ng-if="basicInf.font_size == 'normal'">{{langs.normal}}</span>
+                        <span ng-if="basicInf.font_size == 'large'">{{langs.large}}</span>
+                        <span ng-if="basicInf.font_size == 'great'">{{langs.great}}</span>
+                    </div>
+                    <div class="col col-10 text-right">
+                        <i class="ion-chevron-down" ng-show="diplay.font_size"></i>
+                        <i class="ion-chevron-right" ng-hide="diplay.font_size"></i>
+                    </div>
+                </label>
+                <ion-list ng-show="diplay.font_size">
+                    <ion-radio ng-model="basicInf.font_size" ng-change="update()" ng-value="'normal'">{{langs.normal}}</ion-radio>
+                    <ion-radio ng-model="basicInf.font_size" ng-change="update()" ng-value="'large'">{{langs.large}}</ion-radio>
+                    <ion-radio ng-model="basicInf.font_size" ng-change="update()" ng-value="'great'">{{langs.great}}</ion-radio>
+                </ion-list>
+
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.department}}{{langs.number}}</div>
+                    {{basicInf.department_no}}
+                </label>
+
+                <label class="item item-input">
+                    <div class="col col-50">{{langs.department_name}}</div>
+                    <!--部門名稱-->
+                    {{basicInf.department_name}}
+                </label>
+
+                <label class="item item-input lastitem">
+                    <div class="col col-50">{{langs.manage_barcode_inventory}}</div>
+                    <!--條碼庫存管理方式-->
+                    {{basicInf.manage_barcode_inventory}}
+                </label>
+
+            </div>
+            <!--常用-->
+            <!--Log out -->
+            <div class="list list-inset">
+                <label class="item item-input" ng-click="logout()">
+                    <i class="col col-10 ion-power"></i>
+                    <div class="col col-80">{{langs.sign_out}}</div>
+                </label>
+            </div>
+        </div>
+        <br>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,60 @@
+<ion-view>
+    <ion-content class="padding view-pane has-footer">
+        <ion-list>
+            <ion-item class="list_item">
+                <div class="row row-center">
+                    <div class="col col-25">{{langs.inventory}}{{langs.genre}}</div>
+                    <div class="col col-75 quantity-form">
+                        <select class="select-input" ng-model="scaninfo.counting_type" ng-options="array.key as array.value for array in counting_type_array"></select>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item class="list_item" ng-show="userInfo.server_product == 'T100' ">
+                <div class="row row-center">
+                    <div class="col col-25">{{langs.plan}}{{langs.docno}}<span style="color:red">*</span></div>
+                    <input type="text" ng-model="scaninfo.plan_no" placeholder="{{langs.please+langs.input}}" class="col col-75">
+                </div>
+            </ion-item>
+            <ion-item class="list_item">
+                <div class="row row-center">
+                    <div class="col col-25">{{langs.label}}{{langs.number}}</div>
+                    <input type="text" ng-model="scaninfo.label_no" placeholder="{{langs.please+langs.input}}" class="col col-75">
+                </div>
+            </ion-item>
+            <ion-item class="list_item">
+                <div class="row row-center">
+                    <div class="col col-25">{{langs.warehouse}}</div>
+                    <div class="col" ng-click="warehouseShow()">
+                        <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.warehouse_name}}
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item class="list_item">
+                <div class="row row-center">
+                    <div class="col col-25">{{langs.storage}}</div>
+                    <div class="col col-67" ng-click="storageShow()">
+                        <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.storage_spaces_name}}
+                    </div>
+                    <i class="icon ion-ios-close-outline icon-medium col-center" on-tap="clearStorage()"></i>
+                </div>
+            </ion-item>
+            <ion-item class="list_item">
+                <div class="row row-center">
+                    <div class="col col-25">{{langs.item_no}}</div>
+                    <input type="text" ng-model="scaninfo.item_no" placeholder="{{langs.please+langs.input}}" class="col col-75">
+                </div>
+            </ion-item>
+            <ion-item class="list_item">
+                <div class="row row-center">
+                    <div class="col col-85">{{langs.check}}{{langs.download}}{{langs.inventory}}{{langs.detailed_list}}</div>
+                    <label class="toggle toggle-positive">
+                        <input type="checkbox" ng-model="scaninfo.has_list">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

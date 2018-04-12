@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head ng-cloak class="ng-cloak">
+    <style>
+        .ng-cloak {
+            display: none;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>wonderful</title>
+    <link rel="stylesheet" href="lib/ionic/css/ionic.css">
+    <!------Genero Mobile APP必须引用------->
+    <script src="lib/gICAPI.js"></script>
+    <!------Genero Mobile APP必须引用------->
+    <!-- script -->
+    <script data-main="lib/app.js" src="lib/requirejs/require.js"></script>
+</head>
+
+<body ng-class="{'font_large':font_size == 'large','font_great':font_size == 'great'}">
+    <!-- content -->
+    <div ui-view></div>
+</body>
+
+</html>

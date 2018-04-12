@@ -1,0 +1,33 @@
+<ion-view class="view-pane">
+    <ion-header-bar class="bar bar-header bar-positive" align-title="center">
+        <button ui-sref="fil_00_s04" class="button button-icon icon ion-android-arrow-dropleft-circle"></button>
+        <h1 class="title">{{langs.work_rder}}{{langs.process}}{{langs.inquire}}</h1>
+    </ion-header-bar>
+    <ion-content scroll="false">
+        <div class="row row-center">
+            <i class="icon ion-ios-barcode-outline scan-ion" ng-click="scan()"></i>
+            <div class="item-input scan-inpnt scan-title-color">
+                <input focus-me="scaninfo.focus_me" type="text" hide-keypad placeholder="{{langs.start_scan}}" dg-scanned="scanned(value)" keep-data="true" ng-model="scaninfo.scanning">
+                <i class="icon ion-ios-close-outline" on-tap="clearScanning()"></i>
+            </div>
+        </div>
+        <div class="col title-col-con">
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col col-25">{{langs.seq}}</div>
+                <div class="col col-50 text-center">{{langs.job_name}}</div>
+                <div class="col col-25 text-right"> {{langs.job_seq}} </div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col col-33"> {{langs.daily_work}}{{langs.no}}</div>
+                <div class="col col-33 text-center">{{langs.daily_work}}{{langs.mete}}</div>
+                <div class="col col-33 text-right">{{langs.scrap}}{{langs.mete}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col col-33">PQC{{langs.no}} </div>
+                <div class="col col-33 text-center">{{langs.eligible}}{{langs.mete}}</div>
+                <div class="col col-33 text-right">{{langs.uneligible}}{{langs.mete}}</div>
+            </div>
+        </div>
+        <ion-nav-view name="fil_17_s01_list" sub-view></ion-nav-view>
+    </ion-content>
+</ion-view>

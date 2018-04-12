@@ -1,0 +1,24 @@
+<ion-view>
+    <ion-content class="view-pane" scroll="false">
+        <div class="col title-col-con">
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col">{{langs.barcode}}</div>
+                <div class="col col-33 text-right">{{langs.qty}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="!(userInfo.isDisplay_no) && !(userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)">
+                <div class="col">{{langs.item_no}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.isDisplay_no || userInfo.isDisplay_name || userInfo.isDisplay_spec">
+                <div class="col" ng-if="userInfo.isDisplay_no">{{langs.item_no}}</div>
+                <div class="col" ng-if="userInfo.isDisplay_name" ng-class="{'text-right':!userInfo.isDisplay_spec}">{{langs.product_name}}</div>
+                <div class="col" ng-if="userInfo.isDisplay_spec" ng-class="{'text-right':(userInfo.isDisplay_no || userInfo.isDisplay_name )}">{{langs.specification}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col col-33">{{langs.warehouse}}</div>
+                <div class="col col-33">{{langs.storage}} </div>
+                <div class="col col-33 text-right">{{langs.lot}}</div>
+            </div>
+        </div>
+        <ion-nav-view name="fil_15_s03_list" sub-view></ion-nav-view>
+    </ion-content>
+</ion-view>

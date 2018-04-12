@@ -1,0 +1,42 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-calm">
+        <h1 class="title title-center">{{langs.please_choose}}{{langs.department}}</h1>
+        <button class="button button-clear button-primary" ng-click="close()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <div class="bar bar-subheader view-pane">
+        <div class="item-input popupSearch">
+            <input type="text"  ng-model="search"
+                   placeholder="{{langs.search + langs.department + langs.keyword}}">
+            <i class="icon ion-search"></i>
+        </div>
+    </div>
+    <ion-content class="padding has-footer has-subheader view-pane warehouse ">
+        <!--<ion-refresher pulling-text="下拉全选" on-refresh="selectAll()"></ion-refresher>-->
+
+        <ion-list>
+
+            <!--<ion-checkbox-->
+                    <!--ng-repeat="admin in admins | filter:({admin_unit_no:search} || {admin_unit_name:search})"-->
+                    <!--item-height="55"-->
+                    <!--ng-checked="admin.checked">-->
+               <!---->
+            <!--</ion-checkbox>-->
+            <li class="xitem item-checkbox " collection-repeat ="admin in admins | filter:({admin_unit_no:search} || {admin_unit_name:search})" >
+                <label class="checkbox">
+                    <input type="checkbox" ng-model = "admin.checked">
+                </label>
+                <div class="row list-row-con">
+                    <div class="col col-50">
+                        {{admin.admin_unit_no}}
+                    </div>
+                    <div class="col col-50 text-right space">
+                        {{admin.admin_unit_name}}
+                    </div>
+                </div>
+            </li>
+        </ion-list>
+    </ion-content>
+    <div class="bar bar-footer bar-calm" ng-click="setAdminUnit()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

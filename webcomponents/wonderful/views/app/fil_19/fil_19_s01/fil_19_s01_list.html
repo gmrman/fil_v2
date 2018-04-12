@@ -1,0 +1,21 @@
+<ion-view>
+    <ion-content class="view-pane">
+        <ion-list>
+            <ion-item class="list_item" item-width="100%" item-height="55" collection-repeat="item in scanning_detail">
+                <div class="col list-col-con">
+                    <div class="row row-center list-row-con">
+                        <div class="col col-75">{{item.barcode_no}}</div>
+                        <div class="col col-25 text-right">{{item.qty}}</div>
+                    </div>
+                    <div class="row row-center list-row-con">
+                        <div class="col col-33">{{item.warehouse_no}}</div>
+                        <div class="col col-33">{{item.storage_spaces_no}}</div>
+                        <div class="col col-33 text-right">{{item.lot_no}}</div>
+                    </div>
+                </div>
+                <ion-option-button class="button icon ion-ios-compose-outline button-balanced" ng-hide="item.barcode_type == '4'" ng-click="editGoods($index)"></ion-option-button>
+                <ion-option-button class="button icon ion-ios-trash-outline button-assertive" ng-click="delGoods($index)"></ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

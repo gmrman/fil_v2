@@ -1,0 +1,23 @@
+<ion-view>
+    <ion-content class="view-pane" scroll="false">
+        <div class="col title-col-con">
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col">{{langs.barcode}}</div>
+                <div class="col col-33 text-right">{{langs.qty}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col">{{langs.item_no}}</div>
+                <div class="col col-33 text-right" ng-if="scaninfo.isShowReference">{{langs.reference}}{{langs.qty}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col col-25">{{langs.warehouse}}</div>
+                <div class="col col-50">{{langs.storage}}</div>
+                <div class="col col-25 text-right">{{langs.lot}}</div>
+            </div>
+        </div>
+        <ion-nav-view name="fil_14_s04_list" sub-view></ion-nav-view>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="submit()" ng-show="scaninfo.submit_show">
+        <h1 class="title">{{langs.submit}}</h1>
+    </div>
+</ion-view>

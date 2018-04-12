@@ -1,0 +1,59 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <button class="button button-icon icon ion-android-arrow-dropleft-circle" ng-click="cancelSetCondition(true)"></button>
+        <h1 class="title title-center">{{langs.set}}{{langs.filter}}{{langs.condition}}</h1>
+        <button class="button button-clear button-primary" ng-click="cancelSetCondition()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <ion-content scroll="false">
+        <div class="card">
+            <div class="item item-text-wrap">
+                <ion-list>
+                    <ion-item class="item-nonpad">
+                        <div class="row row-center row-nontop" ng-class="{inputfocused:focused_1}">
+                            <div class="col col-33 col-center">{{langs.docno}}</div>
+                            <input type="text" class="col col-67" ng-model="condition[0].value" ng-init="focused_1 = false" ng-focus="focused_1 = true" ng-blur="focused_1 = false">
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-nonpad">
+                        <div class="row row-center row-nontop" ng-class="{inputfocused:focused_2}">
+                            <div class="col col-33 col-center">{{langs.material}}{{langs.barcode}}</div>
+                            <input type="text" class="col col-67" ng-model="condition[6].value" ng-init="focused_2 = false" ng-focus="focused_2 = true" ng-blur="focused_2 = false">
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-nonpad" ng-if="showQbe.is_show_supplier">
+                        <div class="row row-center row-nontop" ng-class="{inputfocused:focused_3}">
+                            <div class="col col-33 col-center">{{langs.supplier}}</div>
+                            <input type="text" class="col col-67" ng-model="condition[4].value" ng-init="focused_3 = false" ng-focus="focused_3 = true" ng-blur="focused_3 = false">
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-nonpad" ng-if="showQbe.is_show_customer">
+                        <div class="row row-center row-nontop" ng-class="{inputfocused:focused_5}">
+                            <div class="col col-33 col-center">{{langs.customer}}</div>
+                            <input type="text" class="col col-67" ng-model="condition[5].value" ng-init="focused_5 = false" ng-focus="focused_5 = true" ng-blur="focused_5 = false">
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-nonpad" ng-if="showQbe.is_show_department">
+                        <div class="row row-center row-nontop" ng-class="{inputfocused:focused_5}">
+                            <div class="col col-33 col-center">{{langs.department}}</div>
+                            <input type="text" class="col col-67" ng-model="condition[5].value" ng-init="focused_5 = false" ng-focus="focused_5 = true" ng-blur="focused_5 = false">
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-nonpad">
+                        <div class="row row-center row-nontop" ng-class="{inputfocused:focused_4}">
+                            <div class="col col-33 col-center">{{langs.start}}{{langs.date}}</div>
+                            <input type="date" class="col col-67" ng-model="condition[1].value" ng-init="focused_4 = false" ng-focus="focused_4 = true" ng-blur="focused_4 = false">
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-nonpad">
+                        <ion-checkbox ng-model="showQbe.is_default">{{langs.check}}{{langs.set}}{{langs.default}}</ion-checkbox>
+                    </ion-item>
+                    <div class="row row-center row-nontop">
+                        <button class="button button-block button-balanced button-darkturquoise" ng-click="setCondition()">
+                            {{langs.confirm}}
+                        </button>
+                    </div>
+                </ion-list>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

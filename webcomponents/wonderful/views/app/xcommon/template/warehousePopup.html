@@ -1,0 +1,44 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-calm">
+        <h1 class="title title-center">{{langs.please_choose}}{{langs.warehouse}}</h1>
+        <button class="button button-clear button-primary" ng-click="close()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <div class="bar bar-subheader view-pane">
+        <div class="item-input popupSearch">
+            <input type="text"  ng-model="filterItem.search"
+                   placeholder="{{langs.search + langs.warehouse + langs.keyword}}">
+            <i class="icon ion-search"></i>
+        </div>
+    </div>
+    <ion-content class="padding has-footer has-subheader view-pane warehouse ">
+        <ion-refresher pulling-text="下拉全选" on-refresh="selectAll()"></ion-refresher>
+
+        <ion-list>
+            <!--<ion-checkbox-->
+                    <!--ng-repeat="admin in admins | filter:({admin_unit_no:search} || {admin_unit_name:search})"-->
+                    <!--item-height="55"-->
+                    <!--ng-checked="admin.checked">-->
+               <!---->
+            <!--</ion-checkbox>-->
+            <li class="xitem item-checkbox "
+                collection-repeat ="warehouse in warehouses
+                 | filter:({warehouse_no:filterItem.search} ||
+                 {warehouse_name:filterItem.search})" >
+                <label class="checkbox">
+                    <input type="checkbox" ng-model = "warehouse.checked">
+                </label>
+                <div class="row list-row-con">
+                    <div class="col col-50">
+                        {{warehouse.warehouse_no}}
+                    </div>
+                    <div class="col col-50 text-right space">
+                        {{warehouse.warehouse_name}}
+                    </div>
+                </div>
+            </li>
+        </ion-list>
+    </ion-content>
+    <div class="bar bar-footer bar-calm" ng-click="setWarehouseUnit()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

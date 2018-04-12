@@ -1,0 +1,26 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-stable">
+        <h1 class="title"></h1>
+        <div class="buttons">
+            <button class="button button-clear button-light icon ion-close-circled close-btn"
+                    ng-click="close()"></button>
+        </div>
+    </ion-header-bar>
+
+    <ion-content>
+        <!--<ion-slide-box>-->
+            <!--<ion-slide  show-pager="false">-->
+                <ion-scroll direction="xy" scrollbar-x="false" scrollbar-y="false" paging="true"
+                            zooming="true" min-zoom="0.5" max-zoom = "3" has-bouncing="false"
+                            overflow-scroll="false"
+                            style="width: 100%; height: 100%"
+                            >
+                    <div class="image">
+                        <img ng-src="{{showInfo.item_pic}}">
+
+                    </div>
+                </ion-scroll>
+            <!--</ion-slide>-->
+        <!--</ion-slide-box>-->
+    </ion-content>
+</ion-modal-view>

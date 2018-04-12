@@ -1,0 +1,29 @@
+<ion-header-bar class="bar bar-header bar-positive" align-title="center">
+    <button ng-click="goTodolistNotice()" class="button button-icon icon ion-android-arrow-dropleft-circle"></button>
+    <h1 ng-if="page_params.program_job_no == '1-1' " class="title">{{langs.purchase + langs.receiveing}}</h1>
+    <h1 ng-if="page_params.program_job_no == '2-1' " class="title">{{langs.purchase + langs.put_in_storage}}</h1>
+    <h1 ng-if="page_params.program_job_no == '3-1' " class="title">{{langs.receiveing + langs.put_in_storage}}</h1>
+    <h1 ng-if="page_params.program_job_no == '5'   " class="title">{{langs.sale + langs.delivery}}</h1>
+    <h1 ng-if="page_params.program_job_no == '6'   " class="title">{{langs.sale + langs.return}}</h1>
+    <h1 ng-if="page_params.program_job_no == '7'   && page_params.status =='A' " class="title">{{langs.goods_issue + '(' +langs.new + langs.doc + ')'}}</h1>
+    <h1 ng-if="page_params.program_job_no == '7'   && page_params.status =='S' " class="title">{{langs.goods_issue + '(' +langs.post + ')'}}</h1>
+    <h1 ng-if="page_params.program_job_no == '7-4' " class="title">{{langs.return_material + langs.replenish_material}}</h1>
+    <h1 ng-if="page_params.program_job_no == '8'   && page_params.status =='A' " class="title">{{langs.return_material + '(' +langs.new + langs.doc + ')'}}</h1>
+    <h1 ng-if="page_params.program_job_no == '8'   && page_params.status =='S' " class="title">{{langs.return_material + '(' +langs.post + ')'}}</h1>
+    <h1 ng-if="page_params.program_job_no == '9'   " class="title">{{langs.completion + langs.put_in_storage}}</h1>
+    <h1 ng-if="page_params.program_job_no == '9-2' " class="title">{{langs.put_in_storage + langs.shelves}}</h1>
+    <h1 ng-if="page_params.program_job_no == '9-3' " class="title">{{langs.put_in_storage + langs.post}}</h1>
+    <h1 ng-if="page_params.program_job_no == '11'  " class="title">{{langs.sundry + langs.goods_issue + '(' + langs.new + langs.doc + ')'}}</h1>
+    <h1 ng-if="page_params.program_job_no == '12'  " class="title">{{langs.sundry + langs.receive_item + '(' + langs.new + langs.doc + ')'}}</h1>
+    <h1 ng-if="page_params.program_job_no == '13-1'" class="title">{{langs.title_13_1}}</h1>
+    <h1 ng-if="page_params.program_job_no == '13-5'" class="title">{{langs.title_13_1 + '(' + langs.apply + ')'}}</h1>
+    <button ng-if="showSanButton" ng-click="getChildScan()" class="button button-icon icon ion-ios-barcode-outline"></button>
+</ion-header-bar>
+<ion-tabs class="tabs-color-active-positive">
+    <ion-tab title="{{langs.barcode + langs.scanning}}" ui-sref="fil3_common_s02.fil3_common_s03">
+        <ion-nav-view name="fil3_common_s03"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="{{langs.data_collection}}" ui-sref="fil3_common_s02.fil3_common_s04">
+        <ion-nav-view name="fil3_common_s04"></ion-nav-view>
+    </ion-tab>
+</ion-tabs>

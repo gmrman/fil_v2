@@ -1,0 +1,31 @@
+<ion-view>
+	<ion-content class="view-pane">
+		<div class="list list-inset app_account_list">
+			<label class="item item-input">
+				<i class="col col-10 ion-android-settings"></i>
+				<div class="col col-80">{{langs.system}}{{lagns.set}}</div>
+			</label>
+			<label class="item item-input  item-select">
+				<div class="input-label">{{langs.server_product}}</div>
+				<select class="product_select" ng-model="basicInf.server_product">
+					<option ng-repeat="item in server_product_array" value="{{item.key}}" ng-selected="item.key == basicInf.server_product">{{item.value}}</option>
+				</select>
+			</label>
+			<label class="item item-input">
+				<div class="input-label">ip</div>
+				<input type="text" ng-model="basicInf.server_ip">
+			</label>
+			<label class="item item-input">
+				<div class="input-label">{{langs.area}}</div>
+				<input type="text" ng-model="basicInf.server_area">
+			</label>
+			<label class="item item-input">
+				<div class="input-label">{{langs.permission_ip}}</div>
+				<input type="text" ng-model="basicInf.permission_ip">
+			</label>
+		</div>
+	</ion-content>
+	<div class="bar bar-footer bar-positive" ng-click="update()">
+		<h1 class="title">{{langs.confirm}}</h1>
+	</div>
+</ion-view>

@@ -1,0 +1,28 @@
+<ion-view>
+    <ion-content class="view-pane" scroll="false">
+        <div class="card card-collection-fluorescent card-list-mar-small" ng-show="l_data.hasSource">
+            <div class="col">
+                <ion-item class="item-nonpad card-collection-item">
+                    <div class="row row-center row-nontop">
+                        <div class="col col-20 col-ellipsis card-collection-title">{{langs.docno}}</div>
+                        <div class="col col-80 col-ellipsis card-collection-value">{{data_collection[0].source_no}}</div>
+                    </div>
+                </ion-item>
+                <ion-item class="item-nonpad card-collection-item">
+                    <div class="row row-center row-nontop">
+                        <div class="col col-20 col-ellipsis card-collection-title">{{langs.date}}</div>
+                        <div class="col col-30 col-ellipsis card-collection-value">{{data_collection[0].create_date}}</div>
+                        <div class="col col-20 col-ellipsis card-collection-title" ng-if="show.is_show_supplier">{{langs.supplier}}</div>
+                        <div class="col col-20 col-ellipsis card-collection-title" ng-if="show.is_show_customer">{{langs.customer}}</div>
+                        <div class="col col-20 col-ellipsis card-collection-title" ng-if="show.is_show_department">{{langs.department}}</div>
+                        <div class="col col-30 col-ellipsis card-collection-value">{{data_collection[0].object_name || data_collection[0].object_no}}</div>
+                    </div>
+                </ion-item>
+            </div>
+        </div>
+        <ion-nav-view name="fil3_common_s04_list" sub-view></ion-nav-view>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="submit()" ng-show="submit_show">
+        <h1 class="title">提交</h1>
+    </div>
+</ion-view>

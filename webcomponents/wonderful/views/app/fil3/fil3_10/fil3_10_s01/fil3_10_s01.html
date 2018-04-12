@@ -1,0 +1,155 @@
+<ion-header-bar class="bar bar-header bar-positive" align-title="center">
+    <button ui-sref="fil_00_s04" class="button button-icon icon ion-android-arrow-dropleft-circle"></button>
+    <div class="h1 title">{{langs.daily_work}}{{langs.scanning}}</div>
+</ion-header-bar>
+<ion-content class="view-pane" scroll="true">
+    <div class="col title-col-con scan-title-color">
+        <div class="row row-center rowCss" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.circulation_card}}</div>
+            <div class="col">
+              <div class="row row-center">
+                  <i class="icon ion-ios-barcode-outline scan-ion1" ng-click="scan('circulation_card')"></i>
+                  <div class="item-input scan-inpnt scan-title-color">
+                      <input class="inputCss" focus-me="scaninfo[0].focus_me" type="text" placeholder="{{langs.start_scan}}" dg-scanned="scaned(value)" keep-data="true" ng-model="scaninfo[0].scanning" ng-click="chooseType('circulation_card')">
+                  </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="row row-center rowCss" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.job_number}}</div>
+            <div class="col col-25">{{showInfo.process_no}}</div>
+            <div class="col">{{showInfo.process_name}}</div>
+        </div>
+        <div class="row row-center rowCss row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.job_seq}}</div>
+            <div class="col">{{showInfo.process_seq}}</div>
+        </div>
+        <div class="row row-center rowCss" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.workstation}}</div>
+            <div class="col col-50">
+              <div class="row row-center">
+
+                  <div class="item-input scan-input scan-title-color">
+                    <i class="icon ion-ios-barcode-outline scan-ion1" ng-click="scan('workstation')"></i>
+                    <input class="inputCss" ng-disabled="wlock==false" focus-me="scaninfo[4].focus_me" type="text" dg-scanned="scaned(value)" keep-data="true" ng-model="scaninfo[4].scanning" ng-click="chooseType('workstation')">
+                  </div>
+              </div>
+            </div>
+            <div class="col col-center">
+              <div class="row row-center">
+              <i class="icon ion-locked lock" ng-click="lock('workstation')" ng-if="wlock ==false"></i>
+              <i class="icon ion-unlocked lock" ng-click="lock('workstation')" ng-if="wlock ==true"></i>
+              <div class="textCss">{{showInfo.workstation_name}}</div>
+              </div>
+            </div>
+        </div>
+        <div class="row row-center rowCss" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.machine}}{{langs.number}}</div>
+              <div class="col col-50">
+                <div class="row row-center">
+
+                    <div class="item-input scan-input scan-title-color">
+                      <i class="icon ion-ios-barcode-outline scan-ion1" ng-click="scan('machine')"></i>
+                        <input class="inputCss" ng-disabled="mlock ==false" focus-me="scaninfo[1].focus_me" type="text" dg-scanned="scaned(value)" keep-data="true" ng-model="scaninfo[1].scanning" ng-click="chooseType('machine')">
+                    </div>
+                </div>
+              </div>
+            <div class="col">
+            <div class="row row-center">
+              <i class="icon ion-locked lock" ng-click="lock('machine')" ng-if="mlock ==false"></i>
+              <i class="icon ion-unlocked lock" ng-click="lock('machine')" ng-if="mlock ==true"></i>
+              <div class="textCss" >{{showInfo.machine_name}}</div>
+            </div>
+            </div>
+
+        </div>
+        <div class="row row-center rowCss" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.daily_work}}{{langs.personnel}}</div>
+            <div class="col col-50">
+              <div class="row row-center">
+
+                  <div class="item-input scan-input scan-title-color">
+                    <i class="icon ion-ios-barcode-outline scan-ion1" ng-click="scan('employee')"></i>
+                      <input class="inputCss" ng-disabled="elock ==false" focus-me="scaninfo[3].focus_me" type="text" dg-scanned="scaned(value)" keep-data="true" ng-model="scaninfo[3].scanning" ng-click="chooseType('employee')">
+                  </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row row-center">
+              <i class="icon ion-locked lock" ng-click="lock('employee')" ng-if="elock ==false"></i>
+              <i class="icon ion-unlocked lock" ng-click="lock('employee')" ng-if="elock ==true"></i>
+              <div class="textCss" >{{showInfo.employee_name}}</div>
+            </div>
+            </div>
+
+        </div>
+        <div class="row row-center rowCss" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.daily_work}}{{langs.shift}}</div>
+            <div class="col col-50">
+              <div class="row row-center">
+
+                  <div class="item-input scan-input scan-title-color">
+                    <i class="icon ion-ios-barcode-outline scan-ion1" ng-click="scan('shift')"></i>
+                      <input class="inputCss" ng-disabled="slock ==false" focus-me="scaninfo[2].focus_me" type="text" dg-scanned="scaned(value)" keep-data="true" ng-model="scaninfo[2].scanning" ng-click="chooseType('shift')">
+
+                  </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row row-center">
+              <i class="icon ion-locked lock" ng-click="lock('shift')" ng-if="slock ==false"></i>
+              <i class="icon ion-unlocked lock" ng-click="lock('shift')" ng-if="slock ==true"></i>
+              <div class="textCss">{{showInfo.shift_name}}</div>
+            </div>
+            </div>
+
+        </div>
+        <div class="row row-center rowCss" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.system_number}}</div>
+            <div class="col col-25">{{showInfo.system_number}}</div>
+            <div class="png-width-small png-right">
+                <img class="png-width-small ng" ng-src="./views/app/common/image/ng.png" ng-if="showInfo.scrap_qty>0" alt="NG" ng-click="showAbnormal()">
+            </div>
+        </div>
+        <div class="row row-center rowCss" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.eligible}}{{langs.qty}}</div>
+            <div class="col col-25 subrowCss">
+              <input type="number" ng-model="showInfo.work_qty"  class="numberCss"/>
+              <!-- ng-blur="checkNum('work_qty')" -->
+            </div>
+            <div class="col col-25">{{langs.bad}}{{langs.qty}}</div>
+            <div class="col col-25 subrowCss">
+             <input type="number" ng-model="showInfo.scrap_qty"  class="numberCss" />
+             <!-- ng-blur="checkNum('scrap_qty')" -->
+            </div>
+        </div>
+        <div class="row row-center rowCss" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.work_time}}({{langs.minute}})</div>
+            <div class="col col-25 subrowCss">
+              <input type="number" ng-model="showInfo.work_hours" class="numberCss" ng-change="validate('work_hours')"/>
+            </div>
+            <div class="col col-25">{{langs.machine_time}}({{langs.minute}})</div>
+            <div class="col col-25 subrowCss">
+            <input type="number" ng-model="showInfo.machine_time" class="numberCss" ng-change="validate('machine_time')"/>
+            </div>
+        </div>
+        <div class="row row-center rowCss" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.material}}{{langs.number}}</div>
+            <div class="col col-25">{{showInfo.item_no}}</div>
+        </div>
+        <div class="row row-center rowCss" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.product_name}}</div>
+            <div class="col">{{showInfo.item_name}}</div>
+        </div>
+        <div class="row row-center rowCss" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.specification}}</div>
+            <div class="col">{{showInfo.item_spec}}</div>
+        </div>
+    </div>
+    <!-- <hr> -->
+    <!-- <div style="height:45px" ng-show="showInfo.submit"></div> -->
+</ion-content>
+<div class="bar bar-footer bar-positive" ng-click="checkDailyWork()" ng-show="showInfo.submit">
+    <h1 class="title">{{langs.submit}}</h1>
+</div>

@@ -1,0 +1,54 @@
+<ion-view>
+    <ion-content class="view-pane" scroll="false">
+        <div class="row row-center">
+            <i class="icon ion-ios-barcode-outline scan-ion" ng-click="scan()"></i>
+            <div class="item-input scan-inpnt scan-title-color">
+                <input focus-me="scaninfo.focus_me" type="text" hide-keypad placeholder="{{langs.start_scan}}" dg-scanned="scanned(value)" ng-model="scaninfo.scanning">
+                <i class="icon ion-ios-close-outline" on-tap="scaninfo.scanning = '' "></i>
+            </div>
+        </div>
+        <div class="col title-col-con scan-title-color">
+            <div class="row row-center title-row-con">
+                <div class="col col-33">{{langs.warehouse}}</div>
+                <div class="col col-50" ng-click="warehouseShow()">
+                    <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.warehouse_name}}
+                </div>
+                <i class="icon ion-ios-close-outline icon-medium png-right" on-tap="clearWarehouse()"></i>
+            </div>
+            <div class="row row-center title-row-con">
+                <div class="col col-33">{{langs.storage}}</div>
+                <div class="col col-50" ng-click="storageShow()">
+                    <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.storage_spaces_name}}
+                </div>
+                <i class="icon ion-ios-close-outline icon-medium png-right" on-tap="clearStorage()"></i>
+            </div>
+            <div class="row row-center title-row-con">
+                <div class="col col-33">{{langs.barcode}}</div>
+                <div class="col col-50">
+                    <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.barcode}}
+                </div>
+                <i class="icon ion-ios-close-outline icon-medium png-right" on-tap="clearBarcode()"></i>
+            </div>
+            <div class="row row-center title-row-con">
+                <div class="col col-33">{{langs.show_zero_inventory}}</div>
+                <label class="toggle toggle-positive">
+                    <input type="checkbox" ng-model="scaninfo.show_zero_inventory">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </div>
+            <div class="row row-center title-row-con">
+                <div class="col col-33">{{langs.start}}{{langs.date}}</div>
+                <div class="col col-67 quantity-form">
+                    <select class="select-input" ng-model="scaninfo.date_type" ng-options="array.key as array.value for array in startdate_array">
+                    </select>
+                    <input type="date" ng-model="scaninfo.startdate" ng-if="scaninfo.date_type == 5" placeholder="{{langs.set + langs.start + langs.date}}">
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="query()" ng-show="query_show">
+        <h1 class="title">{{langs.inquire}}</h1>
+    </div>
+</ion-view>

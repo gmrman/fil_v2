@@ -1,0 +1,24 @@
+<ion-view>
+    <ion-content>
+        <ion-list can-swipe="false">
+            <ion-item class="list_item" item-width="100%" item-height="65" collection-repeat="item in filtered_sales_notice | orderBy:order">
+                <div class="row row-center">
+                    <div class="col list-col-con" ng-click="getInfo(item)">
+                        <div class="row row-center list-row-con">
+                            <div class="col col-67 col-ellipsis text-left">{{item.doc_no}}
+                                <span ng-if="item.seq != 0 || item.seq !='' ">/ {{item.seq}}</span>
+                                <span ng-if="item.doc_line_seq != 0 || item.doc_line_seq !='' ">/ {{item.doc_line_seq}}</span>
+                            </div>
+                            <div class="col col-33 col-ellipsis text-right">{{item.item_no}}</div>
+                        </div>
+                        <div class="row row-center list-row-con">
+                            <div class="col col-50 col-ellipsis text-left">{{item.customer_name}}</div>
+                            <div class="col col-50 col-ellipsis text-right">{{item.qty}}</div>
+                        </div>
+                    </div>
+                </div>
+                <ion-option-button class="button-assertive"></ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

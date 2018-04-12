@@ -1,0 +1,42 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title title-center">{{langs.please_choose}}</h1>
+        <button class="button button-clear button-primary" ng-click="close()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <ion-content class="padding view-pane" scroll="false">
+        <ion-content scroll="false">
+            <div class="col title-col-con">
+                <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                    <div class="col">{{langs.inventory + langs.label}}</div>
+                </div>
+                <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                    <div class="col">{{langs.barcode}}</div>
+                </div>
+                <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                    <div class="col col-33">{{langs.warehouse}}</div>
+                    <div class="col col-33">{{langs.storage}}</div>
+                    <div class="col col-33 text-right">{{langs.lot}}</div>
+                </div>
+            </div>
+        </ion-content>
+        <ion-content style="top:70px;">
+            <ion-list>
+                <ion-item class="list_item" item-width="100%" item-height="80" collection-repeat="item in selbarcodedata">
+                    <div class="col list-col-con" ng-click="seldata(item)">
+                        <div class="row row-center list-row-con">
+                            <div class="col">{{item.label_no}}</div>
+                        </div>
+                        <div class="row row-center list-row-con">
+                            <div class="col">{{item.barcode_no}}</div>
+                        </div>
+                        <div class="row row-center list-row-con">
+                            <div class="col col-33">{{item.warehouse_no}}</div>
+                            <div class="col col-33">{{item.storage_spaces_no}}</div>
+                            <div class="col col-33  text-right">{{item.lot_no}}</div>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-content>
+</ion-modal-view>

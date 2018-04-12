@@ -1,0 +1,43 @@
+<ion-view>
+    <ion-content class="view-pane has-scanning-tabs-top" scroll="false">
+        <!--<div class="col title-col-con">-->
+            <!--<div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="l_data.has_source">-->
+                <!--<div class="col">{{langs.docno}}#{{langs.seq}}</div>-->
+                <!--<div class="col col-33 text-right">{{langs.qty}}</div>-->
+            <!--</div>-->
+            <!--<div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">-->
+                <!--<div class="col col-100">{{langs.barcode}}</div>-->
+            <!--</div>-->
+            <!--<div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="!(userInfo.isDisplay_no) && !(userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)">-->
+                <!--<div class="col">{{langs.item_no}}</div>-->
+                <!--<div class="col col-33 text-right" ng-if="!l_data.has_source">{{langs.qty}}</div>-->
+            <!--</div>-->
+            <!--<div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.isDisplay_no || userInfo.isDisplay_name || userInfo.isDisplay_spec">-->
+                <!--<div class="col" ng-if="userInfo.isDisplay_no">{{langs.item_no}}</div>-->
+                <!--<div class="col" ng-if="userInfo.isDisplay_name" ng-class="{'text-right':!userInfo.isDisplay_spec && l_data.has_source}">{{langs.product_name}}</div>-->
+                <!--<div class="col" ng-if="userInfo.isDisplay_spec" ng-class="{'text-right':(userInfo.isDisplay_no || userInfo.isDisplay_name ) && l_data.has_source}">{{langs.specification}}</div>-->
+                <!--<div class="col col-33 text-right" ng-if="!l_data.has_source">{{langs.qty}}</div>-->
+            <!--</div>-->
+            <!--<div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.feature">-->
+                <!--<div class="col col-33">{{langs.item_feature_no}}</div>-->
+                <!--<div class="col col-67 text-right">{{langs.item_feature_name}}</div>-->
+            <!--</div>-->
+            <!--<div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="l_data.show_reason">-->
+                <!--<div class="col ">{{langs.reason_no}}</div>-->
+            <!--</div>-->
+            <!--<div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">-->
+                <!--<div class="col col-33" ng-if="l_data.show_ingoing">{{langs.outgoing}}{{langs.warehouse}}</div>-->
+                <!--<div class="col col-33" ng-if="!l_data.show_ingoing">{{langs.warehouse}}</div>-->
+                <!--<div class="col ">{{langs.storage}} </div>-->
+                <!--<div class="col text-right" ng-if="!l_data.show_ingoing">{{langs.lot}}</div>-->
+            <!--</div>-->
+            <!--<div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="l_data.show_ingoing">-->
+                <!--<div class="col col-33" ng-if="l_data.show_ingoing">{{langs.ingoing}}{{langs.warehouse}}</div>-->
+                <!--<div class="col col-33" ng-if="!l_data.show_ingoing">{{langs.warehouse}}</div>-->
+                <!--<div class="col col-33">{{langs.storage}}</div>-->
+                <!--<div class="col col-33 text-right">{{langs.lot}}</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <ion-nav-view name="xyc_fil_01_s04_list" sub-view></ion-nav-view>
+    </ion-content>
+</ion-view>

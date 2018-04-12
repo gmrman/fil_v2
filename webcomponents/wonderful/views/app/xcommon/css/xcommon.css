@@ -1,0 +1,371 @@
+
+.customerCol {
+    position: relative;
+    z-index: 9;
+    width: 100%;
+    /*height: 44px;*/
+    background-size: 0;
+    background-color: #0C3B4D;
+    padding: 5px;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+}
+
+.invCol {
+    padding: 5px;
+    overflow: hidden;
+}
+
+.invCol .qty {
+    /*border: 1px solid #111;*/
+    width: 60%;
+    text-align: center;
+    float: left;
+    color: #000;
+    overflow: hidden;
+    background-color: white;
+}
+
+.invCol a {
+    color: #000;
+    width: 20%;
+    text-align: center;
+    /*border: 1px solid #111;*/
+    float: left;
+    background-color: white;
+}
+
+.invCol .mins {
+    border-right: none;
+}
+
+.invCol .add {
+    border-left: none;
+}
+
+.side-bar {
+    width: 40px;
+    position: fixed;
+    bottom: 30px;
+    right: 50%;
+    font-size: 0;
+    line-height: 0;
+    z-index: 100;
+
+}
+
+.customerbar {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* position: absolute; */
+    right: 0;
+    left: 0;
+    z-index: 9;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 5px;
+    width: 100%;
+    height: 40px;
+    border-width: 0;
+    border-style: solid;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+    background-size: 0;
+}
+
+.customertitle {
+
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.customerCard {
+    margin: 10px 10px;
+    left: 0;
+    right: 0;;
+}
+
+.card-bar {
+    margin: 0px;
+    border-radius: 0px
+}
+
+.xcolor {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.quantity-form .divedit {
+    border: 1px solid #DBDDDD;
+    width: 100%;
+    height: 24px;
+    text-align: right;
+    vertical-align: middle;
+    float: right;
+    overflow: hidden;
+    border-radius: 5px;
+    padding-top: 2px;
+    padding-right: 3px;
+}
+
+.list-row-con-title {
+    font-weight: bold;
+}
+
+.list_item_card {
+    border-width: 0px;
+    /*margin-top:0px;*/
+    margin-bottom: 10px;
+    /*background-color: #F4F4F4;*/
+}
+
+/*old*/
+.col-edit {
+    border: 1px solid #bcd4ec;
+    width: 100%;
+    height: 28px;
+    text-align: right;
+    vertical-align: middle;
+    float: right;
+    overflow: hidden;
+    border-radius: 15px;
+    padding: 3px 8px 0px 8px;
+}
+
+.col-edit-new {
+    border: 1px solid #bcd4ec;
+    width: 100%;
+    height: 28px;
+    text-align: right;
+    vertical-align: middle;
+    float: right;
+    overflow: hidden;
+    border-radius: 15px;
+    padding: 5px 0px 5px 0px
+}
+
+.xdisplay-flex {
+    display: -webkit-flex;
+    -webkit-align-items: center;
+}
+
+.card-item {
+    padding: 0px;
+    font-size: 100%;
+    color: #000000;
+}
+
+.xcard-item {
+    padding: 5px;
+    font-size: 100%;
+    color: #000000;
+}
+
+.xitem {
+    border-color: #ddd;
+    background-color: #fff;
+    color: #444;
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin: -1px;
+    /*padding: 5px;*/
+    border-width: 1px;
+    border-style: solid;
+    font-size: 16px;
+}
+
+/*用于自定义输入框
+xcol-input 定义输入边框颜色高度 右靠齐
+xopen-ion 定义开窗图标大小
+xcol-readonly 定义只读颜色
+*/
+.xcol-input {
+    border: 1px solid #bcd4ec;
+    width: 100%;
+    height: 28px;
+    vertical-align: middle;
+    float: right;
+    border-radius: 15px;
+    padding: 3px 8px 0px 8px;
+}
+
+.xopen-ion {
+    font-size: 20px;
+}
+
+.xicon-position {
+    float: right;
+    /*margin-left: 30%;*/
+    padding: 0px 0px 5px 20px;
+}
+
+/*灰显*/
+.grey {
+    color: grey
+}
+
+.aliceblue-bar {
+    background: aliceblue;
+}
+.grey-background{
+    background: #cacaca;
+}
+.white-color{
+    color:lightcyan;
+}
+.xcol-readonly {
+    background: #f8f8f8;
+    color: grey;
+}
+
+.xitem-checkbox {
+    padding: 5px;
+    border-width: 0px;
+    font-size: 100%;
+}
+
+.xcheckbox {
+    width: 22px;
+    height: 22px;
+    position: relative;
+    top: 5px;
+    /* right: 8px; */
+    left: 2px;
+    z-index: 3;
+}
+
+/*.xitem-checkbox .xcheckbox {*/
+/*!* position: absolute; *!*/
+/*top: 50%;*/
+/*right: 8px;*/
+/*left: 8px;*/
+/*z-index: 3;*/
+/*margin-top: -21px;*/
+/*}*/
+
+.xqform {
+    /*padding: 3px;*/
+    overflow: hidden;
+}
+
+.xqform input {
+    border: 1px solid #b7c4ff;
+    height: 28px;
+    width: 90%;
+    border-radius: 18px;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.xqform input:focus {
+    outline: none;
+    border: 1px solid #84b1ff;
+}
+
+.xqform .xmins {
+    border-right: none;
+}
+
+.xqform .xadd {
+    border-left: none;
+}
+
+.xcol {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    display: block;
+    /* padding: 5px; */
+    width: 100%;
+}
+
+/*解决新模态弹窗子bar不能显示多行*/
+.xbar-subheader {
+    height: auto;
+    display: inline-block;
+}
+
+.xhas-subheader {
+    top: 160px;
+}
+
+.xtop-170 {
+    top: 170px;
+}
+
+.xtop-40 {
+    top: 40px;
+}
+
+.xside-bar {
+    width: 10px;
+    position: fixed;
+    right: 40px;
+    font-size: 40px;
+    z-index: 100;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.xfoot-bar{
+    left: 50px !important;
+    right: 50px !important;
+}
+
+.bg-red{
+    /*background:orangered !important ;*/
+    background:#e6e6df !important ;
+}
+
+.xpopupList {
+    height: 200px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+.xpopupList > .scroll-content {
+    height: 200px;
+    width: 250px;
+    top: 50px;
+}
+
+
+/*sub-view css*/
+
+.xlist_item {
+    padding-bottom: 0px;
+    padding-top: 0px;
+    /*padding-left: 5px;*/
+    /*padding-right: 5px;*/
+}
+.xlist_item>.item-content {
+    padding: 0px;
+}
+.row-small {
+    min-height: 20px;
+}
+.color-balanced{
+    color: #33cd5f;
+}
+.color-assertive  {
+    color: #ef473a;
+}

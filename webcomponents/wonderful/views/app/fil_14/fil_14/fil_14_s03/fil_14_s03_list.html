@@ -1,0 +1,26 @@
+<ion-view>
+    <ion-content class="view-pane" ng-class="{'has-footer':scaninfo.submit_show}">
+        <ion-list>
+            <ion-item class="list_item scan-title-color" item-width="100%" item-height="85" ng-repeat="item in scanning_detail">
+                <div class="col list-col-con">
+                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="col">{{item.barcode_no}}</div>
+                        <div class="col col-33 text-right">{{item.qty}}</div>
+                    </div>
+                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="col">{{item.item_no}}</div>
+                        <div class="col col-33 text-right" ng-if="scaninfo.isShowReference">{{item.reference_qty}}</div>
+                    </div>
+                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="col col-25">{{item.warehouse_no}}</div>
+                        <div class="col col-50">{{item.storage_spaces_no}}</div>
+                        <div class="col col-25 text-right">{{item.lot_no}}</div>
+                    </div>
+                </div>
+                <ion-option-button class="button icon ion-ios-search button-balanced" ng-if="!item.show_edit" ng-click="showInfo($index)"></ion-option-button>
+                <ion-option-button class="button icon ion-ios-compose-outline button-balanced" ng-if="item.show_edit" ng-click="editGoods($index)"></ion-option-button>
+                <ion-option-button class="button icon ion-ios-trash-outline button-assertive" ng-click="deleteGoods($index)"></ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

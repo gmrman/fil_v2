@@ -1,0 +1,333 @@
+.view-pane {
+  /*background-color: #F0F0F0;*/
+  background-color: #FFFFFF;
+}
+.button.button-positive, .button.button-positive.activated, .bar.bar-positive {
+  /*background-color: #0C3B4D;*/
+  /*background-color: #2B887D;*/
+  border-color: #17A5BF;
+  background-color: #17A5BF;
+}
+.button.button-darkturquoise {
+  background-color: #17A5BF;
+}
+.button.button-fluorescent {
+  background-color: #2B887D;
+}
+.text-fluorescent {
+  color: #2B887D;
+}
+.text-green {
+  color: #66DD00;
+}
+.text-pink {
+  color: #F90058;
+}
+.text-yellow {
+  color: #FFC400;
+}
+  .text-gray {
+  color: rgb(179, 179, 179);
+}
+.row-nontop + .row-nontop {
+  padding-top: 5px;
+}
+.row-nontop {
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+.cus-input {
+  height: 32px;
+}
+.inputfocused {
+  color: #FFC400;
+  box-shadow: 0 0 0 2px #FFC400 inset;
+}
+.card-fluorescent {
+  box-shadow: 0 1px 3px rgba(43, 136, 125, 1);
+  border-radius: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #2B887D;
+}
+.card-pink {
+  box-shadow: 0 1px 3px rgba(249, 0, 88, 1);
+  border-radius: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #F90058;
+}
+.card-yellow {
+  box-shadow: 0 1px 3px rgba(255, 196, 0, 1);
+  border-radius: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #FFC400;
+}
+.card-list-mar-top {
+  margin-top: -15px;
+}
+.card-list-mar-small {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.card-collection-fluorescent {
+  background-color: #2B887D;
+  border-radius: 10px;
+}
+.card-collection-title {
+  color: #004F46;
+}
+.card-collection-value {
+  color: #FFFFFF;
+}
+.card-collection-item {
+  border-color: #00AC98;
+  background-color: #2B887D;
+}
+.card-doc-info {
+  height: 70%;
+}
+.has-card-doc-info {
+  top: 70%;
+  height: 30%;
+}
+.no-inventory-info {
+  height: 100%;
+}
+.item-nonpad {
+  padding: 0px;
+}
+.card-wrapper1 {
+  height: 100%;
+  padding: 20px 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  left: 0;
+  position: absolute;
+}
+.xcard1scroll {
+  height: 85%;
+}
+.xcard1.card {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/*待辦頁面checkbox*/
+
+.list_item .list_checkbox {
+  height: 30px;
+  width: 30px;
+  min-height: 0px;
+}
+.checkbox input:before, .checkbox-icon:before {
+  /*border-radius: 0px;*/
+  border-color: #387ef5 !important;
+}
+.checkbox input:checked:before, input:checked+.checkbox-icon:before {
+  border-width: 1px;
+}
+
+/*掃描圖示*/
+
+.scan-ion {
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: xx-large;
+}
+.scan-ion1 {
+  padding-right: 5px;
+  font-size: xx-large;
+}
+.icon-medium {
+  font-size: 26px;
+}
+.icon-large {
+  font-size: xx-large;
+}
+.icon-medium +.icon-medium {
+  padding-left: 10px;
+}
+
+/*掃描輸入框外層*/
+
+.scan-inpnt {
+  padding-top: 0px;
+  padding-right: 5px;
+  padding-bottom: 0px;
+  border: 1px #111 solid;
+  border-radius: 5px;
+  font-size: 25px;
+  height: 30px;
+  width: 90%;
+  margin-left: 3px;
+}
+.pad-l-m {
+  padding-left: 5px;
+}
+.pad-r-m {
+  padding-right: 5px;
+}
+.scan-card {
+  border-radius: 10px;
+}
+
+/*待辦title or 掃描頁面倉庫 背影顏色*/
+
+.scan-title-color {
+  background-color: #FFFFFF;
+}
+
+/*清單的title*/
+
+.title-col-con {
+  padding-bottom: 0;
+  padding-top: 0;
+  /*margin-top: -3px;*/
+  /*margin-bottom: -3px;*/
+}
+
+/*清單的title 列*/
+
+.title-col-con .title-row-con {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+/*清單的title 列文字*/
+
+.title-col-con .title-row-con .title-row-text {
+  color: red;
+}
+
+/*清單的明細*/
+
+.list-col-con {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+/*清單的明細 列*/
+
+.list-col-con .list-row-con {
+  padding-bottom: 0;
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+  min-height: 30px;
+}
+
+/*清單的明細 列 文字*/
+
+.row-nontop .col {
+  font-size: 14px;
+}
+.list-col-con .list-row-con .col {
+  font-size: 14px;
+}
+.ion-option-button-line-height-auto {
+  line-height: normal;
+}
+.set-item-font {
+  font-size: 14px;
+}
+
+/*sub-view css*/
+
+.list_item {
+  padding-bottom: 0px;
+  padding-top: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.list_item>.item-content, .list>.radio-content {
+  padding: 0px;
+}
+.row-small {
+  min-height: 20px;
+}
+
+/*圖片*/
+
+.png-width-small {
+  height: 30px;
+}
+.png-right {
+  margin: auto;
+  margin-right: 0px;
+}
+.col-small-padding .col {
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+.pink-background {
+  background-color: #FFE4E1;
+}
+.select-input {
+  background-color: white;
+  width: 150px;
+}
+.list_bgcolor {
+  /*background-color: rgba(100%, 0%, 0%, 0.6);*/
+  background-color: rgba(255, 205, 0, 0.6);
+}
+.list_bgcolor_red {
+  background-color: rgba(255, 60, 0, 0.6);
+}
+.directive_list_bgcolor {
+  background-color: rgba(23, 165, 191, 0.6);
+}
+.col-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.scan-input {
+  padding-top: 0px;
+  padding-right: 0px !important;
+  padding-bottom: 0px;
+  border: 1px #111 solid;
+  border-radius: 5px;
+  font-size: 25px;
+  height: 30px;
+  width: 90%;
+  padding: 6px 0 5px 4px !important;
+}
+.scan-input:read-only {
+  background-color: transparent !important;
+  cursor: pointer !important;
+}
+.col-no-padding {
+  padding: 0;
+}
+.col-15 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 15%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 15%;
+  -ms-flex: 0 0 15%;
+  flex: 0 0 15%;
+  max-width: 15%;
+}
+.col-30 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 30%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 30%;
+  -ms-flex: 0 0 30%;
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+.col-85 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 85%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 85%;
+  -ms-flex: 0 0 85%;
+  flex: 0 0 85%;
+  max-width: 85%;
+}

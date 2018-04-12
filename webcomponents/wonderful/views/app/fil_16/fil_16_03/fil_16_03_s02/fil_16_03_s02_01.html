@@ -1,0 +1,54 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title title-center">{{langs.examine}}{{langs.project}}{{langs.detail}}</h1>
+        <button class="button button-clear button-primary" ng-click="closeEditInspect()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <ion-content class="padding has-footer view-pane">
+        <div class="row row-center col-small-padding">
+            <div class="col col-33">{{langs.examine}}{{langs.project}}</div>
+            <div class="col col-67">{{inspectInfo.inspection_item}}</div>
+        </div>
+        <div class="row row-center col-small-padding">
+            <div class="col col-33">{{langs.shortcoming}}{{langs.level}}</div>
+            <div class="col col-67">{{inspectInfo.cr_ma_mi}}</div>
+        </div>
+        <div class="row row-center col-small-padding">
+            <div class="col col-33">AQL</div>
+            <div class="col col-67">{{inspectInfo.aql}}</div>
+        </div>
+        <div class="row row-center col-small-padding">
+            <div class="col col-33">AC/RE</div>
+            <div class="col col-67">{{inspectInfo.accept_qty}}/{{inspectInfo.reject_qty}}</div>
+        </div>
+        <div class="row row-center col-small-padding">
+            <div class="col col-33">{{langs.project}}{{langs.result}}</div>
+            <div class="col col-67" ng-if="inspectInfo.result_type == '1'">{{inspectInfo.result_type}}.{{langs.eligible}}</div>
+            <div class="col col-67" ng-if="inspectInfo.result_type != '1'" style="color:red;">{{inspectInfo.result_type}}.{{langs.reject}}</div>
+        </div>
+        <div class="row row-center col-small-padding">
+            <div class="col col-33">{{langs.examine}}{{langs.qty}}</div>
+            <div class="col col-50 text-right quantity-form">
+                <a class="mins" ng-click="infoCompute('sampling_qty',inspectInfo.sampling_qty,'-1')">-</a>
+                <div class="qty" ng-click="infoQtyPop('sampling_qty')">{{inspectInfo.sampling_qty || 0}}</div>
+                <a class="add" ng-click="infoCompute('sampling_qty',inspectInfo.sampling_qty,1)">+</a>
+            </div>
+        </div>
+        <div class="row row-center col-small-padding">
+            <div class="col col-33">{{langs.shortcoming}}{{langs.qty}}</div>
+            <div class="col col-50 text-right quantity-form">
+                <a class="mins" ng-click="infoCompute('defect_qty',inspectInfo.defect_qty,'-1')">-</a>
+                <div class="qty" ng-click="infoQtyPop('defect_qty')">{{inspectInfo.defect_qty || 0}}</div>
+                <a class="add" ng-click="infoCompute('defect_qty',inspectInfo.defect_qty,1)">+</a>
+            </div>
+        </div>
+        <button class="button button-positive" ng-click="showAbnormal()" ng-if="inspectInfo.defect_qty > 0 " style="top: 25px;width: 45%;float:left;">
+            {{langs.bad}}{{langs.reason}}
+        </button>
+        <button class="button button-calm" ng-click="showMeasure()" ng-if="inspectInfo.measure == 'Y' " style="top: 25px;width: 45%;float:right ">
+            {{langs.measure}}
+        </button>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="setInspectInfo()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

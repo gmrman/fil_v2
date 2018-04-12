@@ -1,0 +1,31 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title title-center">{{langs.set}}</h1>
+        <button class="button button-clear button-primary" ng-click="closeModal()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <ion-content class="padding has-footer view-pane">
+        <ion-list>
+            <ion-item class="row">
+                <div class="col col-25">{{langs.workstation}}</div>
+                <div class="col" ng-click="workstationModalShow()">
+                    <i class="icon ion-ios-compose-outline"></i>&nbsp;{{selected.workstation_name || selected.workstation_no}}
+                </div>
+                <div class="col col-10 text-right col-no-padding">
+                    <i class="icon ion-ios-close-outline icon-medium" on-tap="clearWorkstation()"></i>
+                </div>
+            </ion-item>
+            <ion-item class="row">
+                <div class="col col-25">{{langs.machine}}</div>
+                <div class="col" ng-click="machineModalShow()">
+                    <i class="icon ion-ios-compose-outline"></i>&nbsp;{{selected.machine_name || selected.machine_no}}
+                </div>
+                <div class="col col-10 text-right col-no-padding">
+                    <i class="icon ion-ios-close-outline icon-medium" on-tap="clearMachine()"></i>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="setCondition()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

@@ -1,0 +1,132 @@
+<!-- <ion-view>
+    <ion-content class="view-pane" scroll="false" ng-class="{'has-footer':doc_info.item_no && scaninfo.qty>0 }">
+        <ion-view ng-class="{'no-inventory-info':page_params.in_out_no != '-1' ,'card-doc-info':doc_info.item_no}">
+            <ion-content scroll="false">
+                <div class="card card-fluorescent card-list-mar-small" ng-show="doc_info.item_no">
+                    <div class="col">
+                        <ion-item class="item-nonpad">
+                            <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                                <div class="col col-25">{{langs.product_name}}</div>
+                                <div class="col col-ellipsis text-fluorescent">{{doc_info.item_name || doc_info.item_no}}</div>
+                                <div class="col col-20 text-right col-ellipsis text-fluorescent">{{doc_info.unit_no}} </div>
+                            </div>
+                        </ion-item>
+                        <ion-item class="item-nonpad">
+                            <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                                <div class="col col-25">{{langs.specification}}</div>
+                                <div class="col col-75 col-ellipsis text-fluorescent">{{doc_info.item_spec}}</div>
+                            </div>
+                        </ion-item>
+                        <ion-item class="item-nonpad" ng-if="userInfo.feature">
+                            <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                                <div class="col col-25">{{langs.item_feature_name}}</div>
+                                <div class="col col-75 col-ellipsis text-fluorescent">{{doc_info.item_feature_name || doc_info.item_feature_no}}</div>
+                            </div>
+                        </ion-item>
+                        <ion-item class="item-nonpad">
+                            <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="doc_info.showDocQty">
+                                <div class="col col-25" ng-if="page_params.in_out_no == '1' || page_params.in_out_no == '0' ">{{langs.shouldReceive}}</div>
+                                <div class="col col-25" ng-if="page_params.in_out_no == '-1'">{{langs.shouldDelivery}}</div>
+                                <div class="col col-25 col-ellipsis text-fluorescent">{{doc_info.should_qty}}</div>
+                                <div class="col col-25" ng-if="page_params.in_out_no == '1' || page_params.in_out_no == '0' ">{{langs.alreadyReceive}}</div>
+                                <div class="col col-25" ng-if="page_params.in_out_no == '-1'">{{langs.alreadyDelivery}}</div>
+                                <div class="col col-25 col-ellipsis text-fluorescent">{{doc_info.already_qty}}</div>
+                            </div>
+                        </ion-item>
+                    </div>
+                </div>
+            </ion-content>
+        </ion-view>
+        <ion-view ng-show="page_params.in_out_no == '-1' " ng-class="{'has-card-doc-info':doc_info.item_no}">
+            <ion-content>
+                <ion-list can-swipe="false">
+                    <ion-item class="list_item scan-title-color" item-width="100%" item-height="85" collection-repeat="item in inventory_detail |orderBy:['item_no','sort_no']">
+                        <div class="col list-col-con">
+                            <div class="row row-center list-row-con">
+                                <div class="col col-80">{{item.barcode_no}}</div>
+                                <div class="col col-20 text-right">{{item.inventory_qty}}</div>
+                            </div>
+                            <div class="row row-center list-row-con">
+                                <div class="col col-33 col-ellipsis" ng-if="!userInfo.feature">{{item.item_name || item.item_no}}</div>
+                                <div class="col col-33 col-ellipsis" ng-if="!userInfo.feature">{{item.item_spec}}</div>
+                                <div class="col col-33 col-ellipsis" ng-if="userInfo.feature">{{item.item_name || item.item_no}}</div>
+                                <div class="col col-33 col-ellipsis" ng-if="userInfo.feature">{{item.item_feature_name || item.item_feature_no}}</div>
+                                <div class="col col-33 text-right">{{item.first_storage_date}}</div>
+                            </div>
+                            <div class="row row-center list-row-con">
+                                <div class="col col-33">{{item.warehouse_no}}</div>
+                                <div class="col col-33 text-center">{{item.storage_spaces_no}}</div>
+                                <div class="col col-33 text-right">{{item.lot_no}}</div>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-view>
+    </ion-content>
+</ion-view> -->
+
+<ion-view>
+    <ion-content class="view-pane" ng-class="{'has-footer':doc_info.item_no && scaninfo.qty>0 }">
+        <div class="card card-fluorescent card-list-mar-small">
+            <div class="col">
+                <ion-item class="item-nonpad">
+                    <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="col col-25">{{langs.product_name}}</div>
+                        <div class="col col-ellipsis text-fluorescent">{{doc_info.item_name || doc_info.item_no}}</div>
+                        <div class="col col-20 text-right col-ellipsis text-fluorescent">{{doc_info.unit_no}} </div>
+                    </div>
+                </ion-item>
+                <ion-item class="item-nonpad">
+                    <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="col col-25">{{langs.specification}}</div>
+                        <div class="col col-75 col-ellipsis text-fluorescent">{{doc_info.item_spec}}</div>
+                    </div>
+                </ion-item>
+                <ion-item class="item-nonpad" ng-if="userInfo.feature">
+                    <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="col col-25">{{langs.item_feature_name}}</div>
+                        <div class="col col-75 col-ellipsis text-fluorescent">{{doc_info.item_feature_name || doc_info.item_feature_no}}</div>
+                    </div>
+                </ion-item>
+                <ion-item class="item-nonpad">
+                    <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="(!reason_code_show) && l_data.hasSource ">
+                        <div class="col col-25" ng-if="page_params.in_out_no == '1' || page_params.in_out_no == '0' ">{{langs.shouldReceive}}</div>
+                        <div class="col col-25" ng-if="page_params.in_out_no == '-1'">{{langs.shouldDelivery}}</div>
+                        <div class="col col-25 col-ellipsis text-fluorescent">{{doc_info.should_qty}}</div>
+                        <div class="col col-25" ng-if="page_params.in_out_no == '1' || page_params.in_out_no == '0' ">{{langs.alreadyReceive}}</div>
+                        <div class="col col-25" ng-if="page_params.in_out_no == '-1'">{{langs.alreadyDelivery}}</div>
+                        <div class="col col-25 col-ellipsis text-fluorescent">{{doc_info.already_qty}}</div>
+                    </div>
+                    <div class="row row-center row-nontop" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="reason_code_show || (!l_data.hasSource) ">
+                        <div class="col col-25" ng-if="page_params.in_out_no == '1' || page_params.in_out_no == '0' ">{{langs.alreadyReceive}}</div>
+                        <div class="col col-25" ng-if="page_params.in_out_no == '-1'">{{langs.alreadyDelivery}}</div>
+                        <div class="col col-25 col-ellipsis text-fluorescent">{{doc_info.already_qty}}</div>
+                    </div>
+                </ion-item>
+            </div>
+        </div>
+        <ion-list can-swipe="false" ng-show="(!reason_code_show) && page_params.in_out_no == '-1' ">
+            <ion-item class="list_item scan-title-color" on-hold="useBarcode(item)" item-width="100%" item-height="85" collection-repeat="item in inventory_detail |orderBy:['item_no','sort_no']">
+                <div class="col list-col-con">
+                    <div class="row row-center list-row-con">
+                        <div class="col col-80">{{item.barcode_no}}</div>
+                        <div class="col col-20 text-right">{{item.inventory_qty}}</div>
+                    </div>
+                    <div class="row row-center list-row-con">
+                        <div class="col col-33 col-ellipsis" ng-if="!userInfo.feature">{{item.item_name || item.item_no}}</div>
+                        <div class="col col-33 col-ellipsis" ng-if="!userInfo.feature">{{item.item_spec}}</div>
+                        <div class="col col-33 col-ellipsis" ng-if="userInfo.feature">{{item.item_name || item.item_no}}</div>
+                        <div class="col col-33 col-ellipsis" ng-if="userInfo.feature">{{item.item_feature_name || item.item_feature_no}}</div>
+                        <div class="col col-33 text-right">{{item.first_storage_date}}</div>
+                    </div>
+                    <div class="row row-center list-row-con">
+                        <div class="col col-33">{{item.warehouse_no}}</div>
+                        <div class="col col-33 text-center">{{item.storage_spaces_no}}</div>
+                        <div class="col col-33 text-right">{{item.lot_no}}</div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

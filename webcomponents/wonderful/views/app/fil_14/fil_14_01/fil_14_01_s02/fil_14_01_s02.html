@@ -1,0 +1,40 @@
+<ion-view>
+    <ion-content class="view-pane" scroll="false">
+        <div class="row row-center">
+            <i class="icon ion-ios-barcode-outline scan-ion" ng-click="scan()"></i>
+            <div class="item-input scan-inpnt scan-title-color">
+                <input focus-me="scaninfo.focus_me" type="text" hide-keypad placeholder="{{langs.start_scan}}" dg-scanned="scanned(value)" ng-model="scaninfo.scanning">
+                <i class="icon ion-ios-close-outline" on-tap="scaninfo.scanning = '' "></i>
+            </div>
+        </div>
+        <div class="col title-col-con scan-title-color">
+            <div class="row row-center title-row-con">
+                <div class="col col-33">{{langs.inventory}}{{langs.genre}}</div>
+                <div class="col col-67 quantity-form">
+                    <select class="select-input" ng-model="scaninfo.counting_type" ng-options="array.key as array.value for array in counting_type_array">
+                    </select>
+                </div>
+            </div>
+            <div class="row row-center title-row-con">
+                <div class="col col-33">{{langs.warehouse}}</div>
+                <div class="col " ng-click="countingWarehouseShow()">
+                    <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.counting_warehouse_name}}
+                </div>
+                <i class="icon ion-ios-close-outline icon-medium" on-tap="clearCountingWarehouse()"></i>
+            </div>
+            <div class="row row-center title-row-con">
+                <div class="col col-33">{{langs.inventory}}{{langs.plan}}{{langs.number}}</div>
+                <div class="col col-67">{{scaninfo.counting_no}}</div>
+            </div>
+            <div class="row row-center title-row-con">
+                <div class="col col-85">{{langs.check}}{{langs.download}}{{langs.inventory}}{{langs.detailed_list}}</div>
+                <label class="toggle toggle-positive">
+                    <input type="checkbox" ng-model="scaninfo.has_list">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

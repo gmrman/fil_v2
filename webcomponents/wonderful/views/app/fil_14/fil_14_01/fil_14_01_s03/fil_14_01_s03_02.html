@@ -1,0 +1,10 @@
+<div class="popupList">
+    <ion-content style="top: 45px;">
+        <ion-list>
+            <ion-radio ng-click="seldata(data)" collection-repeat="data in selbarcodedata" item-width="100%" item-height="55" ng-model="$parent.popSelected.lot_no" ng-value="data.lot_no">{{data.lot_no}}</ion-radio>
+        </ion-list>
+        <button class="button button-block ion-plus button-positive" ng-click="seldata('add')">
+            {{langs.insert}}{{langs.lot}}
+        </button>
+    </ion-content>
+</div>

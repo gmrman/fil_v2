@@ -1,0 +1,43 @@
+<ion-view>
+    <ion-content class="view-pane has-scanning-tabs-top" scroll="false">
+        <div class="col title-col-con scan-title-color">
+            <div class="row row-center title-row-con">
+                <div class="col col-20">{{langs.warehouse}}</div>
+                <div class="col" ng-click="warehouseShow()">
+                    <i class="icon ion-ios-compose-outline"></i>&nbsp;{{sel_indicate.warehouse_name}}
+                </div>
+                <i class="icon ion-ios-close-outline icon-medium" on-tap="clearWarehouse()"></i>
+            </div>
+        </div>
+        <div class="col title-col-con">
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col col-80 col-ellipsis ">{{langs.barcode}}</div>
+                <div class="col col-20 col-ellipsis text-right">{{langs.qty}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col col-50 col-ellipsis ">{{langs.item_no}}</div>
+                <div class="col col-50 col-ellipsis text-right">{{langs.first_time}}{{langs.put_in_storage}}{{langs.date}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.feature">
+                <div class="col col-50 col-ellipsis">{{langs.item_feature}}</div>
+                <div class="col col-50 col-ellipsis text-right">{{langs.item_feature_name}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="(userInfo.isDisplay_name) && (userInfo.isDisplay_spec)">
+                <div class="col col-50 col-ellipsis">{{langs.product_name}}</div>
+                <div class="col col-50 col-ellipsis text-right">{{langs.specification}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="(userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)">
+                <div class="col col-ellipsis">{{langs.product_name}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="!(userInfo.isDisplay_name) && (userInfo.isDisplay_spec)">
+                <div class="col col-ellipsis">{{langs.specification}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col col-33 col-ellipsis ">{{langs.warehouse}}</div>
+                <div class="col col-33 col-ellipsis text-center">{{langs.storage}}</div>
+                <div class="col col-33 col-ellipsis text-right">{{langs.lot}}</div>
+            </div>
+        </div>
+        <ion-nav-view name="fil_common_s06_list" sub-view></ion-nav-view>
+    </ion-content>
+</ion-view>

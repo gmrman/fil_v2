@@ -1,0 +1,14 @@
+<ion-header-bar class="bar bar-header bar-positive" align-title="center">
+    <button ng-if="page_params.program_job_no != '16-2'" ng-click="goPage()" class="button button-icon icon ion-android-arrow-dropleft-circle"></button>
+    <button ng-if="page_params.program_job_no == '16-2'" ui-sref="fil_00_s04" class="button button-icon icon ion-android-arrow-dropleft-circle"></button>
+    <div ng-if="page_params.program_job_no != '16-2'" class="h1 title">{{langs.title_16_1}}{{langs.examine}}</div>
+    <div ng-if="page_params.program_job_no == '16-2'" class="h1 title">{{langs.title_16_2}}{{langs.examine}}</div>
+</ion-header-bar>
+<ion-tabs class="tabs-color-active-positive">
+    <ion-tab title="QC{{langs.scanning}}" ui-sref="fil_16_02_s01.fil_16_02_s02">
+        <ion-nav-view name="fil_16_02_s02"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="{{langs.scanning}}{{langs.detail}}" ng-if="page_params.program_job_no != '16-3' " ui-sref="fil_16_02_s01.fil_16_02_s03">
+        <ion-nav-view name="fil_16_02_s03"></ion-nav-view>
+    </ion-tab>
+</ion-tabs>

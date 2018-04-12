@@ -1,0 +1,44 @@
+<ion-view>
+    <ion-content>
+        <div class="list" item-width="100%" item-height="115px" collection-repeat="item in sales_notice | orderBy:['create_date','doc_no']">
+            <div class="card card-fluorescent card-list-mar-small" ng-click="getInfo(item)">
+                <div class="col list-col-con">
+                    <ion-item class="item-nonpad">
+                        <div class="row row-center list-row-con row-nontop">
+                            <div class="col col-33" ng-if="page_params.program_job_no == '1-1' || page_params.program_job_no == '3-1' ">
+                                {{langs.shipments}}{{langs.docno}}
+                            </div>
+                            <div class="col col-33" ng-if="page_params.program_job_no == '2-1' ">
+                                {{langs.receiveing}}{{langs.docno}}
+                            </div>
+                            <div class="col col-33" ng-if="page_params.program_job_no == '5' || page_params.program_job_no == '6' || page_params.program_job_no == '7' || page_params.program_job_no == '7-4' || page_params.program_job_no == '8' || page_params.program_job_no == '9-2' || page_params.program_job_no == '9-3' || page_params.program_job_no == '13-5' ">
+                                {{langs.docno}}
+                            </div>
+                            <div class="col col-67 col-ellipsis text-fluorescent">{{item.doc_no}}</div>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-nonpad">
+                        <div class="row row-center list-row-con row-nontop">
+                            <div class="col col-33" ng-if="page_params.program_job_no == '1-1' || page_params.program_job_no == '2-1' || page_params.program_job_no == '3-1' ">
+                                {{langs.supplier}}
+                            </div>
+                            <div class="col col-33" ng-if="page_params.program_job_no == '5' || page_params.program_job_no == '6' ">
+                                {{langs.customer}}
+                            </div>
+                            <div class="col col-33" ng-if="page_params.program_job_no == '7' || page_params.program_job_no == '7-4' || page_params.program_job_no == '8' || page_params.program_job_no == '9' || page_params.program_job_no == '9-2' || page_params.program_job_no == '9-3' || page_params.program_job_no == '13-5' ">
+                                {{langs.department}}
+                            </div>
+                            <div class="col col-67 col-ellipsis text-fluorescent">{{item.customer_name}}</div>
+                        </div>
+                    </ion-item>
+                    <ion-item class="item-nonpad">
+                        <div class="row row-center list-row-con row-nontop">
+                            <div class="col col-33">{{langs.docno}}{{langs.date}}</div>
+                            <div class="col col-67 col-ellipsis text-fluorescent">{{item.create_date}}</div>
+                        </div>
+                    </ion-item>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

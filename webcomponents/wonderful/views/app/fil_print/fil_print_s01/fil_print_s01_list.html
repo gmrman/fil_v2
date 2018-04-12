@@ -1,0 +1,39 @@
+<ion-view>
+    <ion-content class="view-pane" ng-class="{'has-footer':print_detail.length > 0}">
+        <ion-list>
+            <ion-item class="list_item scan-title-color" item-width="100%" item-height="240" collection-repeat="item in print_detail">
+                <div class="card card-fluorescent card-list-mar-small" ng-click="getInfo(item)">
+                    <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <span class="col col-20">{{langs.barcode}}</span>
+                        <div class="col col-80">{{item.barcode_no}}</div>
+                    </div>
+                    <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <span class="col col-20">{{langs.lot}}</span>
+                        <div class="col col-80">{{item.lot_no}}</div>
+                    </div>
+                    <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <span class="col col-20">{{langs.item_no}}</span>
+                        <div class="col col-80">{{item.item_no}}</div>
+                    </div>
+                    <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <span class="col col-20">{{langs.product_name}}</span>
+                        <div class="col col-80">{{item.item_name}}</div>
+                    </div>
+                    <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <span class="col col-20">{{langs.specification}}</span>
+                        <div class="col col-80">{{item.item_spec}}</div>
+                    </div>
+                    <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <span class="col col-20">{{langs.batch_qty}}</span>
+                        <div class="col col-80">{{item.barcode_qty}}{{item.item_unit}}</div>
+                    </div>
+                    <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <span class="col col-20">{{langs.box_qty}}</span>
+                        <div class="col">{{item.box_qty}}</div>
+                    </div>
+                </div>
+                <ion-option-button class="button icon ion-ios-trash-outline button-assertive" ng-click="delGoods($index)"></ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

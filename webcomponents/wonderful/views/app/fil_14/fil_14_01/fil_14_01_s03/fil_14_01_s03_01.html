@@ -1,0 +1,36 @@
+<div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+    <div class="col col-20">{{langs.barcode}}</div>
+    <div class="col col-80">{{pop.barcode_no}}</div>
+</div>
+<div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+    <div class="col col-20">{{langs.item_no}}</div>
+    <div class="col col-80">{{pop.item_no}}</div>
+</div>
+<div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+    <div class="col col-20">{{langs.product_name}}</div>
+    <div class="col col-80">{{pop.item_name_spec}}</div>
+</div>
+<div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.feature">
+    <div class="col col-20">{{langs.feature}}</div>
+    <div class="col col-80">{{pop.item_feature_no}}</div>
+</div>
+<div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="pop.lot_control_type !== '2' ">
+    <div class="col col-20">{{langs.lot}}</div>
+    <input class="col col-80" type="text" ng-model="pop.lot_no" placeholder="{{langs.set + langs.lot}}">
+</div>
+<div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+    <div class="col col-20">{{langs.qty}}</div>
+    <div class="col has-input quantity-form">
+        <a class="mins" ng-click="mins('pop.qty')">-</a>
+        <input class="qty" autofocus type="number" hide-keypad onfocus="this.select()" ng-model="pop.qty">
+        <a class="add" ng-click="add('pop.qty')">+</a>
+    </div>
+</div>
+<div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+    <div class="col col-20">{{langs.reference}}{{langs.qty}}</div>
+    <div class="col has-input quantity-form">
+        <a class="mins" ng-click="mins('pop.reference')">-</a>
+        <input class="qty" type="number" hide-keypad onfocus="this.select()" ng-model="pop.reference_qty">
+        <a class="add" ng-click="add('pop.reference')">+</a>
+    </div>
+</div>

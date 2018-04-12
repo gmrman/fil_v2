@@ -1,0 +1,31 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title title-center">{{langs.bring}}{{langs.lot}}</h1>
+        <button class="button button-clear button-primary" ng-click="close()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <ion-content class="padding has-footer view-pane">
+        <div class="row row-center">
+            <div class="col col-25">{{langs.product_name}}</div>
+            <div class="col text-left">{{showGood.item_name || showGood.item_no}}</div>
+        </div>
+        <div class="row row-center">
+            <div class="col col-25">{{langs.lot}}</div>
+            <div class="col text-left">{{showGood.lot_no}}</div>
+        </div>
+        <div class="row row-center">
+            <div class="col col-25">{{langs.lot}}{{langs.description}}</div>
+            <input class="col" type="text" ng-model="showGood.lot_description" placeholder="{{langs.maintain}}{{langs.lot}}{{langs.description}}">
+        </div>
+        <div class="row row-center">
+            <div class="col col-25">{{langs.effective}}{{langs.date}}</div>
+            <input class="col" type="date" ng-model="showGood.effective_date">
+        </div>
+        <div class="row row-center">
+            <div class="col col-25">{{langs.notes}}</div>
+            <input class="col" type="text" ng-model="showGood.remarks" placeholder="{{langs.maintain}}{{langs.notes}}">
+        </div>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="setLot()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

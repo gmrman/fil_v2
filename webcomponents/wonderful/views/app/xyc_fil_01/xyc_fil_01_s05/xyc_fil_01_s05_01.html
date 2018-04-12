@@ -1,0 +1,21 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title title-center">{{langs.please_choose}}{{langs.doc_slip}}</h1>
+        <button class="button button-clear button-primary" ng-click="closeSelDocSlipModal()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <div class="bar bar-subheader view-pane">
+        <div class="item-input popupSearch">
+            <input type="text" autofocus hide-keypad ng-model="popSelected.search" placeholder="{{langs.search + langs.keyword}}">
+            <i class="icon ion-search"></i>
+        </div>
+    </div>
+    <ion-content class="padding has-footer has-subheader view-pane warehouse">
+        <ion-list>
+            <ion-radio ng-click="selDocSlip(detail)" collection-repeat="detail in slip_detail | filter:filterBySearch"
+                item-width="95%" item-height="55" ng-model="$parent.popSelected.doc_slip" ng-value="detail.doc_slip">{{detail.doc_slip}}({{detail.doc_slip_name}})</ion-radio>
+        </ion-list>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="setDocSlip()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

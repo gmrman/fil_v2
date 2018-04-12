@@ -1,0 +1,69 @@
+<ion-view>
+    <ion-content class="view-pane has-scanning-tabs-top" scroll="false">
+        <div class="row row-center" ng-if="page_params.program_job_no != '2' && page_params.program_job_no != '1'">
+            <i class="icon ion-ios-barcode-outline scan-ion" ng-click="scan()"></i>
+            <div class="item-input scan-inpnt scan-title-color">
+                <input focus-me="scaninfo.focus_me" type="text" hide-keypad placeholder="{{langs.start_scan}}" dg-scanned="scanned(value)"
+                    ng-model="scaninfo.scanning">
+                <i class="icon ion-ios-close-outline" on-tap="scaninfo.scanning = '' "></i>
+            </div>
+        </div>
+        <div class="col title-col-con scan-title-color" ng-if="page_params.program_job_no != '2' && page_params.program_job_no != '1'">
+            <div class="row row-center title-row-con">
+                <div class="col col-25">{{langs.warehouse}}</div>
+                <div class="col" ng-click="warehouseShow()">
+                    <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.warehouse_name}}
+                </div>
+                <i ng-if="page_params.in_out_no == '0' " class="icon ion-ios-close-outline icon-medium" on-tap="clearWarehouse()"></i>
+            </div>
+            <div class="row row-center title-row-con">
+                <div class="col col-25">{{langs.storage}}</div>
+                <div class="col" ng-click="storageShow()">
+                    <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.storage_spaces_name}}
+                </div>
+                <i class="icon ion-ios-close-outline icon-medium" on-tap="clearStorage()"></i>
+            </div>
+            <div class="row row-center title-row-con">
+                <div class="col col-25">{{langs.lot}}</div>
+                <div class="col " ng-click="lotShow()">
+                    <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.lot_no}}
+                </div>
+                <i class="icon ion-ios-close-outline icon-medium" on-tap="scaninfo.lot_no = '' "></i>
+            </div>
+            <div class="row row-center title-row-con" ng-if="page_params.program_job_no == '7-1'">
+                <span class="col col-25">{{langs.produce}}{{langs.qty}}</span>
+                <div class="col col-67 quantity-form" ng-if="scaninfo.maxqty">
+                    <a class="mins" ng-click="compute('-1')">-</a>
+                    <div class="qty" ng-click="showQtyPop('scaninfo')">{{scaninfo.qty || 0}}</div>
+                    <a class="add" ng-click="compute('1')">+</a>
+                </div>
+            </div>
+        </div>
+        <hr ng-if="page_params.program_job_no != '2' && page_params.program_job_no != '1'">
+        <div class="col title-col-con">
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col ">{{langs.docno}}#{{langs.seq}}</div>
+                <div class="col col-20 text-right" ng-if="page_params.program_job_no == '9-1' ">Run Card</div>
+                <div class="col col-33 text-right" ng-if="userInfo.multi_unit && userInfo.multi_unit_type == 1">{{langs.molecular}}{{langs.qty}}</div>
+                <div class="col col-33 text-right" ng-if="userInfo.multi_unit && userInfo.multi_unit_type == 2">{{langs.qty}}</div>
+                <div class="col col-33 text-right" ng-if="userInfo.multi_unit && userInfo.multi_unit_type == 3">{{langs.molecular}}/{{langs.qty}}</div>
+                <div class="col col-33 text-right" ng-if="!userInfo.multi_unit">{{langs.qty}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col" ng-if="!(userInfo.isDisplay_no) && !(userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)">{{langs.item_no}}</div>
+                <div class="col" ng-if="userInfo.isDisplay_no">{{langs.item_no}}</div>
+                <div class="col" ng-if="userInfo.isDisplay_name" ng-class="{'text-right':!userInfo.isDisplay_spec && !userInfo.multi_unit}">{{langs.product_name}}</div>
+                <div class="col" ng-if="userInfo.isDisplay_spec" ng-class="{'text-right':(userInfo.isDisplay_no || userInfo.isDisplay_name) && !userInfo.multi_unit}">{{langs.specification}}</div>
+                <div class="col col-33 text-right" ng-if="userInfo.multi_unit && userInfo.multi_unit_type == 1">{{langs.denominator}}{{langs.qty}}</div>
+                <div class="col col-33 text-right" ng-if="userInfo.multi_unit && userInfo.multi_unit_type == 2">{{langs.reference}}{{langs.qty}}</div>
+                <div class="col col-33 text-right" ng-if="userInfo.multi_unit && userInfo.multi_unit_type == 3">{{langs.denominator}}/{{langs.reference}}{{langs.qty}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col col-33">{{langs.warehouse}}</div>
+                <div class="col col-33">{{langs.storage}} </div>
+                <div class="col col-33 text-right">{{langs.lot}}</div>
+            </div>
+        </div>
+        <ion-nav-view name="xyc_fil_01_s07_list" sub-view></ion-nav-view>
+    </ion-content>
+</ion-view>

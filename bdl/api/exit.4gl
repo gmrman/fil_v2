@@ -1,0 +1,18 @@
+IMPORT util
+IMPORT os
+
+#引用全局变量
+GLOBALS "api.inc"
+
+FUNCTION exit()
+   DEFINE stamp DATETIME YEAR TO FRACTION(5)
+   
+   LET stamp=CURRENT YEAR TO FRACTION(5)
+   DISPLAY "INFO:EXIT APP:",CURRENT YEAR TO FRACTION(5)
+   
+   TRY 
+      UPDATE  userHistory SET online=FALSE,timestamp = stamp
+   CATCH
+      DISPLAY "ERROR:" ,SQLCA.SQLCODE
+   END TRY
+END FUNCTION

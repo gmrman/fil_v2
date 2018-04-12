@@ -1,0 +1,15 @@
+<ion-view>
+    <ion-content class="view-pane" scroll="false">
+        <div class="row row-center">
+            <i class="icon ion-ios-barcode-outline scan-ion" ng-click="scan()"></i>
+            <div class="item-input scan-inpnt scan-title-color">
+                <input focus-me="scaninfo.focus_me" type="text" hide-keypad placeholder="{{langs.start_scan}}" dg-scanned="scanned(value)" ng-model="scaninfo.scanning">
+                <i class="icon ion-ios-close-outline" on-tap="scaninfo.scanning = '' "></i>
+            </div>
+        </div>
+        <ion-nav-view name="fil_demo_s02_list" sub-view></ion-nav-view>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="save()" ng-show="query_show">
+        <h1 class="title">{{langs.save}}</h1>
+    </div>
+</ion-view>

@@ -1,0 +1,40 @@
+<ion-header-bar class="bar bar-header bar-positive" align-title="center">
+    <button ng-click="goMenu()" class="button button-icon icon ion-android-arrow-dropleft-circle"></button>
+    <h1 class="title">{{langs.barcode}}{{langs.froze}}</h1>
+</ion-header-bar>
+<ion-view>
+    <ion-content class="view-pane" scroll="false">
+        <div class="row row-center">
+            <i class="icon ion-ios-barcode-outline scan-ion" ng-click="scan()"></i>
+            <div class="item-input scan-inpnt scan-title-color">
+                <input focus-me="scaninfo.focus_me" type="text" hide-keypad placeholder="{{langs.start_scan}}" dg-scanned="scanned(value)" ng-model="scaninfo.scanning">
+                <i class="icon ion-ios-close-outline" on-tap="scaninfo.scanning = '' "></i>
+            </div>
+        </div>
+        <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <span class="col col-25">{{langs.barcode}}</span>
+            <div class="col col-75">{{barcode.barcode_no}}</div>
+        </div>
+        <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <span class="col col-25">{{langs.item_no}}</span>
+            <div class="col col-75">{{barcode.item_no}}</div>
+        </div>
+        <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <span class="col col-25">{{langs.product_name}}</span>
+            <div class="col col-75">{{barcode.item_name}}</div>
+        </div>
+        <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <span class="col col-25">{{langs.specification}}</span>
+            <div class="col col-75">{{barcode.item_spec}}</div>
+        </div>
+        <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.feature">
+            <span class="col col-25">{{langs.item_feature}}</span>
+            <div class="col col-75">{{barcode.item_feature_name || barcode.item_feature_no }}</div>
+        </div>
+        <div class="row row-center title-row-con">
+            <button class="button button-block button-positive" ng-click="showFrozenPop()">
+                {{barcode.frozen == 'Y' ? langs.cancel : '' }}{{langs.froze}}
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

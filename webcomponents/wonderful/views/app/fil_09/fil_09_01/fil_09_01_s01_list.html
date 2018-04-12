@@ -1,0 +1,36 @@
+<ion-view>
+    <ion-content class="view-pane" ng-class="{'has-footer':scaninfo.modify}">
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.work_rder}}</div>
+            <div class="col">{{showInfo.source_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">Run Card</div>
+            <div class="col">{{showInfo.run_card_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.alreadyPutInStorage}}{{langs.qty}}</div>
+            <div class="col">{{showInfo.in_out_qty}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.item_no}}</div>
+            <div class="col">{{showInfo.item_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.feature">
+            <span class="col col-25">{{langs.item_feature_no}}</span>
+            <div class="col">{{showInfo.item_feature_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.product_name}}</div>
+            <div class="col">{{showInfo.item_name}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.specification}}</div>
+            <div class="col">{{showInfo.item_spec}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.feature">
+            <span class="col col-25">{{langs.item_feature_name}}</span>
+            <div class="col">{{showInfo.item_feature_name}}</div>
+        </div>
+    </ion-content>
+</ion-view>

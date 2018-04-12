@@ -1,0 +1,30 @@
+<ion-header-bar class="bar bar-header bar-positive" align-title="center">
+    <button ui-sref="fil_23_s02" class="button button-icon icon ion-android-arrow-dropleft-circle"></button>
+    <h1 class="title">缺点原因</h1 >
+</ion-header-bar>
+<ion-content class="view-pane my-view" >
+    <ion-list class="list list3">
+            <ion-item class="item">
+                <div class="row row-center list-row-con">
+                    <div class="col col-20 text-left">
+                        <span class="title">检验项目</span>
+                    </div>
+                    <div class="col col-80 text-left" style="padding-left: 10px;">
+                            <span class="content">{{wo}}</span>
+                    </div>
+                </div>
+            </ion-item>
+    </ion-list>
+    <div class="bar bar-add newbar">
+      	<button class="button button-full button-positive" ng-click="addbadreason()">
+            <i class="icon ion-ios-plus-empty"></i>
+            新增缺点原因</button>
+    </div>
+     <br> 
+     <br>
+    <ion-nav-view name="fil_23_s05_01_list" sub-view></ion-nav-view>
+</ion-content>
+<div class="bar bar-footer" ng-show="info.length>0">
+  	<button class="button button-full button-positive" ng-click="saveInfo1()">确认</button>
+</div>
+

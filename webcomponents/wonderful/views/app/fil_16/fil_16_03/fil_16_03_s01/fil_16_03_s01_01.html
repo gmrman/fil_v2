@@ -1,0 +1,52 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title title-center">{{langs.set}}</h1>
+        <button class="button button-clear button-primary" ng-click="close()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <ion-content class="padding has-footer view-pane">
+        <ion-list>
+            <ion-item class="row">
+                <div class="col col-25">{{langs.docno}}</div>
+                <input type="text" ng-model="condition[0].value" placeholder="{{langs.set + langs.docno}}" class="col col-75">
+            </ion-item>
+            <ion-item class="row">
+                <div class="col col-25">{{langs.start}}{{langs.date}}</div>
+                <div class="col quantity-form">
+                    <select class="select-input" ng-model="condition[1].set_type" ng-options="array.key as array.value for array in startdate_array">
+                    </select>
+                    <input type="date" ng-model="condition[1].value" ng-if="condition[1].set_type == 5" placeholder="{{langs.set + langs.start + langs.date}}">
+                </div>
+                <div class="col col-10 text-right col-no-padding">
+                    <i class="icon ion-ios-close-outline icon-medium" on-tap="clearSetType(condition[1])"></i>
+                </div>
+            </ion-item>
+            <ion-item class="row">
+                <div class="col col-25">{{langs.personnel}}</div>
+                <input type="text" ng-model="condition[2].value" placeholder="{{langs.set + langs.personnel}}" class="col col-75">
+            </ion-item>
+            <ion-item class="row" ng-if="showQbe.is_show_department">
+                <div class="col col-25">{{langs.department}}</div>
+                <input type="text" ng-model="condition[3].value" placeholder="{{langs.set + langs.department}}" class="col col-75">
+            </ion-item>
+            <ion-item class="row" ng-if="showQbe.is_show_supplier">
+                <div class="col col-25">{{langs.supplier}}</div>
+                <input type="text" ng-model="condition[4].value" placeholder="{{langs.set + langs.supplier}}" class="col col-75">
+            </ion-item>
+            <ion-item class="row" ng-if="showQbe.is_show_customer">
+                <div class="col col-25">{{langs.customer}}</div>
+                <input type="text" ng-model="condition[5].value" placeholder="{{langs.set + langs.customer}}" class="col col-75">
+            </ion-item>
+            <ion-item class="row">
+                <div class="col col-25">{{langs.item_no}}</div>
+                <input type="text" ng-model="condition[6].value" placeholder="{{langs.set + langs.item_no}}" class="col col-75">
+            </ion-item>
+            <ion-checkbox ng-model="condition[0].isdefault">{{langs.check}}{{langs.set}}{{langs.default}}</ion-checkbox>
+        </ion-list>
+        <!-- <button class="button button-block button-positive" ng-click="saveCondition()">
+            {{langs.set}}{{langs.default}}
+        </button> -->
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="setCondition()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

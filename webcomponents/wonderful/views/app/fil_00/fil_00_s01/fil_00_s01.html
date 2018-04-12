@@ -1,0 +1,48 @@
+<ion-view>
+	<ion-content class="view-pane">
+		<div class="app_title_div">
+			<img class="app_title_bg" src="views/app/fil_00/fil_00_s01/images/BG.jpg">
+			<img class="app_title" ng-src="views/app/fil_00/fil_00_s01/images/{{langs.app_title_image}}">
+			<a class="setting_div" ui-sref="fil_00_s02({data:'Login'})">{{langs.setting}}</a>
+		</div>
+		<div class="list list-inset app_account_list" style="height:550px;">
+			<label class="item item-input app_account_label">
+				<div class="input-label">{{langs.account}}</div>
+				<input type="text" ng-model="userData.account" ng-blur="afterAccount()">
+			</label>
+			<label class="item item-input app_account_label">
+				<div class="input-label">{{langs.password}}</div>
+				<input type="password" ng-model="userData.password">
+			</label>
+			<label class="item item-input app_account_label item-select" ng-if="userInfo.server_product == 'T100'">
+				<div class="input-label">{{langs.enterprise}}</div>
+				<select ng-model="userData.enterprise" ng-options="ent.enterprise_no as ent.enterprise_lang for ent in entInfo" ng-change="afterEnterprise()">
+				</select>
+			</label>
+			<label class="item item-input app_account_label item-select">
+				<div class="input-label">{{langs.site}}</div>
+				<select ng-model="userData.site" ng-options="site.site_no as site.site_lang for site in logInfo">
+				</select>
+			</label>
+			<button class="button button-block button-positive" ng-click="login()">{{langs.login}}</button>
+			<!-- <div class="row row-center row-no-padding">
+				<div class="col text-center">
+					<a ui-sref="fil_00_s02({data:'Login'})">{{langs.setting}}</a>
+				</div>
+			</div> -->
+			<div class="row row-bottom row-no-padding">
+				<div class="col col-85 copyright_div">
+					<div class="row row-center row-no-padding">
+						<div class="col">Copyright © Data Systems. All right reserved.</div>
+					</div>
+					<div class="row row-center row-no-padding">
+						<div class="col">{{langs.copyright}}</div>
+					</div>
+				</div>
+				<div class="col col-15 text-right">
+					<img class="logo" src="views/app/fil_00/fil_00_s01/images/DW_logo.png">
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

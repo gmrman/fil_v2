@@ -1,0 +1,53 @@
+<ion-view>
+    <ion-content class="view-pane" scroll="false">
+        <div class="row row-center">
+            <i class="icon ion-ios-barcode-outline scan-ion" ng-click="scan()"></i>
+            <div class="item-input scan-inpnt scan-title-color">
+                <input focus-me="scaninfo.focus_me" class="scan-input" ng-readonly="scaninfo.readonly" ng-click="scaninfo.readonly=false"
+                    type="text" hide-keypad placeholder="{{langs.start_scan}}" dg-scanned="scanned(value)" ng-model="scaninfo.scanning">
+                <i class="icon ion-ios-close-outline" on-tap="scaninfo.scanning = '' "></i>
+            </div>
+        </div>
+        <div class="col title-col-con scan-title-color">
+            <div class="row row-center">
+                <div class="col col-25">{{langs.eligible}}{{langs.qty}}</div>
+                <div class="col col-67 quantity-form">
+                    <a class="mins" ng-click="mins('ok_qty')">-</a>
+                    <div class="qty" ng-click="showQtyPop('ok_qty')">{{showInfo.ok_qty}}</div>
+                    <a class="add" ng-click="add('ok_qty')">+</a>
+                </div>
+            </div>
+            <div class="row row-center" ng-if="showInfo.reference_unit_no">
+                <div class="col col-25">{{langs.reference}}{{langs.qty}}</div>
+                <div class="col col-67 quantity-form">
+                    <a class="mins" ng-click="mins('reference_qty')">-</a>
+                    <div class="qty" ng-click="showQtyPop('reference_qty')">{{showInfo.reference_qty}}</div>
+                    <a class="add" ng-click="add('reference_qty')">+</a>
+                </div>
+            </div>
+            <div class="row row-center">
+                <div class="col col-25">{{langs.bad}}{{langs.qty}}</div>
+                <div class="col col-67 quantity-form">
+                    <a class="mins" ng-click="mins('return_qty')">-</a>
+                    <div class="qty" ng-click="showQtyPop('return_qty')">{{showInfo.return_qty}}</div>
+                    <a class="add" ng-click="add('return_qty')">+</a>
+                </div>
+                <img class="png-width-small png-right" ng-src="./views/app/common/html/image/ng.png" alt="NG" ng-show="showInfo.return_qty > 0 && userInfo.server_product !== 'WF'"
+                    ng-click="showAbnormal()">
+            </div>
+            <div class="row row-center" ng-if="page_params.program_job_no == '16-3' ">
+                <span class="col col-25">{{langs.particular}}{{langs.qty}}</span>
+                <div class="col col-67 quantity-form">
+                    <a class="mins" ng-click="mins('surplus_qty')">-</a>
+                    <div class="qty" ng-click="showQtyPop('surplus_qty')">{{showInfo.surplus_qty}}</div>
+                    <a class="add" ng-click="add('surplus_qty')">+</a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <ion-nav-view name="fil_16_02_s02_list" sub-view></ion-nav-view>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="checkshowgood()" ng-show="scaninfo.modify">
+        <h1 class="title">{{langs.submit}}</h1>
+    </div>
+</ion-view>

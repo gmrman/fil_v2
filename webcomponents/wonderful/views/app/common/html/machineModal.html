@@ -1,0 +1,23 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title title-center">{{langs.please_choose}}{{langs.machine}}</h1>
+        <button class="button button-clear button-primary" ng-click="close()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <div class="bar bar-subheader view-pane">
+        <div class="item-input popupSearch">
+            <input type="text" autofocus hide-keypad ng-model="popSelected.search" placeholder="{{langs.search + langs.machine + langs.keyword}}">
+            <i class="icon ion-search"></i>
+        </div>
+    </div>
+    <ion-content class="padding has-footer has-subheader view-pane warehouse">
+        <ion-list>
+            <ion-radio ng-click="selmachine(machine)" collection-repeat="machine in machine_detail | filter:({machine_no:popSelected.search} || {machine_name:popSelected.search}) | orderBy:['machine_no']"
+                item-width="100%" item-height="55" ng-model="$parent.popSelected.machine_no" ng-value="machine.machine_no">{{machine.machine_no}}
+                <span ng-if="machine.machine_name">&nbsp;(&nbsp;{{machine.machine_name}}&nbsp;)&nbsp;</span>
+            </ion-radio>
+        </ion-list>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="setmachine()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

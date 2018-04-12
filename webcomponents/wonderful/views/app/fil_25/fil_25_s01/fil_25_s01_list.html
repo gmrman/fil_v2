@@ -1,0 +1,33 @@
+<ion-view>
+    <ion-content ng-class="{'has-footer':l_data.show_submit}">
+        <ion-list can-swipe="false">
+            <ion-item class="list_item" item-width="100%" item-height="105" collection-repeat="item in dispatch_detail | orderBy:['dispatch_date','dispatch_time'] | filter:scaninfo.scanning">
+                <div class="row row-center row-no-padding">
+                    <div class="col col-90 list-col-con">
+                        <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                            <div class="col col-67 col-ellipsis text-left">{{item.plot_no}}</div>
+                            <div class="col col-33 col-ellipsis text-right" ng-class="setTimeColor(item)">{{item.dispatch_time}}</div>
+                        </div>
+                        <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                            <div class="col col-67 col-ellipsis text-left">{{item.item_no}}</div>
+                            <div class="col col-33 col-ellipsis text-right">{{item.qty}}</div>
+                        </div>
+                        <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                            <div class="col col-67 col-ellipsis text-left">{{item.item_name}}</div>
+                            <div class="col col-33 col-ellipsis text-right">{{item.workstation_name || item.workstation_no
+                                }}</div>
+                        </div>
+                        <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                            <div class="col col-50 col-ellipsis text-left">{{item.item_spec}}</div>
+                            <div class="col col-50 col-ellipsis text-right">{{item.machine_name || item.machine_no}}</div>
+                        </div>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" class="checkbox-icon" ng-model="item.checked" ng-change="checkShowSubmit()">
+                    </div>
+                </div>
+                <ion-option-button class="button-assertive"></ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

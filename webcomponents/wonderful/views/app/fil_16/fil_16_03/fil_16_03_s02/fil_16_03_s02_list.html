@@ -1,0 +1,20 @@
+<ion-view>
+    <ion-content class="view-pane" ng-class="{'has-footer':detail.length>0}">
+        <ion-list>
+            <ion-item class="list_item scan-title-color" item-width="100%" item-height="55" ng-class="{'list_bgcolor_red': item.result_type != '1' }" collection-repeat="item in showInfo.inspect_list">
+                <div class="col list-col-con" ng-click="closeOption()" ng-class="{'list_bgcolor_red': item.result_type != '1' }">
+                    <div class="row row-center list-row-con">
+                        <div class="col col-ellipsis">{{item.inspection_item}}</div>
+                        <div class="col col-15 col-ellipsis text-right">{{item.sampling_qty}}</div>
+                    </div>
+                    <div class="row row-center list-row-con">
+                        <div class="col col-ellipsis" ng-if="item.result_type == '1'">{{item.result_type}}.{{langs.eligible}}</div>
+                        <div class="col col-ellipsis" ng-if="item.result_type != '1'">{{item.result_type}}.{{langs.reject}}</div>
+                        <div class="col col-15 col-ellipsis text-right">{{item.defect_qty}}</div>
+                    </div>
+                </div>
+                <ion-option-button class="button icon ion-ios-compose-outline button-balanced" ng-click="editInspect($index)"></ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

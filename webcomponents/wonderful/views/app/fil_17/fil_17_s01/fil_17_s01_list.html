@@ -1,0 +1,25 @@
+<ion-view>
+    <ion-content class="view-pane">
+        <ion-list can-swipe="false">
+            <ion-item class="list_item" item-width="100%" item-height="85" ng-class="{list_bgcolor: item.isSelected }" collection-repeat="item in wo_process_list">
+                <div class="col list-col-con">
+                    <div class="row row-center list-row-con">
+                        <div class="col col-25">{{item.seq}}</div>
+                        <div class="col col-50 text-center">{{item.op_name}}</div>
+                        <div class="col col-25 text-right">{{item.op_seq}}</div>
+                    </div>
+                    <div class="row row-center list-row-con">
+                        <div class="col col-33">{{item.isreport}}</div>
+                        <div class="col col-33 text-center">{{item.report_qty}}</div>
+                        <div class="col col-33 text-right">{{item.scrap_qty}}</div>
+                    </div>
+                    <div class="row row-center list-row-con">
+                        <div class="col col-33">{{item.ispqc}}</div>
+                        <div class="col col-33 text-center">{{item.eligible_qty}}</div>
+                        <div class="col col-33 text-right">{{item.uneligible_qty}}</div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

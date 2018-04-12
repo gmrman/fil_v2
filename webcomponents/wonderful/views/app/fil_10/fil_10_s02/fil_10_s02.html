@@ -1,0 +1,76 @@
+<ion-view>
+    <ion-content class="view-pane" scroll="false">
+        <div class="row row-center">
+            <i class="icon ion-ios-barcode-outline scan-ion" ng-click="scan()"></i>
+            <div class="item-input scan-inpnt scan-title-color">
+                <input focus-me="scaninfo.focus_me" type="text" hide-keypad placeholder="{{langs.start_scan}}" dg-scanned="scanned(value)" ng-model="scaninfo.scanning">
+                <i class="icon ion-ios-close-outline" on-tap="scaninfo.scanning = '' "></i>
+            </div>
+        </div>
+        <div class="col title-col-con scan-title-color">
+            <div class="row row-center title-row-con" ng-if="page_params.status == '5' ">
+                <div class="col col-25">{{langs.warehouse}}</div>
+                <div class="col" ng-click="warehouseShow()">
+                    <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.warehouse_name}}
+                </div>
+            </div>
+            <div class="row row-center title-row-con" ng-if="page_params.status == '5' ">
+                <div class="col col-25">{{langs.storage}}</div>
+                <div class="col " ng-click="storageShow()">
+                    <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.storage_spaces_name}}
+                </div>
+                <i class="icon ion-ios-close-outline icon-medium" on-tap="clearStorage()"></i>
+            </div>
+            <div class="row row-center title-row-con" ng-if="page_params.status == '5' ">
+                <div class="col col-25">{{langs.lot}}</div>
+                <div class="col " ng-click="lotShow()">
+                    <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.lot_no}}
+                </div>
+                <i class="icon ion-ios-close-outline icon-medium" on-tap="scaninfo.lot_no = '' "></i>
+            </div>
+            <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col col-25">{{langs.daily_work}}{{langs.qty}}</div>
+                <div class="col col-67 quantity-form">
+                    <a class="mins" ng-click="mins('work_qty')">-</a>
+                    <div class="qty" ng-click="showQtyPop('work_qty')">{{showInfo.work_qty}}</div>
+                    <a class="add" ng-click="add('work_qty')">+</a>
+                </div>
+                <div class="png-width-small png-right" ng-if="userInfo.lot_auto && page_params.status == '5' ">
+                    <img class="png-width-small" ng-src="./views/app/common/html/image/lot.png" ng-if="showInfo.circulationCard" alt="lot" ng-click="editLot()">
+                </div>
+            </div>
+            <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <div class="col col-25">{{langs.scrap}}{{langs.qty}}</div>
+                <div class="col col-67 quantity-form">
+                    <a class="mins" ng-click="mins('scrap_qty')">-</a>
+                    <div class="qty" ng-click="showQtyPop('scrap_qty')">{{showInfo.scrap_qty}}</div>
+                    <a class="add" ng-click="add('scrap_qty')">+</a>
+                </div>
+                <div class="png-width-small png-right">
+                    <img class="png-width-small" ng-src="./views/app/common/html/image/ng.png" ng-if="showInfo.scrap_qty>0" alt="NG" ng-click="showAbnormal()">
+                </div>
+            </div>
+            <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <span class="col col-25">{{langs.work_time}}</span>
+                <div class="col col-67 quantity-form">
+                    <a class="mins" ng-click="mins('work_hours')">-</a>
+                    <div class="qty" ng-click="showQtyPop('work_hours')">{{showInfo.work_hours}}</div>
+                    <a class="add" ng-click="add('work_hours')">+</a>
+                </div>
+            </div>
+            <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                <span class="col col-25">{{langs.machine_time}}</span>
+                <div class="col col-67 quantity-form">
+                    <a class="mins" ng-click="mins('machine_time')">-</a>
+                    <div class="qty" ng-click="showQtyPop('machine_time')">{{showInfo.machine_time}}</div>
+                    <a class="add" ng-click="add('machine_time')">+</a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <ion-nav-view name="fil_10_s02_list" sub-view></ion-nav-view>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="checkDailyWork()" ng-show="scaninfo.modify">
+        <h1 class="title">{{langs.submit}}</h1>
+    </div>
+</ion-view>

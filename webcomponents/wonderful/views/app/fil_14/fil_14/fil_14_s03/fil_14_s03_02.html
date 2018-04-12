@@ -1,0 +1,44 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title title-center">{{langs.packing}}{{langs.detail}}</h1>
+    </ion-header-bar>
+    <div class="col title-col-con" style="padding-top:45px;">
+        <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col">{{langs.barcode}}</div>
+            <div class="col col-33 text-right">{{langs.qty}}</div>
+        </div>
+        <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col">{{langs.item_no}}</div>
+            <div class="col col-33 text-right" ng-if="scaninfo.isShowReference">{{langs.reference}}{{langs.qty}}</div>
+        </div>
+        <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.warehouse}}</div>
+            <div class="col col-50">{{langs.storage}}</div>
+            <div class="col col-25 text-right">{{langs.lot}}</div>
+        </div>
+    </div>
+    <ion-content class="has-footer view-pane" style="top: 120px;">
+        <ion-list>
+            <ion-item class="list_item scan-title-color" item-width="100%" item-height="85" ng-repeat="item in detail">
+                <div class="col list-col-con">
+                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="col">{{item.barcode_no}}</div>
+                        <div class="col col-33 text-right">{{item.qty}}</div>
+                    </div>
+                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="col">{{item.item_no}}</div>
+                        <div class="col col-33 text-right" ng-if="scaninfo.isShowReference">{{item.reference_qty}}</div>
+                    </div>
+                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+                        <div class="col col-25">{{item.warehouse_no}}</div>
+                        <div class="col col-50">{{item.storage_spaces_no}}</div>
+                        <div class="col col-25 text-right">{{item.lot_no}}</div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="closeDetailModal()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

@@ -1,0 +1,25 @@
+<div>
+    <div class="row">
+        <div class="item-input popupSearch">
+            <input type="text" ng-model="search" placeholder="{{langs.search + langs.warehouse + langs.keyword}}">
+            <i class="icon ion-search"></i>
+        </div>
+    </div>
+    <div class="popupList">
+        <ion-content>
+            <ion-list>
+                <ion-radio ng-click="selwarehouse(warehouse)"
+                           collection-repeat="warehouse in warehouses | filter:search"
+                           item-height="55"
+                           ng-model="$parent.popSelected.warehouse_no"
+                           ng-value="warehouse.warehouse_no">
+                    <div class="row list-row-con">
+                        <div class="col col-50 space">{{warehouse.warehouse_name}}</div>
+                        <div class="col col-50 text-right space">{{warehouse.warehouse_no}}</div>
+                    </div>
+
+                </ion-radio>
+            </ion-list>
+        </ion-content>
+    </div>
+</div>

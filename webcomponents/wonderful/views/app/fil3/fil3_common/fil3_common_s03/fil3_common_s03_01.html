@@ -1,0 +1,20 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title title-center">{{langs.please_choose}}{{langs.reason_no}}</h1>
+        <button class="button button-clear button-primary" ng-click="closeSelReasonModal()">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <div class="bar bar-subheader view-pane">
+        <div class="item-input popupSearch">
+            <input type="text" autofocus hide-keypad class="scan-input" ng-model="popSelected.search" placeholder="{{langs.search + langs.keyword}}">
+            <i class="icon ion-search"></i>
+        </div>
+    </div>
+    <ion-content class="padding has-footer has-subheader view-pane">
+        <ion-list>
+            <ion-radio ng-click="changeReasonCode(item)" collection-repeat="item in reason_list | filter:popSelected.search" item-width="100%" item-height="55" ng-value="item.reason_code">{{item.reason_code_name}}</ion-radio>
+        </ion-list>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="setReasonCode()">
+        <h1 class="title">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

@@ -1,0 +1,37 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive positive-bar" align-title="center">
+        <h1 class="title">{{langs.insert}}{{langs.bad}}{{langs.scanning}}{{langs.reason}}</h1 >
+        <button ng-click="close()" class="button button-icon icon ">{{langs.cancel}}</button>
+    </ion-header-bar>
+    <ion-header-bar class="bar bar-subheader " align-title="center">
+        <div class="item-input scan-inpnt search">
+            <!--<i class="icon ion-ios-search scan-ion" ng-click="scan()"></i>-->
+            <!--<img src="views/app/fil_21/img/search.png" width="25px">   -->
+            <input type="text" placeholder="{{langs.searchKeyword}}" dg-scanned="scanned(value)" ng-model="scaninfo.scanning">
+            <img src="views/app/fil_24/img/search.png" width="25px">
+        </div>
+    </ion-header-bar>
+    <ion-content class="view-pane my-view" >
+    <ion-item >
+        <div class="row row-center col-small-padding">
+            <div class="col col-25 ng-binding">{{langs.bad}}{{langs.qty}}</div>
+            <div class="col col-75 quantity-form">
+                 <a class="mins" ng-click="mins('-1')">-</a>
+                 <input class="qty" ng-model="defect_qty">
+                 <a class="add" ng-click="add('1')">+</a>
+            </div>
+        </div>
+    </ion-item>
+    <ion-list>
+        <ion-item class="list_item scan-title-color" ng-repeat="i in badreason">
+            <ion-radio class="list myradio"  ng-click="selstorage(i)" >{{i.reason_code_name}}</ion-radio>
+            <ion-option-button class="button icon ion-ios-trash-outline button-assertive row-small" ng-click="delScrap($index)"></ion-option-button>
+        </ion-item>
+    </ion-list>
+
+
+</ion-content>
+<div class="bar bar-footer" >
+    <button class="button button-full button-positive" ng-click="saveInfo()">{{langs.confirm}}</button>
+</div>
+</ion-modal-view>

@@ -1,0 +1,41 @@
+<ion-view>
+    <ion-content class="view-pane small_row">
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.barcode}}</div>
+            <div class="col">{{showInfo.circulationCard}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.product_name}}</div>
+            <div class="col">{{showInfo.item_name}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.job_number}}</div>
+            <div class="col col-25">{{showInfo.process_no}}</div>
+            <div class="col">{{showInfo.process_name}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.job_seq}}</div>
+            <div class="col">{{showInfo.process_seq}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.workstation}}</div>
+            <div class="col col-25">{{showInfo.workstation}}</div>
+            <div class="col">{{showInfo.workstation_name}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.daily_work}}{{langs.personnel}}</div>
+            <div class="col col-25">{{showInfo.employee_no}}</div>
+            <div class="col">{{showInfo.employee_name}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.machine}}</div>
+            <div class="col col-25">{{showInfo.machine_no}}</div>
+            <div class="col">{{showInfo.machine_name}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <div class="col col-25">{{langs.daily_work}}{{langs.shift}}</div>
+            <div class="col col-25">{{showInfo.shift_no}}</div>
+            <div class="col">{{showInfo.shift_name}}</div>
+        </div>
+    </ion-content>
+</ion-view>
