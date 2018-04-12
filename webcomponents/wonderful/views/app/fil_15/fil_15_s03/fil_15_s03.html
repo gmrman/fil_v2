@@ -18,6 +18,9 @@
                 <div class="col col-33">{{langs.storage}} </div>
                 <div class="col col-33 text-right">{{langs.lot}}</div>
             </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="scaninfo.show_reference_unit_barcode">
+                <div class="col text-right">{{langs.reference}}{{langs.qty}}</div>
+            </div>
         </div>
         <ion-nav-view name="fil_15_s03_list" sub-view></ion-nav-view>
     </ion-content>

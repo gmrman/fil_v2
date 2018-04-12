@@ -168,3 +168,18 @@
     top: 150px;
   }
 }
+
+/* badge顯示 170517 By zhen */
+.badgeShow[data-badge]:after {
+   content: attr(data-badge);
+   position: absolute;
+   font-size: .65em;
+   background: green;
+   color: white;
+   width: 1.8em;
+   height: 1.8em;
+   text-align: center;
+   border-radius: 50%;
+   margin-top: 2.4em;
+   margin-left: -4.8em;
+}

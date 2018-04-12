@@ -1,0 +1,62 @@
+.itemStyle {
+   border-color: #C8C7CC;
+}
+
+.itemStyle * {
+   font-family: Arial;
+   font-size: 14px;
+   color: #6D6D72;
+}
+
+.quantity-form a {
+    color: #6D6D72;
+    border: 1px solid #C8C7CC;
+}
+
+.quantity-form .qty {
+    color: #6D6D72;
+    border: 1px solid #C8C7CC;
+}
+
+.row-header {
+    font-family: Microsoft JhengHei;
+    font-size: 14px;
+    color: #6D6D72;
+}
+
+.row-header > * {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.row-header-one {
+    font-family: Microsoft JhengHei;
+    font-size: 14px;
+    height: 28px;
+    color: #6D6D72;
+}
+
+.row-header-one > * {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.row-header-three {
+    font-family: Microsoft JhengHei;
+    font-size: 14px;
+    height: 68px;
+    color: #6D6D72;
+}
+
+.row-header-three > * {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.addLotList {
+    background-repeat: no-repeat;
+    background-size: 1.5em;
+    background-position-x: center;
+    background-position-y: center;
+    background-image: url('../kb_04_common/img/addList.png');
+}

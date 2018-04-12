@@ -1,0 +1,62 @@
+<ion-view>
+    <ion-header-bar class="bar bar-header headerStyle" align-title="center">
+        <button ng-click="goToMenu()" class="button button-icon icon ion-ios-arrow-back"></button>
+
+        <button ng-click="goViewSetting()" class="button button-icon icon ion-ios-gear-outline"></button>
+    </ion-header-bar>
+    <ion-content scroll="false" delegate-handle="receipt">
+        <div class="list search">
+            <label class="item item-input searchStyle" ng-click="setDiplaySearch(diplaySearch)">
+                <i class="col col-10 ion-search searchIcon"></i>
+                <div class="col col-80 searchMemo">{{ userInfo.language | langFilter: [langs.inquire, langs.set] }}</div>
+                <i class="ion-chevron-down searchIcon" ng-show="diplaySearch"></i>
+                <i class="ion-chevron-right searchIcon" ng-hide="diplaySearch"></i>
+            </label>
+
+            <div ng-show="diplaySearch">
+                <label class="item item-input searchItem searchStyle ">
+                    <div class="col col-20">{{langs.manufacturers}}</div>
+                    <input class="col col-75 searchView" ng-model="searchInfo.manufacturers" type="text" placeholder="{{langs.please_choose}}" ng-click="manufacturersShow()" readonly="readonly">
+                </label>
+                <label class="item item-input searchItem searchStyle">
+                   <div class="col col-20">{{langs.product_no}}</div>
+                   <input class="col col-75 searchView" ng-model="searchInfo.product" type="text" placeholder="{{langs.please_choose}}" ng-click="productNoShow()" readonly="readonly">
+                </label>
+                <label class="item itemButton searchItem searchStyle">
+                   <button class="button button-block button-light buttonlist" ng-click="receiptRef()">
+                       {{langs.inquire}}
+                   </button>
+                </label>
+            </div>
+
+            <div class="list_item row fix-row-header">
+                <div class="row">
+                    <div class="col-screen-0" ng-show="isCheckboxShown">
+                    </div>
+                    <div class="col-screen-1">
+                        {{langs.product_no}}
+                    </div>
+                    <div class="col-screen-2">
+                        {{langs.product_name}}
+                    </div>
+                    <div class="col-screen-3">
+                        {{langs.qty}}
+                    </div>
+                    <div class="col-screen-4">
+                        {{ userInfo.language | langFilter: [langs.purchase, langs.list] }}
+                    </div>
+                    <div class="col-screen-5">
+                        {{langs.seq}}
+                    </div>
+                    <div class="col-screen-6">
+                        {{langs.manufacturers}}
+                    </div>
+                    <div class="col-screen-7">
+                        {{langs.prepaid_date}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ion-nav-view name="kb_02_s01_list"></ion-nav-view>
+    </ion-content>
+</ion-view>

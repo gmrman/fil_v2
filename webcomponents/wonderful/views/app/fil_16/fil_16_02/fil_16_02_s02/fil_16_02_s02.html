@@ -11,37 +11,62 @@
         <div class="col title-col-con scan-title-color">
             <div class="row row-center">
                 <div class="col col-25">{{langs.eligible}}{{langs.qty}}</div>
-                <div class="col col-67 quantity-form">
+                <div class="col quantity-form">
                     <a class="mins" ng-click="mins('ok_qty')">-</a>
                     <div class="qty" ng-click="showQtyPop('ok_qty')">{{showInfo.ok_qty}}</div>
                     <a class="add" ng-click="add('ok_qty')">+</a>
                 </div>
+                <div class="col col-center col-15"></div>
             </div>
             <div class="row row-center" ng-if="showInfo.reference_unit_no">
                 <div class="col col-25">{{langs.reference}}{{langs.qty}}</div>
-                <div class="col col-67 quantity-form">
+                <div class="col quantity-form">
                     <a class="mins" ng-click="mins('reference_qty')">-</a>
                     <div class="qty" ng-click="showQtyPop('reference_qty')">{{showInfo.reference_qty}}</div>
                     <a class="add" ng-click="add('reference_qty')">+</a>
                 </div>
+                <div class="col col-center col-15">{{showInfo.reference_unit_no}}</div>
             </div>
             <div class="row row-center">
                 <div class="col col-25">{{langs.bad}}{{langs.qty}}</div>
-                <div class="col col-67 quantity-form">
+                <div class="col quantity-form">
                     <a class="mins" ng-click="mins('return_qty')">-</a>
                     <div class="qty" ng-click="showQtyPop('return_qty')">{{showInfo.return_qty}}</div>
                     <a class="add" ng-click="add('return_qty')">+</a>
                 </div>
-                <img class="png-width-small png-right" ng-src="./views/app/common/html/image/ng.png" alt="NG" ng-show="showInfo.return_qty > 0 && userInfo.server_product !== 'WF'"
-                    ng-click="showAbnormal()">
+                <div class="col col-center col-15" style="padding: 0;">
+                    <img class="png-width-small png-right" ng-src="./views/app/common/html/image/ng.png" alt="NG" ng-show="showInfo.return_qty > 0 && userInfo.server_product !== 'WF'"
+                        ng-click="showAbnormal()">
+                </div>
+            </div>
+            <div class="row row-center" ng-if="showInfo.reference_unit_no && showInfo.doc_type == '2'">
+                <div class="col col-25">{{langs.bad}}{{langs.reference}}{{langs.qty}}</div>
+                <div class="col quantity-form">
+                    <a class="mins" ng-click="mins('return_reference_qty')">-</a>
+                    <div class="qty" ng-click="showQtyPop('return_reference_qty')">{{showInfo.return_reference_qty}}</div>
+                    <a class="add" ng-click="add('return_reference_qty')">+</a>
+                </div>
+                <div class="col col-center col-15"></div>
             </div>
             <div class="row row-center" ng-if="page_params.program_job_no == '16-3' ">
-                <span class="col col-25">{{langs.particular}}{{langs.qty}}</span>
-                <div class="col col-67 quantity-form">
+                <span class="col col-25" ng-if="showInfo.doc_type != '2'">{{langs.particular}}{{langs.qty}}</span>
+                <span class="col col-25" ng-if="showInfo.doc_type == '2'">{{langs.scrap}}{{langs.qty}}</span>
+                <div class="col quantity-form">
                     <a class="mins" ng-click="mins('surplus_qty')">-</a>
                     <div class="qty" ng-click="showQtyPop('surplus_qty')">{{showInfo.surplus_qty}}</div>
                     <a class="add" ng-click="add('surplus_qty')">+</a>
                 </div>
+                <div class="col col-center col-15"></div>
+            </div>
+            <div class="row row-center" ng-if="showInfo.reference_unit_no && showInfo.doc_type == '2'">
+                <span class="col col-25" ng-if="showInfo.doc_type != '2'">{{langs.particular}}{{langs.reference}}{{langs.qty}}</span>
+                <span class="col col-25" ng-if="showInfo.doc_type == '2'">{{langs.scrap}}{{langs.reference}}{{langs.qty}}</span>
+                <div class="col quantity-form">
+                    <a class="mins" ng-click="mins('surplus_reference_qty')">-</a>
+                    <div class="qty" ng-click="showQtyPop('surplus_reference_qty')">{{showInfo.surplus_reference_qty}}</div>
+                    <a class="add" ng-click="add('surplus_reference_qty')">+</a>
+                </div>
+                <div class="col col-center col-15"></div>
             </div>
         </div>
         <hr>

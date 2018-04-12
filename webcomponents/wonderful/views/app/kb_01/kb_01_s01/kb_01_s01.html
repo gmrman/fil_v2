@@ -1,0 +1,235 @@
+<ion-header-bar class="bar bar-header headerStyle" align-title="center">
+    <button ng-click="goToMenu()" class="button button-icon icon ion-ios-arrow-back"></button>
+
+    <button ng-click="goViewSetting()" class="button button-icon icon ion-ios-gear-outline"></button>
+</ion-header-bar>
+
+<ion-nav-view>
+    <ion-content class="view-pane">
+        <div ng-if="!!showme[0]">
+            <div class="panel-heading text-center panelTitle" ng-click="setZoom('barCtrl_01')">
+                {{ userInfo.language | langFilter: [langs.year, langs.receiveing, langs.project]:"/":langs.moneyTable }}
+                <i class="icon" ng-class="{true: 'ion-minus-round',false: 'ion-plus-round'}[zoom.barCtrl_01]"></i>
+            </div>
+            <div class="panel-body">
+                <ion-scroll direction="x" ng-class="{'zoom': zoom.barCtrl_01}">
+                    <div ng-controller="barCtrl_01">
+                        <canvas id="barCtrl_01" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasetOverride">
+                        </canvas>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <div ng-if="!!showme[1]">
+            <div class="panel-heading text-center panelTitle" ng-click="setZoom('barCtrl_02')">
+                {{ userInfo.language | langFilter: [langs.year, "QC", langs.project]:"/":langs.moneyTable }}
+                <i class="icon" ng-class="{true: 'ion-minus-round',false: 'ion-plus-round'}[zoom.barCtrl_02]"></i>
+            </div>
+            <div class="panel-body">
+                <ion-scroll direction="x" ng-class="{'zoom': zoom.barCtrl_02}">
+                    <div ng-controller="barCtrl_02">
+                        <canvas id="barCtrl_02" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasetOverride">
+                        </canvas>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <div ng-if="!!showme[2]">
+            <div class="panel-heading text-center panelTitle" ng-click="setZoom('barCtrl_03')">
+                {{ userInfo.language | langFilter: [langs.year, langs.put_in_storage, langs.project]:"/":langs.moneyTable }}
+                <i class="icon" ng-class="{true: 'ion-minus-round',false: 'ion-plus-round'}[zoom.barCtrl_03]"></i>
+            </div>
+            <div class="panel-body">
+                <ion-scroll direction="x" ng-class="{'zoom': zoom.barCtrl_03}">
+                    <div ng-controller="barCtrl_03">
+                        <canvas id="barCtrl_03" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasetOverride">
+                        </canvas>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <div ng-if="!!showme[3]">
+            <div class="panel-heading text-center panelTitle" ng-click="setZoom('barCtrl_04')">
+                {{ userInfo.language | langFilter: [langs.periodic, langs.receiveing, langs.project]:"/":langs.moneyTable }}
+                <i class="icon" ng-class="{true: 'ion-minus-round',false: 'ion-plus-round'}[zoom.barCtrl_04]"></i>
+            </div>
+            <div class="panel-body">
+                <ion-scroll direction="x" ng-class="{'zoom': zoom.barCtrl_04}">
+                    <div ng-controller="barCtrl_04">
+                        <canvas id="barCtrl_04" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasetOverride">
+                        </canvas>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <div ng-if="!!showme[4]">
+            <div class="panel-heading text-center panelTitle" ng-click="setZoom('barCtrl_05')">
+                {{ userInfo.language | langFilter: [langs.periodic, "QC", langs.project]:"/":langs.moneyTable }}
+                <i class="icon" ng-class="{true: 'ion-minus-round',false: 'ion-plus-round'}[zoom.barCtrl_05]"></i>
+            </div>
+            <div class="panel-body">
+                <ion-scroll direction="x" ng-class="{'zoom': zoom.barCtrl_05}">
+                    <div ng-controller="barCtrl_05">
+                        <canvas id="barCtrl_05" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasetOverride">
+                        </canvas>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <div ng-if="!!showme[5]">
+            <div class="panel-heading text-center panelTitle" ng-click="setZoom('barCtrl_06')">
+                {{ userInfo.language | langFilter: [langs.periodic, langs.put_in_storage, langs.project]:"/":langs.moneyTable }}
+                <i class="icon" ng-class="{true: 'ion-minus-round',false: 'ion-plus-round'}[zoom.barCtrl_06]"></i>
+            </div>
+            <div class="panel-body">
+                <ion-scroll direction="x" ng-class="{'zoom': zoom.barCtrl_06}">
+                    <div ng-controller="barCtrl_06">
+                        <canvas id="barCtrl_06" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasetOverride">
+                        </canvas>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <div ng-if="!!showme[6]">
+            <div class="panel-heading text-center panelTitle" ng-click="setZoom('barCtrl_07')">
+                {{ userInfo.language | langFilter: [langs.month, langs.receiveing, langs.project]:"/":langs.moneyTable }}
+                <i class="icon" ng-class="{true: 'ion-minus-round',false: 'ion-plus-round'}[zoom.barCtrl_07]"></i>
+            </div>
+            <div class="panel-body">
+                <ion-scroll direction="x" ng-class="{'zoom': zoom.barCtrl_07}">
+                    <div ng-controller="barCtrl_07">
+                        <canvas id="barCtrl_07" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasetOverride">
+                        </canvas>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <div ng-if="!!showme[7]">
+            <div class="panel-heading text-center panelTitle" ng-click="setZoom('barCtrl_08')">
+                {{ userInfo.language | langFilter: [langs.month, "QC", langs.project]:"/":langs.moneyTable }}
+                <i class="icon" ng-class="{true: 'ion-minus-round',false: 'ion-plus-round'}[zoom.barCtrl_08]"></i>
+            </div>
+            <div class="panel-body">
+                <ion-scroll direction="x" ng-class="{'zoom': zoom.barCtrl_08}">
+                    <div ng-controller="barCtrl_08">
+                        <canvas id="barCtrl_08" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasetOverride">
+                        </canvas>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <div ng-if="!!showme[8]">
+            <div class="panel-heading text-center panelTitle" ng-click="setZoom('barCtrl_09')">
+                {{ userInfo.language | langFilter: [langs.month, langs.put_in_storage, langs.project]:"/":langs.moneyTable }}
+                <i class="icon" ng-class="{true: 'ion-minus-round',false: 'ion-plus-round'}[zoom.barCtrl_09]"></i>
+            </div>
+            <div class="panel-body">
+                <ion-scroll direction="x" ng-class="{'zoom': zoom.barCtrl_09}">
+                    <div ng-controller="barCtrl_09">
+                        <canvas id="barCtrl_09" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasetOverride">
+                        </canvas>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <div ng-if="!!showme[9]">
+            <div class="panel-heading text-center panelTitle" ng-click="setZoom('barCtrl_10')">
+                {{ userInfo.language | langFilter: [langs.last, langs.receiveing, langs.project]:"/":langs.moneyTable }}
+                <i class="icon" ng-class="{true: 'ion-minus-round',false: 'ion-plus-round'}[zoom.barCtrl_10]"></i>
+            </div>
+            <div class="panel-body">
+                <ion-scroll direction="x" ng-class="{'zoom': zoom.barCtrl_10}">
+                    <div ng-controller="barCtrl_10">
+                        <canvas id="barCtrl_10" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasetOverride">
+                        </canvas>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <div ng-if="!!showme[10]">
+            <div class="panel-heading text-center panelTitle" ng-click="setZoom('barCtrl_11')">
+                {{ userInfo.language | langFilter: [langs.last, "QC", langs.project]:"/":langs.moneyTable }}
+                <i class="icon" ng-class="{true: 'ion-minus-round',false: 'ion-plus-round'}[zoom.barCtrl_11]"></i>
+            </div>
+            <div class="panel-body">
+                <ion-scroll direction="x" ng-class="{'zoom': zoom.barCtrl_11}">
+                    <div ng-controller="barCtrl_11">
+                        <canvas id="barCtrl_11" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasetOverride">
+                        </canvas>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <div ng-if="!!showme[11]">
+            <div class="panel-heading text-center panelTitle" ng-click="setZoom('barCtrl_12')">
+                {{ userInfo.language | langFilter: [langs.last, langs.put_in_storage, langs.project]:"/":langs.moneyTable }}
+                <i class="icon" ng-class="{true: 'ion-minus-round',false: 'ion-plus-round'}[zoom.barCtrl_12]"></i>
+            </div>
+            <div class="panel-body">
+                <ion-scroll direction="x" ng-class="{'zoom': zoom.barCtrl_12}">
+                    <div ng-controller="barCtrl_12">
+                        <canvas id="barCtrl_12" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasetOverride">
+                        </canvas>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <div ng-if="!!showme[12]">
+            <div class="panel-heading text-center panelTitle" ng-click="setZoom('barCtrl_13')">
+                {{langs.barCtrl_13}}
+                <i class="icon" ng-class="{true: 'ion-minus-round',false: 'ion-plus-round'}[zoom.barCtrl_13]"></i>
+            </div>
+            <div class="panel-body">
+                <ion-scroll direction="x" ng-class="{'zoom': zoom.barCtrl_13}">
+                    <div ng-controller="barCtrl_13">
+                        <canvas id="barCtrl_13" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasetOverride">
+                        </canvas>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <div ng-if="!!showme[13]">
+            <div class="panel-heading text-center panelTitle" ng-click="setZoom('barCtrl_14')">
+                {{langs.barCtrl_14}}
+                <i class="icon" ng-class="{true: 'ion-minus-round',false: 'ion-plus-round'}[zoom.barCtrl_14]"></i>
+            </div>
+            <div class="panel-body">
+                <ion-scroll direction="x" ng-class="{'zoom': zoom.barCtrl_14}">
+                    <div ng-controller="barCtrl_14">
+                        <canvas id="barCtrl_14" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasetOverride">
+                        </canvas>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <div ng-if="!!showme[14]">
+            <div class="panel-heading text-center panelTitle" ng-click="setZoom('barCtrl_15')">
+                {{langs.barCtrl_15}}
+                <i class="icon" ng-class="{true: 'ion-minus-round',false: 'ion-plus-round'}[zoom.barCtrl_15]"></i>
+            </div>
+            <div class="panel-body">
+                <ion-scroll direction="x" ng-class="{'zoom': zoom.barCtrl_15}">
+                    <div ng-controller="barCtrl_15">
+                        <canvas id="barCtrl_15" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasetOverride">
+                        </canvas>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <div ng-if="!!showme[15]">
+            <div class="panel-heading text-center panelTitle" ng-click="setZoom('barCtrl_16')">
+                {{langs.barCtrl_16}}
+                <i class="icon" ng-class="{true: 'ion-minus-round',false: 'ion-plus-round'}[zoom.barCtrl_16]"></i>
+            </div>
+            <div class="panel-body">
+                <ion-scroll direction="x" ng-class="{'zoom': zoom.barCtrl_16}">
+                    <div ng-controller="barCtrl_16">
+                        <canvas id="barCtrl_16" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-options="options" chart-dataset-override="datasetOverride">
+                        </canvas>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <!---->
+    </ion-content>
+</ion-nav-view>

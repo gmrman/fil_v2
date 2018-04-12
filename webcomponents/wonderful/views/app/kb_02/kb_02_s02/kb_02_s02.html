@@ -1,0 +1,64 @@
+<ion-header-bar class="bar bar-header headerStyle" align-title="center">
+  <button ng-click="backView()" class="button button-icon icon ion-ios-arrow-back"></button>
+  <h1 class="title titleStyle">{{langs.kb_02_s02}}</h1>
+  <button ng-click="chkSetting()" class="button button-icon icon ion-android-done"></button>
+</ion-header-bar>
+<ion-nav-view>
+  <ion-content>
+    <!-- 限制方式 -->
+    <label class="item item-input item-select listSetting itemStyle">
+        <div class="input-label">
+          {{ userInfo.language | langFilter: [langs.limited, langs.mode] }}
+        </div>
+        <select ng-model="setting.limited" ng-change="setting.amount=''; getdataList();">
+           <option value="0" selected>{{ userInfo.language | langFilter: [langs.quantity, langs.count] }}</option>
+           <option value="1">{{ userInfo.language | langFilter: [langs.day, langs.count] }}</option>
+        </select>
+      </label>
+
+    <!-- 資料限制 -->
+    <label class="item item-input item-select listSetting itemStyle">
+        <div class="input-label">
+          {{ userInfo.language | langFilter: [langs.data, langs.limited] }}
+        </div>
+        <select ng-model="setting.amount" ng-options="data.value as data.name for data in dataList">
+        </select>
+      </label>
+
+    <!-- 導引角色 -->
+    <label class="item item-input item-select listSetting itemStyle">
+        <div class="input-label">
+           {{langs.guide_the_role}}
+        </div>
+        <select ng-model="setting.orderBy">
+           <option value="0">{{langs.receiveing}}</option>
+           <option value="1">QC</option>
+           <option value="2">{{langs.put_in_storage}}</option>
+        </select>
+      </label>
+
+    <!-- 每頁筆數 -->
+    <label class="item item-input item-select listSetting itemStyle">
+        <div class="input-label">
+           {{langs.page_number}}
+        </div>
+        <select ng-model="setting.showNumType" ng-change="(setting.showNumType == 'Infinity' && defShowNum())" ng-options="data.value as data.name for data in pageList">
+        </select>
+    </label>
+
+    <div ng-show="setting.showNumType == 'Infinity'">
+       <form name="chkForm">
+           <div class="item item-input listSetting itemStyle">
+              <div class="col-33">{{langs.customize}}</div>
+              <div class="col">
+                <div class="h3 quantity-form" style="margin: auto;">
+                  <a class="mins" ng-click="mins(setting, 1);">-</a>
+                  <input name="showNum" type="number" class="qty" style="padding: 0px;" min="1" max="1000" onfocus="this.select()" ng-change="chkShowNum(setting, chkForm.showNum.$error)" ng-model="setting.showNum">
+                  <a class="add" ng-click="add(setting, 1000);">+</a>
+                </div>
+              </div>
+           </div>
+       </form>
+    </div>
+  </ion-content>
+</ion-nav-view>

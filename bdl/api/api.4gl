@@ -14,40 +14,6 @@ PUBLIC FUNCTION api()
 
       TRY
          CASE operation
-         # add by 08628
-         WHEN "xyc_bcme_ae_af_get"
-               CALL strategies('type_data') 
-               CALL xyc_bcme_ae_af_get(jsonarr) RETURNING result
-
-            WHEN "xyc_bcme_ae_af_delete"
-               CALL strategies('type_data') 
-               CALL xyc_bcme_ae_af_delete(jsonarr) RETURNING result
-
-            WHEN "xyc_bcme_create"
-               CALL strategies('type_data')
-               CALL xyc_bcme_create(jsonarr)
-
-            WHEN "xyc_bcme_delete"
-               CALL strategies('type_data')
-               CALL xyc_bcme_delete(jsonarr) RETURNING result
-
-            WHEN "xyc_bcaf_create"
-               CALL strategies('type_data')
-               CALL xyc_bcaf_create(jsonarr) RETURNING result
-               
-            WHEN "xyc_bcme_get"
-               CALL strategies('type_data')
-               CALL xyc_bcme_get(jsonarr) RETURNING result
-
-            WHEN "xyc_bcaf_get"
-               CALL strategies('type_data')
-               CALL xyc_bcaf_get(jsonarr) RETURNING result
-
-            WHEN "xyc_bcae_bcaf_upload_create"
-               CALL strategies('type_data')
-               CALL xyc_bcae_bcaf_upload_create(jsonarr) RETURNING result
-
-               # add by 08628
             WHEN "changeTitle"
                CALL strategies('type_data')
                CALL changeTitle(jsonarr)  RETURNING result
@@ -235,6 +201,40 @@ PUBLIC FUNCTION api()
             WHEN "VoiceUtils"  ###语音 Hybrid API 
                CALL strategies('type_data')
                CALL VoiceUtils(jsonarr) RETURNING result
+
+            #170518 By zhen (S)
+            WHEN "kb_01_get_show_chart_setting"
+               CALL strategies('type_data')
+               CALL kb_01_get_show_chart_setting(jsonarr) RETURNING result
+               
+            WHEN "kb_01_capp_receipt_kb_t_create"
+               CALL strategies('type_data')
+               CALL kb_01_capp_receipt_kb_t_create(jsonarr) RETURNING result
+
+            WHEN "kb_02_get_setting"
+               CALL strategies('type_data')
+               CALL kb_02_get_setting(jsonarr) RETURNING result
+
+            WHEN "kb_02_upd_setting"
+               CALL strategies('type_data')
+               CALL kb_02_upd_setting(jsonarr) RETURNING result
+
+            WHEN "kb_03_get_setting"
+               CALL strategies('type_data')
+               CALL kb_03_get_setting(jsonarr) RETURNING result
+
+            WHEN "kb_03_upd_setting"
+               CALL strategies('type_data')
+               CALL kb_03_upd_setting(jsonarr) RETURNING result
+
+            WHEN "kb_05_get_setting"
+               CALL strategies('type_data')
+               CALL kb_05_get_setting(jsonarr) RETURNING result
+
+            WHEN "kb_05_upd_setting"
+               CALL strategies('type_data')
+               CALL kb_05_upd_setting(jsonarr) RETURNING result
+            #170518 By zhen (E)
 
             WHEN "WiFiPrinter" #Hybrid API 设定IP
                CALL strategies('type_data')

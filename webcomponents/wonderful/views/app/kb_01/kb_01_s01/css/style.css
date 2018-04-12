@@ -1,0 +1,17 @@
+.text-center {
+   text-align: center;
+}
+
+.zoom > .scroll {
+   width: 160%;
+}
+
+.popup-body {
+  padding-top: 10px;
+}
+
+.panelTitle {
+    font-family: Microsoft JhengHei;
+    color: #6D6D72;
+    font-size: 14px !important;
+}

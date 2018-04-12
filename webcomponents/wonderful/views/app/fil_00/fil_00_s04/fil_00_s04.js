@@ -98,6 +98,14 @@ define(["API", "APIS", "AppLang", "views/app/fil_00/fil_00_s04/requisition.js", 
                         name: $scope.langs.complex + $scope.langs.management, //綜合管理
                         info: fil_00_s04_requisition.complex
                     }];
+
+                    //取得ICON數值-ZHEN
+                    fil_00_s04_requisition.getListBadge(50).then(function (success) {
+                        console.log(success)
+
+                        fil_00_s04_requisition.setListBadge($scope.menuList[0].info)   //common
+                        fil_00_s04_requisition.setListBadge($scope.menuList[5].info)   //complex
+                    })
                 }, 0);
             };
 
@@ -195,7 +203,12 @@ define(["API", "APIS", "AppLang", "views/app/fil_00/fil_00_s04/requisition.js", 
                 id: 4,
                 name: 'stock'
             }, {
+                //170519 By zhen (S)
                 id: 5,
+                name: 'complex'
+                //170519 By zhen (E)
+               }, {
+                id: 6,
                 name: 'set'
             }];
 

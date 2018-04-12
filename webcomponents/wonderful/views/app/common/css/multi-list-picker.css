@@ -1,0 +1,399 @@
+/* IOS picker */
+.multi-list-picker {
+    font-size: 18px !important;   /* 視窗大小 */
+    background: transparent;
+}
+
+.multi-list-picker .toolbar {
+  display: none;
+  box-sizing: content-box;
+}
+
+.multi-list-picker .list-container .list .item {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  border-style: none;
+  background-color: transparent;
+  font-size: 100%;
+}
+
+.multi-list-picker {
+  display: block;
+  font-size: 1em;
+  font-family: "Helvetica Neue", Helvetica, "Open Sans", sans-serif;
+  font-weight: 200;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.multi-list-picker .sandbox-item {
+  position: relative;
+  top: -1.8em;
+  display: inline-block;
+  margin: 0 5px;
+  height: 1em;
+  padding: 0.2em 0.5em;
+  text-align: center;
+  visibility: hidden;
+}
+
+.multi-list-picker .multi-list-picker-contents {
+  display: none;
+}
+
+.multi-list-picker .container .lists {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+
+  border-radius: 0.6em / 2em;
+  box-shadow: 2px 2px 5px 2px rgba(20%,20%,40%,0.5) inset;
+  background: -moz-linear-gradient(top,
+              rgb(170,170,170) 0%,
+              rgb(211,211,211) 10%,
+              rgb(245,245,245) 25%,
+              rgb(255,255,255) 50%,
+              rgb(245,245,245) 75%,
+              rgb(211,211,211) 90%,
+              rgb(170,170,170) 100%);
+  background: -webkit-linear-gradient(top,
+              rgb(170,170,170) 0%,
+              rgb(211,211,211) 10%,
+              rgb(245,245,245) 25%,
+              rgb(255,255,255) 50%,
+              rgb(245,245,245) 75%,
+              rgb(211,211,211) 90%,
+              rgb(170,170,170) 100%);
+  background: linear-gradient(to bottom,
+              rgb(170,170,170) 0%,
+              rgb(211,211,211) 10%,
+              rgb(245,245,245) 25%,
+              rgb(255,255,255) 50%,
+              rgb(245,245,245) 75%,
+              rgb(211,211,211) 90%,
+              rgb(170,170,170) 100%);
+}
+
+.multi-list-picker .container .lists .list-container {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+  padding: 0;
+}
+
+.multi-list-picker .container .lists .list-container.transitioning.one-up .item {
+  -webkit-animation: moveUp 0.1s;
+  -o-animation: moveUp 0.1s;
+  animation: moveUp 0.1s;
+}
+
+.multi-list-picker .container .lists .list-container.transitioning.one-down .item {
+  -webkit-animation: moveDown 0.1s;
+  -o-animation: moveDown 0.1s;
+  animation: moveDown 0.1s;
+}
+
+.multi-list-picker .container .lists .list-container.first {
+  /* border-left: 1px solid #b9b9b9; */
+}
+
+.multi-list-picker .container .lists .list-container.last {
+  /* border-right: 1px solid #b9b9b9; */
+}
+
+.multi-list-picker .container .lists .list-container .list .item {
+  max-width: 75vw;
+  /*
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  */
+}
+
+.multi-list-picker .container .lists .list-container .list .item.selected {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+  font-weight: 300;
+}
+
+.multi-list-picker .container .lists .list-container .list .item.distance-1 {
+  opacity: 0.6;
+  transform: scale(1, 0.7);
+  -webkit-transform: scale(1, 0.7);
+  -moz-transform: scale(1, 0.7);
+  -o-transform: scale(1, 0.7);
+}
+
+.multi-list-picker .container .lists .list-container .list .item.distance-2 {
+  opacity: 0.3;
+  transform: scale(0.95, 0.4);
+  -webkit-transform: scale(0.95, 0.4);
+  -moz-transform: scale(0.95, 0.4);
+  -o-transform: scale(0.95, 0.4);
+}
+
+.multi-list-picker .container .lists .list-container .list .item.distance-3 {
+  opacity: 0.1;
+  transform: scale(1, 0.1);
+  -webkit-transform: scale(1, 0.1);
+  -moz-transform: scale(1, 0.1);
+  -o-transform: scale(1, 0.1);
+}
+
+.multi-list-picker .container .lists .list-container .list .item.offset-down-3 {
+  top: 1.3em;
+}
+
+.multi-list-picker .container .lists .list-container .list .item.offset-down-2 {
+  top: -0.1em;
+}
+
+.multi-list-picker .container .lists .list-container .list .item.offset-down-1 {
+  top: -1.5em;
+}
+
+.multi-list-picker .container .lists .list-container .divider.blank {
+  border-top: none;
+  border-bottom: none;
+  border-left: 1px solid #b9b9b9;
+  border-right: 1px solid #b9b9b9;
+}
+
+.multi-list-picker .container .lists .list-container:not(.first):not(.last) {
+  border-top: none;
+  border-bottom: none;
+  border-left: 2px solid #b9b9b9;
+  border-right: 2px solid #b9b9b9;
+}
+
+.multi-list-picker .container .lists .list-container .divider span {
+  top: 2.8em;
+  position: relative;
+}
+
+.multi-list-picker .container .after-lists {
+  display: none;
+}
+
+.multi-list-picker.inline {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.multi-list-picker.modal .container,
+.multi-list-picker.top .container,
+.multi-list-picker.bottom .container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+.multi-list-picker.modal .container .lists .toolbar,
+.multi-list-picker.top .container .lists .toolbar,
+.multi-list-picker.bottom .container .lists .toolbar {
+  display: block;
+  height: 1em;
+  padding: .25em;
+  text-align: right;
+  background: #ededed;
+}
+
+.multi-list-picker.modal .container .lists .toolbar .toolbar-button,
+.multi-list-picker.top .container .lists .toolbar .toolbar-button,
+.multi-list-picker.bottom .container .lists .toolbar .toolbar-button {
+  color: #6495ed;
+  font-weight: 400;
+  font-size: 1em;
+  line-height: 1em;
+  cursor: pointer;
+}
+
+.multi-list-picker.modal .before,
+.multi-list-picker.top .before,
+.multi-list-picker.bottom .before {
+  position: absolute;
+  background: #000;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0.4;
+}
+
+.multi-list-picker.top .container {
+  top: -2px;
+}
+
+.multi-list-picker.top .container .lists {
+  top: 0;
+}
+
+.multi-list-picker.top .container .lists .list {
+  position: relative;
+}
+
+.multi-list-picker.top .toolbar {
+  display: block;
+  position: relative;
+  margin-bottom: -1.7em;
+  top: 7.6em;
+}
+
+.multi-list-picker.bottom .container {
+  top: 100%;
+}
+
+.multi-list-picker.bottom .container .lists {
+  top: -9em;
+}
+
+.multi-list-picker.bottom .container .lists .list {
+  position: relative;
+}
+
+.multi-list-picker.modal .toolbar {
+  top: -1.4em;
+}
+
+/* 5列
+.multi-list-picker .container .lists .list-container .list {
+  border-top: 1px solid #b9b9b9;
+  border-bottom: 1px solid #b9b9b9;
+  height: 7.4em;
+  overflow: hidden;
+  display: block;
+  padding: 3px;
+  margin: 0;
+  min-width: 1.5em;
+}
+
+.multi-list-picker .container .lists .list-container .list .item {
+  position: relative;
+  top: -1.8em;
+  display: block;
+  margin: 0px;
+  height: 1em;
+  padding: 0.2em 0.5em;
+  text-align: center;
+}
+
+.multi-list-picker .container .before-lists {
+  display: block;
+  height: 1.4em;
+  border-top: 1px solid #d6d6d6;
+  border-bottom: 1px solid #d6d6d6;
+  background-color: #a9a9a9;
+  position: relative;
+  top: 3em;
+  margin-bottom: -1.4em;
+  opacity: 0.4;
+}
+
+.multi-list-picker .container .lists .list-container .divider {
+  display: block;
+  padding: 0 1em 0 0.3em;
+  margin: 0;
+  font-weight: 600;
+  border-top: 1px solid #b9b9b9;
+  border-bottom: 1px solid #b9b9b9;
+  height: 7.4em;
+  overflow: hidden;
+  text-align: center;
+}
+
+.multi-list-picker.modal .container .lists,
+.multi-list-picker.top .container .lists,
+.multi-list-picker.bottom .container .lists {
+  position: relative;
+  left: -50%;
+  top: -3.8em;
+  white-space: nowrap;
+  height: 9.1em;
+  background: #ffffff;
+}
+*/
+
+/* 3列 */
+.multi-list-picker .container .lists .list-container .list {
+  /*
+  border-top: 1px solid #b9b9b9;
+  border-bottom: 1px solid #b9b9b9;
+  */
+  height: 5em;
+  overflow: hidden;
+  display: block;
+  padding: 1px;
+  margin: 0;
+  min-width: 1.5em;
+}
+
+.multi-list-picker .container .lists .list-container .list .item {
+  position: relative;
+  top: -2.9em;
+  display: block;
+  margin: 0px;
+  height: 1em;
+  padding: 0.2em 0.5em;
+  text-align: center;
+}
+
+.multi-list-picker .container .before-lists {
+  display: block;
+  height: 1.4em;
+  border-top: 1px solid #d6d6d6;
+  border-bottom: 1px solid #d6d6d6;
+  background-color: #a9a9a9;
+  position: relative;
+  top: 1.8em;
+  margin-bottom: -1.4em;
+  opacity: 0.4;
+}
+
+.multi-list-picker .container .lists .list-container .divider {
+  display: block;
+  padding: 0 1em 0 0.3em;
+  margin: 0;
+  font-weight: 600;
+  border-top: 1px solid #b9b9b9;
+  border-bottom: 1px solid #b9b9b9;
+  height: 5em;
+  overflow: hidden;
+  text-align: center;
+}
+
+.multi-list-picker.modal .container .lists,
+.multi-list-picker.top .container .lists,
+.multi-list-picker.bottom .container .lists {
+  position: relative;
+  left: -50%;
+  top: -3.8em;
+  white-space: nowrap;
+  height: 6.5em;
+  background: #ffffff;
+}
+
+@media screen and (max-width: 450px) {
+  .multi-list-picker .container .lists {
+    width: 95vw;
+  }
+}
+
+@media screen and (min-width: 451px) and (max-width: 700px) {
+  .multi-list-picker .container .lists {
+    width: 85vw;
+  }
+}
+
+@media screen and (min-width: 701px) {
+  .multi-list-picker .container .lists {
+    width: 75vw;
+  }
+}

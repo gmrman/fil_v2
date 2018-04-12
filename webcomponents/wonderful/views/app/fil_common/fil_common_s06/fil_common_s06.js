@@ -19,6 +19,14 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 }
             }
 
+
+            $scope.inventoryOrder = ['item_no', 'sort_no'];
+            if (userInfoService.userInfo.server_product == "EF" ||
+                userInfoService.userInfo.server_product == "WF" ||
+                userInfoService.userInfo.server_product == "E10") {
+                $scope.inventoryOrder = ['sort_no'];
+            }
+
             //檢查是否可以修改指示頁倉庫
             var checkChangeWarehouse = function() {
                 var flag = true;
@@ -79,10 +87,18 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
 
             //使用指示的條碼
             $scope.useBarcode = function(temp) {
-                $scope.scaninfo.warehouse_no = temp.warehouse_no;
-                $scope.scaninfo.storage_spaces_no = temp.storage_spaces_no;
-                $scope.scaninfo.lot_no = temp.lot_no;
                 $scope.scaninfo.scanning = temp.barcode_no;
+
+                if ($scope.views.show_ingoing) {
+                    $scope.sel_indicate.warehouse_no = temp.warehouse_no;
+                    $scope.sel_indicate.storage_spaces_no = temp.storage_spaces_no;
+                    $scope.sel_indicate.lot_no = temp.lot_no;
+                } else {
+                    $scope.scaninfo.warehouse_no = temp.warehouse_no;
+                    $scope.scaninfo.storage_spaces_no = temp.storage_spaces_no;
+                    $scope.scaninfo.lot_no = temp.lot_no;
+                }
+                
                 $state.go("fil_common_s02.fil_common_s03");
             };
 

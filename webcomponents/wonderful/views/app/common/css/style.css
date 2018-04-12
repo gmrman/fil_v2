@@ -331,3 +331,63 @@
   flex: 0 0 85%;
   max-width: 85%;
 }
+
+/* 加值版 str */
+.headerStyle {
+   background: linear-gradient(#0E5D68, #17A5BF 40%, #17A5BF 100%) !important; 
+   background: -moz-linear-gradient(#0E5D68, #17A5BF 40%, #17A5BF 100%) !important; 
+   background: -webkit-linear-gradient(#0E5D68, #17A5BF 40%, #17A5BF 100%) !important; 
+   background: -o-linear-gradient(#0E5D68, #17A5BF 40%, #17A5BF 100%) !important;
+}
+
+.headerStyle > .titleStyle {
+   font-family: Microsoft JhengHei;
+}
+
+.headerStyle > * {
+   color: #FFFFFF;
+}
+
+ion-header-bar.headerStyle .button:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.kb_css .popup-head {
+   background: linear-gradient(#0E5D68, #17A5BF 40%, #17A5BF 100%) !important; 
+   background: -moz-linear-gradient(#0E5D68, #17A5BF 40%, #17A5BF 100%) !important; 
+   background: -webkit-linear-gradient(#0E5D68, #17A5BF 40%, #17A5BF 100%) !important; 
+   background: -o-linear-gradient(#0E5D68, #17A5BF 40%, #17A5BF 100%) !important;
+}
+
+.kb_css .popup-body p {
+   margin: 10px 4px 0 4px;
+   font-family: Microsoft JhengHei;
+   font-size: 14px;
+   color: #6D6D72;
+}
+
+.radio-fixed i.radio-icon {
+  margin-top: -6px;
+}
+
+.footerStyle {   
+   background: #17A5BF !important; 
+}
+
+.footerStyle > .titleStyle {
+   font-family: Microsoft JhengHei;
+}
+
+.footerStyle > * {
+   color: #FFFFFF;
+}
+
+.row-content {
+   height: 100%;
+   display: flex;
+   display: -webkit-flex;
+   align-items: center;
+   -webkit-align-items: center;
+}
+/* 加值版 end */

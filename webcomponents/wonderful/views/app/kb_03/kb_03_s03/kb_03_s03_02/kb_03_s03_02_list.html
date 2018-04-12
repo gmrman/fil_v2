@@ -1,0 +1,47 @@
+<ion-view>
+    <ion-content id="scroll" class="view-pane">
+        <ion-list>
+            <ion-item class="list_item itemStyle" style="width: 100%; height: 44px;" ng-click="closeOption()" ng-repeat-start="documents in documents_sum | filter: filter | orderBy: orderBy">
+                <div class="row" ng-click="showLot(documents);">
+                    <div class="col col-40" ng-class="documents.selColor"><span ng-if="documents.doc_no.length + docEllips > 0 && docEllips != 0">...</span>{{documents.doc_no | filterEllipsis: docEllips}}</div>
+                    <div class="col col-20">{{documents.doc_seq}}</div>
+                    <div class="col col-20 text-right col-weight">{{documents.qty}}</div>
+                    <div class="col col-20 text-right">{{documents.include_qty}}</div>
+                </div>
+
+                <ion-option-button class="button button-royal" ng-if="checkIsShowEditMultiUnit(documents)"
+                ng-click="editMultiUnit('detail', documents, '')">{{langs.multi_unit}}</ion-option-button>
+
+                <ion-option-button class="button icon ion-more" ng-click="setLotsCnt(documents);"></ion-option-button>
+            </ion-item>
+            <div ng-show="documents.showLot" class="item-accordion" ng-repeat-end>
+                <div class="list_item" ng-show="lot_list.length > 0">
+                    <div class="row row-title">
+                        <div class="col col-50">
+                            {{langs.lot}}
+                        </div>
+                        <div class="col col-50 text-center">
+                            {{langs.picking}}
+                        </div>
+                    </div>
+                </div>
+
+                <ion-item ng-style="!$first && {'border-top-style': 'none'}" class="list_item itemStyle" ng-repeat="lot in lot_list = documents.lot_list | filter: filter_lot | orderBy: ['lot'] | limitTo: documents.lot_cnt">
+                    <div class="row">
+                        <div class="col col-50">{{lot.lot}}</div>
+                        <div class="col col-50">
+                            <div class="quantity-form" ng-click="documents.showMultiUnit && editMultiUnit('detail_lot', documents, lot)">
+                                <a class="mins" ng-click="!documents.showMultiUnit && compute(documents, lot, -1)">-</a>
+                                <div class="qty" ng-click="showQtyPop(documents, lot)">{{lot.include_qty}}</div>
+                                <a class="add" ng-click="!documents.showMultiUnit && compute(documents, lot, 1)">+</a>
+                            </div>
+                        </div>
+                    </div>
+                    <ion-option-button class="button icon ion-checkmark" ng-click="setIncludeQty(documents, lot)"></ion-option-button>
+                    <ion-option-button class="button icon ion-close" ng-click="compute(documents, lot, -lot.include_qty); closeOption();"></ion-option-button>
+                </ion-item>
+            </div>
+        </ion-list>
+        <br />
+    </ion-content>
+</ion-view>

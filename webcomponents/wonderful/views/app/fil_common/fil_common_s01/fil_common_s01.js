@@ -214,6 +214,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 isShowDepartment: false,
             }
             switch ($scope.page_params.program_job_no) {
+                case "1":
                 case "1-1":
                 case "2-1":
                 case "2":
@@ -358,9 +359,9 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     }];
 
                     $scope.showQbe = {
-                        is_show_department: false,
-                        is_show_supplier: false,
-                        is_show_customer: false,
+                        is_show_supplier: $scope.list_title.isShowSupplier,
+                        is_show_customer: $scope.list_title.isShowCustomer,
+                        is_show_department: $scope.list_title.isShowDepartment,
                         is_show_origindocno: false,
                         is_default: false,
                     };
@@ -379,26 +380,6 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         }
                     }
                     console.log($scope.showQbe.is_default);
-                    //依照作業代號控制顯示欄位
-                    switch ($scope.page_params.program_job_no) {
-                        case "1-1":
-                        case "2-1":
-                        case "3-1":
-                        case "2":
-                        case "4":
-                            $scope.showQbe.is_show_supplier = true;
-                            break;
-                        case "5":
-                        case "5-1":
-                        case "5-2":
-                        case "5-3":
-                        case "5-4":
-                        case "6":
-                            $scope.showQbe.is_show_customer = true;
-                            break;
-                        default:
-                            $scope.showQbe.is_show_department = true;
-                    }
 
                     //清除篩選條件值
                     $scope.clearSetType = function(obj) {
@@ -968,6 +949,14 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         return;
                     }
                 }
+
+                if ($scope.doc_array.length <= 0) {
+                    userInfoService.getVoice($scope.langs.please_choose + $scope.langs.upcoming + $scope.langs.receipt, function() {
+                        $scope.setFocusMe(true);
+                    });
+                    return;
+                }
+
                 app_todo_doc_get();
             };
 

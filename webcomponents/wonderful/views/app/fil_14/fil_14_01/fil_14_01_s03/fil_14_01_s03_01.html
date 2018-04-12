@@ -26,7 +26,7 @@
         <a class="add" ng-click="add('pop.qty')">+</a>
     </div>
 </div>
-<div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+<div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="scaninfo.isShowReference">
     <div class="col col-20">{{langs.reference}}{{langs.qty}}</div>
     <div class="col has-input quantity-form">
         <a class="mins" ng-click="mins('pop.reference')">-</a>

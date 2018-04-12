@@ -112,6 +112,10 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     ok_qty: 0,
                     return_qty: 0,
                     surplus_qty: 0,
+                    reference_qty: 0,
+                    reference_unit_no: "",
+                    return_reference_qty: 0,
+                    surplus_reference_qty: 0,
                     analysis_symbol: userInfoService.userInfo.barcode_separator,
                     scraps: []
                 };
@@ -341,6 +345,8 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         "surplus_qty": value.surplus_qty,
                         "reference_unit_no": value.reference_unit_no,
                         "reference_qty": value.reference_qty,
+                        "return_reference_qty": value.return_reference_qty,
+                        "surplus_reference_qty": value.surplus_reference_qty,
                         "reason_list": value.scraps
                     }
                 };

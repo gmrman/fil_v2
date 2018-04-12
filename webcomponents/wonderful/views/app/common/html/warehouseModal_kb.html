@@ -1,0 +1,20 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header headerStyle">
+        <h1 class="title titleStyle">{{ userInfo.language | langFilter: [langs.please_choose, langs.warehouse] }}</h1>
+        <button class="button button-icon icon ion-android-close" ng-click="close()"></button>
+    </ion-header-bar>
+    <div class="bar bar-subheader view-pane">
+        <div class="item-input popupSearch">
+            <input type="text" autofocus hide-keypad ng-model="popSelected.search" placeholder="{{ userInfo.language | langFilter: [langs.search, langs.warehouse, langs.keyword] }}">
+            <i class="icon ion-search"></i>
+        </div>
+    </div>
+    <ion-content class="padding has-footer has-subheader view-pane warehouse">
+        <ion-list>
+            <ion-radio ng-click="selwarehouse(warehouse)" collection-repeat="warehouse in warehouses | filter:({warehouse_no:popSelected.search} || {warehouse_name:popSelected.search})" item-width="100%" item-height="55" ng-model="$parent.popSelected.warehouse_no" ng-value="warehouse.warehouse_no">{{warehouse.warehouse_name}}</ion-radio>
+        </ion-list>
+    </ion-content>
+    <div class="bar bar-footer footerStyle" ng-click="setwarehouse()">
+        <h1 class="title titleStyle">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

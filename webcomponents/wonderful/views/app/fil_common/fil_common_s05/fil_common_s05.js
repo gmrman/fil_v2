@@ -9,15 +9,20 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
             fil_common_requisition, ReqTestData, circulationCardService, commonFactory, commonService, userInfoService, scanTypeService, numericalAnalysisService) {
 
             //設定list每個item的高度
-            var rows = ($scope.l_data.has_source) ? 2 : 1;
+            var rows = ($scope.views.has_source) ? 2 : 1;
             //是否顯示產品特徵
             rows += (userInfoService.userInfo.feature) ? 1 : 0;
             //入項 有來源單才顯示主要倉庫 儲位
             if ($scope.page_params.in_out_no == '1') {
-                rows += ($scope.l_data.has_source) ? 1 : 0;
+                rows += ($scope.views.has_source) ? 1 : 0;
             }
             $scope.collection_item_height = rows * 30 - ((rows - 1) * 5);
             console.log($scope.collection_item_height);
+
+            $scope.collection_order_by = ['item_no', 'item_feature_no'];
+            if ($scope.page_params.in_out_no == '1' && $scope.views.has_source) {
+                $scope.collection_order_by = ['main_warehouse_no', 'main_storage_no', 'item_no', 'item_feature_no'];
+            }
 
             //彙總頁面顏色控管
             $scope.collectionStyle = function(item) {
@@ -43,7 +48,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 APIBridge.callAPI('bcaf_create', [$scope.scanning_detail, $scope.l_data]).then(function(result) {
                     if (result) {
                         console.log('bcaf_create success');
-                        if ($scope.l_data.has_source) {
+                        if ($scope.views.has_source) {
                             bcmeGet();
                         } else {
                             bcafGet();
@@ -135,7 +140,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     }
                 }
                 $timeout(function() {
-                    $scope.l_data.show_submit = flag;
+                    $scope.views.show_submit = flag;
                 }, 0);
             };
 
@@ -232,7 +237,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     buttons: [{
                         text: $scope.langs.cancel,
                         onTap: function() {
-                            $scope.l_data.show_submit = true;
+                            $scope.views.show_submit = true;
                         }
                     }, {
                         text: $scope.langs.confirm,
@@ -246,7 +251,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
             };
 
             $scope.submit = function() {
-                $scope.l_data.show_submit = false;
+                $scope.views.show_submit = false;
                 var flag = true;
 
                 //入項 需檢查批號
@@ -315,7 +320,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         if (result.data[0].errmsg.trim()) {
                             console.log(result.data[0].errmsg);
                             userInfoService.getVoice(result.data[0].errmsg, function() {
-                                $scope.l_data.show_submit = true;
+                                $scope.views.show_submit = true;
                             });
                             return;
                         }
@@ -403,7 +408,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     var execution = error.payload.std_data.execution;
                     console.log("error:" + execution.description);
                     userInfoService.getVoice(execution.description, function() {
-                        $scope.l_data.show_submit = true;
+                        $scope.views.show_submit = true;
                     });
                 });
             };

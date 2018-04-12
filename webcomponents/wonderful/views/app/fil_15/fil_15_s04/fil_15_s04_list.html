@@ -3,6 +3,11 @@
         <ion-list>
             <ion-item class="list_item scan-title-color" on-hold="queryChangeDetail(item)" item-width="100%" item-height="collection_item_height" collection-repeat="item in item_detail">
                 <div class="col list-col-con">
+                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="!scaninfo.show_item_detail && (userInfo.isDisplay_no || userInfo.isDisplay_name || userInfo.isDisplay_spec)">
+                        <div class="col col-ellipsis" ng-if="userInfo.isDisplay_no">{{item.item_no}}</div>
+                        <div class="col col-ellipsis" ng-if="userInfo.isDisplay_name" ng-class="{'text-right':!userInfo.isDisplay_spec}">{{item.item_name || item.item_no}}</div>
+                        <div class="col col-ellipsis" ng-if="userInfo.isDisplay_spec" ng-class="{'text-right':(userInfo.isDisplay_no || userInfo.isDisplay_name)}">{{item.item_spec}}</div>
+                    </div>
                     <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
                         <div class="col col-50">{{item.warehouse_no}}</div>
                         <div class="col col-50 text-right">{{item.storage_spaces_no}}</div>
@@ -11,7 +16,7 @@
                         <div class="col col-50">{{item.lot_no}}</div>
                         <div class="col col-50 text-right">{{item.inventory_qty}}</div>
                     </div>
-                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="showInfo.reference_unit_no">
+                    <div class="row row-center list-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="scaninfo.show_reference_unit_item">
                         <div class="col text-right">{{item.reference_qty}}</div>
                     </div>
                 </div>

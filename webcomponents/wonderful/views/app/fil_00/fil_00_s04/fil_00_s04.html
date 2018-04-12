@@ -1,7 +1,8 @@
 <ion-view class="view-pane">
 	<ion-header-bar class="bar-subheader bar-stable subheader" overflow-scroll="true">
 		<div class="subheader-diy" id="sub">
-			<a class="tab-diy" ng-repeat="tab in tabs" ng-click="fbtnFun(tab.name,tab.id)" ng-class="slectIndex==tab.id ? 'tab_select' : '' ">
+            <a class="tab-diy" ng-repeat="tab in tabs" ng-click="fbtnFun(tab.name, $index)" ng-class="slectIndex==$index ? 'tab_select' : '' ">
+			   <!-- <a class="tab-diy" ng-repeat="tab in tabs" ng-click="fbtnFun(tab.name,tab.id)" ng-class="slectIndex==tab.id ? 'tab_select' : '' ">  170519 By zhen -->
 				<p ng-if="basicInf.language != 'en_US' ">{{langs[tab.name]}}{{langs.management}}</p>
 				<p ng-if="basicInf.language == 'en_US' ">{{langs[tab.name]}}</p>
 			</a>
@@ -15,7 +16,7 @@
 					<ul class="item">
 						<li ng-repeat="menuIcon in m.info" class="menuClass" ng-click="goPage(menuIcon)">
 							<div class="row row-center row-no-padding">
-								<div class="col ">
+								<div class="col " ng-class="{true: 'badgeShow'}[menuIcon.badgeShow]" data-badge="{{menuIcon.badgeCnt}}">
 									<img ng-if="menuIcon.iconType == 'png' " ng-src="{{menuIcon.icon}}" class="menuClassPng">
 									<ng-include ng-if="menuIcon.iconType == 'svg' " src="menuIcon.icon" ng-class="[menuIcon.color]"></ng-include>
 								</div>

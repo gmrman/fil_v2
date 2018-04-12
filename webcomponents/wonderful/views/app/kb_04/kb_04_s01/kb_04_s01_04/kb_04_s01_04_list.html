@@ -1,0 +1,31 @@
+<ion-view>
+    <ion-content>
+        <ion-list>
+            <ion-item class="list_item itemStyle" item-width="100%" item-height="collection_item_height" collection-repeat="item in goodsList | orderBy: orderBy">
+                <div class="row row-center">
+                    <div class="col col-10 checkbox">
+                        <input type="checkbox" class="checkbox-icon" ng-model="item.checked">
+                    </div>
+                    <div class="col list-col-con" ng-click="OptionChangeNum($index, item.showMultiUnit)" on-hold="showOrderBy()">
+                        <div class="row list-row-con">
+                            <div class="col col-80">{{item.source_no}}</div>
+                            <div class="col col-20 text-right">{{item.seq}}</div>
+                        </div>
+                        <div class="row list-row-con">
+                            <div class="col col-80 col-ellipsis">{{item.item_name || item.item}}</div>
+                            <div class="col col-20 text-right">{{item.qty}}</div>
+                        </div>
+                        <div class="row list-row-con">
+                            <div class="col col-33">{{item.warehouse_no}}</div>
+                            <div class="col col-33">{{item.storage_spaces_no}}</div>
+                            <div class="col col-33"></div>
+                        </div>
+                    </div>
+                </div>
+                <ion-option-button class="button button-royal" ng-if="item.showMultiUnit" ng-click="editMultiUnit('detail',$index)">{{langs.multi_unit}}</ion-option-button>
+                <ion-option-button class="button icon ion-android-create button-balanced" ng-click="showLotQtyList($index, item.showMultiUnit)"></ion-option-button>
+                <ion-option-button class="button icon ion-trash-a button-assertive" ng-click="delGoods($index)"></ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

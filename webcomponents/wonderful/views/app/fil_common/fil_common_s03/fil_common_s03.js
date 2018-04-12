@@ -98,7 +98,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 }
 
                 //調撥檢查撥出倉及撥入倉 warehouse_cost
-                if ($scope.l_data.show_ingoing) {
+                if ($scope.views.show_ingoing) {
                     //取得倉庫資訊
                     index = userInfoService.warehouseIndex[$scope.sel_indicate.warehouse_no] || 0;
                     var out_warehouse_cost = userInfoService.warehouse[index].warehouse_cost || "N";
@@ -127,7 +127,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 }
 
                 // T系列 檢查 雜收發新單/報廢過帳 理由碼不可為空
-                if ($scope.l_data.show_reason) {
+                if ($scope.views.show_reason) {
                     if (commonService.isNull($scope.scaninfo.reason_code)) {
                         //顯示錯誤 "理由碼不可為空！"
                         userInfoService.getVoice($scope.langs.reason_no_error, function() {
@@ -174,10 +174,10 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         };
                         parameter = angular.extend(parameter, parameter_add);
                         //調撥 倉儲為撥出倉儲 帶入撥出倉庫
-                        if ($scope.l_data.show_ingoing) {
+                        if ($scope.views.show_ingoing) {
                             parameter.warehouse_no = $scope.sel_indicate.warehouse_no || " ";
-                            parameter.storage_spaces_no = "";
-                            parameter.lot_no = "";
+                            parameter.storage_spaces_no = $scope.sel_indicate.storage_spaces_no || "";
+                            parameter.lot_no = $scope.sel_indicate.lot_no || "";
                         }
                         break;
                 }
@@ -227,16 +227,16 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
 
                 //是否為箱條碼預設為 N
                 var is_packing_barcode = false;
+                //packing_barcode 有值且不為 "N" 則判斷為裝箱條碼
+                if (!commonService.isNull(barcode_detail[0].packing_barcode) &&
+                    !commonService.isEquality(barcode_detail[0].packing_barcode, "N")) {
+                    is_packing_barcode = true;
+                }
 
                 //有來源單據 檢查回傳條碼資訊料件編號是否與單據相同
-                if ($scope.l_data.has_source) {
+                if ($scope.views.has_source) {
                     $scope.add_scan_time_log("檢查回傳條碼資訊料件編號是否與單據相同");
                     //非裝箱條碼 只檢查第一筆
-                    //packing_barcode 有值且不為 "N" 則判斷為裝箱條碼
-                    if (!commonService.isNull(barcode_detail[0].packing_barcode) &&
-                        !commonService.isEquality(barcode_detail[0].packing_barcode, "N")) {
-                        is_packing_barcode = true;
-                    }
                     var barcodedata_length = (!is_packing_barcode) ? 1 : barcode_detail.length;
                     var sourceDocDetail = fil_common_requisition.getSourceDocDetail();
                     var flag = true;
@@ -278,6 +278,8 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         if (!is_packing_barcode) {
                             element.packing_barcode = "N";
                             continue;
+                        } else {
+                            element.packing_barcode = barcode_no;
                         }
 
                         //裝箱條碼 直接每筆新增進掃描明細
@@ -449,7 +451,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
             // 批號取得順序：單據批號＞條碼批 barcode_info.barcode_lot_no ＞條碼批號 barcode_info.lot_no ＞畫面批號
             var checkStorageLot = function(barcode_info) {
                 //若無倉儲批值 由APP預帶
-                if ($scope.l_data.show_ingoing) {
+                if ($scope.views.show_ingoing) {
                     //調撥 倉庫為撥出倉庫 儲位、批號為空白
                     if (commonService.isNull(barcode_info.warehouse_no)) {
                         barcode_info.warehouse_no = $scope.sel_indicate.warehouse_no;
@@ -480,7 +482,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 }
 
                 //調撥 檢查 撥出倉儲不可等於撥入倉儲！
-                if ($scope.l_data.show_ingoing) {
+                if ($scope.views.show_ingoing) {
                     if (commonService.isEquality(barcode_info.warehouse_no, $scope.scaninfo.warehouse_no) &&
                         commonService.isEquality(barcode_info.storage_spaces_no, $scope.scaninfo.storage_spaces_no)) {
                         //顯示錯誤 "撥出倉儲不可等於撥入倉儲！"
@@ -492,16 +494,16 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     }
                 }
 
+                if ($scope.page_params.in_out_no == "-1" || $scope.page_params.program_job_no == "13-3") {
+                    return checkDirective(barcode_info);
+                }
+
                 if (!commonService.isNull(barcode_info.barcode_lot_no)) {
                     barcode_info.lot_no = barcode_info.barcode_lot_no;
                 }
 
                 if (commonService.isNull(barcode_info.lot_no)) {
                     barcode_info.lot_no = $scope.scaninfo.lot_no;
-                }
-
-                if ($scope.page_params.in_out_no == "-1" || $scope.page_params.program_job_no == "13-3") {
-                    return checkDirective(barcode_info);
                 }
 
                 $scope.add_scan_time_log("入項 批號管控");
@@ -521,7 +523,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
 
             //檢查是否依照先進先出
             var checkDirective = function(barcode_info) {
-                if (!$scope.l_data.show_directive) {
+                if (!$scope.views.show_directive) {
                     return setTempGood(barcode_info);
                 }
                 $scope.add_scan_time_log("檢查是否依照先進先出");
@@ -595,7 +597,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 }
 
                 var isShowLotPopup = true;
-                if ($scope.l_data.has_source) {
+                if ($scope.views.has_source) {
                     isShowLotPopup = false;
                     console.log(fil_common_requisition.computed_doc_detail);
                     //檢查單據各項次是否有缺少批號
@@ -614,7 +616,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 if (!commonService.isNull($scope.scaninfo.lot_no)) {
                     isShowLotPopup = false;
                     barcode_info.lot_no = $scope.scaninfo.lot_no;
-                    if ($scope.l_data.has_source) {
+                    if ($scope.views.has_source) {
                         setDocLot(barcode_info);
                     }
                     return setTempGood(barcode_info);
@@ -626,7 +628,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         if (!commonService.isNull(res)) {
                             $scope.scaninfo.lot_no = res;
                             barcode_info.lot_no = res;
-                            if ($scope.l_data.has_source) {
+                            if ($scope.views.has_source) {
                                 setDocLot(barcode_info);
                             }
                             return setTempGood(barcode_info);
@@ -648,7 +650,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 var isShowLotPopup = false;
 
                 //有來源單據 檢查每個項次是否有批號
-                if ($scope.l_data.has_source) {
+                if ($scope.views.has_source) {
                     console.log(fil_common_requisition.computed_doc_detail);
                     for (var i = 0; i < fil_common_requisition.computed_doc_detail.length; i++) {
                         var element = fil_common_requisition.computed_doc_detail[i];
@@ -699,7 +701,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     return setTempGood(barcode_info);
                 }
                 //有來源單據
-                if ($scope.l_data.has_source) {
+                if ($scope.views.has_source) {
                     console.log(fil_common_requisition.computed_doc_detail);
                     angular.forEach(fil_common_requisition.computed_doc_detail, function(value) {
                         if (commonService.isEquality(value.item_no, barcode_info.item_no) &&
@@ -793,6 +795,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     maxqty: qty,
                     barcode_inventory_qty: barcode_info.inventory_qty || 0,
                     doc_qty: qty,
+                    allow_doc_qty: qty,
 
                     ingoing_warehouse_no: $scope.scaninfo.warehouse_no, //撥入倉庫
                     ingoing_storage_spaces_no: $scope.scaninfo.storage_spaces_no, //撥入儲位
@@ -803,6 +806,8 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     seq: "",
                     doc_line_seq: "",
                     doc_batch_seq: "",
+                    op_no: "", //作業編號
+                    op_name: "", //作業名稱
                     bc_source_no: barcode_info.source_no,
                     bc_source_seq: barcode_info.source_seq,
                     bc_source_line_seq: barcode_info.source_line_seq,
@@ -811,8 +816,8 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     lot_control_type: barcode_info.lot_control_type,
                     inventory_management_features: barcode_info.inventory_management_features,
                     barcode_lot_no: barcode_info.barcode_lot_no,
-                    decimal_places: 0,
-                    decimal_places_type: 0,
+                    decimal_places: barcode_info.decimal_places,
+                    decimal_places_type: barcode_info.decimal_places_type,
 
                     //庫存單位
                     inventory_rate: 0,
@@ -820,7 +825,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     inventory_qty: 0,
 
                     //參考單位
-                    reference_rate: 0,
+                    reference_rate: numericalAnalysisService.accDiv(qty, barcode_info.reference_qty) || 0,
                     reference_unit_no: barcode_info.reference_unit_no || "",
                     reference_qty: barcode_info.reference_qty || 0,
                     max_reference_qty: barcode_info.reference_qty || 0,
@@ -836,10 +841,12 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
 
                     packing_barcode: barcode_info.packing_barcode || "N", //是否為裝箱條碼
                     packing_qty: barcode_info.packing_qty || 0, //裝箱數量
+
+
                 };
 
                 //無來源單 不檢查單據數量，直接依照庫存數新增
-                if (!$scope.l_data.has_source) {
+                if (!$scope.views.has_source) {
                     return checkDuplication(temp);
                 }
                 return checkDocQty(temp);
@@ -958,9 +965,9 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                                 commonService.isEquality(value.seq, sourceDocDetail[i].seq) &&
                                 commonService.isEquality(value.doc_line_seq, sourceDocDetail[i].doc_line_seq) &&
                                 commonService.isEquality(value.doc_batch_seq, sourceDocDetail[i].doc_batch_seq)) {
-                                sourceDocDetail[i].doc_qty = numericalAnalysisService.accSub(sourceDocDetail[i].doc_qty, value.qty);
+                                sourceDocDetail[i].surplus_doc_qty = numericalAnalysisService.accSub(sourceDocDetail[i].surplus_doc_qty, value.qty);
                                 sourceDocDetail[i].allow_doc_qty = numericalAnalysisService.accSub(sourceDocDetail[i].allow_doc_qty, value.qty);
-                                sourceDocDetail[i].reference_qty = numericalAnalysisService.accSub(sourceDocDetail[i].reference_qty, value.reference_qty);
+                                sourceDocDetail[i].surplus_reference_qty = numericalAnalysisService.accSub(sourceDocDetail[i].surplus_reference_qty, value.reference_qty);
                                 in_warehouse_no = value.warehouse_no;
                                 in_storage_spaces_no = value.storage_spaces_no;
                             }
@@ -977,9 +984,9 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                                 commonService.isEquality(value.seq, sourceDocDetail[i].seq) &&
                                 commonService.isEquality(value.doc_line_seq, sourceDocDetail[i].doc_line_seq) &&
                                 commonService.isEquality(value.doc_batch_seq, sourceDocDetail[i].doc_batch_seq)) {
-                                sourceDocDetail[i].doc_qty = numericalAnalysisService.accSub(sourceDocDetail[i].doc_qty, value.qty);
+                                sourceDocDetail[i].surplus_doc_qty = numericalAnalysisService.accSub(sourceDocDetail[i].surplus_doc_qty, value.qty);
                                 sourceDocDetail[i].allow_doc_qty = numericalAnalysisService.accSub(sourceDocDetail[i].allow_doc_qty, value.qty);
-                                sourceDocDetail[i].reference_qty = numericalAnalysisService.accSub(sourceDocDetail[i].reference_qty, value.reference_qty);
+                                sourceDocDetail[i].surplus_reference_qty = numericalAnalysisService.accSub(sourceDocDetail[i].surplus_reference_qty, value.reference_qty);
                                 in_warehouse_no = value.warehouse_no;
                                 in_storage_spaces_no = value.storage_spaces_no;
                             }
@@ -1021,12 +1028,20 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         case "1": // 採購收貨
                         case "3": // 收貨入庫
                         case "9": // 完工入庫
-                            if (!commonService.isEquality(sourceDocDetail[i].source_no, item.bc_source_no) ||
-                                !commonService.isEquality(sourceDocDetail[i].seq, item.bc_source_seq) ||
-                                !commonService.isEquality(sourceDocDetail[i].doc_line_seq, item.bc_source_line_seq) ||
-                                !commonService.isEquality(sourceDocDetail[i].doc_batch_seq, item.bc_source_batch_seq)) {
-                                error_message = $scope.langs.barcode_doc_origin_different_error;
-                                continue;
+                            //合併產條碼 條碼來源項次為 0 只檢查單號
+                            if (commonService.isEquality(item.bc_source_seq, 0)) {
+                                if (!commonService.isEquality(sourceDocDetail[i].source_no, item.bc_source_no)) {
+                                    error_message = $scope.langs.barcode_doc_origin_different_error;
+                                    continue;
+                                }
+                            } else {
+                                if (!commonService.isEquality(sourceDocDetail[i].source_no, item.bc_source_no) ||
+                                    !commonService.isEquality(sourceDocDetail[i].seq, item.bc_source_seq) ||
+                                    !commonService.isEquality(sourceDocDetail[i].doc_line_seq, item.bc_source_line_seq) ||
+                                    !commonService.isEquality(sourceDocDetail[i].doc_batch_seq, item.bc_source_batch_seq)) {
+                                    error_message = $scope.langs.barcode_doc_origin_different_error;
+                                    continue;
+                                }
                             }
                             break;
                         case "13-3": // 兩階段撥入
@@ -1051,7 +1066,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     item.doc_line_seq = sourceDocDetail[i].doc_line_seq;
                     item.doc_batch_seq = sourceDocDetail[i].doc_batch_seq;
 
-                    if ($scope.l_data.use_erp_warehousing) {
+                    if ($scope.views.use_erp_warehousing) {
                         if (sourceDocDetail[i].erp_warehousing == "Y") {
                             item.warehouse_no = sourceDocDetail[i].warehouse_no;
                             item.storage_spaces_no = sourceDocDetail[i].storage_spaces_no;
@@ -1142,7 +1157,10 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
 
                     item.unit = sourceDocDetail[i].unit_no;
                     item.main_organization = sourceDocDetail[i].main_organization;
+                    item.op_no = sourceDocDetail[i].op_no;
+                    item.op_name = sourceDocDetail[i].op_name;
                     item.allow_doc_qty = sourceDocDetail[i].allow_doc_qty;
+                    item.surplus_doc_qty = sourceDocDetail[i].surplus_doc_qty;
                     item.doc_qty = sourceDocDetail[i].doc_qty;
                     item.decimal_places = sourceDocDetail[i].decimal_places;
                     item.decimal_places_type = sourceDocDetail[i].decimal_places_type;
@@ -1163,7 +1181,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     item.valuation_unit_no = sourceDocDetail[i].valuation_unit_no;
 
                     //計算單據總和數量
-                    all_doc_qty = numericalAnalysisService.accAdd(all_doc_qty, item.doc_qty);
+                    all_doc_qty = numericalAnalysisService.accAdd(all_doc_qty, item.surplus_doc_qty);
                     all_allow_doc_qty = numericalAnalysisService.accAdd(all_allow_doc_qty, item.allow_doc_qty);
 
                     tempArray.push(angular.copy(item));
@@ -1249,10 +1267,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     case "2":
                         //判斷若庫存數與單據數量不相等 彈窗提示使用者確認數量
                         var temp_doc_qty = numericalAnalysisService.accSub(max_qty, tempArray[0].qty);
-                        if (temp_doc_qty < 0 && $scope.l_data.edit_qty) {
-                            if (tempArray[0].packing_barcode != "N") {
-                                return false;
-                            }
+                        if (temp_doc_qty < 0 && $scope.views.edit_qty && tempArray[0].packing_barcode == "N") {
                             commonFactory.showCheckQtyPopup("2", $scope.page_params.in_out_no, tempArray[0].qty, max_qty, all_allow_doc_qty).then(function(res) {
                                 $scope.setFocusMe(true);
                                 $scope.inTheScan(false)
@@ -1296,7 +1311,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     if (qty > all_doc_qty) {
                         temp.maxqty = temp.allow_doc_qty;
                     } else {
-                        temp.maxqty = temp.doc_qty;
+                        temp.maxqty = temp.surplus_doc_qty;
                     }
 
                     temp.qty = tempQty;
@@ -1309,7 +1324,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         isDistributionQty = (temp.qty > 0);
                     } else {
                         isDistributionQty = (temp.qty >= 0);
-                        if ($scope.l_data.has_source) {
+                        if ($scope.views.has_source) {
                             isDistributionQty = (temp.qty > 0);
                         }
                     }
@@ -1328,10 +1343,14 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                             case 2:
                             case "2":
                                 if (!commonService.isNull(temp.reference_unit_no)) {
+                                    // temp.reference_qty = numericalAnalysisService.to_round(
+                                    //     numericalAnalysisService.accMul(
+                                    //         temp.qty,
+                                    //         numericalAnalysisService.accDiv(temp.max_reference_qty, temp.barcode_qty)),
+                                    //     temp.decimal_places,
+                                    //     temp.decimal_places_type);
                                     temp.reference_qty = numericalAnalysisService.to_round(
-                                        numericalAnalysisService.accMul(
-                                            temp.qty,
-                                            numericalAnalysisService.accDiv(temp.max_reference_qty, temp.barcode_qty)),
+                                        numericalAnalysisService.accDiv(temp.qty, temp.reference_rate),
                                         temp.decimal_places,
                                         temp.decimal_places_type);
                                 }
@@ -1583,7 +1602,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                                 commonService.isEquality(value.doc_line_seq, array[i].doc_line_seq) &&
                                 commonService.isEquality(value.doc_batch_seq, array[i].doc_batch_seq)) {
                                 array[i].allow_doc_qty = numericalAnalysisService.accSub(array[i].allow_doc_qty, value.qty);
-                                array[i].doc_qty = numericalAnalysisService.accSub(array[i].doc_qty, value.qty);
+                                array[i].surplus_doc_qty = numericalAnalysisService.accSub(array[i].surplus_doc_qty, value.qty);
                             }
                         });
                     }
@@ -1591,17 +1610,17 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     //判斷是否使用誤差率
                     if (use_allow_rate) {
                         //計算可容許誤差數量
-                        can_use_doc_qty = numericalAnalysisService.accSub(array[i].allow_doc_qty, array[i].doc_qty);
+                        can_use_doc_qty = numericalAnalysisService.accSub(array[i].allow_doc_qty, array[i].surplus_doc_qty);
 
                         //計算使用誤差數量
                         if (allow_qty > can_use_doc_qty) {
                             allow_qty = numericalAnalysisService.accSub(allow_qty, can_use_doc_qty);
                             use_doc_qty = array[i].allow_doc_qty;
                         } else {
-                            use_doc_qty = numericalAnalysisService.accAdd(array[i].doc_qty, allow_qty);
+                            use_doc_qty = numericalAnalysisService.accAdd(array[i].surplus_doc_qty, allow_qty);
                         }
                     } else {
-                        use_doc_qty = array[i].doc_qty;
+                        use_doc_qty = array[i].surplus_doc_qty;
                     }
 
                     //單據項次剩餘數量 有剩餘數量時核銷

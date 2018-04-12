@@ -1,11 +1,14 @@
 define(["app", "API", "APIS", "ionic-popup", "numericalAnalysisService"], function(app) {
     app.factory('commonFactory', ['APIService', 'AppLang', '$timeout', '$rootScope', 'numericalAnalysisService',
-        '$ionicLoading', '$ionicPopup', 'IonicClosePopupService', 'IonicPopupService', "userInfoService", "$ionicModal",
+        '$ionicLoading', '$ionicPopup', 'IonicClosePopupService', 'IonicPopupService', "userInfoService", "$ionicModal", "$filter",
         function(APIService, AppLang, $timeout, $rootScope, numericalAnalysisService,
-            $ionicLoading, $ionicPopup, IonicClosePopupService, IonicPopupService, userInfoService, $ionicModal) {
+            $ionicLoading, $ionicPopup, IonicClosePopupService, IonicPopupService, userInfoService, $ionicModal, $filter) {
             var parent = $rootScope;
             var $scope = parent.$new();
             $scope.langs = AppLang.langs;
+            $scope.getUserInfo = function () {
+               $scope.userInfo = userInfoService.getUserInfo();
+           };
 
             //計算數值是否小於1
             var checkmin = function(value, value2) {
@@ -334,7 +337,7 @@ define(["app", "API", "APIS", "ionic-popup", "numericalAnalysisService"], functi
                                 } else if (in_out_no == "1" || in_out_no == "0") {
                                     error_massage = AppLang.langs.picks_error_2;
                                 } else if (in_out_no == "QC") {
-                                    error_massage = AppLang.langs.qc_maxqty_error;
+                                    error_massage = AppLang.langs.qc_maxQty_error;
                                 } else {
                                     error_massage = AppLang.langs.picks_error;
                                 }
@@ -363,8 +366,204 @@ define(["app", "API", "APIS", "ionic-popup", "numericalAnalysisService"], functi
                     });
                     IonicClosePopupService.register(false, QtyPop);
                     return QtyPop;
+                },
+                /***********************************************************************************************************************
+                 * Descriptions...: 顯示排序設定
+                 * Usage..........: showOrderByPopup(type, qty, maxqty)
+                 * Input parameter: orderBy           當前選擇條件
+                 * Return code....: orderBy           當前選擇條件
+                 * Modify.........: 20170524 By zhen
+                 ***********************************************************************************************************************/
+                showOrderByPopup: function (orderBy) {
+                    $scope.getUserInfo();
+                    
+                    $scope.pop = {
+                        orderBy: orderBy
+                    };
+
+                    var OrderByPop = $ionicPopup.show({
+                        title: $filter("langFilter")($scope.userInfo.language, [$scope.langs.sorting, $scope.langs.set]),
+                        scope: $scope,
+                        templateUrl: "views/app/common/html/orderByPop.html",
+                        cssClass: "kb_css",
+                        buttons: [{
+                            text: $scope.langs.cancel
+                        }, {
+                            text: $scope.langs.confirm,
+                            onTap: function (event) {
+                                if (!$scope.pop.orderBy) {
+                                    $scope.pop.orderBy = "0";
+                                }
+
+                                return $scope.pop.orderBy;
+                            }
+                        }]
+                    });
+
+                    IonicClosePopupService.register(false, OrderByPop);
+                    return OrderByPop;
+                },
+                /***********************************************************************************************************************
+                 * Descriptions...: 顯示數量彈窗-超過上限數量時，預設最大值
+                 * Usage..........: showQtyPopup_kb(type, qty, maxqty)
+                 * Input parameter: type                     數值類型
+                 *                : qty                      數量
+                 *                : maxqty                   最大值
+                 *                : callback                 使用者自訂檢查
+                 * Return code....: qty                      數量
+                 * Modify.........: 20160606 By zhen
+                 ***********************************************************************************************************************/
+                showQtyPopup_kb: function (type, qty, maxqty, callback) {
+                    //計算數值是否小於0
+                    var checkmin_back = checkmin;
+                    checkmin = function (value, value2) {
+                        //強制轉為數量
+                        value = +value;
+                        value2 = +value2;
+
+                        if ((value + value2) >= 0) {
+                            value += value2;
+                        }
+                        else {
+                            //該筆資料計算後小於零，設此筆資料為零
+                            value = 0;
+                        };
+
+                        return value;
+                    };
+
+                    $scope.pop = {
+                        qty: parseFloat(qty),
+                        maxqty: maxqty,
+                        type: type
+                    };
+
+                    var QtyPop = $ionicPopup.show({
+                        title: $scope.langs.edit + $scope.langs.qty,
+                        scope: $scope,
+                        cssClass: "kb_css",
+                        templateUrl: "views/app/common/html/qtyPop.html",
+                        buttons: [{
+                            text: $scope.langs.cancel
+                        }, {
+                            text: $scope.langs.confirm,
+                            onTap: function (e) {
+                                if (isNaN($scope.pop.qty) || $scope.pop.qty <= 0) {
+                                    $scope.pop.qty = 0;
+                                }
+
+                                //交由各作業自行檢查數值資料
+                                $scope.pop.qty = callback($scope.pop.qty, $scope.pop.maxqty, e);
+                                return $scope.pop.qty;
+                            }
+                        }]
+                    }).then(function (res) {
+                        //檢查邏輯還原
+                        checkmin = checkmin_back;
+
+                        return res;
+                    });
+
+                    IonicClosePopupService.register(false, QtyPop);
+                    return QtyPop;
+                },
+                /***********************************************************************************************************************
+                 * Descriptions...: 倉儲批彈窗
+                 * Modify.........: 20160620 By zhen
+                 ***********************************************************************************************************************/
+                showWarehouseModal_kb: function (warehouses, scaninfo, resolve, reject) {
+                    $scope.warehouses = warehouses;
+                    $scope.popSelected = {
+                        search: "",
+                        warehouse_no: scaninfo.warehouse_no,
+                        warehouse_name: scaninfo.warehouse_name
+                    };
+
+                    $scope.selwarehouse = function (warehouse) {
+                        $scope.popSelected.warehouse_no = warehouse.warehouse_no;
+                        $scope.popSelected.warehouse_name = warehouse.warehouse_name;
+                        $scope.popSelected.storage_spaces = warehouse.storage_spaces;
+                    };
+
+                    $scope.setwarehouse = function () {
+                        var index = $scope.warehouses.findIndex(function (item) {
+                            return $scope.popSelected.warehouse_no == item.warehouse_no;
+                        });
+
+                        if (index !== -1) { //存在於倉庫基本檔
+                            $scope.close();
+                            return resolve($scope.warehouses[index]);
+                        }
+                    };
+
+                    $ionicModal.fromTemplateUrl('views/app/common/html/warehouseModal_kb.html', {
+                        scope: $scope,
+                        cssClass: "kb_css"
+                    }).then(function (modal) {
+                        $scope.close = function () {
+                            reject();
+                            modal.hide().then(function () {
+                                return modal.remove();
+                            });
+                        };
+                        modal.show();
+                        return modal;
+                    });
+                },
+                showStorageModal_kb: function (storage_spaces, scaninfo, resolve, reject) {
+                    $scope.storages = storage_spaces;
+                    $scope.popSelected = {
+                        search: "",
+                        storage_spaces_no: scaninfo.storage_spaces_no,
+                        storage_spaces_name: scaninfo.storage_spaces_name,
+                    };
+
+                    $scope.selstorage = function (storage) {
+                        $scope.popSelected.storage_spaces_no = storage.storage_spaces_no;
+                        $scope.popSelected.storage_spaces_name = storage.storage_spaces_name;
+                    };
+
+                    $scope.setstorage = function () {
+                        $scope.close();
+                        return resolve($scope.popSelected);
+                    };
+
+                    $ionicModal.fromTemplateUrl('views/app/common/html/storageModal_kb.html', {
+                        scope: $scope,
+                        cssClass: "kb_css"
+                    }).then(function (modal) {
+                        $scope.close = function () {
+                            reject();
+                            modal.hide().then(function () {
+                                return modal.remove();
+                            });
+                        };
+                        modal.show();
+                        return modal;
+                    });
+                },
+                showLotPopup_kb: function (lot_no) {
+                    $scope.lotobj = {
+                        lot_no: lot_no
+                    };
+                    var lotPop = $ionicPopup.show({
+                        title: $scope.langs.edit + $scope.langs.lot,
+                        scope: $scope,
+                        cssClass: "kb_css",
+                        templateUrl: "views/app/common/html/lotPop_kb.html",
+                        buttons: [{
+                            text: $scope.langs.cancel
+                        }, {
+                            text: $scope.langs.confirm,
+                            onTap: function () {
+                                return $scope.lotobj.lot_no;
+                            }
+                        }]
+                    });
+                    IonicClosePopupService.register(false, lotPop);
+                    return lotPop;
                 }
-            };
+          };
         }
     ]);
 });

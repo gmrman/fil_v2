@@ -1,0 +1,46 @@
+<ion-view>
+    <ion-content ng-class="{'has-footer': goodsList.length > 0}">
+        <ion-list>
+            <ion-item class="list_item itemStyle" item-width="100%" item-height="115" collection-repeat="item in goodsList">
+                <div class="col list-col-con" ng-click="closeOption()">
+                    <div class="row list-row-con">
+                        <div class="col col-60 col-ellipsis">{{item.scan_doc_no}}</div>
+                        <div class="col col-33 quantity-form">
+                            <a class="mins" ng-click="mins('ok_qty', item)">-</a>
+                            <div class="qty" ng-click="showQtyPop('ok_qty', item)">{{item.ok_qty}}</div>
+                            <a class="add" ng-click="add('ok_qty', item)">+</a>
+                        </div>
+                    </div>
+                    <div class="row list-row-con" ng-if="item.reference_unit_no">
+                        <div class="col col-60"></div>
+                        <div class="col col-33 quantity-form">
+                            <a class="mins" ng-click="mins('reference_qty', item)">-</a>
+                            <div class="qty" ng-click="showQtyPop('reference_qty', item)">{{item.reference_qty}}</div>
+                            <a class="add" ng-click="add('reference_qty', item)">+</a>
+                        </div>
+                    </div>
+                    <div class="row list-row-con">
+                        <div class="col col-60 col-ellipsis">{{item.item_name}}</div>
+                        <div class="col col-33 quantity-form">
+                            <a class="mins" ng-click="mins('return_qty', item)">-</a>
+                            <div class="qty" ng-click="showQtyPop('return_qty', item)">{{item.return_qty}}</div>
+                            <a class="add" ng-click="add('return_qty', item)">+</a>
+                        </div>
+                        <img class="png-width-small png-right" ng-src="./views/app/common/html/image/ng.png" alt="NG" ng-if="getAbnormal()" ng-show="item.return_qty > 0"
+                            ng-click="showAbnormal(item)">
+                    </div>
+                    <div class="row list-row-con">
+                        <div class="col col-60 col-ellipsis">{{item.item_spec}}</div>
+                        <div class="col col-33 quantity-form">
+                            <a class="mins" ng-click="mins('surplus_qty', item)">-</a>
+                            <div class="qty" ng-click="showQtyPop('surplus_qty', item)">{{item.surplus_qty}}</div>
+                            <a class="add" ng-click="add('surplus_qty', item)">+</a>
+                        </div>
+                    </div>
+                </div>
+                <!--<ion-option-button class="button icon ion-android-create" ng-click="showLotQtyList($index, item.showMultiUnit)"></ion-option-button>-->
+                <ion-option-button class="button icon ion-trash-a button-assertive" ng-click="delGoods($index)"></ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

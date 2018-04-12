@@ -198,6 +198,23 @@ PUBLIC FUNCTION bcae_bcaf_upload_create(p_jsonarr)
                LET head[l_i].scan_detail[l_j].info_lot_no = l_info_lot_no
             END IF
 
+            #关联bcme取采购单，项次，项序，分批序
+            IF l_data.bcae014 = '1-1' OR l_data.bcae014 = '1-2' OR l_data.bcae014 = '3-1' THEN
+               SELECT bcme023 ,bcme024,bcme025,bcme026  
+                 INTO head[l_i].scan_detail[l_j].doc_no,
+                      head[l_i].scan_detail[l_j].seq,       
+                      head[l_i].scan_detail[l_j].line_seq,
+                      head[l_i].scan_detail[l_j].batch_seq
+                 FROM app_base_bcme_t
+                WHERE bcmeent = g_userInfo.enterprise_no
+                  AND bcmesite = g_userInfo.site_no
+                  AND bcme001 = l_data.bcae014
+                  AND bcme002 = head[l_i].scan_detail[l_j].doc_no
+                  AND bcme005 = head[l_i].scan_detail[l_j].seq
+                  AND bcme006 = head[l_i].scan_detail[l_j].line_seq
+                  AND bcme007 = head[l_i].scan_detail[l_j].batch_seq
+            END IF
+
             LET l_j= l_j+1
          END FOREACH
          CALL head[l_i].scan_detail.deleteElement(l_j)

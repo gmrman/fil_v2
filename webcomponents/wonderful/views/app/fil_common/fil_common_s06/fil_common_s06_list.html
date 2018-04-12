@@ -1,7 +1,7 @@
 <ion-view>
     <ion-content class="view-pane">
         <ion-list can-swipe="false">
-            <ion-item class="list_item scan-title-color" on-hold="useBarcode(item)" ng-class="{directive_list_bgcolor: item.sort_no > 10000 }" item-width="100%" item-height="collection_item_height" collection-repeat="item in inventory_detail | orderBy:['sort_no']">
+            <ion-item class="list_item scan-title-color" on-hold="useBarcode(item)" ng-class="{directive_list_bgcolor: item.sort_no > 10000 }" item-width="100%" item-height="collection_item_height" collection-repeat="item in inventory_detail | orderBy:inventoryOrder">
                 <div class="col list-col-con">
                     <div class="row row-center list-row-con">
                         <div class="col col-80 col-ellipsis">{{item.barcode_no}}</div>

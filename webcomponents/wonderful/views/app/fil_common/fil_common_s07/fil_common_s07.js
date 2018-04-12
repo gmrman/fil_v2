@@ -8,6 +8,13 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
             $ionicLoading, $ionicPopup, $ionicModal, $ionicListDelegate, IonicPopupService, IonicClosePopupService,
             fil_common_requisition, ReqTestData, circulationCardService, commonFactory, commonService, userInfoService, scanTypeService, numericalAnalysisService) {
 
+            //設定list每個item的高度
+            var rows = 3;
+            //是否顯示 產品特徵 / 作業名稱
+            rows += (userInfoService.userInfo.feature || $scope.views.show_op) ? 1 : 0;
+            $scope.collection_item_height = rows * 30 - ((rows - 1) * 5);
+            console.log($scope.collection_item_height);
+
             //彈出視窗區塊 (S)---------------------------------------------------
 
             //拆分 彈出倉庫選擇頁面
@@ -287,7 +294,10 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 $scope.setSplitItem = function() {
                     if ($scope.showGood.storage_management == "Y") {
                         if (commonService.isNull($scope.showGood.storage_spaces_no)) {
-                            userInfoService.getVoice($scope.langs.storage_management_error, function() {});
+                            userInfoService.getVoice($scope.langs.storage_management_error, function() {
+                                $scope.setFocusMe(true);
+                                $scope.inTheScan(false);
+                            });
                             return;
                         }
                     }
@@ -572,7 +582,10 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         app_todo_doc_get(scan_type, scanning);
                     }, function(result) {
                         $ionicLoading.hide();
-                        userInfoService.getVoice('bcme_ae_af_delete fail', function() {});
+                        userInfoService.getVoice('bcme_ae_af_delete fail', function() {
+                            $scope.setFocusMe(true);
+                            $scope.inTheScan(false);
+                        });
                         console.log(result);
                     });
                     return;
@@ -616,7 +629,17 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
             };
 
             var setCirculationCard = function(scanning) {
-                var source_doc_detail = fil_common_requisition.getSourceDocDetail();
+                var source_doc_detail = [];
+                var all_source_doc = fil_common_requisition.getSourceDocDetail();
+                if (all_source_doc.length > 0) {
+                    for (var index = 0; index < all_source_doc.length; index++) {
+                        var element = all_source_doc[index];
+                        if (commonService.isEquality(element.source_no, scanning) ) {
+                            source_doc_detail.push(element);
+                        }
+                    }
+                }
+
                 if (source_doc_detail.length <= 0) {
                     if (!commonService.isNull($scope.scaninfo.scanning)) {
                         if (scanning.length <= userInfoService.userInfo.lot_length) {
@@ -669,6 +692,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     if (doc_qty === 0) {
                         userInfoService.getVoice($scope.langs.picks_error_2, function() {
                             $scope.setFocusMe(true);
+                            $scope.inTheScan(false);
                         });
                         return;
                     }
@@ -678,6 +702,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                             $scope.langs.not_required + $scope.langs.put_in_storage,
                             function() {
                                 $scope.setFocusMe(true);
+                                $scope.inTheScan(false);
                             });
                         return;
                     }
@@ -724,6 +749,12 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     return;
                 }
 
+                //selItemPopShow 若只有一筆 直接新增
+                if (array.length === 1) {
+                    getInsertGoods(scanning, array);
+                    return;
+                }
+
                 $scope.selItem = function() {
                     var sel_doc_detail = [];
                     for (var i = 0; i < $scope.item_detail.length; i++) {
@@ -733,7 +764,8 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         }
                         for (var j = 0; j < source_doc_detail.length; j++) {
                             if (commonService.isEquality(element.item_no, source_doc_detail[j].item_no) &&
-                                commonService.isEquality(element.item_feature_no, source_doc_detail[j].item_feature_no)) {
+                                commonService.isEquality(element.item_feature_no, source_doc_detail[j].item_feature_no) &&
+                                commonService.isEquality(element.in_out_date1, source_doc_detail[j].in_out_date1)) {
                                 sel_doc_detail.push(angular.copy(source_doc_detail[j]));
                             }
                         }
@@ -755,6 +787,8 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     scope: $scope
                 }).then(function(modal) {
                     $scope.close = function() {
+                        $scope.setFocusMe(true);
+                        $scope.inTheScan(false);
                         modal.hide().then(function() {
                             return modal.remove();
                         });
@@ -766,6 +800,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
             var getInsertGoods = function(scanning, source_doc_detail) {
                 var count = 0,
                     qtyCount = 0,
+                    docCount = 0,
                     insertCount = 0;
                 var error_message = "";
                 var tempArr1 = [],
@@ -775,6 +810,13 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 $scope.scaninfo.checked = false;
                 for (var i = 0; i < source_doc_detail.length; i++) {
                     var value = source_doc_detail[i];
+                    if ($scope.page_params.program_job_no != '2' && $scope.page_params.program_job_no != '1') {
+                        if (!commonService.isEquality(scanning, value.source_no)) {
+                            docCount = docCount + 1;
+                            continue;
+                        }
+                    }
+
                     var rate = numericalAnalysisService.accAdd(1, numericalAnalysisService.accDiv(value.allow_error_rate, 100));
                     var temp = {
                         "item_no": value.item_no,
@@ -808,6 +850,8 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         "run_card_no": value.run_card_no,
                         "object_no": value.object_no,
                         "main_organization": value.main_organization,
+                        "op_no": value.op_no,
+                        "op_name": value.op_name,
 
                         "decimal_places": value.decimal_places,
                         "decimal_places_type": value.decimal_places_type,
@@ -820,7 +864,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         "valuation_unit_no": value.valuation_unit_no,
 
                         "inventory_qty": value.inventory_qty,
-                        "reference_qty": value.reference_qty,
+                        "reference_qty": numericalAnalysisService.accSub(value.reference_qty, value.reference_in_out_qty),
                         "valuation_qty": value.valuation_qty,
 
                         "inventory_rate": value.inventory_rate,
@@ -830,7 +874,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         "multi_unit_type": value.multi_unit_type,
                     };
 
-                    if ($scope.l_data.use_erp_warehousing) {
+                    if ($scope.views.use_erp_warehousing) {
                         if (value.erp_warehousing == "Y") {
                             temp.warehouse_no = value.warehouse_no;
                             temp.storage_spaces_no = value.storage_spaces_no;
@@ -916,7 +960,11 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         error_message = $scope.langs.sel_item_exist_error;
                     }
                     if ($scope.page_params.program_job_no == "9-1") {
-                        error_message = $scope.langs.data_duplication_error;
+                        if (count == docCount) {
+                            error_message = $scope.langs.no_matching_data_error;
+                        } else {
+                            error_message = $scope.langs.data_duplication_error;
+                        }
                     }
                     userInfoService.getVoice(error_message, function() {
                         $scope.setFocusMe(true);
@@ -1427,7 +1475,10 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         }
                     }, function(error) {
                         $ionicLoading.hide();
-                        userInfoService.getVoice('bcme_ae_af_get fail', function() {});
+                        userInfoService.getVoice('bcme_ae_af_get fail', function() {
+                            $scope.setFocusMe(true);
+                            $scope.inTheScan(false);
+                        });
                         console.log(error);
                     });
                 }

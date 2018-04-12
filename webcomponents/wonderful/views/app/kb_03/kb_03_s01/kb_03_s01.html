@@ -1,0 +1,23 @@
+<ion-view class="view-pane">
+    <ion-header-bar class="bar bar-header headerStyle" align-title="center">
+        <button ng-click="goToMenu()" class="button button-icon icon ion-ios-arrow-back"></button>
+
+        <button ng-click="goViewSetting()" class="button button-icon icon ion-ios-gear-outline"></button>
+    </ion-header-bar>
+
+    <ion-content scroll="false" delegate-handle="receipt">
+        <ion-nav-view name="kb_03_s01_list"></ion-nav-view>
+    </ion-content>
+
+    <ion-footer-bar source="kb_03_s01">
+        <div class="pager-pop" style="text-align:center; width:100%">
+            <ul class="pager">
+                <li class="previous" ng-if="form.page != pageList[0]"><a href="" ng-click="changeActive((form.page - 1))">&larr;</a></li>
+                <li class="pager-select">
+                    <select ng-model="form.page" ng-options="item for item in pageList"></select>
+                </li>
+                <li class="next" ng-if="form.page != pageList[pageList.length - 1]"><a href="" ng-click="changeActive(form.page + 1)">&rarr;</a></li>
+            </ul>
+        </div>
+    </ion-footer-bar>
+</ion-view>

@@ -1,0 +1,36 @@
+<ion-view>
+    <ion-content class="view-pane" scroll="false">
+        <div source="kb_03_s03_03 header">
+            <!-- 單據清單 -->
+            <div class="list_item">
+                <div class="row row-title">
+                    <div class="col col-40 col-ellipsis">
+                        {{langs.docno}}
+                    </div>
+                    <div class="col col-40 col-ellipsis">
+                        {{langs.item_no}}
+                    </div>
+                    <div class="col col-20 text-right col-ellipsis">
+                        {{langs.qty}}
+                    </div>
+                </div>
+                <div class="row row-title">
+                    <div class="col col-40 col-ellipsis">
+                        {{langs.seq}}
+                    </div>
+                    <div class="col col-40 col-ellipsis">
+                        {{langs.product_name}}
+                    </div>
+                    <div class="col col-20 text-right col-ellipsis">
+                        {{langs.picked}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ion-nav-view name="kb_03_s03_03_list"></ion-nav-view>
+    </ion-content>
+    <div source="kb_03_s03_03 footer" class="bar bar-footer footerStyle" ng-click="btnSave()" ng-if="submit_show">
+        <h1 class="title titleStyle">{{langs.submit}}</h1>
+    </div>
+</ion-view>

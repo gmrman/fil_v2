@@ -1,8 +1,6 @@
-  define(["app", "API", "APIS", "AppLang","views/app/xcommon/menu/_menu.js"], function(app) {
-      app.service('fil_00_s04_requisition', ['APIService', '$timeout',
-          'AppLang', '$ionicLoading', 'userInfoService', 'commonService','xmenuService',
-          function(APIService, $timeout, AppLang, $ionicLoading, userInfoService, commonService
-          ,xmenuService) {
+  define(["app", "API", "APIS", "AppLang"], function(app) {
+      app.service('fil_00_s04_requisition', ['APIService', '$timeout', 'AppLang', '$ionicLoading', 'userInfoService', 'commonService', '$q', 'ReqTestData',
+          function(APIService, $timeout, AppLang, $ionicLoading, userInfoService, commonService, $q, ReqTestData) {
 
               var self = this;
               var langs = AppLang.langs;
@@ -113,7 +111,8 @@
                               'fil524', 'fil525',
                               'fil526', 'fil527',
                               'fil601', 'fil602', 'fil603',
-                          ];
+                              'kb_01', 'kb_02', 'kb_03', 'kb_05',   //ZHEN 20170802
+                           ];
                           break;
                       case "T100":
                           use_func = [
@@ -137,6 +136,7 @@
                               'fil524', 'fil525',
                               'fil526', 'fil527',
                               'fil601', 'fil602', 'fil603',
+                              'kb_01', 'kb_02', 'kb_03', 'kb_05',   //ZHEN 20170802
                           ];
                           break;
                       case "WF":
@@ -158,6 +158,7 @@
                               'fil524', 'fil525',
                               'fil526',
                               'fil601', 'fil602', 'fil603',
+                              'kb_01', 'kb_02', 'kb_03', 'kb_05',   //ZHEN 20170802
                           ];
                           break;
                       case "EF":
@@ -274,9 +275,75 @@
                   self.complex = [];
               };
 
+              //ZHEN-20170518(S)
+              //重新設定Badge
+              self.setListBadge = function (list) {
+                 angular.forEach(list, function (value) {
+                     if (value.isdisplay && badgeShow(value.func) && self.dataBadge[value.func] > 0) {
+                         var func = self.dataBadge[value.func];
+                         if (func > 99) {
+                             func = "99+"
+                         }
+
+                         value.badgeCnt = func;
+                         value.badgeShow = true;
+                     }
+                     else if (value.badgeShow) {
+                         value.badgeShow = false;
+                     };
+                 });
+              };
+              //取的WS資料
+              self.getListBadge = function () {
+                  var deferred = $q.defer();
+                  var webTran = {
+                      service: 'app.km.oh.count.get',
+                      parameter: {
+                          "site_no": userInfoService.userInfo.site_no
+                      }
+                  };
+                  console.log(webTran);
+                  if (ReqTestData.testData) {
+                      self.dataBadge = {
+                          kb_02: Math.round(Math.random() * 50 + 90),
+                          kb_03: Math.round(Math.random() * 50),
+                          kb_05: Math.round(Math.random() * 20)
+                      };
+                      $timeout(function () {
+                          deferred.resolve("success");
+                      }, 0);
+                  }
+                  else {
+                      APIService.Web_Post(webTran, function (res) {
+                          console.log("success:" + res);
+                          var parameter = res.payload.std_data.parameter;
+                          self.dataBadge = [parameter].map(function (obj) {
+                              obj['kb_02'] = obj['cnt01'];
+                              delete obj['cnt01'];
+                              obj['kb_03'] = obj['cnt02'];
+                              delete obj['cnt02'];
+                              obj['kb_05'] = obj['cnt03'];
+                              delete obj['cnt03'];
+                              return obj;
+                          })[0];
+                          $timeout(function () {
+                              deferred.resolve("success");
+                          }, 0);
+                      });
+                  };
+                  return deferred.promise;
+              };
+              //需要顯示的Badge
+              function badgeShow(func) {
+                  if (func == "kb_02" || func == "kb_03" || func == "kb_05") {
+                      return true;
+                  }
+                  return false;
+              };
+              //ZHEN-20170518(E)
+
               self.init = function() {
                   self.isclear = false;
-                  xmenuService.setLists(setList);
                   // new menu("模組", "作業", "圖形", "作業編號", "執行動作", "掃描類型", "出入庫碼", "有無箱條碼", "頁面", "名稱" )
                   setList("purchase", [ //採購管理
                       new menu('APM', 'fil101', 'fun01-2', "1-1", "A", "1", "0", "1", 'fil_common_s01', langs.purchase + langs.receiveing + '(' + langs.shipments + ')'), //採購收貨(送貨)
@@ -302,7 +369,7 @@
                   ]);
 
                   setList("sales", [ //銷售管理
-                    //  new menu('AXM', 'fil301', 'fun05-1', "5", "A", "1", "-1", "1", 'fil_common_s01', langs.sale + langs.delivery), //銷售出貨
+                      new menu('AXM', 'fil301', 'fun05-1', "5", "A", "1", "-1", "1", 'fil_common_s01', langs.sale + langs.delivery), //銷售出貨
                       new menu('AXM', 'fil302', 'fun06-1', "6", "A", "1", "1", "1", 'fil_common_s01', langs.sale + langs.return+'(' + langs.new + langs.doc + 'E' + ')'), //銷售退回(新單E)
                       new menu('AXM', 'fil303', 'fun06-1', "6", "S", "1", "1", "1", 'fil_common_s01', langs.sale + langs.return+'(' + langs.post + ')'), //銷售退回(過帳)
                       new menu('AXM', 'fil304', 'fun05-2', "5", "A", "1", "-1", "1", 'fil3_common_s01', langs.sale + langs.delivery + '(' + langs.row + ')'), //銷售出貨(行)
@@ -329,7 +396,7 @@
                       new menu('ASF', 'fil212', 'fun08-3', "8", "S", "1", "1", "1", 'fil3_common_s01', langs.return_material + '(' + langs.pass + ')'), //退料待辦(過)
                       new menu('ASF', 'fil220', 'fun07-2', "7-5", "S", "1", "-1", "1", 'fil_common_s01', langs.title_07_05), //領料核對
                       new menu('ASF', 'fil213', 'fun09-1', "9", "A", "3", "1", "1", 'fil_common_s02.fil_common_s03', langs.completion + langs.put_in_storage), //完工入庫
-                      new menu('ASF', 'fil214', 'fun09-1', "9-1", "A", "0", "0", "2", 'fil_09_01_s01', langs.put_in_storage + langs.apply), //入庫申請
+                    //   new menu('ASF', 'fil214', 'fun09-1', "9-1", "A", "0", "0", "2", 'fil_09_01_s01', langs.put_in_storage + langs.apply), //入庫申請
                       new menu('ASF', 'fil221', 'fun09-1', "9-1", "A", "0", "0", "2", 'fil_common_s02.fil_common_s07', langs.put_in_storage + langs.apply + '(' + langs.multi + ')'), //入庫申請(多筆)
                       new menu('ASF', 'fil215', 'fun09-1', "9-2", "A", "1", "1", "1", 'fil_common_s01', langs.put_in_storage + langs.shelves + '(' + langs.new + langs.doc + 'E' + ')'), //入庫上架(新單E)
                       new menu('ASF', 'fil216', 'fun09-1', "9-2", "S", "1", "1", "1", 'fil_common_s01', langs.put_in_storage + langs.shelves + '(' + langs.post + ')'), //入庫上架(過帳)
@@ -379,7 +446,13 @@
                   setList("complex", [ //其他
                       new menu('COM', 'fil601', 'fun01-3', "", "A", "0", "0", "0", 'fil_02_s01', langs.receiveing), //收貨
                       new menu('COM', 'fil602', 'fun09-2', "", "B", "0", "0", "0", 'fil_02_s01', langs.put_in_storage), //入庫
-                      new menu('COM', 'fil603', 'fun03-3', "", "0", "0", "0", "0", '', langs.board), //看板
+
+                      //ZHEN-20170419(S)
+                      new menu('COM', 'kb_01', 'fun15-1', "1", "0", "0", "0", "2", 'kb_01_s01', langs.kb_01_s01),     //收貨統計看板
+                      new menu('COM', 'kb_02', 'fun15-1', "2", "0", "0", "0", "2", 'kb_02_s01', langs.kb_02_s01),    //進貨導引
+                      new menu('COM', 'kb_03', 'fun15-1', "3", "0", "0", "-1", "2", 'kb_03_s01', langs.kb_03_s01),       //待出導引
+                      new menu('COM', 'kb_05', 'fun15-1', "4", "0", "0", "1", "2", 'kb_05_s01', langs.kb_05_s01),         //待入導引
+                      //ZHEN-20170419(E)
                   ]);
 
               };

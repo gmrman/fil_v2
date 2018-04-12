@@ -27,7 +27,10 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 barcode: "",
                 startdate: "",
                 date_type: 1,
-                show_zero_inventory: false
+                show_zero_inventory: false,
+                show_item_detail: false,
+                show_reference_unit_item: false,
+                show_reference_unit_barcode: false,
             };
 
             $scope.startdate_array = [{
@@ -47,6 +50,10 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 value: $scope.langs.other
             }];
 
+            $scope.setShowItemDetail = function(flag) {
+                $scope.scaninfo.show_item_detail = !!flag;
+            }
+
             $scope.init_detail = function() {
                 $scope.item_detail = [];
                 $scope.barcode_detail = [];
@@ -62,34 +69,43 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
 
             $scope.setItemDetail = function(array) {
                 var total_qty = 0;
+                var flag = false;
                 $scope.showInfo = {};
                 $scope.item_detail = angular.copy(array);
-                if (array.length > 0) {
+                if (array.length > 0 && $scope.scaninfo.show_item_detail) {
                     $scope.showInfo = angular.copy($scope.item_detail[0]);
                     angular.forEach($scope.item_detail, function(item) {
                         total_qty = numericalAnalysisService.accAdd(total_qty, item.inventory_qty);
+                        if (!commonService.isNull(item.reference_unit_no) && !flag) {
+                            flag = true;
+                        }
                     });
                     $scope.showInfo.total_qty = total_qty || 0;
-                }
-            };
-
-            $scope.setBarcodeDetail = function(array) {
-                $scope.barcode_detail = angular.copy(array);
-                if (array.length > 0) {
-                    $scope.barcode = $scope.barcode_detail[0];
-                    if ($scope.item_detail.length > 0) {
-                        var index = $scope.item_detail.findIndex(function(item) {
-                            return commonService.isEquality($scope.barcode.item_no, item.item_no) &&
-                                commonService.isEquality($scope.barcode.item_feature_no, item.item_feature_no);
-                        });
-
-                        $scope.barcode.item_name = $scope.barcode.item_no;
-                        if (index !== -1) {
-                            $scope.barcode.item_name = $scope.item_detail[index].item_name;
-                            $scope.barcode.item_spec = $scope.item_detail[index].item_spec;
+                } else {
+                    for (var i = 0; index < $scope.item_detail.length; i++) {
+                        var element = $scope.item_detail[i];
+                        if (!commonService.isNull(element.reference_unit_no)) {
+                            flag = true;
+                            break;
                         }
                     }
                 }
+                $scope.scaninfo.show_reference_unit_item = flag;
+            };
+
+            $scope.setBarcodeDetail = function(array) {
+                var flag = false;
+                $scope.barcode_detail = angular.copy(array);
+                if (array.length > 0) {
+                    for (var i = 0; i < $scope.barcode_detail.length; i++) {
+                        var element = $scope.barcode_detail[i];
+                        if (!commonService.isNull(element.reference_unit_no)) {
+                            flag = true;
+                            break;
+                        }
+                    }
+                }
+                $scope.scaninfo.show_reference_unit_barcode = flag;
             };
 
             $scope.goMenu = function() {

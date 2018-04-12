@@ -8,15 +8,15 @@
             </div>
         </div>
         <div class="col title-col-con scan-title-color">
-            <div class="row row-center title-row-con" ng-if="l_data.show_ingoing">
+            <div class="row row-center title-row-con" ng-if="views.show_ingoing">
                 <div class="col col-25">{{langs.outgoing}}{{langs.warehouse}}</div>
                 <div class="col" ng-click="warehouseShow_outgoing()">
                     <i class="icon ion-ios-compose-outline"></i>&nbsp;{{sel_indicate.warehouse_name}}
                 </div>
             </div>
             <div class="row row-center title-row-con">
-                <div class="col col-25" ng-if="!l_data.show_ingoing">{{langs.warehouse}}</div>
-                <div class="col col-25" ng-if="l_data.show_ingoing">{{langs.ingoing}}{{langs.warehouse}}</div>
+                <div class="col col-25" ng-if="!views.show_ingoing">{{langs.warehouse}}</div>
+                <div class="col col-25" ng-if="views.show_ingoing">{{langs.ingoing}}{{langs.warehouse}}</div>
                 <div class="col" ng-click="warehouseShow()">
                     <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.warehouse_name}}
                 </div>
@@ -25,8 +25,8 @@
                 </div>
             </div>
             <div class="row row-center title-row-con">
-                <div class="col col-25" ng-if="!l_data.show_ingoing">{{langs.storage}}</div>
-                <div class="col col-25" ng-if="l_data.show_ingoing">{{langs.ingoing}}{{langs.storage}}</div>
+                <div class="col col-25" ng-if="!views.show_ingoing">{{langs.storage}}</div>
+                <div class="col col-25" ng-if="views.show_ingoing">{{langs.ingoing}}{{langs.storage}}</div>
                 <div class="col" ng-click="storageShow()">
                     <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.storage_spaces_name}}
                 </div>
@@ -34,7 +34,7 @@
                     <i class="icon ion-ios-close-outline icon-medium" on-tap="clearStorage()"></i>
                 </div>
             </div>
-            <div class="row row-center title-row-con" ng-if="!l_data.show_ingoing">
+            <div class="row row-center title-row-con" ng-if="!views.show_ingoing">
                 <div class="col col-25">{{langs.lot}}</div>
                 <div class="col " ng-click="lotShow()">
                     <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.lot_no}}
@@ -43,7 +43,7 @@
                     <i class="icon ion-ios-close-outline icon-medium" on-tap="scaninfo.lot_no = '' "></i>
                 </div>
             </div>
-            <div class="row row-center title-row-con" ng-if="l_data.show_reason">
+            <div class="row row-center title-row-con" ng-if="views.show_reason">
                 <div class="col col-25">{{langs.reason_no}}</div>
                 <div class="col" ng-click="reasonShow()">
                     <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.reason_code_name}}

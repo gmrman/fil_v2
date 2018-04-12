@@ -1,0 +1,34 @@
+<ion-view>
+    <ion-header-bar class="bar bar-header headerStyle" align-title="center">
+        <button ng-click="goTodolistNotice()" class="button button-icon icon ion-ios-arrow-back"></button>
+        <h1 class="title titleStyle">{{langs.title_16_1}}{{langs.examine}}</h1>
+    </ion-header-bar>
+
+    <ion-content scroll="false">
+        <div class="col title-col-con row-header-three">
+            <div class="row title-row-con col-small-padding">
+                <div class="col col-60 col-ellipsis">{{langs.barcode}}</div>
+                <div class="col col-33 text-right col-ellipsis">{{ userInfo.language | langFilter: [langs.eligible, langs.qty] }}</div>
+            </div>
+            <div class="row title-row-con col-small-padding" ng-if="showReferenceUnitNo">
+               <div class="col col-60 col-ellipsis"></div>
+               <div class="col col-33 text-right col-ellipsis">{{ userInfo.language | langFilter: [langs.reference, langs.qty] }}</div>
+           </div>
+            <div class="row title-row-con col-small-padding">
+                <div class="col col-60 col-ellipsis">{{langs.product_name}}</div>
+                <div class="col col-33 text-right col-ellipsis">{{ userInfo.language | langFilter: [langs.bad, langs.qty] }}</div>
+                <div></div>
+            </div>
+            <div class="row title-row-con col-small-padding">
+                <div class="col col-60 col-ellipsis">{{langs.specification}}</div>
+                <div class="col col-33 text-right col-ellipsis">{{ userInfo.language | langFilter: [langs.particular, langs.qty] }}</div>
+            </div>
+        </div>
+
+        <ion-nav-view name="kb_04_s02_04_list"></ion-nav-view>
+    </ion-content>
+
+    <div class="bar bar-footer footerStyle" ng-click="checkshowgood()" ng-show="goodsList.length > 0">
+        <h1 class="title titleStyle">{{langs.submit}}</h1>
+    </div>
+</ion-view>

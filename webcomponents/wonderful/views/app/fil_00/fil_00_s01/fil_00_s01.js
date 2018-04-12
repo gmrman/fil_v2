@@ -11,7 +11,7 @@ define(["API", "APIS", "Widget", "md5", "config", "AppLang", "ionic-popup", "Req
             //修改APP標題
             userInfoService.setAppInfo({
                 app_name: $scope.langs.app_name,
-                app_version: "3.1.034"
+                app_version: "3.1.050"
             });
             userInfoService.changeTitle(1);
 
@@ -46,7 +46,8 @@ define(["API", "APIS", "Widget", "md5", "config", "AppLang", "ionic-popup", "Req
                 APIBridge.callAPI('getConfig', []).then(function(result) {
                     //如果 SharedPreferences 有值，以 SharedPreferences 內的值帶入變數，為空的話抓取SQLITE內的值
                     if (result.data.length) {
-                        setUserInfo(result.data, 1);
+                        $scope.userInfo = userInfoService.setUserInfoByConf(result.data);
+                        basicinformationUpd()
                     } else {
                         basicinformationGet();
                     }
@@ -54,6 +55,23 @@ define(["API", "APIS", "Widget", "md5", "config", "AppLang", "ionic-popup", "Req
                     basicinformationGet();
                 });
             };
+
+            var basicinformationUpd = function() {
+                APIBridge.callAPI('basicinformation_upd', [$scope.userInfo]).then(function(result) {
+                    if (result) {
+                        console.log('basicinformation_upd success');
+                        $ionicLoading.hide();
+                        setUserInfo();
+                    } else {
+                        $ionicLoading.hide();
+                        userInfoService.getVoice('basicinformation_upd error', function() {});
+                    }
+                }, function(result) {
+                    $ionicLoading.hide();
+                    userInfoService.getVoice('basicinformation_upd fail', function() {});
+                    console.log(result);
+                });
+            }
 
             //由SQLITE 抓取參數
             var basicinformationGet = function() {
@@ -64,7 +82,8 @@ define(["API", "APIS", "Widget", "md5", "config", "AppLang", "ionic-popup", "Req
                 APIBridge.callAPI('basicinformation_get', [{}]).then(function(result) {
                     console.log(result);
                     $ionicLoading.hide();
-                    setUserInfo(result.data[0], 2);
+                    $scope.userInfo = userInfoService.setUserInfo(result.data[0]);
+                    setUserInfo();
                 }, function(error) {
                     $ionicLoading.hide();
                     userInfoService.getVoice('basicinformation_get fail', function() {});
@@ -73,13 +92,7 @@ define(["API", "APIS", "Widget", "md5", "config", "AppLang", "ionic-popup", "Req
             };
 
             //將資料帶入變數後，判斷是否有設定ERP接口URL，以及是否為自動登入
-            var setUserInfo = function(data, type) {
-                //type：1 由 SharedPreferences 取值， 2 由SQLITE 取值
-                if (type == 1) {
-                    $scope.userInfo = userInfoService.setUserInfoByConf(data);
-                } else {
-                    $scope.userInfo = userInfoService.setUserInfo(data);
-                }
+            var setUserInfo = function() {
                 console.log($scope.userInfo);
 
                 //串接ERP接口 URL - 若無值跳轉後台設定頁面
@@ -108,14 +121,38 @@ define(["API", "APIS", "Widget", "md5", "config", "AppLang", "ionic-popup", "Req
                     $scope.userInfo.account != "digiwin" &&
                     $scope.userInfo.account != "root") {
                     if ($scope.userInfo.account && $scope.userInfo.log_in == 'Y') {
-                        updateInfo('autoLogIn');
+                        checkWarehouse('autoLogIn');
                     }
                 }
             };
 
-            var updateInfo = function(password) {
+            var checkWarehouse = function(password) {
+                if (commonService.Platform == "Chrome") {
+                    updateInfo(password, false);
+                    return;
+                }
+                $ionicLoading.show();
+                APIBridge.callAPI('warehouse_get').then(function(result) {
+                    $ionicLoading.hide();
+                    if (result.data.length > 0) {
+                        updateInfo(password, true);
+                    } else {
+                        updateInfo(password, false);
+                    }
+                }, function(error) {
+                    $ionicLoading.hide();
+                    userInfoService.getVoice('warehouse_get fail', function() {});
+                    console.log(error);
+                });
+            }
+
+            var updateInfo = function(password, datetime_flag) {
                 if (password != 'autoLogIn') {
                     $scope.userInfo = userInfoService.setAccount($scope.userData);
+                } else {
+                    $scope.userData.account = $scope.userInfo.account;
+                    $scope.userData.enterprise = $scope.userInfo.enterprise_no;
+                    $scope.userData.site = $scope.userInfo.site_no;
                 }
 
                 //檢查是否為體驗帳號
@@ -125,7 +162,7 @@ define(["API", "APIS", "Widget", "md5", "config", "AppLang", "ionic-popup", "Req
                         $scope.userData.account, $scope.userInfo.server_ip, $scope.userInfo.server_area,
                         $scope.userInfo.server_product, $scope.userInfo.permission_ip, $scope.userData.site_no
                     );
-                    setUserInfo(userInfo);
+                    $scope.userInfo = userInfoService.setUserInfo(userInfo);
                 }
 
                 //取得上次登入日期
@@ -134,17 +171,17 @@ define(["API", "APIS", "Widget", "md5", "config", "AppLang", "ionic-popup", "Req
                 //TT 清空上次登入日期
                 //如有使用權限平台，清空上次登入日期，並將密碼以 autoLogIn 帶入
                 console.log($scope.userInfo);
-                var l_datetime = $scope.userInfo.report_datetime || "";
-                if ($scope.userInfo.report_ent != $scope.userInfo.enterprise_no) {
-                    l_datetime = "";
-                }
-                if (userInfoService.userInfo.server_product != 'T100') {
-                    if (userInfoService.userInfo.report_site != $scope.userInfo.site_no) {
+                var l_datetime = "";
+                if (datetime_flag) {
+                    l_datetime = $scope.userInfo.report_datetime || "";
+                    if ($scope.userInfo.report_ent != $scope.userInfo.enterprise_no) {
                         l_datetime = "";
                     }
-                }
-                if (userInfoService.userInfo.gp_flag) {
-                    l_datetime = "";
+                    if ($scope.userInfo.server_product != 'T100') {
+                        if ($scope.userInfo.report_site != $scope.userInfo.site_no) {
+                            l_datetime = "";
+                        }
+                    }
                 }
 
                 var webTran = {
@@ -292,7 +329,7 @@ define(["API", "APIS", "Widget", "md5", "config", "AppLang", "ionic-popup", "Req
                 } else {
                     password_md5 = hex_md5($scope.userData.password + 28682266);
                 }
-                updateInfo(password_md5);
+                checkWarehouse(password_md5);
             };
 
             //權限主機檢查帳密及取得 token

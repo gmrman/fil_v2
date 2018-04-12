@@ -1,0 +1,52 @@
+<ion-view>
+    <ion-content scroll="false">
+        <ion-scroll direction="y" has-bouncing="false" class="timetable_scroll" delegate-handle="receiptListScroll">
+            <ion-scroll direction="x" on-scroll="setHeader()" has-bouncing="false">
+                <ion-item class="list_item itemStyle" style="width: 100%; height: 65px; background-size: 8px 100%; background-repeat: no-repeat;" on-hold="MoreFeaturesShow(receipt); $event.stopPropagation();"
+                    ng-click="setItemColor(receipt)" ng-repeat="receipt in sales_notice | filter: filter | orderBy: setOrderRule() | limitTo:setting.showNum:setting.showNum*(form.page-1)"
+                    on-finish-render="ngRepeatStatus" repeat-name="receipt" def-index="false" ng-style="{'background-color': receipt.selColor, 'background-image': 'linear-gradient(to right, '+ receipt.borderColor + ', transparent)' }">
+                    <!-- 單據資料 -->
+                    <div class="row" style="height: 40px">
+                        <div class="checkbox col-screen-0" ng-show="isCheckboxShown" style="padding-top: 2px;">
+                            <input type="checkbox" style="height: 24px; width: 24px;" class="checkbox-icon" ng-model="receipt.checked">
+                        </div>
+                        <div class="ellipsis col-screen-1">{{receipt.item_no}}</div>
+                        <div class="ellipsis col-screen-2">{{receipt.item_desc}}</div>
+                        <div class="ellipsis col-screen-3">{{receipt.qty}}</div>
+                        <div class="ellipsis col-screen-4">{{receipt.po_no}}</div>
+                        <div class="ellipsis col-screen-5">{{receipt.po_sno}}</div>
+                        <div class="ellipsis col-screen-6">{{receipt.vendor_name}}</div>
+                        <div class="ellipsis col-screen-7">{{receipt.formatdate}}</div>
+                    </div>
+                </ion-item>
+            </ion-scroll>
+
+            <!-- 燈帶 -->
+            <div class="list_item itemStyle" style="height: 25px; background-color: rgba(0, 0, 0, 0);" ng-style="setPosition($index)"
+                ng-repeat="receipt in sales_notice | filter: filter | orderBy: setOrderRule() | limitTo:setting.showNum:setting.showNum*(form.page-1)">
+                <div class="row status-band" style="height: 25px;">
+                    <svg id="StatusBand{{receipt.index}}"></svg>
+                </div>
+                <!-- 
+                <div class="row status-band" style="height: 30px;">
+                    <canvas id="canvas{{receipt.index}}"></canvas>
+                </div>
+                <div id="test{{receipt.index}}" style="position: absolute; top: 0; left: 0; z-index: 5; pointer-events: none"></div>
+                -->
+            </div>
+
+        </ion-scroll>
+    </ion-content>
+
+    <ion-footer-bar>
+        <div class="pager-pop" style="text-align:center; width:100%">
+            <ul class="pager">
+                <li class="previous" ng-if="form.page != pageList[0]"><a href="" ng-click="changeActive((form.page - 1))">&larr;</a></li>
+                <li class="pager-select">
+                    <select ng-model="form.page" autofocus ng-options="cnt for cnt in pageList" ng-change="changeActive(form.page)"></select>
+                </li>
+                <li class="next" ng-if="form.page != pageList[pageList.length - 1]"><a href="" ng-click="changeActive(form.page + 1)">&rarr;</a></li>
+            </ul>
+        </div>
+    </ion-footer-bar>
+</ion-view>

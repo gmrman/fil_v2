@@ -1,0 +1,15 @@
+<ion-view>
+    <ion-content class="view-pane" scroll="false">
+        <div source='kb_04_s03_05 header' class="col title-col-con">
+            <div class="row title-row-con-fixed row-header-one">
+                <div class="col col-50 col-ellipsis" ng-if="!userInfo.feature">{{langs.product_name}} \ {{langs.specification}}</div>
+                <div class="col col-50 col-ellipsis" ng-if="userInfo.feature">{{langs.product_name}} \ {{langs.specification}} \ {{langs.item_feature}}</div>
+                <div class="col col-50 text-right col-ellipsis">{{ userInfo.language | langFilter: [inquiry_list_title_already, langs.qty]:" \\ ":[inquiry_list_title_should, langs.qty] }}</div>
+            </div>
+        </div>
+        <ion-nav-view name="kb_04_s03_05_list"></ion-nav-view>
+    </ion-content>
+    <div source='kb_04_s03_05 footer' class="bar bar-footer footerStyle" ng-click="submit()" ng-show="submit_show">
+        <h1 class="title titleStyle">{{langs.submit}}</h1>
+    </div>
+</ion-view>

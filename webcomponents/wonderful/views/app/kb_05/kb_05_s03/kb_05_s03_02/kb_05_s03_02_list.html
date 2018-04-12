@@ -1,0 +1,75 @@
+<ion-view>
+    <ion-content id="scroll" class="view-pane">
+        <ion-list>
+            <ion-item id="item{{documents.index}}" class="list_item itemStyle" style="width: 100%;" ng-click="closeOption();"
+                ng-repeat-start="documents in documents_sum | orderBy: orderBy">
+                <div class="row row-center" style="height: 90px;">
+                    <div class="col col-10">
+                        <div class="checkbox checkbox-input-hidden" style="margin: 0 0 -5px -5px;">
+                            <input type="checkbox" ng-model="documents.chkitem">
+                            <i class="checkbox-icon" ng-click="documents.chkitem = !documents.chkitem"></i>
+                        </div>
+                    </div>
+                    <div class="col col-90" ng-click="showWarehouse(documents);">
+                        <div class="row">
+                            <div class="col col-80 col-ellipsis">{{documents.store}}/{{documents.location}}/{{documents.lot_no}}</div>
+                            <div class="col col-20 text-right">{{documents.qty}}</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col-66 col-ellipsis">{{documents.doc_no}}#{{documents.doc_seq}}</div>
+                            <div class="col col-33 text-right">{{documents.include_qty}}</div>
+                        </div>
+
+                        <div class="row">
+                           <div class="col col-ellipsis">{{documents.item_no}}/{{documents.item_desc}}</div>
+                       </div>
+                    </div>
+                </div>
+                <!--<ion-option-button class="button icon ion-more" ng-click="setWarehousesCnt(documents);"></ion-option-button>-->
+            </ion-item>
+            <div ng-repeat-end>
+                <div ng-show="documents.showWarehouse" class="item-accordion">
+                    <div class="col title-col-con scan-title-color">
+                        <div class="row">
+                            <div class="col col-25">{{langs.warehouse}}</div>
+                            <div class="col" ng-click="warehouseShow(documents)">
+                                {{documents.warehouse_data.warehouse_no}}
+                                <em ng-hide="!documents.warehouse_data.warehouse_no.trim() || !documents.warehouse_data.warehouse_name.trim()"> - </em>                                
+                                {{documents.warehouse_data.warehouse_name}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-25">{{langs.storage}}</div>
+                            <div class="col" ng-click="storageShow(documents)">
+                                {{documents.warehouse_data.storage_spaces_no}}
+                                <em ng-hide="!documents.warehouse_data.storage_spaces_no.trim() || !documents.warehouse_data.storage_spaces_name.trim()"> - </em>                              
+                                {{documents.warehouse_data.storage_spaces_name}}
+                            </div>
+
+                            <div class="col col-10 text-right col-no-padding">
+                                <i class="icon ion-ios-close-outline icon-medium" on-tap="clearStorage()"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-25">{{langs.lot}}</div>
+                            <div class="col" ng-click="lotShow(documents)">{{documents.warehouse_data.lot_no}}</div>
+                        </div>
+
+                        <div class="row">
+                            <span class="col col-center col-25">{{langs.qty}}</span>
+                            <div class="col text-right" ng-click="documents.warehouse_data.showMultiUnit && editMultiUnit('detail', documents)">
+                                <div class="quantity-form">
+                                    <a class="mins" ng-click="compute(documents, '-1')">-</a>
+                                    <div class="qty" ng-click="showQtyPop(documents)">{{documents.warehouse_data.qty}}</div>
+                                    <a class="add" ng-click="compute(documents, '1')">+</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+        <br />
+    </ion-content>
+</ion-view>

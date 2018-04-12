@@ -1,0 +1,55 @@
+<ion-modal-view>
+    <!-- Title -->
+    <ion-header-bar class="bar bar-header headerStyle">
+        <button ng-click="closeModal('SoData')" class="button button-icon icon ion-ios-arrow-back"></button>
+        <h1 class="title">{{ userInfo.language | langFilter: [langs.order_no, langs.data] }}</h1>
+    </ion-header-bar>
+
+    <!-- 內容 -->
+    <ion-content>
+        <ion-scroll class="calc_def">
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.order_no}}</span>
+                <div class="col col-75">{{so_data.so_no}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.seq}}</span>
+                <div class="col col-75">{{so_data.so_sno}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{ userInfo.language | langFilter: [langs.customer, langs.number] }}</span>
+                <div class="col col-75">{{so_data.customer_no}}-{{so_data.customer_name}}</div>
+            </div>
+            <!--
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.customer_name}}</span>
+                <div class="col col-75">{{so_data.customer_name}}</div>
+            </div>
+            -->
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.item_no}}</span>
+                <div class="col col-75">{{so_data.product_no}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.product_name}}</span>
+                <div class="col col-75">{{so_data.product_desc}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.specification}}</span>
+                <div class="col col-75">{{so_data.product_spec}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.order_no}}{{langs.qty}}</span>
+                <div class="col col-75">{{so_data.qty}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.shipments_qty}}</span>
+                <div class="col col-75">{{so_data.shipments_qty}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.agreed_shipping_date}}</span>
+                <div class="col col-75">{{so_data.agreed_shipping_date}}</div>
+            </div>
+        </ion-scroll>
+    </ion-content>
+</ion-modal-view>

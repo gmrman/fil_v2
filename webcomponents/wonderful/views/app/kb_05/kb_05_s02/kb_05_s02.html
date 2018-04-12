@@ -1,0 +1,66 @@
+<ion-view>
+    <ion-header-bar class="bar bar-header headerStyle" align-title="center">
+        <button ui-sref="kb_05_s01" class="button button-icon icon ion-ios-arrow-back"></button>
+
+        <button ng-click="chkSetting()" class="button button-icon icon ion-android-done"></button>
+    </ion-header-bar>
+    <ion-content>
+        <!-- 來源設定 -->
+        <!--
+        <div class="list list-inset">
+            <label class="item item-input sourceStyle" ng-click="diplay.source = !diplay.source">
+                <div class="col col-50">{{langs.origin}}{{langs.set}}</div>
+                <div class="col col-40">{{setting.source_name}}</div>
+                <i class="ion-chevron-down" ng-show="diplay.source"></i>
+                <i class="ion-chevron-right" ng-show="!diplay.source"></i>
+            </label>
+
+            <div ng-show="diplay.source">
+                <ion-list>
+                    <label class="sourceStyle item item-radio" ng-repeat="item in source">
+                        <input type="radio" ng-value="item.value" ng-model="setting.source" ng-change="setValue(item)">
+                        <div class="radio-content">
+                            <div class="item-content" style="padding: 10px 5%;">
+                                <span>{{item.name}}</span>
+                            </div>
+                            <i class="radio-icon icon ion-checkmark" style="padding: 4px 5%;"></i>
+                        </div>
+                    </label>
+                </ion-list>
+            </div>
+        </div>
+        -->
+
+        <!-- 單據類型 -->
+        <div class="list list-inset" ng-if="receiptGenre">
+            <div class="item item-divider">
+                {{ userInfo.language | langFilter: [langs.receipt, langs.genre] }}
+            </div>
+
+            <ion-list>
+                <label class="sourceStyle item item-checkbox" ng-model="setting[item.type]" ng-value="item.value" ng-repeat="item in deal_with_out">
+                    <div class="checkbox checkbox-input-hidden">
+                        <input type="checkbox" ng-value="item.value" ng-model="setting[item.type]">
+                        <i class="checkbox-icon"></i>
+                    </div>
+                    <div class="item-content" style="margin-top: -7px;">
+                        <span>{{item.name}}</span>
+                    </div>
+                </label>
+            </ion-list>
+        </div>
+
+        <div class="list list-inset">
+            <!--
+            <label class="item item-input sourceStyle">
+                <div class="col col-20">{{langs.warehouse}}</div>
+                <input class="col col-75 searchView" ng-model="setting.warehouses" type="text" placeholder="{{langs.please_choose}}" ng-click="warehouseShow()" readonly="readonly">
+            </label>
+            -->
+            <label class="item item-input sourceStyle">
+               <div class="col col-20">{{langs.single}}</div>
+               <input class="col col-75 searchView" ng-model="setting.singles" type="text" placeholder="{{langs.please_choose}}" ng-click="singleShow()" readonly="readonly">
+            </label>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,52 @@
+.row-title {
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-top: -3px;
+    margin-bottom: -3px;
+}
+
+.col-45 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 45%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 45%;
+    -ms-flex: 0 0 45%;
+    flex: 0 0 45%;
+    max-width: 45%;
+}
+
+/* 超出欄位時隱藏 */
+.ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.row-header-two {
+    font-family: Microsoft JhengHei;
+    font-size: 14px;
+    height: 52px;
+    color: #6D6D72;
+}
+
+.row-header-two > * {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.itemStyle {
+   border-color: #C8C7CC;
+}
+
+.itemStyle * {
+   font-family: Arial;
+   font-size: 14px;
+   color: #6D6D72;
+}
+
+.item-accordion {
+  transition: 0.1s all linear;
+}
+
+.item-accordion.ng-hide {
+  line-height: 0px;
+}

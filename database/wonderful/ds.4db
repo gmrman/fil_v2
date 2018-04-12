@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Schema gstVersion="3001d" id="{76bddd53-65f4-4a04-810a-8b023aabf06e}" version="3.0">
+<Schema gstVersion="30020" id="{76bddd53-65f4-4a04-810a-8b023aabf06e}" version="3.0">
   <AGSettings version="1.1">
     <DynamicProperties version="2">
-      <DynamicProperty description="Associated label when generating form" initialValue="" isDefaultInherited="false" isHidden="false" label="标签" name="label" readOnly="false" type="TEXT"/>
+      <DynamicProperty description="Associated label when generating form" initialValue="" isDefaultInherited="false" isHidden="false" label="Label" name="label" readOnly="false" type="TEXT"/>
       <DynamicProperty description="Associated widget" editorInfo="contains:ButtonEdit|CheckBox|ComboBox|DateEdit|DateTimeEdit|Edit|FFImage|FFLabel|Field|Phantom|ProgressBar|RadioGroup|Slider|SpinEdit|TextEdit|TimeEdit" initialValue="Edit" isDefaultInherited="false" isHidden="false" label="Widget" name="widget" readOnly="false" type="ENUM"/>
       <DynamicPropertyGroup collapsed="false" description="Formfied properties" label="Formfield" name="formfieldGroup" properties="label;widget"/>
     </DynamicProperties>
@@ -190,10 +190,12 @@
     <Column fglLength="10" fglType="201" name="bcme060" notNull="false" order="62" status="U" uuid="db/column112"/>
     <Column fglLength="1" fglType="201" name="bcme061" notNull="false" order="63" status="U" uuid="db/column113"/>
     <Column fglLength="1" fglType="201" name="bcme062" notNull="false" order="64" status="U" uuid="db/column114"/>
-    <Column fglLength="256" fglType="201" name="bcme127" notNull="false" order="65" status="U" uuid="db/column668"/>
-    <Column fglLength="4" fglType="2" name="bcme128" notNull="false" order="66" status="U" uuid="db/column669"/>
-    <Column fglLength="40" fglType="201" name="bcme999" notNull="true" order="67" status="U" uuid="db/column670"/>
-    <Column fglLength="10" fglType="201" name="bcmestus" notNull="false" order="68" status="U" uuid="db/column671"/>
+    <Column fglLength="40" fglType="201" name="bcme063" notNull="false" order="65" status="U" uuid="db/column163"/>
+    <Column fglLength="255" fglType="201" name="bcme064" notNull="false" order="66" status="U" uuid="db/column164"/>
+    <Column fglLength="256" fglType="201" name="bcme127" notNull="false" order="67" status="U" uuid="db/column668"/>
+    <Column fglLength="4" fglType="2" name="bcme128" notNull="false" order="68" status="U" uuid="db/column669"/>
+    <Column fglLength="40" fglType="201" name="bcme999" notNull="true" order="69" status="U" uuid="db/column670"/>
+    <Column fglLength="10" fglType="201" name="bcmestus" notNull="false" order="70" status="U" uuid="db/column671"/>
     <Index indexColumns="bcmeent, bcmesite, bcme001, bcme002, bcme005, bcme006, bcme007, bcme013, bcme014, bcme015, bcme999" indexConstraint="primaryKey" name="sqlite_autoindex_app_base_bcme_t_1" status="U" uuid="db/index5"/>
   </Table>
   <Table active="true" name="basicinformation" status="U" uuid="db/table3">
@@ -237,6 +239,66 @@
     <Column fglLength="5120" fglType="5" name="inventory_operation" notNull="false" order="38" status="U" uuid="db/column119"/>
     <Column fglLength="5120" fglType="5" name="out_in_operation" notNull="false" order="39" status="U" uuid="db/column120"/>
     <Column fglLength="10" fglType="201" name="valuation_unit" notNull="false" order="40" status="U" uuid="db/column121"/>
+  </Table>
+  <Table active="true" name="capp_kb_02_setting_t" status="U" uuid="db/table2">
+    <Column fglLength="10" fglType="201" name="ent" notNull="true" order="1" status="U" uuid="db/column125"/>
+    <Column fglLength="20" fglType="201" name="site" notNull="true" order="2" status="U" uuid="db/column126"/>
+    <Column fglLength="5" fglType="201" name="limited" notNull="false" order="3" status="U" uuid="db/column127"/>
+    <Column fglLength="4" fglType="2" name="amount" notNull="false" order="4" status="U" uuid="db/column128"/>
+    <Column fglLength="5" fglType="201" name="orderby" notNull="false" order="5" status="U" uuid="db/column129"/>
+    <Column fglLength="4" fglType="2" name="shownumtype" notNull="false" order="6" status="U" uuid="db/column130"/>
+    <Column fglLength="4" fglType="2" name="shownum" notNull="false" order="7" status="U" uuid="db/column131"/>
+    <Index indexColumns="ent, site" indexConstraint="primaryKey" name="sqlite_autoindex_capp_kb_02_setting_t_1" status="U" uuid="db/index8"/>
+  </Table>
+  <Table active="true" name="capp_kb_03_setting_t" status="U" uuid="db/table6">
+    <Column fglLength="10" fglType="201" name="ent" notNull="true" order="1" status="U" uuid="db/column132"/>
+    <Column fglLength="20" fglType="201" name="site" notNull="true" order="2" status="U" uuid="db/column133"/>
+    <Column fglLength="5" fglType="201" name="source" notNull="false" order="3" status="U" uuid="db/column134"/>
+    <Column fglLength="1" fglType="45" name="a01" notNull="false" order="4" status="U" uuid="db/column135"/>
+    <Column fglLength="1" fglType="45" name="a02" notNull="false" order="5" status="U" uuid="db/column136"/>
+    <Column fglLength="1" fglType="45" name="a03" notNull="false" order="6" status="U" uuid="db/column137"/>
+    <Column fglLength="1" fglType="45" name="a04" notNull="false" order="7" status="U" uuid="db/column138"/>
+    <Index indexColumns="ent, site" indexConstraint="primaryKey" name="sqlite_autoindex_capp_kb_03_setting_t_1" status="U" uuid="db/index9"/>
+  </Table>
+  <Table active="true" name="capp_kb_03_single_t" status="U" uuid="db/table8">
+    <Column fglLength="10" fglType="201" name="ent" notNull="true" order="1" status="U" uuid="db/column139"/>
+    <Column fglLength="20" fglType="201" name="site" notNull="true" order="2" status="U" uuid="db/column140"/>
+    <Column fglLength="5" fglType="201" name="single" notNull="true" order="3" status="U" uuid="db/column141"/>
+    <Index indexColumns="ent, site, single" indexConstraint="primaryKey" name="sqlite_autoindex_capp_kb_03_single_t_1" status="U" uuid="db/index11"/>
+  </Table>
+  <Table active="true" name="capp_kb_03_warehouse_t" status="U" uuid="db/table9">
+    <Column fglLength="10" fglType="201" name="ent" notNull="true" order="1" status="U" uuid="db/column142"/>
+    <Column fglLength="20" fglType="201" name="site" notNull="true" order="2" status="U" uuid="db/column143"/>
+    <Column fglLength="10" fglType="201" name="warehouse" notNull="true" order="3" status="U" uuid="db/column144"/>
+    <Index indexColumns="ent, site, warehouse" indexConstraint="primaryKey" name="sqlite_autoindex_capp_kb_03_warehouse_t_1" status="U" uuid="db/index12"/>
+  </Table>
+  <Table active="true" name="capp_kb_05_setting_t" status="U" uuid="db/table10">
+    <Column fglLength="10" fglType="201" name="ent" notNull="true" order="1" status="U" uuid="db/column145"/>
+    <Column fglLength="20" fglType="201" name="site" notNull="true" order="2" status="U" uuid="db/column146"/>
+    <Column fglLength="5" fglType="201" name="source" notNull="false" order="3" status="U" uuid="db/column147"/>
+    <Column fglLength="1" fglType="45" name="a01" notNull="false" order="4" status="U" uuid="db/column148"/>
+    <Column fglLength="1" fglType="45" name="a02" notNull="false" order="5" status="U" uuid="db/column149"/>
+    <Column fglLength="1" fglType="45" name="a03" notNull="false" order="6" status="U" uuid="db/column150"/>
+    <Column fglLength="1" fglType="45" name="a04" notNull="false" order="7" status="U" uuid="db/column151"/>
+    <Index indexColumns="ent, site" indexConstraint="primaryKey" name="sqlite_autoindex_capp_kb_05_setting_t_1" status="U" uuid="db/index13"/>
+  </Table>
+  <Table active="true" name="capp_kb_05_single_t" status="U" uuid="db/table11">
+    <Column fglLength="10" fglType="201" name="ent" notNull="true" order="1" status="U" uuid="db/column152"/>
+    <Column fglLength="20" fglType="201" name="site" notNull="true" order="2" status="U" uuid="db/column153"/>
+    <Column fglLength="5" fglType="201" name="single" notNull="true" order="3" status="U" uuid="db/column156"/>
+    <Index indexColumns="ent, site, single" indexConstraint="primaryKey" name="sqlite_autoindex_capp_kb_05_single_t_1" status="U" uuid="db/index14"/>
+  </Table>
+  <Table active="true" name="capp_kb_05_warehouse_t" status="U" uuid="db/table12">
+    <Column fglLength="10" fglType="201" name="ent" notNull="true" order="1" status="U" uuid="db/column157"/>
+    <Column fglLength="20" fglType="201" name="site" notNull="true" order="2" status="U" uuid="db/column158"/>
+    <Column fglLength="10" fglType="201" name="warehouse" notNull="true" order="3" status="U" uuid="db/column159"/>
+    <Index indexColumns="ent, site, warehouse" indexConstraint="primaryKey" name="sqlite_autoindex_capp_kb_05_warehouse_t_1" status="U" uuid="db/index15"/>
+  </Table>
+  <Table active="true" name="capp_receipt_kb_t" status="U" uuid="db/table13">
+    <Column fglLength="10" fglType="201" name="ent" notNull="true" order="1" status="U" uuid="db/column160"/>
+    <Column fglLength="20" fglType="201" name="site" notNull="true" order="2" status="U" uuid="db/column161"/>
+    <Column fglLength="20" fglType="201" name="showme" notNull="false" order="3" status="U" uuid="db/column162"/>
+    <Index indexColumns="ent, site" indexConstraint="primaryKey" name="sqlite_autoindex_capp_receipt_kb_t_1" status="U" uuid="db/index16"/>
   </Table>
   <Table active="true" name="department" status="U" uuid="db/table7">
     <Column fglLength="40" fglType="201" name="department_no" notNull="true" order="1" status="U" uuid="db/column154"/>
@@ -290,134 +352,10 @@
     <Column fglLength="1" fglType="201" name="feature" notNull="false" order="14" status="U" uuid="db/column4"/>
     <Index indexColumns="enterprise_no, site_no, account" indexConstraint="primaryKey" name="sqlite_autoindex_userinformation_1" status="U" uuid="db/index4"/>
   </Table>
-  <Table active="true" name="xyc_app_base_bcaf_t" status="A" uuid="db/table22">
-    <Column fglLength="10" fglType="201" name="bcafent" notNull="true" order="1" status="A" uuid="db/column549"/>
-    <Column fglLength="20" fglType="201" name="bcafsite" notNull="true" order="2" status="A" uuid="db/column550"/>
-    <Column fglLength="255" fglType="201" name="bcafname" notNull="false" order="3" status="A" uuid="db/column551"/>
-    <Column fglLength="255" fglType="201" name="bcafspec" notNull="false" order="4" status="A" uuid="db/column552"/>
-    <Column fglLength="10" fglType="201" name="bcafmunit" notNull="false" order="5" status="A" uuid="db/column553"/>
-    <Column fglLength="80" fglType="201" name="bcaf001" notNull="true" order="6" status="A" uuid="db/column554"/>
-    <Column fglLength="30" fglType="201" name="bcaf002" notNull="true" order="7" status="A" uuid="db/column555"/>
-    <Column fglLength="40" fglType="201" name="bcaf003" notNull="true" order="8" status="A" uuid="db/column556"/>
-    <Column fglLength="4" fglType="2" name="bcaf004" notNull="true" order="9" status="A" uuid="db/column557"/>
-    <Column fglLength="4" fglType="2" name="bcaf005" notNull="false" order="10" status="A" uuid="db/column558"/>
-    <Column fglLength="255" fglType="201" name="bcaf006" notNull="false" order="11" status="A" uuid="db/column559"/>
-    <Column fglLength="40" fglType="201" name="bcaf007" notNull="false" order="12" status="A" uuid="db/column560"/>
-    <Column fglLength="255" fglType="201" name="bcaf008" notNull="false" order="13" status="A" uuid="db/column561"/>
-    <Column fglLength="500" fglType="201" name="bcaf009" notNull="false" order="14" status="A" uuid="db/column563"/>
-    <Column fglLength="10" fglType="201" name="bcaf010" notNull="false" order="15" status="A" uuid="db/column565"/>
-    <Column fglLength="10" fglType="201" name="bcaf011" notNull="false" order="16" status="A" uuid="db/column585"/>
-    <Column fglLength="30" fglType="201" name="bcaf012" notNull="false" order="17" status="A" uuid="db/column586"/>
-    <Column fglLength="30" fglType="201" name="bcaf013" notNull="false" order="18" status="A" uuid="db/column587"/>
-    <Column fglLength="30" fglType="201" name="bcaf014" notNull="false" order="19" status="A" uuid="db/column588"/>
-    <Column fglLength="30" fglType="201" name="bcaf015" notNull="false" order="20" status="A" uuid="db/column589"/>
-    <Column fglLength="6666" fglType="5" name="bcaf016" notNull="false" order="21" status="A" uuid="db/column590"/>
-    <Column fglLength="10" fglType="201" name="bcaf017" notNull="false" order="22" status="A" uuid="db/column591"/>
-    <Column fglLength="40" fglType="201" name="bcaf018" notNull="false" order="23" status="A" uuid="db/column592"/>
-    <Column fglLength="40" fglType="201" name="bcaf019" notNull="false" order="24" status="A" uuid="db/column593"/>
-    <Column fglLength="20" fglType="201" name="bcaf020" notNull="false" order="25" status="A" uuid="db/column594"/>
-    <Column fglLength="2560" fglType="5" name="bcaf021" notNull="false" order="26" status="A" uuid="db/column595"/>
-    <Column fglLength="2560" fglType="5" name="bcaf022" notNull="false" order="27" status="A" uuid="db/column596"/>
-    <Column fglLength="2560" fglType="5" name="bcaf023" notNull="false" order="28" status="A" uuid="db/column597"/>
-    <Column fglLength="10" fglType="201" name="bcaf031" notNull="false" order="29" status="A" uuid="db/column598"/>
-    <Column fglLength="6666" fglType="5" name="bcaf032" notNull="false" order="30" status="A" uuid="db/column599"/>
-    <Column fglLength="10" fglType="201" name="bcaf033" notNull="false" order="31" status="A" uuid="db/column600"/>
-    <Column fglLength="6666" fglType="5" name="bcaf034" notNull="false" order="32" status="A" uuid="db/column601"/>
-    <Column fglLength="6666" fglType="5" name="bcaf035" notNull="false" order="33" status="A" uuid="db/column602"/>
-    <Column fglLength="10" fglType="201" name="bcaf036" notNull="false" order="34" status="A" uuid="db/column603"/>
-    <Column fglLength="10" fglType="201" name="bcaf037" notNull="false" order="35" status="A" uuid="db/column604"/>
-    <Column fglLength="10" fglType="201" name="bcaf038" notNull="false" order="36" status="A" uuid="db/column605"/>
-    <Column fglLength="10" fglType="201" name="bcaf039" notNull="false" order="37" status="A" uuid="db/column606"/>
-    <Column fglLength="2560" fglType="5" name="bcaf040" notNull="false" order="38" status="A" uuid="db/column607"/>
-    <Column fglLength="10" fglType="201" name="bcaf041" notNull="false" order="39" status="A" uuid="db/column608"/>
-    <Column fglLength="10" fglType="201" name="bcaf042" notNull="false" order="40" status="A" uuid="db/column609"/>
-    <Column fglLength="6666" fglType="5" name="bcaf043" notNull="false" order="41" status="A" uuid="db/column610"/>
-    <Column fglLength="10" fglType="201" name="bcaf044" notNull="false" order="42" status="A" uuid="db/column611"/>
-    <Column fglLength="6666" fglType="5" name="bcaf045" notNull="false" order="43" status="A" uuid="db/column612"/>
-    <Column fglLength="10" fglType="201" name="bcaf046" notNull="false" order="44" status="A" uuid="db/column613"/>
-    <Column fglLength="6666" fglType="5" name="bcaf047" notNull="false" order="45" status="A" uuid="db/column614"/>
-    <Column fglLength="255" fglType="201" name="bcafpcode" notNull="false" order="46" status="A" uuid="db/column615"/>
-    <Column fglLength="6666" fglType="5" name="bcafpqty" notNull="false" order="47" status="A" uuid="db/column616"/>
-    <Column fglLength="100" fglType="201" name="xshipping_mark_no" notNull="false" order="48" status="A" uuid="db/column617"/>
-    <Column fglLength="100" fglType="201" name="xshipping_mark_cn" notNull="false" order="49" status="A" uuid="db/column618"/>
-    <Index indexColumns="bcafent, bcaf001, bcaf002, bcaf003, bcafsite, bcaf004" indexConstraint="primaryKey" name="sqlite_autoindex_app_base_bcaf_t_1_2" status="A" uuid="db/index22"/>
-  </Table>
-  <Table active="true" name="xyc_app_base_bcme_t" status="A" uuid="db/table24">
-    <Column fglLength="10" fglType="201" name="bcmeent" notNull="true" order="1" status="A" uuid="db/column779"/>
-    <Column fglLength="20" fglType="201" name="bcmesite" notNull="true" order="2" status="A" uuid="db/column780"/>
-    <Column fglLength="20" fglType="201" name="bcme001" notNull="true" order="3" status="A" uuid="db/column781"/>
-    <Column fglLength="20" fglType="201" name="bcme002" notNull="true" order="4" status="A" uuid="db/column782"/>
-    <Column fglLength="10" fglType="201" name="bcme003" notNull="false" order="5" status="A" uuid="db/column783"/>
-    <Column fglLength="30" fglType="201" name="bcme004" notNull="false" order="6" status="A" uuid="db/column784"/>
-    <Column fglLength="4" fglType="2" name="bcme005" notNull="true" order="7" status="A" uuid="db/column785"/>
-    <Column fglLength="4" fglType="2" name="bcme006" notNull="true" order="8" status="A" uuid="db/column786"/>
-    <Column fglLength="4" fglType="2" name="bcme007" notNull="true" order="9" status="A" uuid="db/column787"/>
-    <Column fglLength="10" fglType="201" name="bcme008" notNull="false" order="10" status="A" uuid="db/column788"/>
-    <Column fglLength="80" fglType="201" name="bcme009" notNull="false" order="11" status="A" uuid="db/column789"/>
-    <Column fglLength="40" fglType="201" name="bcme010" notNull="false" order="12" status="A" uuid="db/column790"/>
-    <Column fglLength="255" fglType="201" name="bcme011" notNull="false" order="13" status="A" uuid="db/column791"/>
-    <Column fglLength="500" fglType="201" name="bcme012" notNull="false" order="14" status="A" uuid="db/column792"/>
-    <Column fglLength="10" fglType="201" name="bcme013" notNull="true" order="15" status="A" uuid="db/column793"/>
-    <Column fglLength="10" fglType="201" name="bcme014" notNull="true" order="16" status="A" uuid="db/column794"/>
-    <Column fglLength="30" fglType="201" name="bcme015" notNull="true" order="17" status="A" uuid="db/column795"/>
-    <Column fglLength="30" fglType="201" name="bcme016" notNull="false" order="18" status="A" uuid="db/column796"/>
-    <Column fglLength="6666" fglType="5" name="bcme017" notNull="false" order="19" status="A" uuid="db/column797"/>
-    <Column fglLength="6666" fglType="5" name="bcme018" notNull="false" order="20" status="A" uuid="db/column798"/>
-    <Column fglLength="30" fglType="201" name="bcme019" notNull="false" order="21" status="A" uuid="db/column799"/>
-    <Column fglLength="30" fglType="201" name="bcme020" notNull="false" order="22" status="A" uuid="db/column800"/>
-    <Column fglLength="1" fglType="201" name="bcme021" notNull="false" order="23" status="A" uuid="db/column801"/>
-    <Column fglLength="1" fglType="201" name="bcme022" notNull="false" order="24" status="A" uuid="db/column802"/>
-    <Column fglLength="20" fglType="201" name="bcme023" notNull="false" order="25" status="A" uuid="db/column803"/>
-    <Column fglLength="4" fglType="2" name="bcme024" notNull="false" order="26" status="A" uuid="db/column804"/>
-    <Column fglLength="4" fglType="2" name="bcme025" notNull="false" order="27" status="A" uuid="db/column805"/>
-    <Column fglLength="4" fglType="2" name="bcme026" notNull="false" order="28" status="A" uuid="db/column806"/>
-    <Column fglLength="40" fglType="201" name="bcme027" notNull="false" order="29" status="A" uuid="db/column807"/>
-    <Column fglLength="6666" fglType="5" name="bcme028" notNull="false" order="30" status="A" uuid="db/column808"/>
-    <Column fglLength="255" fglType="201" name="bcme029" notNull="false" order="31" status="A" uuid="db/column809"/>
-    <Column fglLength="10" fglType="201" name="bcme030" notNull="false" order="32" status="A" uuid="db/column810"/>
-    <Column fglLength="10" fglType="201" name="bcme031" notNull="false" order="33" status="A" uuid="db/column811"/>
-    <Column fglLength="10" fglType="201" name="bcme032" notNull="false" order="34" status="A" uuid="db/column812"/>
-    <Column fglLength="6666" fglType="5" name="bcme033" notNull="false" order="35" status="A" uuid="db/column813"/>
-    <Column fglLength="6666" fglType="5" name="bcme034" notNull="false" order="36" status="A" uuid="db/column814"/>
-    <Column fglLength="10" fglType="201" name="bcme035" notNull="false" order="37" status="A" uuid="db/column815"/>
-    <Column fglLength="6666" fglType="5" name="bcme036" notNull="false" order="38" status="A" uuid="db/column816"/>
-    <Column fglLength="2560" fglType="5" name="bcme037" notNull="false" order="39" status="A" uuid="db/column817"/>
-    <Column fglLength="6666" fglType="5" name="bcme038" notNull="false" order="40" status="A" uuid="db/column818"/>
-    <Column fglLength="6666" fglType="5" name="bcme039" notNull="false" order="41" status="A" uuid="db/column819"/>
-    <Column fglLength="20" fglType="201" name="bcme040" notNull="false" order="42" status="A" uuid="db/column820"/>
-    <Column fglLength="10" fglType="201" name="bcme041" notNull="false" order="43" status="A" uuid="db/column821"/>
-    <Column fglLength="10" fglType="201" name="bcme042" notNull="false" order="44" status="A" uuid="db/column822"/>
-    <Column fglLength="255" fglType="201" name="bcme043" notNull="false" order="45" status="A" uuid="db/column823"/>
-    <Column fglLength="255" fglType="201" name="bcme044" notNull="false" order="46" status="A" uuid="db/column824"/>
-    <Column fglLength="10" fglType="201" name="bcme045" notNull="false" order="47" status="A" uuid="db/column825"/>
-    <Column fglLength="6666" fglType="5" name="bcme046" notNull="false" order="48" status="A" uuid="db/column826"/>
-    <Column fglLength="6666" fglType="5" name="bcme047" notNull="false" order="49" status="A" uuid="db/column827"/>
-    <Column fglLength="10" fglType="201" name="bcme048" notNull="false" order="50" status="A" uuid="db/column828"/>
-    <Column fglLength="5120" fglType="5" name="bcme049" notNull="false" order="51" status="A" uuid="db/column829"/>
-    <Column fglLength="10" fglType="201" name="bcme050" notNull="false" order="52" status="A" uuid="db/column830"/>
-    <Column fglLength="6666" fglType="5" name="bcme051" notNull="false" order="53" status="A" uuid="db/column831"/>
-    <Column fglLength="5120" fglType="5" name="bcme052" notNull="false" order="54" status="A" uuid="db/column832"/>
-    <Column fglLength="10" fglType="201" name="bcme053" notNull="false" order="55" status="A" uuid="db/column833"/>
-    <Column fglLength="6666" fglType="5" name="bcme054" notNull="false" order="56" status="A" uuid="db/column834"/>
-    <Column fglLength="10" fglType="201" name="bcme055" notNull="false" order="57" status="A" uuid="db/column835"/>
-    <Column fglLength="6666" fglType="5" name="bcme056" notNull="false" order="58" status="A" uuid="db/column836"/>
-    <Column fglLength="10" fglType="201" name="bcme057" notNull="false" order="59" status="A" uuid="db/column837"/>
-    <Column fglLength="6666" fglType="5" name="bcme058" notNull="false" order="60" status="A" uuid="db/column838"/>
-    <Column fglLength="10" fglType="201" name="bcme059" notNull="false" order="61" status="A" uuid="db/column839"/>
-    <Column fglLength="10" fglType="201" name="bcme060" notNull="false" order="62" status="A" uuid="db/column840"/>
-    <Column fglLength="1" fglType="201" name="bcme061" notNull="false" order="63" status="A" uuid="db/column841"/>
-    <Column fglLength="1" fglType="201" name="bcme062" notNull="false" order="64" status="A" uuid="db/column842"/>
-    <Column fglLength="256" fglType="201" name="bcme127" notNull="false" order="65" status="A" uuid="db/column843"/>
-    <Column fglLength="4" fglType="2" name="bcme128" notNull="false" order="66" status="A" uuid="db/column844"/>
-    <Column fglLength="40" fglType="201" name="bcme999" notNull="true" order="67" status="A" uuid="db/column845"/>
-    <Column fglLength="10" fglType="201" name="bcmestus" notNull="false" order="68" status="A" uuid="db/column846"/>
-    <Column fglLength="100" fglType="201" name="shipping_mark_no" notNull="false" order="69" status="A" uuid="db/column847"/>
-    <Index indexColumns="bcmeent, bcmesite, bcme001, bcme002, bcme005, bcme006, bcme007, bcme013, bcme014, bcme015, bcme999" indexConstraint="primaryKey" name="sqlite_autoindex_app_base_bcme_t_1_2" status="A" uuid="db/index24"/>
-  </Table>
   <Views ActiveView="View-1" showLabels="true">
     <View Name="View-1">
       <Layout>
-        <![CDATA[AAAAAgAAABQAZABiAC8AdABhAGIAbABlADMAOEBWAAAAAAAAQIoQAAAAAABAATEm6XjT4wEAAAASAGQAYgAvAHQAYQBiAGwAZQA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAABQAZABiAC8AdABhAGIAbABlADIAMkB+gAAAAAAAQFUAAAAAAABAAXS8an74uAEAAAAUAGQAYgAvAHQAYQBiAGwAZQAyADRAe/AAAAAAAEBoQAAAAAAAQAF41P3ztSIBAAAAFABkAGIALwB0AGEAYgBsAGUANAAwQHewAAAAAABAjJAAAAAAAEABKwIMSblEAQAAABIAZABiAC8AdABhAGIAbABlADcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAFABkAGIALwB0AGEAYgBsAGUAMwAyQHWQAAAAAABAcnAAAAAAAEABYk3S8ajbAQAAABIAZABiAC8AdABhAGIAbABlADUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAFABkAGIALwB0AGEAYgBsAGUAMwAzQFcAAAAAAABAlUAAAAAAAEABNT987ZBNAQAAABIAZABiAC8AdABhAGIAbABlADEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAEgBkAGIALwB0AGEAYgBsAGUAMwAAAAAAAAAAAAAAAAAAAABAAXCj1wo8TgEAAAAUAGQAYgAvAHQAYQBiAGwAZQAzADVAhLgAAAAAAEBzAAAAAAAAQAE5WBBiTLcB]]>
+        <![CDATA[AAAAAgAAABQAZABiAC8AdABhAGIAbABlADMAOEBWAAAAAAAAQIoQAAAAAABAATEm6XjT4wEAAAAUAGQAYgAvAHQAYQBiAGwAZQA0ADBAd7AAAAAAAECMkAAAAAAAQAErAgxJuUQBAAAAFABkAGIALwB0AGEAYgBsAGUAMQAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAABIAZABiAC8AdABhAGIAbABlADUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAFABkAGIALwB0AGEAYgBsAGUAMQAxAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAABQAZABiAC8AdABhAGIAbABlADMAM0BXAAAAAAAAQJVAAAAAAABAATU/fO2QTQEAAAASAGQAYgAvAHQAYQBiAGwAZQA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAABIAZABiAC8AdABhAGIAbABlADkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAEgBkAGIALwB0AGEAYgBsAGUAMwAAAAAAAAAAAAAAAAAAAABAAXCj1wo8TgEAAAAUAGQAYgAvAHQAYQBiAGwAZQAzADVAhLgAAAAAAEBzAAAAAAAAQAE5WBBiTLcBAAAAEgBkAGIALwB0AGEAYgBsAGUANgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAUAGQAYgAvAHQAYQBiAGwAZQAzADJAdZAAAAAAAEBycAAAAAAAQAFiTdLxqNsBAAAAFABkAGIALwB0AGEAYgBsAGUAMQAyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAABIAZABiAC8AdABhAGIAbABlADcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAEgBkAGIALwB0AGEAYgBsAGUANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAASAGQAYgAvAHQAYQBiAGwAZQAxAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAABQAZABiAC8AdABhAGIAbABlADEAMwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAASAGQAYgAvAHQAYQBiAGwAZQAyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ==]]>
       </Layout>
     </View>
   </Views>

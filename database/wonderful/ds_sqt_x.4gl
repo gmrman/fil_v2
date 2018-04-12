@@ -188,6 +188,8 @@ FUNCTION db_create_tables()
         bcme060 VARCHAR(10),
         bcme061 VARCHAR(1),
         bcme062 VARCHAR(1),
+        bcme063 VARCHAR(40),
+        bcme064 VARCHAR(255),
         bcme127 VARCHAR(256),
         bcme128 INTEGER,
         bcme999 VARCHAR(40) NOT NULL,
@@ -234,9 +236,6 @@ FUNCTION db_create_tables()
         out_in_operation DECIMAL(20,0),
         bt_printer VARCHAR(40),
         valuation_unit VARCHAR(10))"
- EXECUTE IMMEDIATE "CREATE TABLE department (
-        department_no VARCHAR(40) NOT NULL,
-        CONSTRAINT pk_department_1 PRIMARY KEY(department_no))"
     EXECUTE IMMEDIATE "CREATE TABLE menuinformation (
         enterprise_no VARCHAR(10) NOT NULL,
         site_no VARCHAR(20) NOT NULL,
@@ -281,129 +280,71 @@ FUNCTION db_create_tables()
         manage_barcode_inventory VARCHAR(1),
         feature VARCHAR(1),
         CONSTRAINT sqlite_autoindex_userinformation_1 PRIMARY KEY(enterprise_no, site_no, account))"
-    EXECUTE IMMEDIATE "CREATE TABLE xyc_app_base_bcaf_t (
-        bcafent VARCHAR(10) NOT NULL,
-        bcafsite VARCHAR(20) NOT NULL,
-        bcafname VARCHAR(255),
-        bcafspec VARCHAR(255),
-        bcafmunit VARCHAR(10),
-        bcaf001 VARCHAR(80) NOT NULL,
-        bcaf002 VARCHAR(30) NOT NULL,
-        bcaf003 VARCHAR(40) NOT NULL,
-        bcaf004 INTEGER NOT NULL,
-        bcaf005 INTEGER,
-        bcaf006 VARCHAR(255),
-        bcaf007 VARCHAR(40),
-        bcaf008 VARCHAR(255),
-        bcaf009 VARCHAR(500),
-        bcaf010 VARCHAR(10),
-        bcaf011 VARCHAR(10),
-        bcaf012 VARCHAR(30),
-        bcaf013 VARCHAR(30),
-        bcaf014 VARCHAR(30),
-        bcaf015 VARCHAR(30),
-        bcaf016 DECIMAL(26,10),
-        bcaf017 VARCHAR(10),
-        bcaf018 VARCHAR(40),
-        bcaf019 VARCHAR(40),
-        bcaf020 VARCHAR(20),
-        bcaf021 DECIMAL(10,0),
-        bcaf022 DECIMAL(10,0),
-        bcaf023 DECIMAL(10,0),
-        bcaf031 VARCHAR(10),
-        bcaf032 DECIMAL(26,10),
-        bcaf033 VARCHAR(10),
-        bcaf034 DECIMAL(26,10),
-        bcaf035 DECIMAL(26,10),
-        bcaf036 VARCHAR(10),
-        bcaf037 VARCHAR(10),
-        bcaf038 VARCHAR(10),
-        bcaf039 VARCHAR(10),
-        bcaf040 DECIMAL(10,0),
-        bcaf041 VARCHAR(10),
-        bcaf042 VARCHAR(10),
-        bcaf043 DECIMAL(26,10),
-        bcaf044 VARCHAR(10),
-        bcaf045 DECIMAL(26,10),
-        bcaf046 VARCHAR(10),
-        bcaf047 DECIMAL(26,10),
-        bcafPcode VARCHAR(255),
-        bcafPqty DECIMAL(26,10),
-        xshipping_mark_no VARCHAR(100),
-        xshipping_mark_cn VARCHAR(100),
-        CONSTRAINT sqlite_autoindex_app_base_bcaf_t_1_2 PRIMARY KEY(bcafent, bcaf001, bcaf002, bcaf003, bcafsite, bcaf004))"
-    EXECUTE IMMEDIATE "CREATE TABLE xyc_app_base_bcme_t (
-        bcmeent VARCHAR(10) NOT NULL,
-        bcmesite VARCHAR(20) NOT NULL,
-        bcme001 VARCHAR(20) NOT NULL,
-        bcme002 VARCHAR(20) NOT NULL,
-        bcme003 VARCHAR(10),
-        bcme004 VARCHAR(30),
-        bcme005 INTEGER NOT NULL,
-        bcme006 INTEGER NOT NULL,
-        bcme007 INTEGER NOT NULL,
-        bcme008 VARCHAR(10),
-        bcme009 VARCHAR(80),
-        bcme010 VARCHAR(40),
-        bcme011 VARCHAR(255),
-        bcme012 VARCHAR(500),
-        bcme013 VARCHAR(10) NOT NULL,
-        bcme014 VARCHAR(10) NOT NULL,
-        bcme015 VARCHAR(30) NOT NULL,
-        bcme016 VARCHAR(30),
-        bcme017 DECIMAL(26,10),
-        bcme018 DECIMAL(26,10),
-        bcme019 VARCHAR(30),
-        bcme020 VARCHAR(30),
-        bcme021 VARCHAR(1),
-        bcme022 VARCHAR(1),
-        bcme023 VARCHAR(20),
-        bcme024 INTEGER,
-        bcme025 INTEGER,
-        bcme026 INTEGER,
-        bcme027 VARCHAR(40),
-        bcme028 DECIMAL(26,10),
-        bcme029 VARCHAR(255),
-        bcme030 VARCHAR(10),
-        bcme031 VARCHAR(10),
-        bcme032 VARCHAR(10),
-        bcme033 DECIMAL(26,10),
-        bcme034 DECIMAL(26,10),
-        bcme035 VARCHAR(10),
-        bcme036 DECIMAL(26,10),
-        bcme037 DECIMAL(10,0),
-        bcme038 DECIMAL(26,10),
-        bcme039 DECIMAL(26,10),
-        bcme040 VARCHAR(20),
-        bcme041 VARCHAR(10),
-        bcme042 VARCHAR(10),
-        bcme043 VARCHAR(255),
-        bcme044 VARCHAR(255),
-        bcme045 VARCHAR(10),
-        bcme046 DECIMAL(26,10),
-        bcme047 DECIMAL(26,10),
-        bcme048 VARCHAR(10),
-        bcme049 DECIMAL(20,0),
-        bcme050 VARCHAR(10),
-        bcme051 DECIMAL(26,10),
-        bcme052 DECIMAL(20,0),
-        bcme053 VARCHAR(10),
-        bcme054 DECIMAL(26,10),
-        bcme055 VARCHAR(10),
-        bcme056 DECIMAL(26,10),
-        bcme057 VARCHAR(10),
-        bcme058 DECIMAL(26,10),
-        bcme059 VARCHAR(10),
-        bcme060 VARCHAR(10),
-        bcme061 VARCHAR(1),
-        bcme062 VARCHAR(1),
-        bcme127 VARCHAR(256),
-        bcme128 INTEGER,
-        bcme999 VARCHAR(40) NOT NULL,
-        bcmestus VARCHAR(10),
-        shipping_mark_no VARCHAR(100),
-        CONSTRAINT sqlite_autoindex_app_base_bcme_t_1_2 PRIMARY KEY(bcmeent, bcmesite, bcme001, bcme002, bcme005, bcme006, bcme007, bcme013, bcme014, bcme015, bcme999))"
+    EXECUTE IMMEDIATE "CREATE TABLE department (
+        department_no VARCHAR(40) NOT NULL,
+        CONSTRAINT pk_department_1 PRIMARY KEY(department_no))"
+        
+    #170518 By zhen (S)
+    EXECUTE IMMEDIATE "CREATE TABLE capp_receipt_kb_t (
+        ent                  VARCHAR(10) NOT NULL,
+        site                 VARCHAR(20) NOT NULL,
+        showme               VARCHAR(20),
+        CONSTRAINT pk_capp_receipt_kb_t PRIMARY KEY(ent, site))"
 
+    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_02_setting_t (
+        ent                  VARCHAR(10) NOT NULL,
+        site                 VARCHAR(20) NOT NULL,
+        limited              VARCHAR(5),
+        amount               INTEGER,
+        orderBy              VARCHAR(5),
+        showNumType          INTEGER,
+        showNum              INTEGER,
+        CONSTRAINT pk_capp_kb_02_setting_t PRIMARY KEY(ent, site))"
+
+    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_03_setting_t (
+        ent                  VARCHAR(10) NOT NULL,
+        site                 VARCHAR(20) NOT NULL,
+        source               VARCHAR(5),
+        A01                  BOOLEAN,
+        A02                  BOOLEAN,
+        A03                  BOOLEAN,
+        A04                  BOOLEAN,
+        CONSTRAINT pk_capp_kb_03_setting_t PRIMARY KEY(ent, site))"
+
+    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_03_warehouse_t (
+        ent                  VARCHAR(10) NOT NULL,
+        site                 VARCHAR(20) NOT NULL,
+        warehouse            VARCHAR(10) NOT NULL,
+        CONSTRAINT pk_capp_kb_03_warehouse_t PRIMARY KEY(ent, site, warehouse))"
+
+    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_03_single_t (
+        ent                  VARCHAR(10) NOT NULL,
+        site                 VARCHAR(20) NOT NULL,
+        single               VARCHAR(5)  NOT NULL,
+        CONSTRAINT pk_capp_kb_03_single_t PRIMARY KEY(ent, site, single))"
+
+    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_05_setting_t (
+        ent                  VARCHAR(10) NOT NULL,
+        site                 VARCHAR(20) NOT NULL,
+        source               VARCHAR(5),
+        A01                  BOOLEAN,
+        A02                  BOOLEAN,
+        A03                  BOOLEAN,
+        A04                  BOOLEAN,
+        CONSTRAINT pk_capp_kb_05_setting_t PRIMARY KEY(ent, site))"
+
+    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_05_warehouse_t (
+        ent                  VARCHAR(10) NOT NULL,
+        site                 VARCHAR(20) NOT NULL,
+        warehouse            VARCHAR(10) NOT NULL,
+        CONSTRAINT pk_capp_kb_05_warehouse_t PRIMARY KEY(ent, site, warehouse))"
+
+    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_05_single_t (
+        ent                  VARCHAR(10) NOT NULL,
+        site                 VARCHAR(20) NOT NULL,
+        single               VARCHAR(5)  NOT NULL,
+        CONSTRAINT pk_capp_kb_05_single_t PRIMARY KEY(ent, site, single))"
+    #170518 By zhen (E)
 END FUNCTION
 
 #+ Drop all tables from database.
@@ -415,15 +356,23 @@ FUNCTION db_drop_tables()
     EXECUTE IMMEDIATE "DROP TABLE app_base_bcmc_t"
     EXECUTE IMMEDIATE "DROP TABLE app_base_bcme_t"
     EXECUTE IMMEDIATE "DROP TABLE basicinformation"
-   
     EXECUTE IMMEDIATE "DROP TABLE menuinformation"
     EXECUTE IMMEDIATE "DROP TABLE qbecondition"
     EXECUTE IMMEDIATE "DROP TABLE stockinformation"
     EXECUTE IMMEDIATE "DROP TABLE userinformation"
-     EXECUTE IMMEDIATE "DROP TABLE department"
-    EXECUTE IMMEDIATE "DROP TABLE xyc_app_base_bcaf_t"
-    EXECUTE IMMEDIATE "DROP TABLE xyc_app_base_bcme_t"
+    EXECUTE IMMEDIATE "DROP TABLE department"
 
+    #170518 By zhen (S)
+    EXECUTE IMMEDIATE "DROP TABLE capp_receipt_kb_t"
+    EXECUTE IMMEDIATE "DROP TABLE capp_kb_02_setting_t"
+    EXECUTE IMMEDIATE "DROP TABLE capp_kb_03_setting_t"
+    EXECUTE IMMEDIATE "DROP TABLE capp_kb_03_warehouse_t"
+    EXECUTE IMMEDIATE "DROP TABLE capp_kb_03_single_t"
+    
+    EXECUTE IMMEDIATE "DROP TABLE capp_kb_05_setting_t"
+    EXECUTE IMMEDIATE "DROP TABLE capp_kb_05_warehouse_t"
+    EXECUTE IMMEDIATE "DROP TABLE capp_kb_05_single_t"
+    #170518 By zhen (E)
 END FUNCTION
 
 #+ Add indexes for all tables.

@@ -1,0 +1,20 @@
+<ion-modal-view>
+    <!-- Title -->
+    <ion-header-bar class="bar bar-header headerStyle">
+        <button ng-click="closeModal('ItemPic')" class="button button-icon icon ion-ios-arrow-back"></button>
+        <h1 class="title">{{ userInfo.language | langFilter: [langs.image, langs.detail] }}</h1>
+    </ion-header-bar>
+
+    <!-- 內容 -->
+    <ion-content>
+        <ion-scroll direction="xy " class="calc_def " delegate-handle="scrollImage " min-zoom="0.8 " zooming="true" on-release="reset() "
+            overflow-scroll="false ">
+            <div class="calc_def">
+                <div class="centerImage">
+                    <img ng-if="(item_pic.pic_url !== 'no pic!' && item_pic.pic_url !== '') || item_pic.pic_base64 === ''" class="fullImage" ng-src="{{item_pic.pic_url}}" />
+                    <img ng-if="(item_pic.pic_url === 'no pic!' || item_pic.pic_url === '') && item_pic.pic_base64 !== ''" class="fullImage" ng-src="data:image/jpeg;base64,{{item_pic.pic_base64}}" />
+                </div>
+            </div>
+        </ion-scroll>
+    </ion-content>
+</ion-modal-view>

@@ -58,6 +58,11 @@
                 <div class="col col-33 text-right" ng-if="userInfo.multi_unit && userInfo.multi_unit_type == 2">{{langs.reference}}{{langs.qty}}</div>
                 <div class="col col-33 text-right" ng-if="userInfo.multi_unit && userInfo.multi_unit_type == 3">{{langs.denominator}}/{{langs.reference}}{{langs.qty}}</div>
             </div>
+            <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.feature || views.show_op">
+                <div class="col col-50" ng-if="userInfo.feature">{{langs.item_feature_name}}</div>
+                <div class="col col-50" ng-if="!userInfo.feature"></div>
+                <div class="col col-50 text-right" ng-if="views.show_op">{{langs.job_name}}</div>
+            </div>
             <div class="row row-center title-row-con" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
                 <div class="col col-33">{{langs.warehouse}}</div>
                 <div class="col col-33">{{langs.storage}} </div>

@@ -38,6 +38,17 @@ require.config({
         "routertepe1": "../views/_routes",
         "routertepe2": "../views/app/_routes",
 
+        //ZHEN-20170419(S)
+        //d3
+        "d3": "d3/d3.min",
+        "commonFormat": "../views/app/common/js/commonFormat",
+        "multi-list-picker": "../views/app/common/js/multi-list-picker",
+
+        //Char
+        "chart": "angular-chart/Chart.min",
+        "angular-chart": "angular-chart/angular-chart",
+        //ZHEN-20170419(E)
+
         "ionic-popup": "../views/app/common/js/ionicPopupService",
         "userInfoService": "../views/app/common/js/userInfoService",
         "circulationCardService": "../views/app/common/js/circulationCardService",
@@ -67,6 +78,20 @@ require.config({
         "digiwin-gateway": ["angular"],
         "simplehttp": ["angular"],
 
+        //ZHEN-20170419(S)
+        //d3
+        "d3": {
+            exports: "d3"
+        },
+        
+        //Chart
+        "chart": ["angular"],
+        "angular-chart": ["angular"],
+
+        //multi-list-picker
+        "multi-list-picker": ["angular", "jquery"],
+        //ZHEN-20170419(E)
+
         // ionic
         "ionic": {
             exports: "ionic"
@@ -81,10 +106,10 @@ require.config({
 
 // bootstrap
 
-define(["angular", "angularAMD", "ionic", "routes", "angular-ui-router", "angular-css", "ionic-angular"],
+define(["angular", "angularAMD", "ionic", "routes", "angular-ui-router", "angular-css", "ionic-angular", "chart", "angular-chart", "d3", "multi-list-picker"],
     function(angular, angularAMD, ionic, registerRoutes) {
         // module
-        var app = angular.module("app", ["ui.router", "door3.css", "ionic"]);
+        var app = angular.module("app", ["ui.router", "door3.css", "ionic", "chart.js", "multi-list-picker"]);
         app.config(["$ionicConfigProvider", function($ionicConfigProvider) {
             $ionicConfigProvider.templates.maxPrefetch(0);
             $ionicConfigProvider.tabs.position('top');

@@ -1,0 +1,17 @@
+<ion-header-bar class="bar bar-header headerStyle" align-title="center">
+    <button ui-sref="kb_01_s01" class="button button-icon icon ion-ios-arrow-back"></button>
+
+    <button ng-click="chkSetting()" class="button button-icon icon ion-android-done"></button>
+</ion-header-bar>
+<ion-nav-view>
+    <ion-content>
+        <ion-checkbox class="item item-divider" ng-model="isAllSelected" ng-click="selectAll(isAllSelected)">
+            {{langs.select_all}}/{{langs.not_select_all}}
+        </ion-checkbox>
+        <div ng-repeat="item in items" class="popList">
+            <ion-checkbox ng-model="item.showme" ng-disabled="item.disabled">
+                {{item.name}}
+            </ion-checkbox>
+        </div>
+    </ion-content>
+</ion-nav-view>

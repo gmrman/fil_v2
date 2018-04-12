@@ -489,6 +489,9 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                             if (!$scope.pop.qty) {
                                 $scope.pop.qty = 0;
                             }
+                            if (!$scope.pop.reference_qty) {
+                                $scope.pop.reference_qty = 0;
+                            }
                             if (temp.lot_control_type == "1") {
                                 if (commonService.isNull($scope.pop.lot_no)) {
                                     e.preventDefault();
@@ -524,6 +527,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     }
                 }
                 temp.qty = pop.qty;
+                temp.reference_qty = pop.reference_qty;
 
                 if ($scope.scanning_detail.length > 0) {
                     var index = $scope.scanning_detail.findIndex(function(item) {

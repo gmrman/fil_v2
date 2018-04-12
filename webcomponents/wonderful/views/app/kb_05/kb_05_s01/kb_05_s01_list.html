@@ -1,0 +1,53 @@
+<ion-view>
+    <ion-content scroll="false">
+        <ion-scroll direction="x" class="timetable_scroll" delegate-handle="receiptListScroll" has-bouncing="false">
+            <div class="list_item row row-header">
+                <div class="row">
+                    <div class="col col-screen-0" ng-show="isCheckboxShown"></div>
+                    <div class="col col-screen-1" style="margin-right: 5px;">
+                        {{langs.day}}
+                    </div>
+                    <div class="col" ng-class="{true: 'col-screen-2_1', false: 'col-screen-2_2'}[isCheckboxShown]" >
+                        {{langs.docno}}
+                    </div>
+                    <div class="col col-screen-4">
+                        {{langs.detail_cnt}}
+                    </div>
+                    <div class="col col-screen-5">
+                        {{langs.compared}}
+                    </div>
+                    <div class="col" ng-class="{true: 'col-screen-3_1', false: 'col-screen-3_2'}[isCheckboxShown]" >
+                        {{langs.department}}
+                    </div>
+                </div>
+            </div>
+            <ion-scroll direction="y" has-bouncing="false">
+                <ion-item class="list_item row itemStyle" on-hold="MoreFeaturesShow(receipt); $event.stopPropagation();" style="width: 100%; height: 44px;" ng-repeat="receipt in guided_in | filter: filter | orderBy: setOrderRule() | limitTo:cnt:cnt*(form.page-1)"
+                    on-finish-render="ngRepeatStatus" ng-click="setItemColor(receipt,$index)">
+                    <div class="row">
+                        <div class="col col-screen-0 checkbox" ng-show="isCheckboxShown" style="padding-top: 2px;">
+                            <input type="checkbox" class="checkbox-icon" ng-model="receipt.checked">
+                        </div>
+                        <div class="col col-screen-1 col-field" style="margin-right: 5px;" ng-style="{'background-color': receipt.show_color, 'color':(receipt.show_color == 'rgb(255, 0, 0)' ? 'white' : '')}">{{receipt.days}}</div>
+                        <div class="col col-field" ng-class="{true: 'col-screen-2_1', false: 'col-screen-2_2'}[isCheckboxShown]" ng-style="{'background-color': receipt.color}">{{receipt.doc_no}}</div>
+                        <div class="col col-screen-4 col-field" ng-style="{'background-color': receipt.color}">{{receipt.detail_cnt}}</div>
+                        <div class="col col-screen-5 col-field" ng-style="{'background-color': receipt.color}">{{receipt.contrast_num}}</div>
+                        <div class="col col-field" ng-class="{true: 'col-screen-3_1', false: 'col-screen-3_2'}[isCheckboxShown]" ng-style="{'background-color': receipt.color}">{{receipt.dept_name}}</div>
+                    </div>
+                </ion-item>
+            </ion-scroll>
+        </ion-scroll>
+    </ion-content>
+
+    <ion-footer-bar>
+        <div class="pager-pop" style="text-align:center; width:100%">
+            <ul class="pager">
+                <li class="previous" ng-if="form.page != pageList[0]"><a href="" ng-click="changeActive((form.page - 1))">&larr;</a></li>
+                <li class="pager-select">
+                    <select ng-model="form.page" ng-options="item for item in pageList"></select>
+                </li>
+                <li class="next" ng-if="form.page != pageList[pageList.length - 1]"><a href="" ng-click="changeActive(form.page + 1)">&rarr;</a></li>
+            </ul>
+        </div>
+    </ion-footer-bar>
+</ion-view>

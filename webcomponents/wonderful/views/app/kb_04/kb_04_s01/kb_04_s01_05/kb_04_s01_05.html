@@ -1,0 +1,14 @@
+<ion-view>
+    <ion-content scroll="false">
+        <div source='kb_04_s01_05 header' class="col title-col-con">
+            <div class="row title-row-con-fixed row-header-one">
+                <div class="col col-50 col-ellipsis">{{langs.product_name}} \ {{langs.specification}}</div>
+                <div class="col col-50 text-right col-ellipsis">{{langs.qty}}</div>
+            </div>
+        </div>
+        <ion-nav-view name="kb_04_s01_05_list"></ion-nav-view>
+    </ion-content>
+    <div source='kb_04_s01_05 footer' class="bar bar-footer footerStyle" ng-click="btnSave()" ng-if="submit_show">
+        <h1 class="title titleStyle">{{langs.submit}}</h1>
+    </div>
+</ion-view>

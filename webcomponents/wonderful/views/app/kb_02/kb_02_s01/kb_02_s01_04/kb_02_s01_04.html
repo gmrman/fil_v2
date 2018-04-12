@@ -1,0 +1,41 @@
+<ion-modal-view>
+    <!-- Title -->
+    <ion-header-bar class="bar bar-header headerStyle">
+        <button ng-click="closeModal('WoData')" class="button button-icon icon ion-ios-arrow-back"></button>
+        <h1 class="title">{{ userInfo.language | langFilter: [langs.work_rder, langs.data] }}</h1>
+    </ion-header-bar>
+
+    <!-- 內容 -->
+    <ion-content>
+        <ion-scroll class="calc_def">
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.work_rder}}</span>
+                <div class="col col-75">{{wo_data.wo_no}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.product_no}}</span>
+                <div class="col col-75">{{wo_data.product_no}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.product_name}}</span>
+                <div class="col col-75">{{wo_data.product_desc}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.specification}}</span>
+                <div class="col col-75">{{wo_data.product_spec}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{ userInfo.language | langFilter: [langs.produce, langs.qty] }}</span>
+                <div class="col col-75">{{wo_data.qty}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.start_date}}</span>
+                <div class="col col-75">{{wo_data.start_date}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.completion_date}}</span>
+                <div class="col col-75">{{wo_data.completion_date}}</div>
+            </div>
+        </ion-scroll>
+    </ion-content>
+</ion-modal-view>

@@ -1,0 +1,32 @@
+<ion-view>
+    <ion-content ng-class="{'has-footer':submit_show}">
+        <ion-list>
+            <ion-item class="list_item itemStyle" item-width="100%" item-height="85" collection-repeat="goods in goodsList | orderBy: orderBy">
+                <div class="row row-center" ng-click="closeOption()">
+                    <div class="col col-10 checkbox">
+                        <input type="checkbox" class="checkbox-icon" ng-model="goods.checked">
+                    </div>
+                    <div class="col list-col-con" ng-click="OptionChangeNum($index, goods.showMultiUnit)" on-hold="showOrderBy()">
+                        <div class="row list-row-con">
+                            <div class="col col-67">{{goods.source_no}}</div>
+                            <div class="col col-33 text-right">{{goods.qty}}</div>
+                        </div>
+                        <div class="row list-row-con">
+                            <div class="col col-100">{{goods.item_name || goods.item_no}}</div>
+                        </div>
+                        <div class="row list-row-con">
+                            <div class="col col-33">{{goods.warehouse_no}}</div>
+                            <div class="col col-33 text-center">{{goods.storage_spaces_no}}</div>
+                            <div class="col col-33 text-right"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--<ion-option-button class="button button-calm" ng-click="splitGoods($index)">{{langs.split}}</ion-option-button>-->
+                
+                <ion-option-button class="button button-royal" ng-if="goods.showMultiUnit" ng-click="editMultiUnit('detail',$index)">{{langs.multi_unit}}</ion-option-button>
+                <ion-option-button class="button icon ion-android-create button-balanced" ng-click="showLotQtyList($index, goods.showMultiUnit)"></ion-option-button>
+                <ion-option-button class="button icon ion-trash-a button-assertive" ng-click="deleteGoods($index)"></ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

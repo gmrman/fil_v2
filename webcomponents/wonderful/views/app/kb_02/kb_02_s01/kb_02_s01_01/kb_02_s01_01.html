@@ -1,0 +1,62 @@
+<ion-modal-view>
+    <!-- Title -->
+    <ion-header-bar class="bar bar-header headerStyle">
+        <button ng-click="closeModal('Vendor')" class="button button-icon icon ion-ios-arrow-back"></button>
+        <h1 class="title">{{ userInfo.language | langFilter: [langs.manufacturers, langs.data] }}</h1>
+    </ion-header-bar>
+
+    <!-- 內容 -->
+    <ion-content>
+        <!--
+        <div class="list_item row-header-two">
+            <div class="row row-title">
+                <div class="col col-50">{{langs.purchase}}{{langs.list}}</div>
+                <div class="col col-50 text-right">{{langs.seq}}</div>
+            </div>
+            <div class="row row-title">
+                <div class="col col-50">{{langs.product_no}}</div>
+                <div class="col col-50 text-right">{{langs.product_name}}</div>
+            </div>
+        </div>
+        <ion-list>
+            <ion-item class="list_item itemStyle" style="width: 100%; height: 60px;">
+                <div class="row" style="margin-top: -5px;">
+                    <div class="col col-50">{{vendorModalData.po_no}}</div>
+                    <div class="col col-50 text-right">{{vendorModalData.po_sno}}</div>
+                </div>
+                <div class="row">
+                    <div class="col col-50">{{vendorModalData.item_no}}</div>
+                    <div class="col col-50 text-right">{{vendorModalData.item_desc}}</div>
+                </div>
+            </ion-item>
+        </ion-list>
+        -->
+
+        <ion-scroll class="calc_def">
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.supplier}}</span>
+                <div class="col col-75">{{vendor_data.vendor_no}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.vendor_name}}</span>
+                <div class="col col-75">{{vendor_data.vendor_name}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.vendor_fname}}</span>
+                <div class="col col-75">{{vendor_data.vendor_fname}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.address}}</span>
+                <div class="col col-75">{{vendor_data.address}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.phonenumber}}</span>
+                <div class="col col-75">{{vendor_data.phonenumber}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.faxnumber}}</span>
+                <div class="col col-75">{{vendor_data.faxnumber}}</div>
+            </div>
+        </ion-scroll>
+    </ion-content>
+</ion-modal-view>

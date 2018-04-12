@@ -125,7 +125,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     parameter: {
                         "program_job_no": "15",
                         "site_no": userInfoService.userInfo.site_no,
-                        "scan_barcode": $scope.scaninfo.barcode,
+                        "scan_barcode": $scope.scaninfo.barcode || $scope.scaninfo.scanning,
                         "scan_warehouse_no": $scope.scaninfo.warehouse_no,
                         "scan_storage_spaces_no": $scope.scaninfo.storage_spaces_no,
                         "scan_start_date": $scope.scaninfo.start_date,
@@ -139,6 +139,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     // console.log("success:" + angular.toJson(res));
                     var parameter = res.payload.std_data.parameter;
                     $ionicLoading.hide();
+                    $scope.setShowItemDetail(!commonService.isNull($scope.scaninfo.barcode));
                     if (angular.isUndefined(parameter.item_detail) || angular.isUndefined(parameter.barcode_detail)) {
                         userInfoService.getVoice($scope.langs.ws_return_error, function() {
                             $scope.setFocusMe(true);

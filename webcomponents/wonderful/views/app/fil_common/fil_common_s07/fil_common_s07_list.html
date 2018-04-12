@@ -1,7 +1,7 @@
 <ion-view>
-    <ion-content class="view-pane" ng-class="{'has-footer':l_data.show_submit}">
+    <ion-content class="view-pane" ng-class="{'has-footer':views.show_submit}">
         <ion-list>
-            <ion-item class="list_item scan-title-color" item-width="100%" item-height="85" collection-repeat="item in scanning_detail">
+            <ion-item class="list_item scan-title-color" item-width="100%" item-height="collection_item_height" collection-repeat="item in scanning_detail">
                 <div class="col list-col-con" ng-click="closeOption()">
                     <div class="row row-center list-row-con">
                         <div class="col">{{item.source_no}}#{{item.seq}}</div>
@@ -11,7 +11,7 @@
                             <div class="qty" ng-click="showQtyPop($index)">{{item.qty}}</div>
                             <a class="add" ng-click="add($index)">+</a>
                         </div>
-                        <div class="col col-33 text-right quantity-form" ng-if="checkIsShowEditMultiUnit(item)" ng-click="editMultiUnit('receipt',$index)" >
+                        <div class="col col-33 text-right quantity-form" ng-if="checkIsShowEditMultiUnit(item)" ng-click="editMultiUnit('receipt',$index)">
                             <a class="mins">-</a>
                             <div class="qty">{{item.qty}}</div>
                             <a class="add">+</a>
@@ -25,6 +25,11 @@
                         <div class="col col-ellipsis" ng-if="userInfo.isDisplay_no">{{item.item_no}}</div>
                         <div class="col col-ellipsis" ng-if="userInfo.isDisplay_name" ng-class="{'text-right':!userInfo.isDisplay_spec}">{{item.item_name || item.item_no}}</div>
                         <div class="col col-ellipsis" ng-if="userInfo.isDisplay_spec" ng-class="{'text-right':(userInfo.isDisplay_no || userInfo.isDisplay_name)}">{{item.item_spec}}</div>
+                    </div>
+                    <div class="row row-center list-row-con" ng-if="userInfo.feature || views.show_op">
+                        <div class="col col-50 col-ellipsis" ng-if="userInfo.feature">{{item.item_feature_name || item.item_feature_no}}</div>
+                        <div class="col col-50 col-ellipsis" ng-if="!userInfo.feature"></div>
+                        <div class="col col-50 text-right" ng-if="views.show_op">{{item.op_name || item.op_no}}</div>
                     </div>
                     <div class="row row-center list-row-con">
                         <div class="col col-33">{{item.warehouse_no}}</div>

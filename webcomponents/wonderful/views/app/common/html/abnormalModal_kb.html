@@ -1,0 +1,49 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header headerStyle">
+        <h1 class="title titleStyle">{{ userInfo.language | langFilter: [langs.bad, langs.scanning] }}</h1>
+        <button class="button button-icon icon ion-android-close" ng-click="closeAbnormalModal()"></button>
+    </ion-header-bar>
+    <ion-content class="view-pane" scroll="false">
+        <div class="col title-col-con row-header">
+            <div class="row title-row-con col-small-padding">
+                <div class="col" style="flex: none; width: auto;" ng-if="pram!=10">{{langs.barcode}}</div>
+                <div class="col" style="flex: none; width: auto;" ng-if="pram==10">{{langs.circulation_card}}</div>
+                <div class="col">{{showAbnormalInfo.barcode}}</div>
+            </div>
+            <div class="row title-row-con col-small-padding">
+                <div class="col" style="flex: none; width: auto;">{{ userInfo.language | langFilter: [langs.scrap, langs.qty] }}</div>
+                <div class="col">{{showAbnormalInfo.max_scrap_qty}}</div>
+            </div>
+            <button class="button button-block ion-plus button-positive" ng-click="selectReasonCode()">
+                {{ userInfo.language | langFilter: [langs.insert, langs.bad, langs.reason] }}
+            </button>
+        </div>
+        <hr>
+        <div class="col title-col-con row-header" style="margin-bottom: 5px;">
+            <div class="row title-row-con col-small-padding">
+                <div class="col col-67 col-ellipsis">{{ userInfo.language | langFilter: [langs.bad, langs.reason] }}</div>
+                <div class="col col-33 text-right col-ellipsis">{{ userInfo.language | langFilter: [langs.bad, langs.qty] }}</div>
+            </div>
+        </div>
+        <ion-nav-view name="abnormal_01" sub-view>
+            <ion-view>
+                <ion-content class="view-pane">
+                    <ion-list>
+                        <ion-item class="list_item itemStyle" collection-repeat="scrap in scraps">
+                            <div class="col list-col-con">
+                                <div class="row list-row-con">
+                                    <div class="col col-67">{{scrap.abnormal_name}}</div>
+                                    <div class="col col-33 text-right">{{scrap.defect_qty}}</div>
+                                </div>
+                            </div>
+                            <ion-option-button class="button icon ion-trash-a button-assertive row-small" ng-click="delScrap($index)"></ion-option-button>
+                        </ion-item>
+                    </ion-list>
+                </ion-content>
+            </ion-view>
+        </ion-nav-view>
+    </ion-content>
+    <div class="bar bar-footer footerStyle" ng-click="setEditGoods()">
+        <h1 class="title titleStyle">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

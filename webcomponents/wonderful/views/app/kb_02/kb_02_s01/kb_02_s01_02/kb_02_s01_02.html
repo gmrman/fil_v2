@@ -1,0 +1,71 @@
+<ion-modal-view>
+    <!-- Title -->
+    <ion-header-bar class="bar bar-header headerStyle">
+        <button ng-click="closeModal('PoData')" class="button button-icon icon ion-ios-arrow-back"></button>
+        <h1 class="title">{{ userInfo.language | langFilter: [langs.purchase, langs.doc, langs.data] }}</h1>
+    </ion-header-bar>
+
+    <!-- 內容 -->
+    <ion-content>
+        <ion-scroll class="calc_def">
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{ userInfo.language | langFilter: [langs.purchase, langs.doc] }}</span>
+                <div class="col col-75">{{po_data.po_no}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.seq}}</span>
+                <div class="col col-75">{{po_data.po_sno}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.supplier}}</span>
+                <div class="col col-75">{{po_data.vendor_no}}-{{po_data.vendor_name}}</div>
+            </div>
+            <!--
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.supplier_name}}</span>
+                <div class="col col-75">{{po_data.vendor_name}}</div>
+            </div>
+            -->
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.item_no}}</span>
+                <div class="col col-75">{{po_data.item_no}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.product_name}}</span>
+                <div class="col col-75">{{po_data.item_desc}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.specification}}</span>
+                <div class="col col-75">{{po_data.item_spec}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{ userInfo.language | langFilter: [langs.purchase, langs.qty] }}</span>
+                <div class="col col-75">{{po_data.qty}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.qc_qty}}</span>
+                <div class="col col-75">{{po_data.qc_qty}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{ userInfo.language | langFilter: [langs.put_in_storage, langs.qty] }}</span>
+                <div class="col col-75">{{po_data.stock-in_qty}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{ userInfo.language | langFilter: [langs.qcrej, langs.qty] }}</span>
+                <div class="col col-75">{{po_data.qcrej_qty}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.shipping_date}}</span>
+                <div class="col col-75">{{po_data.shipping_date}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.arrival_date}}</span>
+                <div class="col col-75">{{po_data.arrival_date}}</div>
+            </div>
+            <div class="row col-small-padding modalView">
+                <span class="col col-25">{{langs.stock_in_date}}</span>
+                <div class="col col-75">{{po_data['stock-in_date']}}</div>
+            </div>
+        </ion-scroll>
+    </ion-content>
+</ion-modal-view>

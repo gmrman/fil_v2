@@ -1,0 +1,41 @@
+.sourceStyle {
+   height: 44px;
+}
+
+.sourceStyle > div {
+   font-family: Microsoft JhengHei;
+   font-size: 17px !important;
+   color: #6D6D72;
+}
+
+.item-divider {
+   font-family: Microsoft JhengHei;
+   font-size: 17px !important;
+   color: #6D6D72;
+}
+
+.searchView {
+    width: 100%;
+    height: 28px;
+    background-color: #FFFFFF !important;
+    border: 1px solid #17A5BF !important;
+    border-radius: 8px !important;
+    padding-left: 10px !important;
+    padding-top: 2px !important;
+    padding-bottom: 4px !important;
+}
+
+.popupSearch {
+    height: 28px;
+    background-color: #FFFFFF;
+}
+
+.view-pane {
+    background-color: #C8C7CC;
+}
+
+.popList * {
+    font-family: Microsoft JhengHei;
+    color: #6D6D72;
+    font-size: 17px !important;
+}

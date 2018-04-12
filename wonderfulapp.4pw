@@ -89,10 +89,10 @@
       <DynamicProperty name="icon80x80" value="$(ProjectDir)/images/icon.png"/>
       <DynamicProperty name="icon87x87" value="$(ProjectDir)/images/icon.png"/>
       <DynamicProperty name="packageId" value="com.Digiwin.Filv31App"/>
-      <DynamicProperty name="packageLabel" value="\u4e09\u7bad\u5851\u80f6"/>
-      <DynamicProperty name="packageName" value="\u4e09\u7bad\u5851\u80f6"/>
-      <DynamicProperty name="packageVersion" value="310340001"/>
-      <DynamicProperty name="packageVersionName" value="310340001"/>
+      <DynamicProperty name="packageLabel" value="\u5EE0\u5167\u667A\u80FD\u7269\u6D41"/>
+      <DynamicProperty name="packageName" value="\u5EE0\u5167\u667A\u80FD\u7269\u6D41"/>
+      <DynamicProperty name="packageVersion" value="31050"/>
+      <DynamicProperty name="packageVersionName" value="31050"/>
       <Directory description="Binaries" destinationDirectory="$(ProjectDir)/bin" includedFiles="*.42?" label="Binaries" recursive="false" sourceDirectory="$(ProjectDir)/bin"/>
       <Directory description="Configuration Files" destinationDirectory="$(ProjectDir)/bin" includedFiles="fglprofile" label="Config" recursive="false" sourceDirectory="$(ProjectDir)/config"/>
       <Directory description="Database" destinationDirectory="$(ProjectDir)/bin" includedFiles="*.db" label="Database" recursive="false" sourceDirectory="$(ProjectDir)/database"/>
@@ -177,16 +177,6 @@
               <File filePath="bdl/api/app/fil3_bcme_create.4gl"/>
               <File filePath="bdl/api/app/fil3_bcme_get.4gl"/>
             </VirtualFolder>
-            <VirtualFolder label="yc">
-              <File filePath="bdl/api/app/xyc_bcae_bcaf_upload_create.4gl"/>
-              <File filePath="bdl/api/app/xyc_bcaf_create.4gl"/>
-              <File filePath="bdl/api/app/xyc_bcaf_get.4gl"/>
-              <File filePath="bdl/api/app/xyc_bcme_ae_af_delete.4gl"/>
-              <File filePath="bdl/api/app/xyc_bcme_ae_af_get.4gl"/>
-              <File filePath="bdl/api/app/xyc_bcme_create.4gl"/>
-              <File filePath="bdl/api/app/xyc_bcme_delete.4gl"/>
-              <File filePath="bdl/api/app/xyc_bcme_get.4gl"/>
-            </VirtualFolder>
             <File filePath="bdl/api/app/basicInfomation_get.4gl"/>
             <File filePath="bdl/api/app/basicInfomation_upd.4gl"/>
             <File filePath="bdl/api/app/bcae_bcaf_upload_create.4gl"/>
@@ -200,6 +190,14 @@
             <File filePath="bdl/api/app/department_create.4gl"/>
             <File filePath="bdl/api/app/department_delete.4gl"/>
             <File filePath="bdl/api/app/department_get.4gl"/>
+            <File filePath="bdl/api/app/kb_01_capp_receipt_kb_t_create.4gl"/>
+            <File filePath="bdl/api/app/kb_01_get_show_chart_setting.4gl"/>
+            <File filePath="bdl/api/app/kb_02_get_setting.4gl"/>
+            <File filePath="bdl/api/app/kb_02_upd_setting.4gl"/>
+            <File filePath="bdl/api/app/kb_03_get_setting.4gl"/>
+            <File filePath="bdl/api/app/kb_03_upd_setting.4gl"/>
+            <File filePath="bdl/api/app/kb_05_get_setting.4gl"/>
+            <File filePath="bdl/api/app/kb_05_upd_setting.4gl"/>
             <File filePath="bdl/api/app/menuinformation_get.4gl"/>
             <File filePath="bdl/api/app/menuinformation_upd.4gl"/>
             <File filePath="bdl/api/app/qbecondition.4gl"/>
@@ -219,6 +217,7 @@
             <File filePath="bdl/api/lib/choosePhoto.4gl"/>
             <File filePath="bdl/api/lib/cl_null.4gl"/>
             <File filePath="bdl/api/lib/getFileDetail.4gl"/>
+            <File filePath="bdl/api/lib/RamUtil.4gl"/>
             <File filePath="bdl/api/lib/s_num.4gl"/>
             <File filePath="bdl/api/lib/scanBarCode.4gl"/>
             <File filePath="bdl/api/lib/takePhoto.4gl"/>

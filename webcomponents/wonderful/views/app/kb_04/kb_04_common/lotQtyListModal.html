@@ -1,0 +1,67 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header headerStyle">
+        <h1 class="title title-center">{{ userInfo.language | langFilter: [langs.lot, langs.detail] }}</h1>
+        <button ng-click="closeLotQtyListModal()" class="button button-clear" style="color: #FFF;">{{langs.page_back}}</button>
+    </ion-header-bar>
+
+    <ion-content scroll="true">
+        <div class="col title-col-con">
+            <div class="row title-row-con col-small-padding">
+                <div class="col" style="flex: none; width: auto;">{{ userInfo.language | langFilter: [type, langs.qty] }} : </div>
+                <div class="col">{{lotQtyListInfo.maxqty}}</div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="col title-col-con">
+            <div class="row title-row-con col-small-padding">
+                <div class="col col-10"></div>
+                <div class="col col-40 text-center">{{langs.lot}}</div>
+                <div class="col col-10"></div>
+                <div class="col col-40 text-center">{{langs.qty}}</div>
+            </div>
+        </div>
+
+        <div class="col title-col-con">
+            <div class="row title-row-con col-small-padding">
+                <i class="icon col col-10 addLotList" ng-click="setLotQtyList(lotQtyListInfo)"></i>
+                <input type="text" class="col col-40" placeholder="{{ userInfo.language | langFilter: [langs.please, langs.input, langs.lot] }}" ng-model="lotQtyListInfo.lot">
+                <div class="col col-10"></div>
+                <div class="col col-40" ng-click="lotQtyListInfo.showMultiUnit && editMultiUnit('detail_lot', lotQtyListInfo.index, lotQtyListInfo)">
+                    <div class="quantity-form">
+                        <a class="mins" ng-click="lot_compute(lotQtyListInfo, -1, '')">-</a>
+                        <div class="qty" ng-click="showLotQtyPop(lotQtyListInfo, '')">{{lotQtyListInfo.qty}}</div>
+                        <a class="add" ng-click="lot_compute(lotQtyListInfo, 1, '')">+</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <ion-list>
+            <div class="col title-col-con">
+                <div class="row title-row-con col-small-padding">
+                    <div class="col col-60">{{langs.lot}}</div>
+                    <div class="col col-40">{{langs.qty}}</div>
+                </div>
+            </div>
+            <ion-item class="list_item scan-title-color" collection-repeat="lotQty in lotQtyList" item-height="35" item-width="100%">
+                <div class="col list-col-con">
+                    <div class="row list-row-con">
+                        <div class="col col-60" style="line-height: 25px;">{{lotQty.lot}}</div>
+                        <div class="col col-40" ng-click="lotQtyListInfo.showMultiUnit && setLotIndex($index, lotQty) && editMultiUnit('detail_lotQty', lotQtyListInfo.index, lotQty)">
+                            <div class="quantity-form">
+                                <a class="mins" ng-click="lot_compute(lotQty, -1, lotQtyListInfo)">-</a>
+                                <div class="qty" ng-click="showLotQtyPop(lotQty, lotQtyListInfo)">{{lotQty.qty}}</div>
+                                <a class="add" ng-click="lot_compute(lotQty, 1, lotQtyListInfo)">+</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ion-option-button class="button icon ion-ios-trash-outline button-assertive row-small" ng-click="delLotList($index)"></ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-modal-view>

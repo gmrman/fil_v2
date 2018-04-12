@@ -1,0 +1,36 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header headerStyle">
+        <h1 class="title titleStyle">{{langs.split}}</h1>
+        <button class="button button-icon icon ion-android-close" ng-click="closeSplitItemModal()"></button>
+    </ion-header-bar>
+    <ion-content class="padding has-footer view-pane itemStyle">
+        <div class="row">
+            <div class="col col-20 col-ellipsis">{{langs.warehouse}}</div>
+            <div class="col col-67 text-left" ng-click="warehouseShowPop()">
+                <i class="icon ion-ios-compose-outline"></i>&nbsp;{{showGood.warehouse_no}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-20 col-ellipsis">{{langs.storage}}</div>
+            <div class="col col-67 text-left" ng-click="storageShowPop()">
+                <i class="icon ion-ios-compose-outline"></i>&nbsp;{{showGood.storage_spaces_no}}
+            </div>
+            <i class="icon ion-ios-close-outline icon-medium png-right" on-tap="clearStoragePop()"></i>
+        </div>
+        <div class="row">
+            <div class="col col-20 col-ellipsis">{{langs.lot}}</div>
+            <input type="text" ng-model="showGood.lot_no" placeholder="{{ userInfo.language | langFilter: [langs.set, langs.lot] }}" class="col col-80">
+        </div>
+        <div class="row">
+            <div class="col col-20 col-ellipsis">{{langs.qty}}</div>
+            <div class="col col-80 text-right quantity-form">
+                <a class="mins" ng-click="mins('pop')">-</a>
+                <div class="qty" ng-click="showQtyPop('pop')">{{showGood.qty}}</div>
+                <a class="add" ng-click="add('pop')">+</a>
+            </div>
+        </div>
+    </ion-content>
+    <div class="bar bar-footer footerStyle" ng-click="setSplitItem()">
+        <h1 class="title titleStyle">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

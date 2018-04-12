@@ -1,0 +1,14 @@
+<ion-view>
+    <ion-header-bar class="bar bar-header headerStyle" align-title="center">
+        <button ng-click="goTodolistNotice()" class="button button-icon icon ion-ios-arrow-back"></button>
+        <h1 class="title titleStyle">{{ userInfo.language | langFilter: [langs.purchase, langs.receiveing, langs.scanning] }}</h1>
+    </ion-header-bar>
+    <ion-tabs class="tabs-color-active-positive">
+        <ion-tab ng-if="true" title="{{ userInfo.language | langFilter: [langs.scanning, langs.detail] }}" ui-sref="kb_04_s01_02.kb_04_s01_04">
+            <ion-nav-view name="kb_04_s01_04"></ion-nav-view>
+        </ion-tab>
+        <ion-tab ng-if="true" title="{{langs.data_collection}}" ui-sref="kb_04_s01_02.kb_04_s01_05">
+            <ion-nav-view name="kb_04_s01_05"></ion-nav-view>
+        </ion-tab>
+    </ion-tabs>
+</ion-view>

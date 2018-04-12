@@ -1,0 +1,36 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header headerStyle">
+        <h1 class="title titleStyle">{{ userInfo.language | langFilter: [langs.please_choose, langs.product_no] }}</h1>
+        <button class="button button-icon icon ion-android-close" ng-click="close()"></button>
+    </ion-header-bar>
+    <div class="bar bar-subheader view-pane">
+        <div class="item-input popupSearch">
+            <input type="text" autofocus ng-model="popSelected.search" placeholder="{{ userInfo.language | langFilter: [langs.search, langs.product_no, langs.keyword] }}">
+            <i class="icon ion-search" ng-click="getManufacturers(popSelected.search)"></i>
+        </div>
+    </div>
+    <ion-content class="has-footer has-subheader">
+        <div class="row row-header">
+            <div class="col col-10 checkbox" style="margin-right: 10px; padding-top: 2px;">
+                <input type="checkbox" class="checkbox-icon" ng-model="popSelected.isAllSelected" ng-click="selectAll()">
+            </div>
+            <div class="col col-50 col-ellipsis">
+                {{langs.product_no}}
+            </div>
+            <div class="col col-20 col-ellipsis">
+                {{langs.product_name}}
+            </div>
+        </div>
+        <ion-item class="row popupItem" style="height: 44px;" ng-repeat="product in products | filter:popSelected.search">
+            <div class="col col-10 checkbox" style="margin-right: 10px;">
+                <input type="checkbox" class="checkbox-icon" ng-model="product.checked">
+            </div>
+            <div class="col col-50 col-field">{{product.item_no}}</div>
+            <div class="col col-20 col-field">{{product.item_desc}}</div>
+        </ion-item>
+        <br />
+    </ion-content>
+    <div class="bar bar-footer footerStyle" ng-click="setProductNo()">
+        <h1 class="title titleStyle">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

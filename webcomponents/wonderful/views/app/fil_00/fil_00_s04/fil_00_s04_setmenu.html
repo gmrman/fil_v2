@@ -101,6 +101,8 @@
                     <span ng-if="basicInf.valuation_unit == 1">{{langs.purchase}}</span>
                     <span ng-if="basicInf.valuation_unit == 2">{{langs.sale}}</span>
                     <span ng-if="basicInf.valuation_unit == 3">{{langs.both}}</span>
+                    <span ng-if="basicInf.valuation_unit == 4">{{langs.produce}}</span>
+                    <span ng-if="basicInf.valuation_unit == 5">{{langs.three_all}}</span>
                 </label>
 
                 <label class="item item-input">
@@ -279,6 +281,35 @@
                 <label ng-show="diplay.language">
                     <ion-radio ng-model="basicInf.language" ng-change="update()" ng-value="'en_US'">{{langs.english}}</ion-radio>
                 </label>
+
+                <!--语音提示-->
+                <label class="item item-input" ng-click="diplay.voice = !diplay.voice">
+                    <div class="col col-50">{{langs.data}}{{langs.voice}}</div>
+                    <div class="col col-33">
+                        <span ng-if="basicInf.voice == 'novoice'">{{langs.novoice}}</span>
+                        <span ng-if="basicInf.voice == 'alert'">{{langs.shortvoice}}</span>
+                        <span ng-if="basicInf.voice == 'xiaoyu'">{{langs.men}}</span>
+                        <span ng-if="basicInf.voice == 'xiaoyan'">{{langs.women}}</span>
+                    </div>
+                    <div class="col col-10 text-right">
+                        <i class="ion-chevron-down" ng-show="diplay.voice"></i>
+                        <i class="ion-chevron-right" ng-hide="diplay.voice"></i>
+                    </div>
+                </label>
+
+                <label ng-show="diplay.voice">
+                    <ion-radio ng-model="basicInf.voice" ng-change="update()" ng-value="'novoice'">{{langs.novoice}}</ion-radio>
+                </label>
+                <label ng-show="diplay.voice">
+                    <ion-radio ng-model="basicInf.voice" ng-change="update()" ng-value="'alert'">{{langs.shortvoice}}</ion-radio>
+                </label>
+                <label ng-show="diplay.voice">
+                    <ion-radio ng-model="basicInf.voice" ng-change="update()" ng-value="'xiaoyu'">{{langs.men}}</ion-radio>
+                </label>
+                <label ng-show="diplay.voice">
+                    <ion-radio ng-model="basicInf.voice" ng-change="update()" ng-value="'xiaoyan'">{{langs.women}}</ion-radio>
+                </label>
+                <!--语音提示-->
 
                 <label class="item item-input" ng-click="diplay.font_size = !diplay.font_size">
                     <div class="col col-50">{{langs.fontSize}}</div>

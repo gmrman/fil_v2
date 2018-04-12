@@ -1,10 +1,10 @@
-define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array', 'Directives', 'ReqTestData', 'ionic-popup',
+define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'views/app/fil_common/fil_common_s02/fil_common_view.js', 'array', 'Directives', 'ReqTestData', 'ionic-popup',
     'circulationCardService', 'commonFactory', 'commonService', 'userInfoService', 'scanTypeService', 'numericalAnalysisService'
 ], function() {
-    return ['$scope', '$state', '$stateParams', '$timeout', '$filter', 'AppLang', 'APIService', 'APIBridge',
+    return ['$scope', '$state', '$stateParams', '$timeout', '$filter', 'AppLang', 'APIService', 'APIBridge', 'fil_common_view',
         '$ionicLoading', '$ionicPopup', '$ionicModal', '$ionicListDelegate', 'IonicPopupService', 'IonicClosePopupService',
         'fil_common_requisition', 'ReqTestData', 'circulationCardService', 'commonFactory', 'commonService', 'userInfoService', 'scanTypeService', 'numericalAnalysisService',
-        function($scope, $state, $stateParams, $timeout, $filter, AppLang, APIService, APIBridge,
+        function($scope, $state, $stateParams, $timeout, $filter, AppLang, APIService, APIBridge, fil_common_view,
             $ionicLoading, $ionicPopup, $ionicModal, $ionicListDelegate, IonicPopupService, IonicClosePopupService,
             fil_common_requisition, ReqTestData, circulationCardService, commonFactory, commonService, userInfoService, scanTypeService, numericalAnalysisService) {
 
@@ -38,189 +38,13 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 bcae014: $scope.page_params.program_job_no,
                 bcae015: $scope.page_params.status, //A開立新單/S過賬/Y確認
                 info_id: $scope.page_params.info_id || angular.copy(l_info_id),
-                has_source: true, //是否有來源單據
-                show_ingoing: false,
-                show_reason: false,
-                show_directive: false,
-                show_doc_slip: false,
-                show_s07_page: false,
-                show_submit: false,
-                edit_qty: true,
-                use_erp_warehousing: false,
             };
+
+            $scope.views = fil_common_view.getViews($scope.page_params);
 
             //設定各作業APP所顯示的標題
             userInfoService.changeTitle($scope.page_params.name + $scope.langs.scanning);
 
-            //控制條碼掃描頁面數量是否可以修改
-            if ((userInfoService.userInfo.gp_flag && $scope.page_params.program_job_no == "13-5") ||
-                $scope.page_params.program_job_no == "13-3") {
-                $scope.l_data.edit_qty = false;
-            }
-
-            //控卡作業是否檢查 erp_warehousing 參數
-            switch ($scope.page_params.func) {
-                case "fil107": //採購收貨
-                case "fil104": //採購收貨(單據)
-                case "fil108": //收貨入庫
-                case "fil106": //收貨入庫(單據)
-                case "fil102": //採購入庫(待辦)
-                case "fil105": //採購入庫(單據)
-                case "fil117": //採購入庫上架
-                case "fil119": //送貨收貨(單據)
-                case "fil101": //採購收貨(送貨)
-                case "fil103": //收貨入庫(送貨)
-                case "fil109": //銷售退回(新單)
-                case "fil110": //銷售退回(過帳)
-                case "fil206": //退料(新單)
-                case "fil207": //退料(過帳)
-                case "fil213": //完工入庫
-                case "fil215": //入庫上架(新增)
-                case "fil216": //入庫上架(扣帳)
-                case "fil221": //入庫申請(多筆)
-                case "fil222": //入庫過帳(E)
-                case "fil502": //雜收(過帳)
-                    $scope.l_data.use_erp_warehousing = true;
-                    break;
-            }
-
-            //控制是否顯示頁面
-            //是否顯示指示頁
-            switch ($scope.page_params.func) {
-                case "fil301": // 銷售出貨(新單)
-                case "fil307": // 寄售調撥(待辦)
-                case "fil308": // 銷售撿貨核對
-                case "fil309": // 寄售調撥核對
-                case "fil310": // 銷售出貨(訂單)
-                case "fil201": // 發料(申請)
-                case "fil202": // 發料(新單)
-                case "fil203": // 發料(過帳)
-                case "fil204": // 發料(單據)
-                case "fil205": // 倒扣發料
-                case "fil220": // 領料核對
-                case "fil501": // 雜發(過帳)
-                case "fil503": // 一階段撥出(申請)
-                    $scope.l_data.show_directive = true;
-                    break;
-            };
-
-            //是否顯示掃描+明細頁面
-            switch ($scope.page_params.func) {
-                case "fil104": // 採購收貨(單據)
-                case "fil105": // 採購入庫(單據)
-                case "fil106": // 收貨入庫(單據)
-                case "fil117": // 採購入庫上架
-                case "fil119": // 送貨收貨(單據)
-                case "fil221": // 入庫申請(多筆)
-                case "fil204": // 發料(單據)
-                    $scope.l_data.show_s07_page = true;
-                    break;
-            };
-
-            //是否顯示撥出字樣
-            switch ($scope.page_params.func) {
-                case "fil503": // 一階段撥出(申請)
-                case "fil504": // 一階段撥出
-                case "fil505": // 兩階段撥出
-                case "fil506": // 兩階段撥入
-                    $scope.l_data.show_ingoing = true;
-                    break;
-                case "fil518": // 報廢(過帳)
-                    if (userInfoService.userInfo.gp_flag) {
-                        $scope.l_data.show_ingoing = false;
-                    }
-                    $scope.l_data.show_ingoing = true;
-                    break;
-            };
-
-            //是否顯示理由碼區塊
-            switch ($scope.page_params.func) {
-                case "fil518": // 報廢(過帳)
-                    $scope.l_data.show_reason = true;
-                    break;
-                case "fil524": // 雜項發料(新單)
-                case "fil525": // 雜項收料(新單)
-                    $scope.l_data.show_reason = true;
-                    // EF E10 WF 不使用理由碼
-                    if (userInfoService.userInfo.server_product == "EF" ||
-                        userInfoService.userInfo.server_product == "WF" ||
-                        userInfoService.userInfo.server_product == "E10") {
-                        $scope.l_data.show_reason = false;
-                    }
-                    break;
-            };
-
-            //是否顯示單別選擇功能
-            switch ($scope.page_params.func) {
-                case "fil504": // 一階段撥出
-                case "fil505": // 兩階段撥出
-                case "fil524": // 雜項發料(新單)
-                case "fil525": // 雜項收料(新單)
-                    $scope.l_data.has_source = false;
-                    $scope.l_data.show_doc_slip = true;
-                    break;
-            }
-
-            //設定各作業數據匯總時所顯示的標題
-            switch ($scope.page_params.program_job_no) {
-                case "1":
-                case "1-1":
-                case "1-2":
-                case "12":
-                    $scope.inquiry_list_title_already = $scope.langs.alreadyReceive;
-                    $scope.inquiry_list_title_should = $scope.langs.shouldReceive;
-                    break;
-                case "2":
-                case "2-1":
-                case "3":
-                case "3-1":
-                case "9":
-                case "9-1":
-                case "9-2":
-                case "9-3":
-                    $scope.inquiry_list_title_already = $scope.langs.alreadyPutInStorage;
-                    $scope.inquiry_list_title_should = $scope.langs.shouldPutInStorage;
-                    break;
-                case "5":
-                case "5-1":
-                case "5-2":
-                case "5-3":
-                case "5-4":
-                    $scope.inquiry_list_title_already = $scope.langs.alreadyDelivery;
-                    $scope.inquiry_list_title_should = $scope.langs.shouldDelivery;
-                    break;
-                case "4":
-                case "6":
-                case "8":
-                    $scope.inquiry_list_title_already = $scope.langs.alreadyReturn;
-                    $scope.inquiry_list_title_should = $scope.langs.shouldReturn;
-                    break;
-                case "7":
-                case "7-1":
-                case "7-2":
-                case "7-3":
-                case "7-5":
-                case "11":
-                    $scope.inquiry_list_title_already = $scope.langs.alreadyIssue;
-                    $scope.inquiry_list_title_should = $scope.langs.shouldIssue;
-                    break;
-                case "13-1":
-                case "13-2":
-                    $scope.inquiry_list_title_already = $scope.langs.alreadyOutgoing;
-                    break;
-                case "13-3":
-                case "13-5":
-                    $scope.inquiry_list_title_already = $scope.langs.outgoing;
-                    $scope.inquiry_list_title_should = $scope.langs.ingoing;
-                    break;
-                case "20":
-                    $scope.inquiry_list_title_already = $scope.langs.alreadyScrap;
-                    $scope.inquiry_list_title_should = $scope.langs.shouldScrap;
-                    break;
-                default:
-                    $scope.inquiry_list_title_already = $scope.langs.alreadyPutInStorage;
-                    $scope.inquiry_list_title_should = $scope.langs.shouldPutInStorage;
-            }
 
             //取得預設倉庫 設定頁面 或 第一筆資料
             var out_warehouse = $scope.page_params.warehouse_no || $scope.userInfo.warehouse_no || userInfoService.warehouse[0].warehouse_no;
@@ -263,7 +87,9 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
             $scope.sel_indicate = {
                 warehouse_no: out_warehouse,
                 warehouse_name: userInfoService.warehouse[index].warehouse_name,
-                warehouse_cost: out_warehouse_cost
+                warehouse_cost: out_warehouse_cost,
+                storage_spaces_no: "",
+                lot_no: "",
             };
 
             //初始化 showGood 物件
@@ -352,7 +178,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 $scope.addGoods(temp);
                 $scope.getShowInfo(temp);
 
-                if ($scope.l_data.show_s07_page || $scope.page_params.in_out_no !== "-1") {
+                if ($scope.views.show_s07_page || $scope.page_params.in_out_no !== "-1") {
                     $scope.bcmeCreate(fil_common_requisition.parameter);
                 }
                 return flag;
@@ -380,7 +206,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 $scope.setFocusMe(true);
                 $scope.inTheScan(false);
                 $scope.scanning_detail.unshift(angular.copy(obj));
-                if ($scope.page_params.in_out_no == '-1' && !($scope.l_data.show_ingoing)) {
+                if ($scope.page_params.in_out_no == '-1' && !($scope.views.show_ingoing)) {
                     setInstruction(obj);
                 }
             };
@@ -400,6 +226,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     showCheckDeleteGoodsWaterfall(packing_barcode);
                 } else {
                     $scope.scanning_detail.splice(index, 1);
+                    $scope.set_list_array();
                 }
                 $scope.getShowInfo();
             };
@@ -414,7 +241,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     buttons: [{
                         text: $scope.langs.cancel,
                         onTap: function() {
-                            $scope.l_data.show_submit = true;
+                            $scope.views.show_submit = true;
                         }
                     }, {
                         text: $scope.langs.confirm,
@@ -437,6 +264,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     }
                 }
                 $scope.setScanning_detail(tmepArray);
+                $scope.set_list_array();
                 $scope.getShowInfo();
             };
 
@@ -675,6 +503,48 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 });
             };
 
+            var checkValuationUnit = function(flag) {
+                //是否使用計價單位 0.不使用 1.採購 2.銷售 3.兩者 4.生產 5.三者
+                switch (userInfoService.userInfo.valuation_unit) {
+                    case "1":
+                        if ($scope.page_params.mod == "APM") {
+                            flag = true;
+                        }
+                        break;
+                    case "2":
+                        if ($scope.page_params.mod == "AXM") {
+                            flag = true;
+                        }
+                        break;
+                    case "3":
+                        if ($scope.page_params.mod == "APM" ||
+                            $scope.page_params.mod == "AXM") {
+                            flag = true;
+                        }
+                    case "4": //生產目前開放 完工入庫、入庫上架(過帳)
+                        if ($scope.page_params.mod == "ASF") {
+                            if ($scope.page_params.func == "fil213" ||
+                                $scope.page_params.func == "fil216") {
+                                flag = true;
+                            }
+                        }
+                        break;
+                    case "5":
+                        if ($scope.page_params.mod == "APM" ||
+                            $scope.page_params.mod == "AXM") {
+                            flag = true;
+                        }
+                        if ($scope.page_params.mod == "ASF") {
+                            if ($scope.page_params.func == "fil213" ||
+                                $scope.page_params.func == "fil216") {
+                                flag = true;
+                            }
+                        }
+                        break;
+                }
+                return flag;
+            };
+
             //判斷是否顯示多單位維護視窗
             $scope.checkIsShowEditMultiUnit = function(item) {
                 //庫存數量 T100/TIPTOP不使用
@@ -688,27 +558,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     return true;
                 }
 
-                var isShowEditMultiUnit = false;
-                //是否使用計價單位 0.不使用 1.採購 2.銷售 3.兩者
-                switch (userInfoService.userInfo.valuation_unit) {
-                    case "1":
-                        if ($scope.page_params.mod == "APM") {
-                            isShowEditMultiUnit = true;
-                        }
-                        break;
-                    case "2":
-                        if ($scope.page_params.mod == "AXM") {
-                            isShowEditMultiUnit = true;
-                        }
-                        break;
-                    case "3":
-                        if ($scope.page_params.mod == "APM" ||
-                            $scope.page_params.mod == "AXM") {
-                            isShowEditMultiUnit = true;
-                        }
-                        break;
-                }
-                return isShowEditMultiUnit;
+                return checkValuationUnit(false);
             };
 
             //顯示多單位維護 Modal
@@ -755,7 +605,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         $scope.multUnit.should_reference_qty = $scope.data_collection[index].should_ref_qty;
                         $scope.multUnit.should_valuation_qty = $scope.data_collection[index].should_val_qty;
                         $scope.multUnit.should_qty = $scope.data_collection[index].should_qty;
-                        if ($scope.l_data.has_source) {
+                        if ($scope.views.has_source) {
                             $scope.multUnitParameter.isShowShouldQty = true;
                         }
                         break;
@@ -773,26 +623,9 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     $scope.multUnitParameter.isShowReference = true;
                 }
 
-                //是否使用計價單位 0.不使用 1.採購 2.銷售 3.兩者
-                switch (userInfoService.userInfo.valuation_unit) {
-                    case "1":
-                        if ($scope.page_params.mod == "APM") {
-                            $scope.multUnitParameter.isShowValuation = true;
-                        }
-                        break;
-                    case "2":
-                        if ($scope.page_params.mod == "AXM") {
-                            $scope.multUnitParameter.isShowValuation = true;
-                        }
-                        break;
-                    case "3":
-                        if ($scope.page_params.mod == "APM" ||
-                            $scope.page_params.mod == "AXM") {
-                            $scope.multUnitParameter.isShowValuation = true;
-                        }
-                        break;
-                }
+                $scope.multUnitParameter.isShowValuation = checkValuationUnit(false);
 
+                $scope.multUnit_old = angular.copy($scope.multUnit);
                 console.log($scope.multUnit);
 
                 $ionicModal.fromTemplateUrl('views/app/common/html/multiUnitQtyModal.html', {
@@ -910,6 +743,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                                             });
                                         }
                                         var allow_barcode_qty = numericalAnalysisService.accSub(numericalAnalysisService.accSub($scope.multUnit.barcode_qty, $scope.multUnit.barcode_inventory_qty), used_barcode_qty);
+                                        allow_barcode_qty = numericalAnalysisService.accAdd(allow_barcode_qty, $scope.multUnit_old.all_qty);
                                         if ($scope.multUnit.all_qty > allow_barcode_qty) {
                                             userInfoService.getVoice($scope.langs.barcode + $scope.langs.qty + $scope.langs.insufficient + "！", function() {
                                                 $scope.setFocusMe(true);
@@ -934,51 +768,54 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
 
                         //出項數量控卡
                         if ($scope.page_params.in_out_no == "-1") {
-                            //出項 計算已用庫存數量
-                            var used_barcode_inventory_qty = 0;
-                            if ($scope.scanning_detail.length > 0) {
-                                angular.forEach($scope.scanning_detail, function(value) {
-                                    if (commonService.isEquality(value.barcode_no, $scope.multUnit.barcode_no) &&
-                                        commonService.isEquality(value.warehouse_no, $scope.multUnit.warehouse_no) &&
-                                        commonService.isEquality(value.storage_spaces_no, $scope.multUnit.storage_spaces_no) &&
-                                        commonService.isEquality(value.lot_no, $scope.multUnit.lot_no) &&
-                                        commonService.isEquality(value.inventory_management_features, $scope.multUnit.inventory_management_features)) {
-                                        used_barcode_inventory_qty = numericalAnalysisService.accAdd(used_barcode_inventory_qty, value.qty);
-                                    }
-                                });
-                            }
-                            //裝箱條碼需一次新增 檢查暫存陣列
-                            if ($scope.temp_detail.length > 0) {
-                                angular.forEach($scope.temp_detail, function(value) {
-                                    if (commonService.isEquality(value.barcode_no, $scope.multUnit.barcode_no) &&
-                                        commonService.isEquality(value.warehouse_no, $scope.multUnit.warehouse_no) &&
-                                        commonService.isEquality(value.storage_spaces_no, $scope.multUnit.storage_spaces_no) &&
-                                        commonService.isEquality(value.lot_no, $scope.multUnit.lot_no) &&
-                                        commonService.isEquality(value.inventory_management_features, $scope.multUnit.inventory_management_features)) {
-                                        used_barcode_inventory_qty = numericalAnalysisService.accAdd(used_barcode_inventory_qty, value.qty);
-                                    }
-                                });
-                            }
-                            var surplus_barcode_inventory_qty = numericalAnalysisService.accSub($scope.multUnit.barcode_inventory_qty, used_barcode_inventory_qty);
-                            //條碼庫存數量
-                            if ($scope.multUnit.all_qty > surplus_barcode_inventory_qty) {
-                                userInfoService.getVoice($scope.langs.barcode + $scope.langs.stock + $scope.langs.qty + $scope.langs.insufficient + "！", function() {
-                                    $scope.setFocusMe(true);
-                                    $scope.inTheScan(false);
-                                });
-                                $scope.multUnit.all_qty = $scope.multUnit.barcode_inventory_qty;
-                                return false;
-                            }
-
-                            //裝箱條碼 控卡不可小於條碼數量
-                            if ($scope.multUnit.packing_barcode != "N") {
-                                if ($scope.multUnit.all_qty < $scope.multUnit.packing_qty) {
-                                    userInfoService.getVoice($scope.langs.picks_error_3, function() {
+                            if (type == "qty") {
+                                //出項 計算已用庫存數量
+                                var used_barcode_inventory_qty = 0;
+                                if ($scope.scanning_detail.length > 0) {
+                                    angular.forEach($scope.scanning_detail, function(value) {
+                                        if (commonService.isEquality(value.barcode_no, $scope.multUnit.barcode_no) &&
+                                            commonService.isEquality(value.warehouse_no, $scope.multUnit.warehouse_no) &&
+                                            commonService.isEquality(value.storage_spaces_no, $scope.multUnit.storage_spaces_no) &&
+                                            commonService.isEquality(value.lot_no, $scope.multUnit.lot_no) &&
+                                            commonService.isEquality(value.inventory_management_features, $scope.multUnit.inventory_management_features)) {
+                                            used_barcode_inventory_qty = numericalAnalysisService.accAdd(used_barcode_inventory_qty, value.qty);
+                                        }
+                                    });
+                                }
+                                //裝箱條碼需一次新增 檢查暫存陣列
+                                if ($scope.temp_detail.length > 0) {
+                                    angular.forEach($scope.temp_detail, function(value) {
+                                        if (commonService.isEquality(value.barcode_no, $scope.multUnit.barcode_no) &&
+                                            commonService.isEquality(value.warehouse_no, $scope.multUnit.warehouse_no) &&
+                                            commonService.isEquality(value.storage_spaces_no, $scope.multUnit.storage_spaces_no) &&
+                                            commonService.isEquality(value.lot_no, $scope.multUnit.lot_no) &&
+                                            commonService.isEquality(value.inventory_management_features, $scope.multUnit.inventory_management_features)) {
+                                            used_barcode_inventory_qty = numericalAnalysisService.accAdd(used_barcode_inventory_qty, value.qty);
+                                        }
+                                    });
+                                }
+                                var surplus_barcode_inventory_qty = numericalAnalysisService.accSub($scope.multUnit.barcode_inventory_qty, used_barcode_inventory_qty);
+                                surplus_barcode_inventory_qty = numericalAnalysisService.accAdd(surplus_barcode_inventory_qty, $scope.multUnit_old.all_qty);
+                                //條碼庫存數量
+                                if ($scope.multUnit.all_qty > surplus_barcode_inventory_qty) {
+                                    userInfoService.getVoice($scope.langs.barcode + $scope.langs.stock + $scope.langs.qty + $scope.langs.insufficient + "！", function() {
                                         $scope.setFocusMe(true);
                                         $scope.inTheScan(false);
                                     });
-                                    $scope.multUnit.all_qty = $scope.multUnit.packing_qty;
+                                    $scope.multUnit.all_qty = $scope.multUnit.barcode_inventory_qty;
                                     return false;
+                                }
+
+                                //裝箱條碼 控卡不可小於條碼數量
+                                if ($scope.multUnit.packing_barcode != "N") {
+                                    if ($scope.multUnit.all_qty < $scope.multUnit.packing_qty) {
+                                        userInfoService.getVoice($scope.langs.picks_error_3, function() {
+                                            $scope.setFocusMe(true);
+                                            $scope.inTheScan(false);
+                                        });
+                                        $scope.multUnit.all_qty = $scope.multUnit.packing_qty;
+                                        return false;
+                                    }
                                 }
                             }
 
@@ -1035,14 +872,14 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                                     $scope.multUnit.decimal_places_type);
                             }
                         }
-                    }
+                    };
 
                     //計算加減後數值 並呼叫撿查
                     $scope.multiUnitCompute = function(type, arg1, arg2) {
                         $scope.setFocusMe(false);
                         var num = numericalAnalysisService.accAdd(arg1, arg2);
-                        if (num < 1) {
-                            num = 1;
+                        if (num < 0) {
+                            num = 0;
                         }
                         switch (type) {
                             case "inventory":
@@ -1055,6 +892,9 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                                 $scope.multUnit.all_valuation_qty = num;
                                 break;
                             default:
+                                if (num == 0) {
+                                    num = 1;
+                                }
                                 $scope.multUnit.all_qty = num;
                                 break;
                         }
@@ -1108,7 +948,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                             });
                         }
 
-                        if (!$scope.l_data.has_source || $scope.multUnitParameter.type == "receipt") {
+                        if (!$scope.views.has_source || $scope.multUnitParameter.type == "receipt") {
                             if (index != -1) {
                                 $scope.multUnit.inventory_qty = $scope.multUnit.all_inventory_qty;
                                 $scope.multUnit.reference_qty = $scope.multUnit.all_reference_qty;
@@ -1185,7 +1025,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                                         commonService.isEquality(value.doc_line_seq, array[i].doc_line_seq) &&
                                         commonService.isEquality(value.doc_batch_seq, array[i].doc_batch_seq)) {
                                         array[i].allow_doc_qty = numericalAnalysisService.accSub(array[i].allow_doc_qty, value.qty);
-                                        array[i].doc_qty = numericalAnalysisService.accSub(array[i].doc_qty, value.qty);
+                                        array[i].surplus_doc_qty = numericalAnalysisService.accSub(array[i].surplus_doc_qty, value.qty);
                                         array[i].inventory_qty = numericalAnalysisService.accSub(array[i].inventory_qty, value.inventory_qty);
                                         array[i].reference_qty = numericalAnalysisService.accSub(array[i].reference_qty, value.reference_qty);
                                         array[i].valuation_qty = numericalAnalysisService.accSub(array[i].valuation_qty, value.valuation_qty);
@@ -1196,17 +1036,17 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                             //判斷是否使用誤差率
                             if (use_allow_rate) {
                                 //計算可容許誤差數量
-                                can_use_doc_qty = numericalAnalysisService.accSub(array[i].allow_doc_qty, array[i].doc_qty);
+                                can_use_doc_qty = numericalAnalysisService.accSub(array[i].allow_doc_qty, array[i].surplus_doc_qty);
 
                                 //計算使用誤差數量
                                 if (allow_qty > can_use_doc_qty) {
                                     allow_qty = numericalAnalysisService.accSub(allow_qty, can_use_doc_qty);
                                     use_doc_qty = array[i].allow_doc_qty;
                                 } else {
-                                    use_doc_qty = numericalAnalysisService.accAdd(array[i].doc_qty, allow_qty);
+                                    use_doc_qty = numericalAnalysisService.accAdd(array[i].surplus_doc_qty, allow_qty);
                                 }
                             } else {
-                                use_doc_qty = array[i].doc_qty;
+                                use_doc_qty = array[i].surplus_doc_qty;
                             }
 
                             //單據項次剩餘數量 有剩餘數量時核銷
@@ -1334,7 +1174,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 $scope.setInventoryDetail(array);
             };
 
-            if ($scope.l_data.show_directive) {
+            if ($scope.views.show_directive) {
                 $scope.app_instructions_get();
             }
 
@@ -1422,7 +1262,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     }
 
                     //有來源單據 計算相同 料 不同 條碼 倉庫 儲位 撥入倉庫 撥入儲位 批號 的數量
-                    if ($scope.l_data.has_source) {
+                    if ($scope.views.has_source) {
                         if (commonService.isEquality(item.item_no, showInfo.item_no) &&
                             commonService.isEquality(item.item_feature_no, showInfo.item_feature_no) &&
                             !(commonService.isEquality(item.barcode_no, showInfo.barcode_no) &&
@@ -1444,7 +1284,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 showInfo.packing_qty = min_barcode_qty;
 
                 //有來源單據
-                if ($scope.l_data.has_source) {
+                if ($scope.views.has_source) {
                     //計算條碼最大數量
                     var maxqty = 0;
                     var max_allow_doc_qty = 0;
@@ -1455,7 +1295,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         if (commonService.isEquality(sourceDoc.item_no, showInfo.item_no) &&
                             commonService.isEquality(sourceDoc.item_feature_no, showInfo.item_feature_no)) {
                             max_allow_doc_qty = numericalAnalysisService.accAdd(max_allow_doc_qty, sourceDoc.allow_doc_qty);
-                            max_doc_qty = numericalAnalysisService.accAdd(max_doc_qty, sourceDoc.doc_qty);
+                            max_doc_qty = numericalAnalysisService.accAdd(max_doc_qty, sourceDoc.surplus_doc_qty);
                         }
                     }
                     max_doc_qty = numericalAnalysisService.accSub(max_doc_qty, other_qty);
@@ -1465,7 +1305,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     showInfo.max_doc_qty = max_doc_qty;
                 }
 
-                if (!commonService.isNull(showInfo.barcode_type) || $scope.l_data.show_s07_page) {
+                if (!commonService.isNull(showInfo.barcode_type) || $scope.views.show_s07_page) {
                     $scope.showInfo = showInfo;
                     return;
                 }
@@ -1488,7 +1328,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 };
 
                 //調撥 倉儲為撥出倉儲 帶入預設倉庫
-                if ($scope.l_data.show_ingoing) {
+                if ($scope.views.show_ingoing) {
                     webTran.parameter.warehouse_no = $scope.sel_indicate.warehouse_no;
                     webTran.parameter.storage_spaces_no = "";
                     webTran.parameter.lot_no = "";
@@ -1613,10 +1453,12 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                                 list = result.data[0].bcaf;
                             }
                             var tempArray = setUpcomingData(list);
-                            $timeout(function() {
-                                $scope.upcoming = tempArray;
-                            }, 0);
-                            showUpcoming();
+                            if (tempArray.length > 0) {
+                                $timeout(function() {
+                                    $scope.upcoming = tempArray;
+                                }, 0);
+                                showUpcoming();
+                            }
                         } else {
                             setInitData(result.data[0]);
                         }
@@ -1675,7 +1517,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                 });
 
                 $scope.scanning_detail = data.bcaf;
-                if ($scope.scanning_detail.length > 0 && $scope.l_data.show_directive) {
+                if ($scope.scanning_detail.length > 0 && $scope.views.show_directive) {
                     var sourceDocDetail = fil_common_requisition.getSourceDocDetail();
                     for (var i = 0; i < $scope.scanning_detail.length; i++) {
                         var detail = $scope.scanning_detail[i];

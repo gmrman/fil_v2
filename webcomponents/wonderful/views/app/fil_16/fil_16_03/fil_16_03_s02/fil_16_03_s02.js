@@ -164,7 +164,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                                     return;
                                 }
                                 e.preventDefault();
-                                userInfoService.getVoice(AppLang.langs.qc_maxqty_error, function() {
+                                userInfoService.getVoice(AppLang.langs.qc_maxQty_error, function() {
                                     $scope.pop.qty = angular.copy($scope.pop.maxqty);
                                 });
                             }
@@ -224,7 +224,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     //檢驗數量
                     if ($scope.inspectInfo.sampling_qty > $scope.showInfo.doc_qty) {
                         // 顯示錯誤 "檢驗數量不可大於待驗批量！"
-                        userInfoService.getVoice($scope.langs.qc_maxqty_error, function() {
+                        userInfoService.getVoice($scope.langs.qc_maxQty_error, function() {
                             $scope.inspectInfo.sampling_qty = angular.copy($scope.showInfo.doc_qty);
                         });
                         return;

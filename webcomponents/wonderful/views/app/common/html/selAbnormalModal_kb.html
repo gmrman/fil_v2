@@ -1,0 +1,36 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header headerStyle">
+        <h1 class="title titleStyle">{{ userInfo.language | langFilter: [langs.insert, langs.bad, langs.reason] }}</h1>
+        <button class="button button-icon icon ion-android-close" ng-click="closeSelAbnormalModal()"></button>
+    </ion-header-bar>
+    <div class="bar bar-subheader view-pane">
+        <div class="item-input popupSearch">
+            <input type="text" autofocus hide-keypad ng-model="popSelected.search" dg-scanned="scanned(value)" placeholder="{{ userInfo.language | langFilter: [langs.search, langs.keyword] }}">
+            <i class="icon ion-search"></i>
+        </div>
+    </div>
+    <ion-content class="padding has-footer has-subheader view-pane" scroll="false">
+        <div class="col title-col-con row-header" style="height: 45px;">
+            <div class="row title-row-con">
+                <span class="col col-50" style="padding-top: 6px;">{{ userInfo.language | langFilter: [langs.bad, langs.qty] }}</span>
+                <div class="col col-50 quantity-form">
+                    <a class="mins" ng-click="mins('defect_qty')">-</a>
+                    <div class="qty" ng-click="showQtyPopScrap('defect_qty')">{{sub.defect_qty}}</div>
+                    <a class="add" ng-click="add('defect_qty')">+</a>
+                </div>
+            </div>
+        </div>
+        <ion-nav-view name="abnormal_02" sub-view>
+            <ion-view>
+                <ion-content class="view-pane">
+                    <ion-list>
+                        <ion-radio class="radio-fixed row-header" ng-click="changeReasonCode(item)" collection-repeat="item in reasonCodes" item-width="100%" item-height="50" ng-value="item.abnormal_no">{{item.abnormal_name}}</ion-radio>
+                    </ion-list>
+                </ion-content>
+            </ion-view>
+        </ion-nav-view>
+    </ion-content>
+    <div class="bar bar-footer footerStyle" ng-click="setReasonCode(item)">
+        <h1 class="title titleStyle">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

@@ -24,7 +24,14 @@ define(
         "views/app/fil_25/_routes.js",
         "views/app/fil_print/_routes.js",
         "views/app/fil_file_transfer/_routes.js",
-        "views/app/xcommon/routes/_routes.js",
+
+        //加值(S)
+        "views/app/kb_01/_routes.js",
+        "views/app/kb_02/_routes.js",
+        "views/app/kb_03/_routes.js",
+        "views/app/kb_04/_routes.js",
+        "views/app/kb_05/_routes.js",
+        //加值(E)
     ],
     // register
     function() {

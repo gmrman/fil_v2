@@ -70,6 +70,8 @@ TYPE type_bcme_t                 RECORD   #單身記錄
    main_storage_no                  LIKE app_base_bcme_t.bcme060,    #主要儲位
    first_in_first_out_control       LIKE app_base_bcme_t.bcme061,    #條碼先進先出控管方式
    erp_warehousing                  LIKE app_base_bcme_t.bcme062,    #倉儲是否以ERP為主
+   op_no                            LIKE app_base_bcme_t.bcme063,    #作業編號
+   op_name                          LIKE app_base_bcme_t.bcme064,    #作業名稱
    production_item_feature_no       LIKE app_base_bcme_t.bcme127,    #生产料号产品特征
    production_in_out_qty            LIKE app_base_bcme_t.bcme128,    #生产出入数量
    last_transaction_date            LIKE app_base_bcme_t.bcme999,    #最后异动时间
@@ -154,7 +156,8 @@ PUBLIC FUNCTION bcme_ae_af_get(p_json)
                "        bcme044,bcme045,bcme046,bcme047,bcme048, ",
                "        bcme049,bcme050,bcme051,bcme052,bcme053, ",
                "        bcme054,bcme055,bcme056,bcme057,bcme058, ",
-               "        bcme059,bcme060,bcme061,bcme062,         ",
+               "        bcme059,bcme060,bcme061,bcme062,bcme063, ",
+               "        bcme064,                                 ",
                "        bcme127,bcme128,bcme999,bcmestus         ",
                "   FROM app_base_bcme_t                  ",
                "  WHERE bcmeent = '",g_userInfo.enterprise_no,"'",

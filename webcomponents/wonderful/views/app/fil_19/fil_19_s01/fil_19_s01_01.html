@@ -8,12 +8,12 @@
         <a class="add" ng-click="add('qty')">+</a>
     </div>
 </div>
-<div class="row row-center" ng-if="multi_unit_type == '3' ">
+<div class="row row-center" ng-if="pop.multi_unit_type == '3' ">
     <div class="col  text-center">{{langs.reference}}{{langs.qty}}
         <span ng-if="pop.reference_unit_no">({{pop.reference_unit_no}})</span>
     </div>
 </div>
-<div class="row row-center" ng-if="multi_unit_type == '3' ">
+<div class="row row-center" ng-if="pop.multi_unit_type == '3' ">
     <div class="col h3 quantity-form">
         <a class="mins" ng-click="mins('reference_qty')">-</a>
         <input class="qty" type="number" string-to-number onfocus="this.select()" ng-model="pop.reference_qty">

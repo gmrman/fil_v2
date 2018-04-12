@@ -127,6 +127,7 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     $scope.showInfo.doc_no = parameter.source_no;
                     $scope.showInfo.run_card_no = parameter.run_card_no;
                     $scope.showInfo.seq = parameter.seq;
+                    $scope.showInfo.doc_type = parameter.doc_type;
                     $scope.showInfo.op_no = parameter.op_no;
                     $scope.showInfo.op_name = parameter.op_name;
                     $scope.showInfo.item_no = parameter.item_no;
@@ -139,8 +140,11 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     $scope.showInfo.return_qty = 0;
                     $scope.showInfo.surplus_qty = 0;
 
-                    $scope.showInfo.reference_qty = parameter.reference_qty || 0;
+                    $scope.showInfo.reference_max_qty = parameter.reference_qty || 0;
                     $scope.showInfo.reference_unit_no = parameter.reference_unit_no || "";
+                    $scope.showInfo.reference_qty = parameter.reference_qty || 0;
+                    $scope.showInfo.return_reference_qty = 0;
+                    $scope.showInfo.surplus_reference_qty = 0;
 
                     if ($scope.showInfo.scan_employee_no && $scope.showInfo.scan_doc_no) {
                         $scope.scaninfo.modify = true;
@@ -175,6 +179,12 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                     case "reference_qty":
                         $scope.pop.qty = angular.copy(parseFloat($scope.showInfo.reference_qty));
                         break;
+                    case "return_reference_qty":
+                        $scope.pop.qty = angular.copy(parseFloat($scope.showInfo.return_reference_qty));
+                        break;
+                    case "surplus_reference_qty":
+                        $scope.pop.qty = angular.copy(parseFloat($scope.showInfo.surplus_reference_qty));
+                        break;
                 }
 
                 var myPopup = $ionicPopup.show({
@@ -203,13 +213,52 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                                     $scope.showInfo.surplus_qty = (computeQty(qty, type)) ? qty : $scope.showInfo.surplus_qty;
                                     break;
                                 case "reference_qty":
-                                    $scope.showInfo.reference_qty = qty;
+                                    $scope.showInfo.reference_qty = (computeRefQty(qty, type)) ? qty : $scope.showInfo.reference_qty;
+                                    break;
+                                case "return_reference_qty":
+                                    $scope.showInfo.return_reference_qty = (computeRefQty(qty, type)) ? qty : $scope.showInfo.return_reference_qty;
+                                    break;
+                                case "surplus_reference_qty":
+                                    $scope.showInfo.surplus_reference_qty = (computeRefQty(qty, type)) ? qty : $scope.showInfo.surplus_reference_qty;
                                     break;
                             }
                         }
                     }]
                 });
                 IonicClosePopupService.register(false, myPopup);
+            };
+
+            var computeRefQty = function(qty, type) {
+                if (userInfoService.userInfo.server_product !== "WF") {
+                    return true;
+                }
+                var count = 0;
+                var reference_qty = parseFloat($scope.showInfo.reference_qty);
+                var return_reference_qty = parseFloat($scope.showInfo.return_reference_qty);
+                var surplus_reference_qty = parseFloat($scope.showInfo.surplus_reference_qty);
+                switch (type) {
+                    case "reference_qty":
+                        count = qty + return_reference_qty + surplus_reference_qty;
+                        before_qty = reference_qty;
+                        break;
+                    case "return_reference_qty":
+                        count = reference_qty + qty + surplus_reference_qty;
+                        before_qty = return_reference_qty;
+                        break;
+                    case "surplus_reference_qty":
+                        count = reference_qty + return_reference_qty + qty;
+                        before_qty = surplus_reference_qty;
+                        break;
+                }
+
+                if (Number(qty) > Number($scope.showInfo.reference_max_qty)) {
+                    userInfoService.getVoice($scope.langs.qc_maxRefQty_error, function() {
+                        $scope.setFocusMe(true);
+                    });
+                    return false;
+                }
+
+                return distributionQty(qty, count, type, before_qty, $scope.showInfo.reference_max_qty);
             };
 
             var computeQty = function(qty, type) {
@@ -231,19 +280,19 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         before_qty = surplus_qty;
                         break;
                 }
-                return distributionQty(qty, count, type, before_qty);
-            };
 
-            var distributionQty = function(qty, count, type, before_qty) {
                 if (Number(qty) > Number($scope.showInfo.qty)) {
-                    userInfoService.getVoice($scope.langs.qc_maxqty_error, function() {
+                    userInfoService.getVoice($scope.langs.qc_maxQty_error, function() {
                         $scope.setFocusMe(true);
                     });
                     return false;
                 }
 
+                return distributionQty(qty, count, type, before_qty, $scope.showInfo.qty);
+            };
+
+            var distributionQty = function(qty, count, type, before_qty, max_qty) {
                 //minus
-                var max_qty = 0;
                 while (Number(before_qty) > Number(qty)) {
                     switch (type) {
                         case "return_qty":
@@ -252,12 +301,18 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         case "surplus_qty":
                             $scope.showInfo.ok_qty += 1;
                             break;
+                        case "return_reference_qty":
+                            $scope.showInfo.reference_qty += 1;
+                            break;
+                        case "surplus_reference_qty":
+                            $scope.showInfo.reference_qty += 1;
+                            break;
                     }
                     before_qty -= 1;
                 }
 
                 //add
-                while (Number(count) > Number($scope.showInfo.qty)) {
+                while (Number(count) > Number(max_qty)) {
                     switch (type) {
                         case "ok_qty":
                             if (Number($scope.showInfo.surplus_qty) > 0) {
@@ -288,6 +343,37 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                                 $scope.showInfo.return_qty -= 1;
                                 break;
                             }
+                            break;
+                        case "reference_qty":
+                            if (Number($scope.showInfo.surplus_reference_qty) > 0) {
+                                $scope.showInfo.surplus_reference_qty -= 1;
+                                break;
+                            }
+                            if (Number($scope.showInfo.return_reference_qty) > 0) {
+                                $scope.showInfo.return_reference_qty -= 1;
+                                break;
+                            }
+                            break;
+                        case "return_reference_qty":
+                            if (Number($scope.showInfo.surplus_reference_qty) > 0) {
+                                $scope.showInfo.surplus_reference_qty -= 1;
+                                break;
+                            }
+                            if (Number($scope.showInfo.reference_qty) > 0) {
+                                $scope.showInfo.reference_qty -= 1;
+                                break;
+                            }
+                            break;
+                        case "surplus_reference_qty":
+                            if (Number($scope.showInfo.reference_qty) > 0) {
+                                $scope.showInfo.reference_qty -= 1;
+                                break;
+                            }
+                            if (Number($scope.showInfo.return_reference_qty) > 0) {
+                                $scope.showInfo.return_reference_qty -= 1;
+                                break;
+                            }
+                            break;
                     }
                     count -= 1;
                 }
@@ -327,7 +413,15 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
                         break;
                     case "reference_qty":
                         qty = checkmin($scope.showInfo.reference_qty, value);
-                        $scope.showInfo.reference_qty = qty;
+                        $scope.showInfo.reference_qty = (computeRefQty(qty, type)) ? qty : $scope.showInfo.reference_qty;
+                        break;
+                    case "return_reference_qty":
+                        qty = checkmin($scope.showInfo.return_reference_qty, value);
+                        $scope.showInfo.return_reference_qty = (computeRefQty(qty, type)) ? qty : $scope.showInfo.return_reference_qty;
+                        break;
+                    case "surplus_reference_qty":
+                        qty = checkmin($scope.showInfo.surplus_reference_qty, value);
+                        $scope.showInfo.surplus_reference_qty = (computeRefQty(qty, type)) ? qty : $scope.showInfo.surplus_reference_qty;
                         break;
                 }
             };

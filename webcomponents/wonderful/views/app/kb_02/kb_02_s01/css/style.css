@@ -1,0 +1,559 @@
+/* 客製 */
+.searchStyle {
+   height: 44px;
+    color: #6D6D72;    
+}
+
+.searchStyle > div {
+   font-family: Microsoft JhengHei;
+   font-size: 17px !important;
+}
+
+.searchStyle > button {
+   color: #17A5BF !important;
+   font-family: Microsoft JhengHei;
+   font-size: 17px !important;
+}
+
+.searchIcon {
+   font-size: 23px;
+}
+
+.searchItem {
+    border-color: #FFFFFF;
+}
+
+.fix-row-header .col-screen-1,
+.fix-row-header .col-screen-2,
+.fix-row-header .col-screen-3,
+.fix-row-header .col-screen-4,
+.fix-row-header .col-screen-5,
+.fix-row-header .col-screen-6,
+.fix-row-header .col-screen-7 {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.status-band {
+    margin-left: -2px;
+}
+/* 客製 */
+
+.searchView {
+    width: 100%;
+    height: 28px;
+    background-color: #FFFFFF !important;
+    border: 1px solid #17A5BF !important;
+    border-radius: 8px !important;
+    padding-left: 10px !important;
+    padding-top: 2px !important;
+    padding-bottom: 4px !important;
+}
+
+.buttonlist {
+    margin-top: 0px !important;
+    margin-bottom: 1px !important;
+}
+
+.item-input {
+    padding: 3px 0 3px 16px;
+}
+
+.itemButton {
+    padding: 0px 8px 0px 8px;
+}
+
+.list {
+    margin-bottom: 0px;
+}
+
+.title-col-con {
+    background-color: #F0F0F0;
+    margin-bottom: 0px;
+}
+
+
+/*
+ * Action Sheets for Android
+ * --------------------------------------------------
+ */
+
+.platform-android .action-sheet-backdrop {
+    -webkit-transition: background-color 150ms ease-in-out;
+    transition: background-color 150ms ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.platform-android .action-sheet-backdrop.active {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.platform-android .action-sheet-wrapper {
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+    -webkit-transition: all cubic-bezier(0.36, 0.66, 0.04, 1) 500ms;
+    transition: all cubic-bezier(0.36, 0.66, 0.04, 1) 500ms;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+}
+
+.platform-android .action-sheet-up {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.platform-android .action-sheet {
+    margin-left: 8px;
+    margin-right: 8px;
+    width: auto;
+    z-index: 11;
+    overflow: hidden;
+}
+
+.platform-android .action-sheet .button {
+    font-family: Microsoft JhengHei;
+    display: block;
+    padding: 1px;
+    width: 100%;
+    border-radius: 0;
+    border-color: #d1d3d6;
+    background-color: transparent;
+    color: #17A5BF;
+    font-size: 17px !important;
+}
+
+.platform-android .action-sheet .button:hover {
+    color: #17A5BF;
+}
+
+.platform-android .action-sheet .button.destructive {
+    color: #ff3b30;
+}
+
+.platform-android .action-sheet .button.destructive:hover {
+    color: #ff3b30;
+}
+
+.platform-android .action-sheet .button.active, .platform-android .action-sheet .button.activated {
+    box-shadow: none;
+    border-color: #d1d3d6;
+    color: #17A5BF;
+    background: #e4e5e7;
+}
+
+.platform-android .action-sheet-has-icons .icon {
+    position: absolute;
+    left: 16px;
+}
+
+.platform-android .action-sheet-title {
+    font-family: Microsoft JhengHei;
+    height: 44px;
+    padding: 14px 16px !important;
+    color: #6D6D72 !important;    
+    text-align: center;
+    font-size: 17px !important;
+}
+
+.platform-android .action-sheet-group {
+    margin-bottom: 8px;
+    border-radius: 4px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.platform-android .action-sheet-group .button {
+    border-width: 1px 0px 0px 0px;
+}
+
+.platform-android .action-sheet-group .button:first-child:last-child {
+    border-width: 0;
+}
+
+.platform-android .action-sheet-options {
+    background: #f1f2f3;
+}
+
+.platform-android .action-sheet-cancel .button {
+    font-weight: 500;
+}
+
+.platform-android .action-sheet-open {
+    pointer-events: none;
+}
+
+.platform-android .action-sheet-open.modal-open .modal {
+    pointer-events: none;
+}
+
+.platform-android .action-sheet-open .action-sheet-backdrop {
+    pointer-events: auto;
+}
+
+.platform-android .action-sheet .action-sheet-title, .platform-android .action-sheet .button {
+    text-align: center;
+}
+
+.platform-android .action-sheet-cancel {
+    display: block;
+}
+
+.button:after{
+   left: initial;
+}
+
+/* 分頁CSS */
+.pager {
+   text-align: center;
+   list-style: none;
+}
+
+.pager li {
+   display: inline;
+}
+
+.pager .previous > a, .pager .previous > span {
+   float: left;
+   margin-left: 10px;
+}
+
+.pager .next > a, .pager .next > span {
+   float: right;
+   margin-right: 10px;
+}
+
+.pager li > a, .pager li > span {
+   display: inline-block;
+   padding: 5px 14px;
+   background-color: #fff;
+   border: 1px solid #ddd;
+   border-radius: 15px;
+   text-decoration: none;
+}
+
+.pager li > select {
+   display: inline-block;
+   padding: 5px 14px;
+   background-color: #fff;
+   text-align-last: center;
+   width: 50%;
+}
+
+.pager-select {
+   position: absolute;
+   right: 30%;
+   left: 30%;
+}
+
+.pager-select-popfix {
+   padding-bottom: 20%;
+}
+
+.fix-row-header {
+    margin-left: -2px;
+    font-family: Microsoft JhengHei;
+    background-color: #F2F2F2;
+    height: 28px;
+}
+
+.timetable_scroll {
+    left: 0px
+}
+
+.ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+@media screen and (max-device-width: 400px) {
+    .col-screen-0 {
+        width: 10vw;
+        padding: 5px;
+        color: #6D6D72;
+        font-size: 14px;
+    }
+
+    .col-screen-1 {
+        width: 40vw;
+        padding: 5px;
+        color: #6D6D72;
+        font-size: 14px;
+    }
+    
+    .col-screen-2 {
+        width: 40vw;
+        padding: 5px;
+        color: #6D6D72;
+        font-size: 14px;
+    }
+
+    .col-screen-3 {
+        width: 20vw;
+        padding: 5px;
+        color: #6D6D72;
+        font-size: 14px;
+    }
+    
+    .col-screen-4 {
+        width: 45vw;
+        padding: 5px;
+        color: #6D6D72;
+        font-size: 14px;
+    }
+
+    .col-screen-5 {
+        width: 15vw;
+        padding: 5px;
+        color: #6D6D72;
+        font-size: 14px;
+    }
+    
+    .col-screen-6 {
+        width: 30vw;
+        padding: 5px;
+        color: #6D6D72;
+        font-size: 14px;
+    }
+
+    .col-screen-7 {
+        width: 20vw;
+        padding: 5px;
+        color: #6D6D72;
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-device-width: 401px) {
+    .col-screen-0 {
+        max-width: 5%;
+        padding: 5px;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -moz-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        display: block;
+        width: 100%;
+        color: #6D6D72;
+        font-size: 14px;
+    }
+
+    .col-screen-1 {
+        max-width: 20%;
+        padding: 5px;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -moz-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        display: block;
+        width: 100%;
+        color: #6D6D72;
+        font-size: 14px;
+    }
+    
+    .col-screen-2 {
+        max-width: 25%;
+        padding: 5px;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -moz-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        display: block;
+        width: 100%;
+        color: #6D6D72;
+        font-size: 14px;
+    }
+
+    .col-screen-3 {
+        max-width: 8%;
+        padding: 5px;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -moz-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        display: block;
+        width: 100%;
+        color: #6D6D72;
+        font-size: 14px;
+    }
+    
+    .col-screen-4 {
+        max-width: 18%;
+        padding: 5px;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -moz-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        display: block;
+        width: 100%;
+        color: #6D6D72;
+        font-size: 14px;
+    }
+
+    .col-screen-5 {
+        max-width: 5%;
+        padding: 5px;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -moz-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        display: block;
+        width: 100%;
+        color: #6D6D72;
+        font-size: 14px;
+    }
+    
+    .col-screen-6 {
+        max-width: 15%;
+        padding: 5px;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -moz-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        display: block;
+        width: 100%;
+        color: #6D6D72;
+        font-size: 14px;
+    }
+
+    .col-screen-7 {
+        max-width: 8%;
+        padding: 5px;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -moz-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        display: block;
+        width: 100%;
+        color: #6D6D72;
+        font-size: 14px;
+    }
+}
+
+.StatusBandFixed {
+   position: absolute !important; 
+   top: 40px; 
+   z-index: -1;
+}
+
+.view-pane {
+    background-color: #C8C7CC;
+}
+
+.popupSearch {
+    height: 28px;
+    background-color: #FFFFFF;
+}
+
+.row-header {
+    background-color: #FFFFFF;
+    height: 44px;
+}
+
+.row-header > div {
+    font-family: Microsoft JhengHei;
+    color: #6D6D72;
+    font-size: 17px !important;
+}
+
+.col-field {
+    padding-top: 10px;
+}
+
+.popupItem > div {
+    font-family: Microsoft JhengHei;
+    color: #6D6D72;
+    font-size: 17px !important;
+}
+
+.modalView  > span {
+    font-family: Microsoft JhengHei;
+    color: #6D6D72;
+    font-size: 14px;
+}
+
+.modalView  > div {
+    font-family: Arial;
+    color: #6D6D72;
+    font-size: 14px;
+}
+
+.row-header-two {
+    font-family: Microsoft JhengHei;
+    font-size: 14px;
+    height: 52px;
+    color: #6D6D72;
+}
+
+.row-header-two > * {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.itemStyle {
+   border-color: #C8C7CC;
+}
+
+.itemStyle * {
+   font-family: Arial;
+   font-size: 14px;
+   color: #6D6D72;
+}
+
+.calc_def {
+    -webkit-height: calc(100vh - 44px);
+    -moz-height: calc(100vh - 44px);
+    height: calc(100vh - 44px);
+ }
+
+ .calc_156 {
+    -webkit-height: calc(100vh - 156px);
+    -moz-height: calc(100vh - 156px);
+    height: calc(100vh - 156px);
+ }
+
+ .fullImage {
+    max-height: 100vh; 
+    max-width: 100vw;
+    margin: auto;
+    display: -webkit-flex;
+    display: flex;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+ }
+
+ .centerImage {
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+ }

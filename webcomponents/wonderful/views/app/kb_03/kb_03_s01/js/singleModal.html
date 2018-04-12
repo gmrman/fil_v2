@@ -1,0 +1,23 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header headerStyle">
+        <h1 class="title titleStyle">{{ userInfo.language | langFilter: [langs.please_choose, langs.single] }}</h1>
+        <button class="button button-icon icon ion-android-close" ng-click="close()"></button>
+    </ion-header-bar>
+    <div class="bar bar-subheader view-pane">
+        <div class="item-input popupSearch">
+            <input type="text" autofocus ng-model="popSelected.search" placeholder="{{ userInfo.language | langFilter: [langs.search, langs.single, langs.keyword] }}">
+            <i class="icon ion-search"></i>
+        </div>
+    </div>
+    <ion-content class="padding has-footer has-subheader">
+        <ion-list class="popList">
+            <ion-checkbox ng-model="isAllSelected" ng-click="selectAll(isAllSelected)">
+                {{langs.select_all}}/{{langs.not_select_all}}
+            </ion-checkbox>
+            <ion-checkbox collection-repeat="single in singles | filter:popSelected.search" item-height="55" ng-model="single.checked">{{single.doc}} {{single.doc_desc}}</ion-checkbox>
+        </ion-list>
+    </ion-content>
+    <div class="bar bar-footer footerStyle" ng-click="setSingle()">
+        <h1 class="title titleStyle">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

@@ -1,0 +1,54 @@
+<ion-view>
+    <ion-content id="scroll" class="view-pane">
+        <ion-list>
+            <ion-item class="list_item itemStyle" style="width: 100%; height: 70px" ng-click="closeOption()" ng-repeat-start="documents in documents_sum | orderBy: orderBy">
+                <div class="row">
+                    <div class="col col-40"><span ng-if="documents.doc_no.length + docEllips > 0 && docEllips != 0">...</span>{{documents.doc_no | filterEllipsis: docEllips}}</div>
+                    <div class="col col-40 col-ellipsis">{{documents.item_no}}</div>
+                    <div class="col col-20 text-right">{{documents.qty}}</div>
+                </div>
+                <div class="row">
+                    <div class="col col-40">{{documents.doc_seq}}</div>
+                    <div class="col col-40 col-ellipsis">{{documents.item_desc}}</div>
+                    <div class="col col-20 text-right" ng-style="{ 'background-color': (documents.qty > documents.include_qty) ? 'red' : 'transparent' }">{{documents.include_qty}}</div>
+                </div>
+
+                <ion-option-button class="button button-royal" ng-if="checkIsShowEditMultiUnit(documents)"
+                ng-click="editMultiUnit('collection', documents, '')">{{langs.multi_unit}}</ion-option-button>
+
+                <ion-option-button class="button icon ion-plus" ng-click="showLot(documents)"></ion-option-button>
+            </ion-item>
+            <div ng-if="documents.showLot" ng-repeat-end>
+                <div class="list_item" ng-show="lot_list.length > 0">
+                    <div class="row row-title">
+                        <div class="col">
+                            {{langs.warehouse}}
+                        </div>
+                        <div class="col">
+                            {{langs.storage}}
+                        </div>
+                        <div class="col">
+                            {{langs.lot}}
+                        </div>
+                        <div class="col text-right">
+                            {{langs.picking}}
+                        </div>
+                    </div>
+                </div>
+
+                <ion-item ng-style="!$first && {'border-top-style': 'none'}" class="list_item itemStyle" ng-repeat="lot in lot_list = (documents.lot_list | filter: filter) | orderBy: ['store', 'location', 'lot']">
+                    <div class="row">
+                        <div class="col">{{lot.store}}</div>
+                        <div class="col">{{lot.location}}</div>
+                        <div class="col">{{lot.lot}}</div>
+                        <div class="col text-right">{{lot.include_qty}}</div>
+                    </div>
+
+                    <ion-option-button class="button button-royal" ng-if="checkIsShowEditMultiUnit(documents)"
+                    ng-click="editMultiUnit('collection_lot', documents, lot)">{{langs.multi_unit}}</ion-option-button>
+                </ion-item>
+            </div>
+        </ion-list>
+        <br />
+    </ion-content>
+</ion-view>

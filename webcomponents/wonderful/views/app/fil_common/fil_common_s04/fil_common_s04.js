@@ -9,13 +9,13 @@ define(["API", "APIS", 'AppLang', 'views/app/fil_common/requisition.js', 'array'
             fil_common_requisition, ReqTestData, circulationCardService, commonFactory, commonService, userInfoService, scanTypeService, numericalAnalysisService) {
 
             //設定list每個item的高度
-            var rows = ($scope.l_data.has_source) ? 4 : 3;
+            var rows = ($scope.views.has_source) ? 4 : 3;
             //是否顯示 撥入倉儲
-            rows += ($scope.l_data.show_ingoing) ? 1 : 0;
+            rows += ($scope.views.show_ingoing) ? 1 : 0;
             //是否顯示 理由碼
-            rows += ($scope.l_data.show_reason) ? 1 : 0;
-            //是否顯示 產品特徵
-            rows += (userInfoService.userInfo.feature) ? 1 : 0;
+            rows += ($scope.views.show_reason) ? 1 : 0;
+            //是否顯示 產品特徵 / 作業名稱
+            rows += (userInfoService.userInfo.feature || $scope.views.show_op) ? 1 : 0;
             $scope.collection_item_height = rows * 30 - ((rows - 1) * 5);
             console.log($scope.collection_item_height);
 

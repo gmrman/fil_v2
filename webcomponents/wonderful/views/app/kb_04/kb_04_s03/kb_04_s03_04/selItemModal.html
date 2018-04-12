@@ -1,0 +1,58 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header headerStyle">
+        <h1 class="title titleStyle">{{langs.please_choose}}</h1>
+        <button class="button button-icon icon ion-android-close" ng-click="close()"></button>
+    </ion-header-bar>
+    <ion-content class="padding has-footer" scroll="false">
+        <div class="itemStyle">
+            <div class="row">
+                <div class="item-input popupSearch">
+                    <input type="text" ng-model="scaninfo.search" placeholder="{{ userInfo.language | langFilter: [langs.search, langs.item_no, langs.keyword] }}">
+                    <i class="icon ion-search"></i>
+                </div>
+            </div>
+            <hr />
+            <div class="list_item">
+                <div class="row row-center">
+                    <div class="checkbox">
+                        <input type="checkbox" class="checkbox-icon" ng-change="checkedALL()" ng-model="scaninfo.checked">
+                    </div>
+                    <div class="col title-col-con">
+                        <div class="row title-row-con col-small-padding">
+                            <div class="col col-50">{{langs.product_name}}</div>
+                            <div class="col col-50 text-right">{{langs.specification}}</div>
+                        </div>
+                        <div class="row title-row-con col-small-padding">
+                            <div class="col col-50" ng-if="userInfo.feature != 'Y' "></div>
+                            <div class="col col-50" ng-if="userInfo.feature == 'Y' ">{{langs.item_feature}}</div>
+                            <div class="col col-50 text-right">{{langs.expected_delivery}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ion-scroll style="height: calc(100% - 110px);">
+            <ion-item class="list_item" ng-repeat="item in item_detail | filter:scaninfo.search" style="width: 100%;">
+                <div class="row row-center itemStyle" style="height: 55px;">
+                    <div class="checkbox">
+                        <input type="checkbox" class="checkbox-icon" ng-model="item.checked">
+                    </div>
+                    <div class="col list-col-con">
+                        <div class="row list-row-con">
+                            <div class="col col-50 col-ellipsis">{{item.item_name || item.item_no}}</div>
+                            <div class="col col-50 col-ellipsis text-right">{{item.item_spec}}</div>
+                        </div>
+                        <div class="row list-row-con">
+                            <div class="col col-50 col-ellipsis">{{item.item_feature_name || item.item_feature_no}}</div>
+                            <div class="col col-50 col-ellipsis text-right">{{item.in_out_date1}}</div>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-scroll>
+    </ion-content>
+    <div class="bar bar-footer footerStyle" ng-click="selItem()">
+        <h1 class="title titleStyle">{{langs.confirm}}</h1>
+    </div>
+</ion-modal-view>

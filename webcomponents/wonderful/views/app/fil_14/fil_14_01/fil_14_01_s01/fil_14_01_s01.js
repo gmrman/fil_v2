@@ -27,7 +27,7 @@ define(["AppLang", "userInfoService", "commonService"], function() {
                     storage_management: out_storage_management,
                     storage_spaces_no: (out_storage_management == "Y") ? $scope.sel_in_storage[0].storage_spaces_no : " ",
                     storage_spaces_name: (out_storage_management == "Y") ? $scope.sel_in_storage[0].storage_spaces_name : " ",
-                    has_list: true,
+                    has_list: false,
                     isShowReference: false
                 };
             };

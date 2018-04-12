@@ -191,19 +191,6 @@ FUNCTION gat_bcaf_def(p_bcae_t,p_scan,p_data)
    LET l_bcaf_t.bcafPcode = p_scan.packing_barcode
    LET l_bcaf_t.bcafPqty = p_scan.packing_qty
    
-   #关联bcme取采购单，项次，项序，分批序
-   IF p_data.bcae014 = '1-1' OR p_data.bcae014 = '1-2' OR p_data.bcae014 = '3-1' THEN
-      SELECT bcme023 ,bcme024,bcme025,bcme026  
-        INTO l_bcaf_t.bcaf020 ,l_bcaf_t.bcaf021 ,l_bcaf_t.bcaf022 , l_bcaf_t.bcaf023 
-        FROM app_base_bcme_t
-       WHERE bcmeent = g_userInfo.enterprise_no
-         AND bcmesite = g_userInfo.site_no
-         AND bcme001 = p_data.bcae014
-         AND bcme002 = l_bcaf_t.bcaf020  
-         AND bcme005 = l_bcaf_t.bcaf021
-
-   END IF
-
    RETURN l_bcaf_t.*
 
 END FUNCTION

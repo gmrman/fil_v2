@@ -106,6 +106,8 @@ PUBLIC FUNCTION bcme_create(p_json)
       main_storage_no				      LIKE app_base_bcme_t.bcme060,      #主要儲位
       first_in_first_out_control		   LIKE app_base_bcme_t.bcme061,      #條碼先進先出控管方式
       erp_warehousing                  LIKE app_base_bcme_t.bcme062,      #倉儲是否以ERP為主
+      op_no                            LIKE app_base_bcme_t.bcme063,      #作業編號
+      op_name                          LIKE app_base_bcme_t.bcme064,      #作業名稱
       production_item_feature_no       LIKE app_base_bcme_t.bcme127,      #生产料号产品特征
       production_in_out_qty            LIKE app_base_bcme_t.bcme128,      #生产出入数量
       last_transaction_date            LIKE app_base_bcme_t.bcme999,      #最后异动时间
@@ -212,7 +214,7 @@ PUBLIC FUNCTION bcme_create(p_json)
                                      bcme046,bcme047,bcme048,bcme049,bcme050,
                                      bcme051,bcme052,bcme053,bcme054,bcme055,
                                      bcme056,bcme057,bcme058,bcme059,bcme060,
-                                     bcme061,bcme062,
+                                     bcme061,bcme062,bcme063,bcme064,
                                      bcme127,bcme128,bcme999,bcmestus)
          VALUES ( l_master.source_doc_detail[i].enterprise_no,
                   l_master.source_doc_detail[i].site_no,
@@ -278,6 +280,8 @@ PUBLIC FUNCTION bcme_create(p_json)
                   l_master.source_doc_detail[i].main_storage_no,
                   l_master.source_doc_detail[i].first_in_first_out_control,
                   l_master.source_doc_detail[i].erp_warehousing,
+                  l_master.source_doc_detail[i].op_no,
+                  l_master.source_doc_detail[i].op_name,
                   l_master.source_doc_detail[i].production_item_feature_no,
                   l_master.source_doc_detail[i].production_in_out_qty,          
                   l_data.info_id,
@@ -341,6 +345,8 @@ PUBLIC FUNCTION bcme_create(p_json)
                 bcme060 =  l_master.source_doc_detail[i].main_storage_no,
                 bcme061 =  l_master.source_doc_detail[i].first_in_first_out_control,           
                 bcme062 =  l_master.source_doc_detail[i].erp_warehousing,     
+                bcme063 =  l_master.source_doc_detail[i].op_no,
+                bcme064 =  l_master.source_doc_detail[i].op_name,
                 bcme127 =  l_master.source_doc_detail[i].production_item_feature_no,
                 bcme128 =  l_master.source_doc_detail[i].production_in_out_qty,       
                 bcme999 =  l_data.info_id,

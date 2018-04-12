@@ -1,0 +1,51 @@
+<ion-view>
+    <ion-content id="scroll" class="view-pane">
+        <ion-list>
+            <ion-item class="list_item itemStyle" style="width: 100%; height: 70px" ng-click="closeOption()" ng-repeat-start="documents in documents_sum | orderBy: orderBy">
+                <div class="row">
+                    <div class="col col-40"><span ng-if="documents.doc_no.length + docEllips > 0 && docEllips != 0">...</span>{{documents.doc_no| filterEllipsis: docEllips}}</div>
+                    <div class="col col-40 col-ellipsis">{{documents.item_no}}</div>
+                    <div class="col col-20 text-right">{{documents.qty}}</div>
+                </div>
+                <div class="row">
+                    <div class="col col-40">{{documents.doc_seq}}</div>
+                    <div class="col col-40 col-ellipsis">{{documents.item_desc}}</div>
+                    <div class="col col-20 text-right" ng-style="{ 'background-color': (documents.qty > documents.include_qty) ? 'red' : 'transparent' }">{{documents.include_qty}}</div>
+                </div>
+
+                <ion-option-button class="button button-royal" ng-if="checkIsShowEditMultiUnit(documents.warehouse_data)"
+                ng-click="editMultiUnit('collection', documents)">{{langs.multi_unit}}</ion-option-button>
+
+                <ion-option-button class="button icon ion-plus" ng-click="showWarehouse(documents)"></ion-option-button>
+            </ion-item>
+            <div ng-if="documents.showWarehouse" ng-repeat-end>
+                <div class="col title-col-con scan-title-color">
+                    <div class="row">
+                        <div class="col col-25">{{langs.warehouse}}</div>
+                        <div class="col">
+                            {{documents.warehouse_data.warehouse_no}}
+                            <em ng-hide="!documents.warehouse_data.warehouse_no.trim() || !documents.warehouse_data.warehouse_name.trim()"> - </em>                            {{documents.warehouse_data.warehouse_name}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-25">{{langs.storage}}</div>
+                        <div class="col">
+                            {{documents.warehouse_data.storage_spaces_no}}
+                            <em ng-hide="!documents.warehouse_data.storage_spaces_no.trim() || !documents.warehouse_data.storage_spaces_name.trim()"> - </em>                            {{documents.warehouse_data.storage_spaces_name}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-25">{{langs.lot}}</div>
+                        <div class="col">{{documents.warehouse_data.lot_no}}</div>
+                    </div>
+
+                    <div class="row">
+                        <span class="col col-center col-25">{{langs.qty}}</span>
+                        <div class="col text-right">{{documents.warehouse_data.qty}}</div>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+        <br />
+    </ion-content>
+</ion-view>

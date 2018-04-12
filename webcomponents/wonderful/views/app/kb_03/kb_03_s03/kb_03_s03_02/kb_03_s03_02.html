@@ -1,0 +1,102 @@
+<ion-view>
+   <ion-content class="view-pane" scroll="false">
+      <div source="kb_03_s03_02">
+         <!--
+            <div class="row">
+                <i class="icon ion-ios-barcode-outline scan-ion" ng-click="scan()"></i>
+                <div class="item-input scan-inpnt scan-title-color">
+                    <input id="pickerSearch" type="text" hide-keypad placeholder="{{langs.start_scan}}" dg-scanned="scanned(value)"
+                        keep-data="true" ng-model="scanInfo.scanning">
+                    <i class="icon ion-ios-close-outline" on-tap="clearScanning()"></i>
+                </div>
+            </div>
+            -->
+
+         <div style="text-align: center;">
+            <!-- class="content-picker hide" -->
+            <!-- {{warehouse[0].store | filterEllipsis: 8:0:'...'}}/{{warehouse[0].location | filterEllipsis: 8:0:'...'}}/{{warehouse[0].item_no}} -->
+            <multi-list-picker ng-model="warehouseList" attachment="inline" bind-html="true" done="">
+              <!--  <multi-list-picker-list alias="warehouse_location_item_no" strict-matching="false">
+                  <multi-list-picker-list-item ng-repeat="warehouse in warehouseGroupBy" value="{{warehouse[0].store}};{{warehouse[0].location}};{{warehouse[0].item_no}}"
+                     label="&lt;span class=&quot;font-color-1&quot;&gt;{{warehouse[0].store | filterEllipsis: 8:0:'...'}}&lt;/span&gt;">
+                  </multi-list-picker-list-item>
+               </multi-list-picker-list>
+
+               <multi-list-picker-list alias="warehouse_location_item_no" strict-matching="false">
+                  <multi-list-picker-list-item ng-repeat="warehouse in warehouseGroupBy" value="{{warehouse[0].store}};{{warehouse[0].location}};{{warehouse[0].item_no}}"
+                     label="&lt;span class=&quot;font-color-4&quot;&gt;{{warehouse[0].location | filterEllipsis: 8:0:'...'}}&lt;/span&gt;">
+                  </multi-list-picker-list-item>
+               </multi-list-picker-list>
+               
+               <multi-list-picker-list alias="warehouse_location_item_no" strict-matching="false">
+                  <multi-list-picker-list-item ng-repeat="warehouse in warehouseGroupBy" value="{{warehouse[0].store}};{{warehouse[0].location}};{{warehouse[0].item_no}}"
+                     label="&lt;span class=&quot;font-color-3&quot;&gt;{{warehouse[0].item_no}}&lt;/span&gt;">
+                  </multi-list-picker-list-item>
+               </multi-list-picker-list> -->
+
+               <multi-list-picker-list alias="warehouse_location_item_no" strict-matching="false">
+                  <multi-list-picker-list-item ng-repeat="warehouse in warehouseGroupBy" value="{{warehouse[0].store}};{{warehouse[0].location}};{{warehouse[0].item_no}}"
+                     label="&lt;span class=&quot;font-color-1&quot;&gt;{{warehouse[0].store | filterEllipsis: 8:0:'...'}}&lt;/span&gt; /
+                            &lt;span class=&quot;font-color-4&quot;&gt;{{warehouse[0].location | filterEllipsis: 8:0:'...'}}&lt;/span&gt; /
+                            &lt;span class=&quot;font-color-3&quot;&gt;{{warehouse[0].item_no}}&lt;/span&gt;">
+                  </multi-list-picker-list-item>
+               </multi-list-picker-list>
+            </multi-list-picker>
+
+            <div>{{langs.first}} {{sel_index}} / {{sel_list}} {{langs.quantity}}</div>
+         </div>
+
+         <!-- 單據清單 -->
+         <div class="list_item">
+            <div class="row row-title">
+               <div class="col">
+                  <div>{{warehouseGroupBy[warehouseList.warehouse_location_item_no][0].item_no}}</div>
+               </div>
+            </div>
+            <div class="row row-title">
+               <div class="col col-40 col-ellipsis">
+                  {{langs.docno}}
+               </div>
+               <div class="col col-20 col-ellipsis">
+                  {{langs.seq}}
+               </div>
+               <div class="col col-20 text-right col-ellipsis">
+                  {{langs.should_picking}}
+               </div>
+               <div class="col col-20 text-right col-ellipsis">
+                  {{langs.picking}}
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <ion-nav-view name="kb_03_s03_02_list"></ion-nav-view>
+   </ion-content>
+
+   <!--
+    <ion-pull-up-footer class="footerStyle footer-picker hide" state="minimized" initial-state="minimized" default-behavior="switch" height="40">
+        <!--
+        <ion-pull-up-trigger class="title">More details</ion-pull-up-trigger>
+        --\>
+        
+        <ion-pull-up-handle width="100" height="25" toggle="ion-chevron-down ion-chevron-up" style="border-radius: 25px 25px 0 0">
+            <i class="icon ion-chevron-up"></i>
+        </ion-pull-up-handle>
+
+        <ion-pull-up-content scroll="true">
+            <div ion-pull-up-content-title>
+                <div class="list card" style="text-align: center;">
+                    <multi-list-picker ng-model="warehouseList" attachment="inline" bind-html="true" done="">
+                        <multi-list-picker-list alias="warehouse_location_item_no" strict-matching="false">
+                            <multi-list-picker-list-item ng-repeat="warehouse in warehouseGroupBy" value="{{warehouse[0].store}};{{warehouse[0].location}};{{warehouse[0].item_no}}"
+                                label="{{warehouse[0].store}} / {{warehouse[0].location}} / {{warehouse[0].item_no}}"></multi-list-picker-list-item>
+                        </multi-list-picker-list>
+                    </multi-list-picker>
+
+                    <p style="color: black;">{{langs.first}} {{sel_index}} / {{sel_list}} {{langs.quantity}}</p>
+                </div>
+            </div>
+        </ion-pull-up-content>
+    </ion-pull-up-footer>
+    -->
+</ion-view>
