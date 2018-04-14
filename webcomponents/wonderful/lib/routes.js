@@ -10,6 +10,7 @@ define(
         "views/app/fil3/fil3_10/_routes.js",
         "views/app/fil_00/_routes.js",
         "views/app/fil_common/_routes.js",
+        "views/app/fil_common_db/_routes.js",
         "views/app/fil_02/_routes.js",
         "views/app/fil_09/_routes.js",
         "views/app/fil_10/_routes.js",

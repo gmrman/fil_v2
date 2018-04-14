@@ -137,6 +137,9 @@ PUBLIC FUNCTION bcme_create(p_json)
    #插入bcmc表格
  #  FOR i=1 TO l_master.barcode_detail.getLength() 
  #  END FOR
+   IF l_data.bcae014 = "5" THEN
+    DELETE FROM scan_detail
+   END IF
 
    IF l_master.source_doc_detail.getLength() > 0 THEN
       IF l_data.bcae014 != "1" AND l_data.bcae014 != "3"   AND 

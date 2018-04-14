@@ -235,7 +235,19 @@ PUBLIC FUNCTION api()
                CALL strategies('type_data')
                CALL kb_05_upd_setting(jsonarr) RETURNING result
             #170518 By zhen (E)
+            WHEN "insertIntoScan"
+               CALL strategies('type_data')
+               CALL insertIntoScan(jsonarr) RETURNING result
 
+            WHEN "scan_get"
+               CALL strategies('type_data')
+               CALL scan_get() RETURNING result
+               
+            WHEN "get_showinfo"
+               CALL strategies('type_data')
+               CALL get_showinfo(jsonarr) RETURNING result
+               
+               
             WHEN "WiFiPrinter" #Hybrid API 设定IP
                CALL strategies('type_data')
                CALL WiFiPrinter(jsonarr) RETURNING result  

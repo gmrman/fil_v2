@@ -1,0 +1,78 @@
+<ion-view>
+    <ion-content class="view-pane">
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <span class="col col-25">{{langs.barcode}}</span>
+            <div class="col col-75">{{showInfo.barcode_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <span class="col col-25">{{langs.warehouse}}</span>
+            <div class="col col-75">{{showInfo.warehouse_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <span class="col col-25">{{langs.storage}}</span>
+            <div class="col col-75">{{showInfo.storage_spaces_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="views.show_ingoing">
+            <span class="col col-25">{{langs.ingoing}}{{langs.warehouse}}</span>
+            <div class="col col-75">{{showInfo.ingoing_warehouse_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="views.show_ingoing">
+            <span class="col col-25">{{langs.ingoing}}{{langs.storage}}</span>
+            <div class="col col-75">{{showInfo.ingoing_storage_spaces_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <span class="col col-25">{{langs.lot}}</span>
+            <div class="col col-75">{{showInfo.lot_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="views.show_reason">
+            <span class="col col-25">{{langs.reason_no}}</span>
+            <div class="col col-75">{{showInfo.reason_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}">
+            <span class="col col-center col-25">{{langs.qty}}</span>
+            <div ng-if="!views.edit_qty" class="col">{{showInfo.all_qty}}</div>
+            <div class="col text-right" ng-if="views.edit_qty">
+                <div class="quantity-form" ng-if="showInfo.barcode_no">
+                    <a class="mins" ng-click="compute('qty','-1')">-</a>
+                    <div class="qty" ng-click="showQtyPop('qty')">{{showInfo.all_qty}}</div>
+                    <a class="add" ng-click="compute('qty','1')">+</a>
+                </div>
+                <!-- <div class="quantity-form" ng-click="editMultiUnit('scanning',-1)" ng-if="showInfo.barcode_no && checkIsShowEditMultiUnit(showInfo) ">
+                    <a class="mins">-</a>
+                    <div class="qty">{{showInfo.all_qty}}</div>
+                    <a class="add">+</a>
+                </div> -->
+            </div>
+            <div class="col col-center col-15">{{showInfo.unit}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="!(userInfo.isDisplay_no) && !(userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)">
+            <span class="col col-25">{{langs.item_no}}</span>
+            <div class="col col-75">{{showInfo.item_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.isDisplay_no">
+            <span class="col col-25">{{langs.item_no}}</span>
+            <div class="col col-75">{{showInfo.item_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.feature">
+            <span class="col col-25">{{langs.item_feature_no}}</span>
+            <div class="col col-75">{{showInfo.item_feature_no}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.isDisplay_name">
+            <span class="col col-25">{{langs.product_name}}</span>
+            <div class="col col-75">{{showInfo.item_name}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.isDisplay_spec">
+            <span class="col col-25">{{langs.specification}}</span>
+            <div class="col col-75">{{showInfo.item_spec}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="userInfo.feature">
+            <span class="col col-25">{{langs.item_feature_name}}</span>
+            <div class="col col-75">{{showInfo.item_feature_name}}</div>
+        </div>
+        <div class="row row-center" ng-class="{'col-small-padding':userInfo.font_size == 'normal'}" ng-if="views.show_op">
+            <span class="col col-25">{{langs.job_name}}</span>
+            <div class="col col-75">{{showInfo.op_name || showInfo.op_no}}</div>
+        </div>
+        <textarea rows="4" cols="50" ng-if="userInfo.show_scan_log">{{scan_time_log | filter:josn}}</textarea>
+    </ion-content>
+</ion-view>

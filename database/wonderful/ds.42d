@@ -14,5 +14,6 @@ capp_receipt_kb_t,8821
 department,8921
 menuinformation,8956
 qbecondition,9129
-stockinformation,9394
-userinformation,9775
+scan_detail,9394
+stockinformation,11506
+userinformation,11887

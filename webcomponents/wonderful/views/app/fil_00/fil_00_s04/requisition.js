@@ -369,7 +369,7 @@
                   ]);
 
                   setList("sales", [ //銷售管理
-                      new menu('AXM', 'fil301', 'fun05-1', "5", "A", "1", "-1", "1", 'fil_common_s01', langs.sale + langs.delivery), //銷售出貨
+                      new menu('AXM', 'fil301', 'fun05-1', "5", "A", "1", "-1", "1", 'fil_common_db_s01', langs.sale + langs.delivery), //銷售出貨
                       new menu('AXM', 'fil302', 'fun06-1', "6", "A", "1", "1", "1", 'fil_common_s01', langs.sale + langs.return+'(' + langs.new + langs.doc + 'E' + ')'), //銷售退回(新單E)
                       new menu('AXM', 'fil303', 'fun06-1', "6", "S", "1", "1", "1", 'fil_common_s01', langs.sale + langs.return+'(' + langs.post + ')'), //銷售退回(過帳)
                       new menu('AXM', 'fil304', 'fun05-2', "5", "A", "1", "-1", "1", 'fil3_common_s01', langs.sale + langs.delivery + '(' + langs.row + ')'), //銷售出貨(行)

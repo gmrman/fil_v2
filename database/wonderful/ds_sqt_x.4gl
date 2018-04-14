@@ -42,7 +42,7 @@ FUNCTION db_create_tables()
         bcafsite VARCHAR(20) NOT NULL,
         bcafname VARCHAR(255),
         bcafspec VARCHAR(255),
-        bcafMunit VARCHAR(10),
+        bcafmunit VARCHAR(10),
         bcaf001 VARCHAR(80) NOT NULL,
         bcaf002 VARCHAR(30) NOT NULL,
         bcaf003 VARCHAR(40) NOT NULL,
@@ -83,8 +83,8 @@ FUNCTION db_create_tables()
         bcaf045 DECIMAL(26,10),
         bcaf046 VARCHAR(10),
         bcaf047 DECIMAL(26,10),
-        bcafPcode VARCHAR(255),
-        bcafPqty DECIMAL(26,10),
+        bcafpcode VARCHAR(255),
+        bcafpqty DECIMAL(26,10),
         CONSTRAINT sqlite_autoindex_app_base_bcaf_t_1 PRIMARY KEY(bcafent, bcaf001, bcaf002, bcaf003, bcafsite, bcaf004))"
     EXECUTE IMMEDIATE "CREATE TABLE app_base_bcmc_t (
         bcmcent VARCHAR(10) NOT NULL,
@@ -229,13 +229,68 @@ FUNCTION db_create_tables()
         all_3_no VARCHAR(5),
         warehouse_way_cost VARCHAR(10),
         warehouse_way VARCHAR(10),
+        bt_printer VARCHAR(40),
         condition_start_date_type INTEGER,
         condition_start_date VARCHAR(255),
         basic_data_download DECIMAL(20,0),
         inventory_operation DECIMAL(20,0),
         out_in_operation DECIMAL(20,0),
-        bt_printer VARCHAR(40),
         valuation_unit VARCHAR(10))"
+    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_02_setting_t (
+        ent VARCHAR(10) NOT NULL,
+        site VARCHAR(20) NOT NULL,
+        limited VARCHAR(5),
+        amount INTEGER,
+        orderby VARCHAR(5),
+        shownumtype INTEGER,
+        shownum INTEGER,
+        CONSTRAINT sqlite_autoindex_capp_kb_02_setting_t_1 PRIMARY KEY(ent, site))"
+    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_03_setting_t (
+        ent VARCHAR(10) NOT NULL,
+        site VARCHAR(20) NOT NULL,
+        source VARCHAR(5),
+        a01 BOOLEAN,
+        a02 BOOLEAN,
+        a03 BOOLEAN,
+        a04 BOOLEAN,
+        CONSTRAINT sqlite_autoindex_capp_kb_03_setting_t_1 PRIMARY KEY(ent, site))"
+    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_03_single_t (
+        ent VARCHAR(10) NOT NULL,
+        site VARCHAR(20) NOT NULL,
+        single VARCHAR(5) NOT NULL,
+        CONSTRAINT sqlite_autoindex_capp_kb_03_single_t_1 PRIMARY KEY(ent, site, single))"
+    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_03_warehouse_t (
+        ent VARCHAR(10) NOT NULL,
+        site VARCHAR(20) NOT NULL,
+        warehouse VARCHAR(10) NOT NULL,
+        CONSTRAINT sqlite_autoindex_capp_kb_03_warehouse_t_1 PRIMARY KEY(ent, site, warehouse))"
+    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_05_setting_t (
+        ent VARCHAR(10) NOT NULL,
+        site VARCHAR(20) NOT NULL,
+        source VARCHAR(5),
+        a01 BOOLEAN,
+        a02 BOOLEAN,
+        a03 BOOLEAN,
+        a04 BOOLEAN,
+        CONSTRAINT sqlite_autoindex_capp_kb_05_setting_t_1 PRIMARY KEY(ent, site))"
+    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_05_single_t (
+        ent VARCHAR(10) NOT NULL,
+        site VARCHAR(20) NOT NULL,
+        single VARCHAR(5) NOT NULL,
+        CONSTRAINT sqlite_autoindex_capp_kb_05_single_t_1 PRIMARY KEY(ent, site, single))"
+    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_05_warehouse_t (
+        ent VARCHAR(10) NOT NULL,
+        site VARCHAR(20) NOT NULL,
+        warehouse VARCHAR(10) NOT NULL,
+        CONSTRAINT sqlite_autoindex_capp_kb_05_warehouse_t_1 PRIMARY KEY(ent, site, warehouse))"
+    EXECUTE IMMEDIATE "CREATE TABLE capp_receipt_kb_t (
+        ent VARCHAR(10) NOT NULL,
+        site VARCHAR(20) NOT NULL,
+        showme VARCHAR(20),
+        CONSTRAINT sqlite_autoindex_capp_receipt_kb_t_1 PRIMARY KEY(ent, site))"
+    EXECUTE IMMEDIATE "CREATE TABLE department (
+        department_no VARCHAR(40) NOT NULL,
+        CONSTRAINT sqlite_autoindex_department_1 PRIMARY KEY(department_no))"
     EXECUTE IMMEDIATE "CREATE TABLE menuinformation (
         enterprise_no VARCHAR(10) NOT NULL,
         site_no VARCHAR(20) NOT NULL,
@@ -253,6 +308,64 @@ FUNCTION db_create_tables()
         isdefault BOOLEAN NOT NULL,
         set_type INTEGER,
         CONSTRAINT sqlite_autoindex_qbecondition_1 PRIMARY KEY(enterprise_no, site_no, account, program_job_no, seq))"
+    EXECUTE IMMEDIATE "CREATE TABLE scan_detail (
+        barcode_no VARCHAR(100) NOT NULL,
+        qty DECIMAL(26,10) NOT NULL,
+        barcode_qty DECIMAL(26,10) NOT NULL,
+        barcode_inventory_qty DECIMAL(26,10) NOT NULL,
+        allow_doc_qty DECIMAL(26,10) NOT NULL,
+        maxqty DECIMAL(26,10) NOT NULL,
+        barcode_type VARCHAR(10),
+        barcode_lot_no VARCHAR(20),
+        inventory_management_features VARCHAR(255),
+        inventory_qty DECIMAL(26,10) NOT NULL,
+        inventory_rate DECIMAL(26,10),
+        inventory_unit VARCHAR(10) NOT NULL,
+        bc_source_batch_seq INTEGER,
+        bc_source_line_seq INTEGER,
+        bc_source_no VARCHAR(50),
+        bc_source_seq INTEGER,
+        source_no VARCHAR(50) NOT NULL,
+        seq INTEGER NOT NULL,
+        doc_line_seq INTEGER,
+        doc_batch_seq INTEGER,
+        item_no VARCHAR(50) NOT NULL,
+        item_name VARCHAR(255),
+        item_spec VARCHAR(255),
+        lot_no VARCHAR(100),
+        item_feature_no VARCHAR(100),
+        item_feature_name VARCHAR(255),
+        unit VARCHAR(10),
+        doc_qty DECIMAL(26,10) NOT NULL,
+        warehouse_name VARCHAR(255),
+        warehouse_no VARCHAR(100) NOT NULL,
+        storage_spaces_name VARCHAR(255),
+        storage_spaces_no VARCHAR(100),
+        decimal_places DECIMAL(26,10),
+        decimal_places_type VARCHAR(10),
+        lot_control_type VARCHAR(10),
+        main_organization VARCHAR(100),
+        max_reference_qty DECIMAL(26,10),
+        multi_unit_type VARCHAR(10),
+        packing_barcode VARCHAR(10),
+        packing_qty DECIMAL(26,10),
+        reference_qty DECIMAL(26,10),
+        reference_rate DECIMAL(26,10),
+        reference_unit_no VARCHAR(10),
+        surplus_doc_qty DECIMAL(26,10),
+        valuation_qty DECIMAL(26,10),
+        valuation_rate DECIMAL(26,10),
+        valuation_unit_no VARCHAR(10),
+        in_transit_cost_warehouse_no VARCHAR(10),
+        in_transit_non_cost_warehouse_no VARCHAR(10),
+        ingoing_storage_spaces_no VARCHAR(10),
+        ingoing_warehouse_no VARCHAR(10),
+        op_name VARCHAR(10),
+        op_no VARCHAR(10),
+        reason_name VARCHAR(10),
+        reason_no VARCHAR(10),
+        run_card_no INTEGER,
+        CONSTRAINT sqlite_autoindex_scan_detail_1 PRIMARY KEY(barcode_no, source_no, seq, doc_line_seq, doc_batch_seq, item_feature_no))"
     EXECUTE IMMEDIATE "CREATE TABLE stockinformation (
         enterprise_no VARCHAR(10) NOT NULL,
         site_no VARCHAR(20) NOT NULL,
@@ -280,71 +393,7 @@ FUNCTION db_create_tables()
         manage_barcode_inventory VARCHAR(1),
         feature VARCHAR(1),
         CONSTRAINT sqlite_autoindex_userinformation_1 PRIMARY KEY(enterprise_no, site_no, account))"
-    EXECUTE IMMEDIATE "CREATE TABLE department (
-        department_no VARCHAR(40) NOT NULL,
-        CONSTRAINT pk_department_1 PRIMARY KEY(department_no))"
-        
-    #170518 By zhen (S)
-    EXECUTE IMMEDIATE "CREATE TABLE capp_receipt_kb_t (
-        ent                  VARCHAR(10) NOT NULL,
-        site                 VARCHAR(20) NOT NULL,
-        showme               VARCHAR(20),
-        CONSTRAINT pk_capp_receipt_kb_t PRIMARY KEY(ent, site))"
 
-    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_02_setting_t (
-        ent                  VARCHAR(10) NOT NULL,
-        site                 VARCHAR(20) NOT NULL,
-        limited              VARCHAR(5),
-        amount               INTEGER,
-        orderBy              VARCHAR(5),
-        showNumType          INTEGER,
-        showNum              INTEGER,
-        CONSTRAINT pk_capp_kb_02_setting_t PRIMARY KEY(ent, site))"
-
-    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_03_setting_t (
-        ent                  VARCHAR(10) NOT NULL,
-        site                 VARCHAR(20) NOT NULL,
-        source               VARCHAR(5),
-        A01                  BOOLEAN,
-        A02                  BOOLEAN,
-        A03                  BOOLEAN,
-        A04                  BOOLEAN,
-        CONSTRAINT pk_capp_kb_03_setting_t PRIMARY KEY(ent, site))"
-
-    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_03_warehouse_t (
-        ent                  VARCHAR(10) NOT NULL,
-        site                 VARCHAR(20) NOT NULL,
-        warehouse            VARCHAR(10) NOT NULL,
-        CONSTRAINT pk_capp_kb_03_warehouse_t PRIMARY KEY(ent, site, warehouse))"
-
-    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_03_single_t (
-        ent                  VARCHAR(10) NOT NULL,
-        site                 VARCHAR(20) NOT NULL,
-        single               VARCHAR(5)  NOT NULL,
-        CONSTRAINT pk_capp_kb_03_single_t PRIMARY KEY(ent, site, single))"
-
-    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_05_setting_t (
-        ent                  VARCHAR(10) NOT NULL,
-        site                 VARCHAR(20) NOT NULL,
-        source               VARCHAR(5),
-        A01                  BOOLEAN,
-        A02                  BOOLEAN,
-        A03                  BOOLEAN,
-        A04                  BOOLEAN,
-        CONSTRAINT pk_capp_kb_05_setting_t PRIMARY KEY(ent, site))"
-
-    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_05_warehouse_t (
-        ent                  VARCHAR(10) NOT NULL,
-        site                 VARCHAR(20) NOT NULL,
-        warehouse            VARCHAR(10) NOT NULL,
-        CONSTRAINT pk_capp_kb_05_warehouse_t PRIMARY KEY(ent, site, warehouse))"
-
-    EXECUTE IMMEDIATE "CREATE TABLE capp_kb_05_single_t (
-        ent                  VARCHAR(10) NOT NULL,
-        site                 VARCHAR(20) NOT NULL,
-        single               VARCHAR(5)  NOT NULL,
-        CONSTRAINT pk_capp_kb_05_single_t PRIMARY KEY(ent, site, single))"
-    #170518 By zhen (E)
 END FUNCTION
 
 #+ Drop all tables from database.
@@ -356,23 +405,21 @@ FUNCTION db_drop_tables()
     EXECUTE IMMEDIATE "DROP TABLE app_base_bcmc_t"
     EXECUTE IMMEDIATE "DROP TABLE app_base_bcme_t"
     EXECUTE IMMEDIATE "DROP TABLE basicinformation"
-    EXECUTE IMMEDIATE "DROP TABLE menuinformation"
-    EXECUTE IMMEDIATE "DROP TABLE qbecondition"
-    EXECUTE IMMEDIATE "DROP TABLE stockinformation"
-    EXECUTE IMMEDIATE "DROP TABLE userinformation"
-    EXECUTE IMMEDIATE "DROP TABLE department"
-
-    #170518 By zhen (S)
-    EXECUTE IMMEDIATE "DROP TABLE capp_receipt_kb_t"
     EXECUTE IMMEDIATE "DROP TABLE capp_kb_02_setting_t"
     EXECUTE IMMEDIATE "DROP TABLE capp_kb_03_setting_t"
-    EXECUTE IMMEDIATE "DROP TABLE capp_kb_03_warehouse_t"
     EXECUTE IMMEDIATE "DROP TABLE capp_kb_03_single_t"
-    
+    EXECUTE IMMEDIATE "DROP TABLE capp_kb_03_warehouse_t"
     EXECUTE IMMEDIATE "DROP TABLE capp_kb_05_setting_t"
-    EXECUTE IMMEDIATE "DROP TABLE capp_kb_05_warehouse_t"
     EXECUTE IMMEDIATE "DROP TABLE capp_kb_05_single_t"
-    #170518 By zhen (E)
+    EXECUTE IMMEDIATE "DROP TABLE capp_kb_05_warehouse_t"
+    EXECUTE IMMEDIATE "DROP TABLE capp_receipt_kb_t"
+    EXECUTE IMMEDIATE "DROP TABLE department"
+    EXECUTE IMMEDIATE "DROP TABLE menuinformation"
+    EXECUTE IMMEDIATE "DROP TABLE qbecondition"
+    EXECUTE IMMEDIATE "DROP TABLE scan_detail"
+    EXECUTE IMMEDIATE "DROP TABLE stockinformation"
+    EXECUTE IMMEDIATE "DROP TABLE userinformation"
+
 END FUNCTION
 
 #+ Add indexes for all tables.

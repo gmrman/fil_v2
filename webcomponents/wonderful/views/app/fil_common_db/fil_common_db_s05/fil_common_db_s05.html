@@ -1,0 +1,60 @@
+<ion-view>
+    <ion-content class="view-pane has-scanning-tabs-top" scroll="false">
+        <div class="col title-col-con scan-title-color" ng-if="views.show_doc_slip">
+            <div class="row row-center title-row-con">
+                <div class="col col-25">{{langs.doc_slip}}</div>
+                <div class="col" ng-click="docSlipShow()">
+                    <i class="icon ion-ios-compose-outline"></i>&nbsp;{{scaninfo.doc_slip}}
+                    <span ng-if="scaninfo.doc_slip_name && scaninfo.doc_slip_name != ' '">{{scaninfo.doc_slip_name}}</span>
+                </div>
+                <div class="col col-10 text-right col-no-padding">
+                    <i class="icon ion-ios-close-outline icon-medium" on-tap="scaninfo.doc_slip = '' "></i>
+                </div>
+            </div>
+        </div>
+        <div class="col title-col-con">
+            <div class="row row-center title-row-con" ng-if="views.has_source">
+                <div class="col col-ellipsis" ng-if="!(userInfo.isDisplay_no) && !(userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)">{{langs.item_no}}</div>
+                <div class="col col-ellipsis" ng-if=" (userInfo.isDisplay_no) && !(userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)">{{langs.item_no}}</div>
+                <div class="col col-ellipsis" ng-if="!(userInfo.isDisplay_no) &&  (userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)">{{langs.product_name}}</div>
+                <div class="col col-ellipsis" ng-if="!(userInfo.isDisplay_no) && !(userInfo.isDisplay_name) &&  (userInfo.isDisplay_spec)">{{langs.specification}}</div>
+                <div class="col col-ellipsis" ng-if=" (userInfo.isDisplay_no) &&  (userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)">{{langs.item_no}}</div>
+                <div class="col col-ellipsis" ng-if=" (userInfo.isDisplay_no) && !(userInfo.isDisplay_name) &&  (userInfo.isDisplay_spec)">{{langs.item_no}}</div>
+                <div class="col col-ellipsis" ng-if="!(userInfo.isDisplay_no) &&  (userInfo.isDisplay_name) &&  (userInfo.isDisplay_spec)">{{langs.product_name}}</div>
+                <div class="col col-ellipsis" ng-if=" (userInfo.isDisplay_no) &&  (userInfo.isDisplay_name) &&  (userInfo.isDisplay_spec)">{{langs.item_no}}</div>
+                <div class="col col-ellipsis text-right">{{views.inquiry_list_title_already}}{{langs.qty}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-if="views.has_source">
+                <div class="col col-ellipsis" ng-if="!(userInfo.isDisplay_no) && !(userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)"></div>
+                <div class="col col-ellipsis" ng-if=" (userInfo.isDisplay_no) && !(userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)"></div>
+                <div class="col col-ellipsis" ng-if="!(userInfo.isDisplay_no) &&  (userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)"></div>
+                <div class="col col-ellipsis" ng-if="!(userInfo.isDisplay_no) && !(userInfo.isDisplay_name) &&  (userInfo.isDisplay_spec)"></div>
+                <div class="col col-ellipsis" ng-if=" (userInfo.isDisplay_no) &&  (userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)">{{langs.product_name}}</div>
+                <div class="col col-ellipsis" ng-if=" (userInfo.isDisplay_no) && !(userInfo.isDisplay_name) &&  (userInfo.isDisplay_spec)">{{langs.specification}}</div>
+                <div class="col col-ellipsis" ng-if="!(userInfo.isDisplay_no) &&  (userInfo.isDisplay_name) &&  (userInfo.isDisplay_spec)">{{langs.specification}}</div>
+                <div class="col col-ellipsis" ng-if=" (userInfo.isDisplay_no) &&  (userInfo.isDisplay_name) &&  (userInfo.isDisplay_spec)">{{langs.product_name}}</div>
+                <div class="col col-ellipsis" ng-if=" (userInfo.isDisplay_no) &&  (userInfo.isDisplay_name) &&  (userInfo.isDisplay_spec)">{{langs.specification}}</div>
+                <div class="col col-ellipsis text-right">{{views.inquiry_list_title_should}}{{langs.qty}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-if="!views.has_source">
+                <div class="col col-ellipsis" ng-if="!(userInfo.isDisplay_no) && !(userInfo.isDisplay_name) && !(userInfo.isDisplay_spec)">{{langs.item_no}}</div>
+                <div class="col col-ellipsis" ng-if="userInfo.isDisplay_no">{{langs.item_no}}</div>
+                <div class="col col-ellipsis" ng-if="userInfo.isDisplay_name">{{langs.product_name}}</div>
+                <div class="col col-ellipsis" ng-if="userInfo.isDisplay_spec">{{langs.specification}}</div>
+                <div class="col col-ellipsis text-right">{{views.inquiry_list_title_already}}{{langs.qty}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-if="userInfo.feature">
+                <div class="col col-ellipsis">{{langs.item_feature_no}}</div>
+                <div class="col col-ellipsis text-right">{{langs.item_feature_name}}</div>
+            </div>
+            <div class="row row-center title-row-con" ng-if="page_params.in_out_no == '1' && views.has_source ">
+                <div class="col col-ellipsis">{{langs.main}}{{langs.warehouse}}</div>
+                <div class="col col-ellipsis text-right">{{langs.main}}{{langs.storage}}</div>
+            </div>
+        </div>
+        <ion-nav-view name="fil_common_db_s05_list" sub-view></ion-nav-view>
+    </ion-content>
+    <div class="bar bar-footer bar-positive" ng-click="submit()" ng-show="views.show_submit">
+        <h1 class="title">{{langs.submit}}</h1>
+    </div>
+</ion-view>
